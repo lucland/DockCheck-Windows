@@ -53,10 +53,25 @@
             this.labelNumero = new System.Windows.Forms.Label();
             this.buttonCadastrar = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.textBoxNome = new System.Windows.Forms.TextBox();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.maskedTextBoxIdentidade = new System.Windows.Forms.MaskedTextBox();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.maskedTextBoxNr35 = new System.Windows.Forms.MaskedTextBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.maskedTextBoxNr33 = new System.Windows.Forms.MaskedTextBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.maskedTextBoxNr10 = new System.Windows.Forms.MaskedTextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.maskedTextBoxAso = new System.Windows.Forms.MaskedTextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.maskedTextBoxNr34 = new System.Windows.Forms.MaskedTextBox();
             this.dateTimePickerCheckin = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.dateTimePickerCheckout = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.comboBoxEmbarcacao = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.obrigatorioNr34 = new System.Windows.Forms.Label();
             this.obrigatorioAso = new System.Windows.Forms.Label();
             this.obrigatorioCpf = new System.Windows.Forms.Label();
@@ -65,39 +80,23 @@
             this.obrigatorioFuncao = new System.Windows.Forms.Label();
             this.obrigatorioNome = new System.Windows.Forms.Label();
             this.obrigatorioEmbarcacao = new System.Windows.Forms.Label();
-            this.maskedTextBoxCpf = new System.Windows.Forms.MaskedTextBox();
             this.labelCpf = new System.Windows.Forms.Label();
-            this.buttonRegistrar = new Guna.UI2.WinForms.Guna2Button();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.maskedTextBoxNr34 = new System.Windows.Forms.MaskedTextBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.maskedTextBoxAso = new System.Windows.Forms.MaskedTextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.maskedTextBoxNr10 = new System.Windows.Forms.MaskedTextBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.maskedTextBoxNr33 = new System.Windows.Forms.MaskedTextBox();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.maskedTextBoxNr35 = new System.Windows.Forms.MaskedTextBox();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.maskedTextBoxIdentidade = new System.Windows.Forms.MaskedTextBox();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.textBoxNome = new System.Windows.Forms.TextBox();
-            this.panel13 = new System.Windows.Forms.Panel();
+            this.maskedTextBoxCpf = new System.Windows.Forms.MaskedTextBox();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.buttonRegistrar = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
-            this.panel8.SuspendLayout();
-            this.panel9.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel10.SuspendLayout();
-            this.panel11.SuspendLayout();
-            this.panel12.SuspendLayout();
             this.panel13.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // labeEmbarcacao
@@ -183,6 +182,7 @@
             this.textBoxEmpresa.Name = "textBoxEmpresa";
             this.textBoxEmpresa.Size = new System.Drawing.Size(403, 30);
             this.textBoxEmpresa.TabIndex = 1;
+            this.textBoxEmpresa.TextChanged += new System.EventHandler(this.textBoxEmpresa_TextChanged);
             // 
             // labelEmail
             // 
@@ -224,11 +224,11 @@
             // 
             this.labelN.AutoSize = true;
             this.labelN.BackColor = System.Drawing.Color.Transparent;
-            this.labelN.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelN.ForeColor = System.Drawing.Color.Black;
+            this.labelN.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
             this.labelN.Location = new System.Drawing.Point(25, 25);
             this.labelN.Name = "labelN";
-            this.labelN.Size = new System.Drawing.Size(58, 41);
+            this.labelN.Size = new System.Drawing.Size(79, 56);
             this.labelN.TabIndex = 0;
             this.labelN.Text = "N°";
             this.labelN.UseMnemonic = false;
@@ -299,9 +299,9 @@
             this.buttonConves.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.buttonConves.BorderRadius = 18;
             this.buttonConves.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
-            this.buttonConves.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
-            this.buttonConves.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
-            this.buttonConves.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
+            this.buttonConves.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.buttonConves.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.buttonConves.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
             this.buttonConves.CheckedState.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonConves.CheckedState.ForeColor = System.Drawing.Color.White;
             this.buttonConves.CustomBorderThickness = new System.Windows.Forms.Padding(3);
@@ -331,9 +331,9 @@
             this.buttonCasaDeMaquinas.BorderRadius = 18;
             this.buttonCasaDeMaquinas.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
             this.buttonCasaDeMaquinas.Checked = true;
-            this.buttonCasaDeMaquinas.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
-            this.buttonCasaDeMaquinas.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
-            this.buttonCasaDeMaquinas.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
+            this.buttonCasaDeMaquinas.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.buttonCasaDeMaquinas.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.buttonCasaDeMaquinas.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
             this.buttonCasaDeMaquinas.CheckedState.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCasaDeMaquinas.CheckedState.ForeColor = System.Drawing.Color.White;
             this.buttonCasaDeMaquinas.CustomBorderThickness = new System.Windows.Forms.Padding(3);
@@ -362,9 +362,9 @@
             this.buttonCasario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.buttonCasario.BorderRadius = 18;
             this.buttonCasario.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
-            this.buttonCasario.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
-            this.buttonCasario.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
-            this.buttonCasario.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
+            this.buttonCasario.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.buttonCasario.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.buttonCasario.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
             this.buttonCasario.CheckedState.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCasario.CheckedState.ForeColor = System.Drawing.Color.White;
             this.buttonCasario.CustomBorderThickness = new System.Windows.Forms.Padding(3);
@@ -415,19 +415,21 @@
             // 
             this.labelNumero.AutoSize = true;
             this.labelNumero.BackColor = System.Drawing.Color.Transparent;
-            this.labelNumero.Font = new System.Drawing.Font("Century Gothic", 26.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNumero.ForeColor = System.Drawing.Color.Black;
-            this.labelNumero.Location = new System.Drawing.Point(72, 25);
+            this.labelNumero.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNumero.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.labelNumero.Location = new System.Drawing.Point(92, 25);
             this.labelNumero.Name = "labelNumero";
-            this.labelNumero.Size = new System.Drawing.Size(98, 41);
+            this.labelNumero.Size = new System.Drawing.Size(132, 56);
             this.labelNumero.TabIndex = 0;
-            this.labelNumero.Text = "0000";
+            this.labelNumero.Text = "0001";
+            this.labelNumero.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.labelNumero.UseMnemonic = false;
+            this.labelNumero.Click += new System.EventHandler(this.labelNumero_Click);
             // 
             // buttonCadastrar
             // 
             this.buttonCadastrar.BackColor = System.Drawing.Color.Transparent;
-            this.buttonCadastrar.BorderRadius = 14;
+            this.buttonCadastrar.BorderRadius = 3;
             this.buttonCadastrar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
             this.buttonCadastrar.CustomBorderThickness = new System.Windows.Forms.Padding(5);
             this.buttonCadastrar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -435,13 +437,13 @@
             this.buttonCadastrar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.buttonCadastrar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.buttonCadastrar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
-            this.buttonCadastrar.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCadastrar.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCadastrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.buttonCadastrar.Image = ((System.Drawing.Image)(resources.GetObject("buttonCadastrar.Image")));
             this.buttonCadastrar.ImageSize = new System.Drawing.Size(30, 30);
-            this.buttonCadastrar.Location = new System.Drawing.Point(1567, 792);
+            this.buttonCadastrar.Location = new System.Drawing.Point(1486, 791);
             this.buttonCadastrar.Name = "buttonCadastrar";
-            this.buttonCadastrar.Size = new System.Drawing.Size(337, 62);
+            this.buttonCadastrar.Size = new System.Drawing.Size(418, 63);
             this.buttonCadastrar.TabIndex = 0;
             this.buttonCadastrar.Text = "Somente Cadastrar";
             // 
@@ -463,7 +465,6 @@
             this.panel1.Controls.Add(this.dateTimePickerCheckin);
             this.panel1.Controls.Add(this.dateTimePickerCheckout);
             this.panel1.Controls.Add(this.comboBoxEmbarcacao);
-            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.obrigatorioNr34);
             this.panel1.Controls.Add(this.obrigatorioAso);
             this.panel1.Controls.Add(this.obrigatorioCpf);
@@ -480,6 +481,177 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(2206, 684);
             this.panel1.TabIndex = 0;
+            // 
+            // panel13
+            // 
+            this.panel13.BackColor = System.Drawing.Color.White;
+            this.panel13.Controls.Add(this.textBoxNome);
+            this.panel13.Location = new System.Drawing.Point(37, 171);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(429, 38);
+            this.panel13.TabIndex = 1;
+            // 
+            // textBoxNome
+            // 
+            this.textBoxNome.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxNome.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxNome.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxNome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxNome.Location = new System.Drawing.Point(5, 5);
+            this.textBoxNome.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxNome.Name = "textBoxNome";
+            this.textBoxNome.Size = new System.Drawing.Size(419, 30);
+            this.textBoxNome.TabIndex = 0;
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.White;
+            this.panel12.Controls.Add(this.textBoxFuncao);
+            this.panel12.Location = new System.Drawing.Point(37, 266);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(429, 38);
+            this.panel12.TabIndex = 2;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.White;
+            this.panel11.Controls.Add(this.maskedTextBoxIdentidade);
+            this.panel11.Location = new System.Drawing.Point(37, 361);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(429, 38);
+            this.panel11.TabIndex = 3;
+            // 
+            // maskedTextBoxIdentidade
+            // 
+            this.maskedTextBoxIdentidade.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.maskedTextBoxIdentidade.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxIdentidade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.maskedTextBoxIdentidade.Location = new System.Drawing.Point(6, 2);
+            this.maskedTextBoxIdentidade.Mask = "00-000-000-0";
+            this.maskedTextBoxIdentidade.Name = "maskedTextBoxIdentidade";
+            this.maskedTextBoxIdentidade.RejectInputOnFirstFailure = true;
+            this.maskedTextBoxIdentidade.Size = new System.Drawing.Size(417, 30);
+            this.maskedTextBoxIdentidade.TabIndex = 0;
+            this.maskedTextBoxIdentidade.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.White;
+            this.panel10.Controls.Add(this.textBoxEmpresa);
+            this.panel10.Location = new System.Drawing.Point(37, 456);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(429, 38);
+            this.panel10.TabIndex = 4;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.White;
+            this.panel7.Controls.Add(this.maskedTextBoxNr35);
+            this.panel7.Location = new System.Drawing.Point(535, 456);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(429, 38);
+            this.panel7.TabIndex = 10;
+            // 
+            // maskedTextBoxNr35
+            // 
+            this.maskedTextBoxNr35.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.maskedTextBoxNr35.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxNr35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.maskedTextBoxNr35.Location = new System.Drawing.Point(4, 6);
+            this.maskedTextBoxNr35.Mask = "00/00/0000";
+            this.maskedTextBoxNr35.Name = "maskedTextBoxNr35";
+            this.maskedTextBoxNr35.RejectInputOnFirstFailure = true;
+            this.maskedTextBoxNr35.Size = new System.Drawing.Size(416, 26);
+            this.maskedTextBoxNr35.TabIndex = 0;
+            this.maskedTextBoxNr35.ValidatingType = typeof(System.DateTime);
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.Controls.Add(this.maskedTextBoxNr33);
+            this.panel6.Location = new System.Drawing.Point(535, 361);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(429, 38);
+            this.panel6.TabIndex = 9;
+            // 
+            // maskedTextBoxNr33
+            // 
+            this.maskedTextBoxNr33.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.maskedTextBoxNr33.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxNr33.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.maskedTextBoxNr33.Location = new System.Drawing.Point(4, 6);
+            this.maskedTextBoxNr33.Mask = "00/00/0000";
+            this.maskedTextBoxNr33.Name = "maskedTextBoxNr33";
+            this.maskedTextBoxNr33.RejectInputOnFirstFailure = true;
+            this.maskedTextBoxNr33.Size = new System.Drawing.Size(416, 26);
+            this.maskedTextBoxNr33.TabIndex = 0;
+            this.maskedTextBoxNr33.ValidatingType = typeof(System.DateTime);
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.Controls.Add(this.maskedTextBoxNr10);
+            this.panel5.Location = new System.Drawing.Point(535, 266);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(429, 38);
+            this.panel5.TabIndex = 8;
+            // 
+            // maskedTextBoxNr10
+            // 
+            this.maskedTextBoxNr10.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.maskedTextBoxNr10.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxNr10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.maskedTextBoxNr10.Location = new System.Drawing.Point(4, 6);
+            this.maskedTextBoxNr10.Mask = "00/00/0000";
+            this.maskedTextBoxNr10.Name = "maskedTextBoxNr10";
+            this.maskedTextBoxNr10.RejectInputOnFirstFailure = true;
+            this.maskedTextBoxNr10.Size = new System.Drawing.Size(416, 26);
+            this.maskedTextBoxNr10.TabIndex = 0;
+            this.maskedTextBoxNr10.ValidatingType = typeof(System.DateTime);
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.maskedTextBoxAso);
+            this.panel4.Location = new System.Drawing.Point(535, 76);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(429, 38);
+            this.panel4.TabIndex = 6;
+            // 
+            // maskedTextBoxAso
+            // 
+            this.maskedTextBoxAso.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.maskedTextBoxAso.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxAso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.maskedTextBoxAso.Location = new System.Drawing.Point(4, 6);
+            this.maskedTextBoxAso.Mask = "00/00/0000";
+            this.maskedTextBoxAso.Name = "maskedTextBoxAso";
+            this.maskedTextBoxAso.RejectInputOnFirstFailure = true;
+            this.maskedTextBoxAso.Size = new System.Drawing.Size(416, 26);
+            this.maskedTextBoxAso.TabIndex = 0;
+            this.maskedTextBoxAso.ValidatingType = typeof(System.DateTime);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Controls.Add(this.maskedTextBoxNr34);
+            this.panel3.Location = new System.Drawing.Point(535, 171);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(429, 38);
+            this.panel3.TabIndex = 7;
+            // 
+            // maskedTextBoxNr34
+            // 
+            this.maskedTextBoxNr34.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.maskedTextBoxNr34.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maskedTextBoxNr34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.maskedTextBoxNr34.Location = new System.Drawing.Point(4, 6);
+            this.maskedTextBoxNr34.Mask = "00/00/0000";
+            this.maskedTextBoxNr34.Name = "maskedTextBoxNr34";
+            this.maskedTextBoxNr34.RejectInputOnFirstFailure = true;
+            this.maskedTextBoxNr34.Size = new System.Drawing.Size(416, 26);
+            this.maskedTextBoxNr34.TabIndex = 0;
+            this.maskedTextBoxNr34.ValidatingType = typeof(System.DateTime);
             // 
             // dateTimePickerCheckin
             // 
@@ -546,14 +718,6 @@
             this.comboBoxEmbarcacao.Size = new System.Drawing.Size(429, 36);
             this.comboBoxEmbarcacao.StartIndex = 0;
             this.comboBoxEmbarcacao.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
-            this.panel2.Location = new System.Drawing.Point(-10, 671);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(2057, 40);
-            this.panel2.TabIndex = 0;
             // 
             // obrigatorioNr34
             // 
@@ -651,6 +815,27 @@
             this.obrigatorioEmbarcacao.TabIndex = 0;
             this.obrigatorioEmbarcacao.Text = "*";
             // 
+            // labelCpf
+            // 
+            this.labelCpf.AutoSize = true;
+            this.labelCpf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.labelCpf.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCpf.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelCpf.Location = new System.Drawing.Point(30, 506);
+            this.labelCpf.Name = "labelCpf";
+            this.labelCpf.Size = new System.Drawing.Size(71, 37);
+            this.labelCpf.TabIndex = 0;
+            this.labelCpf.Text = "CPF";
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.White;
+            this.panel9.Controls.Add(this.maskedTextBoxCpf);
+            this.panel9.Location = new System.Drawing.Point(37, 551);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(429, 38);
+            this.panel9.TabIndex = 5;
+            // 
             // maskedTextBoxCpf
             // 
             this.maskedTextBoxCpf.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -664,40 +849,6 @@
             this.maskedTextBoxCpf.TabIndex = 6;
             this.maskedTextBoxCpf.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
-            // labelCpf
-            // 
-            this.labelCpf.AutoSize = true;
-            this.labelCpf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.labelCpf.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCpf.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelCpf.Location = new System.Drawing.Point(30, 506);
-            this.labelCpf.Name = "labelCpf";
-            this.labelCpf.Size = new System.Drawing.Size(71, 37);
-            this.labelCpf.TabIndex = 0;
-            this.labelCpf.Text = "CPF";
-            // 
-            // buttonRegistrar
-            // 
-            this.buttonRegistrar.BackColor = System.Drawing.Color.Transparent;
-            this.buttonRegistrar.BorderRadius = 14;
-            this.buttonRegistrar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.buttonRegistrar.CustomBorderThickness = new System.Windows.Forms.Padding(5);
-            this.buttonRegistrar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonRegistrar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.buttonRegistrar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.buttonRegistrar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.buttonRegistrar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.buttonRegistrar.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRegistrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.buttonRegistrar.Image = ((System.Drawing.Image)(resources.GetObject("buttonRegistrar.Image")));
-            this.buttonRegistrar.ImageOffset = new System.Drawing.Point(0, 1);
-            this.buttonRegistrar.ImageSize = new System.Drawing.Size(30, 30);
-            this.buttonRegistrar.Location = new System.Drawing.Point(1567, 864);
-            this.buttonRegistrar.Name = "buttonRegistrar";
-            this.buttonRegistrar.Size = new System.Drawing.Size(337, 62);
-            this.buttonRegistrar.TabIndex = 0;
-            this.buttonRegistrar.Text = "Cadastrar e Registrar RFID";
-            // 
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.White;
@@ -707,185 +858,27 @@
             this.panel8.Size = new System.Drawing.Size(431, 38);
             this.panel8.TabIndex = 11;
             // 
-            // panel9
+            // buttonRegistrar
             // 
-            this.panel9.BackColor = System.Drawing.Color.White;
-            this.panel9.Controls.Add(this.maskedTextBoxCpf);
-            this.panel9.Location = new System.Drawing.Point(37, 551);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(429, 38);
-            this.panel9.TabIndex = 5;
-            // 
-            // maskedTextBoxNr34
-            // 
-            this.maskedTextBoxNr34.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.maskedTextBoxNr34.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxNr34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.maskedTextBoxNr34.Location = new System.Drawing.Point(4, 6);
-            this.maskedTextBoxNr34.Mask = "00/00/0000";
-            this.maskedTextBoxNr34.Name = "maskedTextBoxNr34";
-            this.maskedTextBoxNr34.RejectInputOnFirstFailure = true;
-            this.maskedTextBoxNr34.Size = new System.Drawing.Size(416, 26);
-            this.maskedTextBoxNr34.TabIndex = 0;
-            this.maskedTextBoxNr34.ValidatingType = typeof(System.DateTime);
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Controls.Add(this.maskedTextBoxNr34);
-            this.panel3.Location = new System.Drawing.Point(535, 171);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(429, 38);
-            this.panel3.TabIndex = 7;
-            // 
-            // maskedTextBoxAso
-            // 
-            this.maskedTextBoxAso.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.maskedTextBoxAso.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxAso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.maskedTextBoxAso.Location = new System.Drawing.Point(4, 6);
-            this.maskedTextBoxAso.Mask = "00/00/0000";
-            this.maskedTextBoxAso.Name = "maskedTextBoxAso";
-            this.maskedTextBoxAso.RejectInputOnFirstFailure = true;
-            this.maskedTextBoxAso.Size = new System.Drawing.Size(416, 26);
-            this.maskedTextBoxAso.TabIndex = 0;
-            this.maskedTextBoxAso.ValidatingType = typeof(System.DateTime);
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.Controls.Add(this.maskedTextBoxAso);
-            this.panel4.Location = new System.Drawing.Point(535, 76);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(429, 38);
-            this.panel4.TabIndex = 6;
-            // 
-            // maskedTextBoxNr10
-            // 
-            this.maskedTextBoxNr10.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.maskedTextBoxNr10.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxNr10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.maskedTextBoxNr10.Location = new System.Drawing.Point(4, 6);
-            this.maskedTextBoxNr10.Mask = "00/00/0000";
-            this.maskedTextBoxNr10.Name = "maskedTextBoxNr10";
-            this.maskedTextBoxNr10.RejectInputOnFirstFailure = true;
-            this.maskedTextBoxNr10.Size = new System.Drawing.Size(416, 26);
-            this.maskedTextBoxNr10.TabIndex = 0;
-            this.maskedTextBoxNr10.ValidatingType = typeof(System.DateTime);
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.White;
-            this.panel5.Controls.Add(this.maskedTextBoxNr10);
-            this.panel5.Location = new System.Drawing.Point(535, 266);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(429, 38);
-            this.panel5.TabIndex = 8;
-            // 
-            // maskedTextBoxNr33
-            // 
-            this.maskedTextBoxNr33.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.maskedTextBoxNr33.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxNr33.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.maskedTextBoxNr33.Location = new System.Drawing.Point(4, 6);
-            this.maskedTextBoxNr33.Mask = "00/00/0000";
-            this.maskedTextBoxNr33.Name = "maskedTextBoxNr33";
-            this.maskedTextBoxNr33.RejectInputOnFirstFailure = true;
-            this.maskedTextBoxNr33.Size = new System.Drawing.Size(416, 26);
-            this.maskedTextBoxNr33.TabIndex = 0;
-            this.maskedTextBoxNr33.ValidatingType = typeof(System.DateTime);
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.White;
-            this.panel6.Controls.Add(this.maskedTextBoxNr33);
-            this.panel6.Location = new System.Drawing.Point(535, 361);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(429, 38);
-            this.panel6.TabIndex = 9;
-            // 
-            // maskedTextBoxNr35
-            // 
-            this.maskedTextBoxNr35.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.maskedTextBoxNr35.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxNr35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.maskedTextBoxNr35.Location = new System.Drawing.Point(4, 6);
-            this.maskedTextBoxNr35.Mask = "00/00/0000";
-            this.maskedTextBoxNr35.Name = "maskedTextBoxNr35";
-            this.maskedTextBoxNr35.RejectInputOnFirstFailure = true;
-            this.maskedTextBoxNr35.Size = new System.Drawing.Size(416, 26);
-            this.maskedTextBoxNr35.TabIndex = 0;
-            this.maskedTextBoxNr35.ValidatingType = typeof(System.DateTime);
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.White;
-            this.panel7.Controls.Add(this.maskedTextBoxNr35);
-            this.panel7.Location = new System.Drawing.Point(535, 456);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(429, 38);
-            this.panel7.TabIndex = 10;
-            // 
-            // panel10
-            // 
-            this.panel10.BackColor = System.Drawing.Color.White;
-            this.panel10.Controls.Add(this.textBoxEmpresa);
-            this.panel10.Location = new System.Drawing.Point(37, 456);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(429, 38);
-            this.panel10.TabIndex = 4;
-            // 
-            // maskedTextBoxIdentidade
-            // 
-            this.maskedTextBoxIdentidade.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.maskedTextBoxIdentidade.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxIdentidade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.maskedTextBoxIdentidade.Location = new System.Drawing.Point(6, 2);
-            this.maskedTextBoxIdentidade.Mask = "00-000-000-0";
-            this.maskedTextBoxIdentidade.Name = "maskedTextBoxIdentidade";
-            this.maskedTextBoxIdentidade.RejectInputOnFirstFailure = true;
-            this.maskedTextBoxIdentidade.Size = new System.Drawing.Size(417, 30);
-            this.maskedTextBoxIdentidade.TabIndex = 0;
-            this.maskedTextBoxIdentidade.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.White;
-            this.panel11.Controls.Add(this.maskedTextBoxIdentidade);
-            this.panel11.Location = new System.Drawing.Point(37, 361);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(429, 38);
-            this.panel11.TabIndex = 3;
-            // 
-            // panel12
-            // 
-            this.panel12.BackColor = System.Drawing.Color.White;
-            this.panel12.Controls.Add(this.textBoxFuncao);
-            this.panel12.Location = new System.Drawing.Point(37, 266);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(429, 38);
-            this.panel12.TabIndex = 2;
-            // 
-            // textBoxNome
-            // 
-            this.textBoxNome.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxNome.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxNome.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxNome.Location = new System.Drawing.Point(5, 5);
-            this.textBoxNome.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxNome.Name = "textBoxNome";
-            this.textBoxNome.Size = new System.Drawing.Size(419, 30);
-            this.textBoxNome.TabIndex = 0;
-            // 
-            // panel13
-            // 
-            this.panel13.BackColor = System.Drawing.Color.White;
-            this.panel13.Controls.Add(this.textBoxNome);
-            this.panel13.Location = new System.Drawing.Point(37, 171);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(429, 38);
-            this.panel13.TabIndex = 1;
+            this.buttonRegistrar.BackColor = System.Drawing.Color.Transparent;
+            this.buttonRegistrar.BorderRadius = 3;
+            this.buttonRegistrar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.buttonRegistrar.CustomBorderThickness = new System.Windows.Forms.Padding(5);
+            this.buttonRegistrar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.buttonRegistrar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.buttonRegistrar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.buttonRegistrar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.buttonRegistrar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.buttonRegistrar.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRegistrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.buttonRegistrar.Image = ((System.Drawing.Image)(resources.GetObject("buttonRegistrar.Image")));
+            this.buttonRegistrar.ImageOffset = new System.Drawing.Point(0, 1);
+            this.buttonRegistrar.ImageSize = new System.Drawing.Size(30, 30);
+            this.buttonRegistrar.Location = new System.Drawing.Point(1486, 863);
+            this.buttonRegistrar.Name = "buttonRegistrar";
+            this.buttonRegistrar.Size = new System.Drawing.Size(418, 63);
+            this.buttonRegistrar.TabIndex = 0;
+            this.buttonRegistrar.Text = "Cadastrar e Registrar RFID";
             // 
             // UC_Cadastrar
             // 
@@ -910,32 +903,33 @@
             this.Controls.Add(this.labelIdentidade);
             this.Controls.Add(this.labeEmbarcacao);
             this.Controls.Add(this.panel1);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
             this.Name = "UC_Cadastrar";
             this.Size = new System.Drawing.Size(1904, 906);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
-            this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
-            this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -978,7 +972,6 @@
         private System.Windows.Forms.Label obrigatorioNome;
         private System.Windows.Forms.Label obrigatorioEmbarcacao;
         private Guna.UI2.WinForms.Guna2Button buttonRegistrar;
-        private System.Windows.Forms.Panel panel2;
         private Guna.UI2.WinForms.Guna2ComboBox comboBoxEmbarcacao;
         private Guna.UI2.WinForms.Guna2DateTimePicker dateTimePickerCheckout;
         private Guna.UI2.WinForms.Guna2DateTimePicker dateTimePickerCheckin;

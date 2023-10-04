@@ -38,5 +38,14 @@ namespace DockCheckWindows.UserControls
             buttonConves.Checked = false;
         }
 
+        private void textBoxEmpresa_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelNumero_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
