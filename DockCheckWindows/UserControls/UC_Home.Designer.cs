@@ -696,9 +696,9 @@
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label18.Location = new System.Drawing.Point(34, 13);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(133, 32);
+            this.label18.Size = new System.Drawing.Size(110, 32);
             this.label18.TabIndex = 1;
-            this.label18.Text = "Estibordo";
+            this.label18.Text = "Boreste";
             // 
             // guna2Shapes16
             // 

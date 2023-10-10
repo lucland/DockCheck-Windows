@@ -718,6 +718,7 @@
             this.comboBoxEmbarcacao.Size = new System.Drawing.Size(429, 36);
             this.comboBoxEmbarcacao.StartIndex = 0;
             this.comboBoxEmbarcacao.TabIndex = 0;
+            this.comboBoxEmbarcacao.SelectedIndexChanged += new System.EventHandler(this.comboBoxEmbarcacao_SelectedIndexChanged);
             // 
             // obrigatorioNr34
             // 
