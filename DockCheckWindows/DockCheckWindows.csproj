@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Syncfusion.Blazor.Buttons.23.1.41\build\Syncfusion.Blazor.Buttons.props" Condition="Exists('..\packages\Syncfusion.Blazor.Buttons.23.1.41\build\Syncfusion.Blazor.Buttons.props')" />
   <Import Project="..\packages\OpenCvSharp4.runtime.win.4.8.0.20230708\build\netstandard\OpenCvSharp4.runtime.win.props" Condition="Exists('..\packages\OpenCvSharp4.runtime.win.4.8.0.20230708\build\netstandard\OpenCvSharp4.runtime.win.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -36,6 +37,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AdvancedDataGridView, Version=1.2.28405.11, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DG.AdvancedDataGridView.1.2.28405.11\lib\net40\AdvancedDataGridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Alturos.Yolo, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\Alturos.YoloWithCuda101GpuSupport.1.0.5\lib\net461\Alturos.Yolo.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=6.2.10.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.6.2.10\lib\net462\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=6.1.1.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.Interfaces.6.1.1\lib\net462\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.System.Drawing, Version=6.1.1.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.System.Drawing.6.1.1\lib\net462\EPPlus.System.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Api.CommonProtos, Version=2.7.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Api.CommonProtos.2.7.0\lib\net461\Google.Api.CommonProtos.dll</HintPath>
     </Reference>
@@ -93,6 +109,9 @@
     <Reference Include="Guna.UI2, Version=2.0.4.5, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
       <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.5\lib\net472\Guna.UI2.dll</HintPath>
     </Reference>
+    <Reference Include="LiteDB, Version=5.0.17.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiteDB.5.0.17\lib\net45\LiteDB.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -101,6 +120,9 @@
     </Reference>
     <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=3.0.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.3.0.3\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -111,6 +133,7 @@
     <Reference Include="OpenCvSharp.Extensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenCvSharp4.Extensions.4.8.0.20230708\lib\netstandard2.0\OpenCvSharp.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -118,6 +141,7 @@
     <Reference Include="System.Collections.Immutable, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Collections.Immutable.6.0.0\lib\net461\System.Collections.Immutable.dll</HintPath>
     </Reference>
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -140,6 +164,8 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
@@ -147,6 +173,8 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -166,6 +194,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\Cadastro.cs" />
     <Compile Include="UserControls\UC_Cadastrar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -223,6 +252,7 @@
     <EmbeddedResource Include="UserControls\UC_Home.resx">
       <DependentUpon>UC_Home.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="coco.names" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -233,6 +263,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="yolov3-tiny.cfg" />
+    <None Include="yolov3-tiny.weights" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -248,5 +280,10 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Grpc.Core.2.46.5\build\net45\Grpc.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grpc.Core.2.46.5\build\net45\Grpc.Core.targets'))" />
     <Error Condition="!Exists('..\packages\OpenCvSharp4.runtime.win.4.8.0.20230708\build\netstandard\OpenCvSharp4.runtime.win.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OpenCvSharp4.runtime.win.4.8.0.20230708\build\netstandard\OpenCvSharp4.runtime.win.props'))" />
+    <Error Condition="!Exists('..\packages\FastYolo.12.1.0\build\FastYolo.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\FastYolo.12.1.0\build\FastYolo.targets'))" />
+    <Error Condition="!Exists('..\packages\Alturos.YoloWithCuda101GpuSupport.1.0.5\build\Alturos.YoloWithCuda101GpuSupport.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Alturos.YoloWithCuda101GpuSupport.1.0.5\build\Alturos.YoloWithCuda101GpuSupport.targets'))" />
+    <Error Condition="!Exists('..\packages\Syncfusion.Blazor.Buttons.23.1.41\build\Syncfusion.Blazor.Buttons.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Syncfusion.Blazor.Buttons.23.1.41\build\Syncfusion.Blazor.Buttons.props'))" />
   </Target>
+  <Import Project="..\packages\FastYolo.12.1.0\build\FastYolo.targets" Condition="Exists('..\packages\FastYolo.12.1.0\build\FastYolo.targets')" />
+  <Import Project="..\packages\Alturos.YoloWithCuda101GpuSupport.1.0.5\build\Alturos.YoloWithCuda101GpuSupport.targets" Condition="Exists('..\packages\Alturos.YoloWithCuda101GpuSupport.1.0.5\build\Alturos.YoloWithCuda101GpuSupport.targets')" />
 </Project>

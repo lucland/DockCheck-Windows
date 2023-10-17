@@ -28,35 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            this.chartOnBoarded = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            ((System.ComponentModel.ISupportInitialize)(this.chartOnBoarded)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // chartOnBoarded
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 42F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(788, 420);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(328, 66);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Dashboard";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.chartOnBoarded.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.chartOnBoarded.BorderlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            chartArea2.Name = "ChartArea1";
+            this.chartOnBoarded.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartOnBoarded.Legends.Add(legend2);
+            this.chartOnBoarded.Location = new System.Drawing.Point(124, 626);
+            this.chartOnBoarded.Name = "chartOnBoarded";
+            this.chartOnBoarded.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartOnBoarded.Series.Add(series2);
+            this.chartOnBoarded.Size = new System.Drawing.Size(1777, 277);
+            this.chartOnBoarded.TabIndex = 0;
+            this.chartOnBoarded.Text = "onBoarded";
+            this.chartOnBoarded.Click += new System.EventHandler(this.chartOnBoarded_Click);
             // 
             // UC_Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.chartOnBoarded);
             this.Name = "UC_Dashboard";
             this.Size = new System.Drawing.Size(1904, 906);
+            ((System.ComponentModel.ISupportInitialize)(this.chartOnBoarded)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartOnBoarded;
     }
 }

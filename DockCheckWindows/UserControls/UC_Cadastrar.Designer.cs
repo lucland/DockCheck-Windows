@@ -53,6 +53,8 @@
             this.labelNumero = new System.Windows.Forms.Label();
             this.buttonCadastrar = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
             this.textBoxNome = new System.Windows.Forms.TextBox();
             this.panel12 = new System.Windows.Forms.Panel();
@@ -85,6 +87,11 @@
             this.maskedTextBoxCpf = new System.Windows.Forms.MaskedTextBox();
             this.panel8 = new System.Windows.Forms.Panel();
             this.buttonRegistrar = new Guna.UI2.WinForms.Guna2Button();
+            this.labelVisitante = new System.Windows.Forms.Label();
+            this.visitanteToggleSwitch = new Guna.UI2.WinForms.Guna2ToggleSwitch();
+            this.fotoLabel = new System.Windows.Forms.Label();
+            this.uploadButton = new Guna.UI2.WinForms.Guna2Button();
+            this.pictureBoxFoto = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -97,6 +104,7 @@
             this.panel3.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).BeginInit();
             this.SuspendLayout();
             // 
             // labeEmbarcacao
@@ -165,7 +173,7 @@
             this.labelEmpresa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.labelEmpresa.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelEmpresa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelEmpresa.Location = new System.Drawing.Point(25, 500);
+            this.labelEmpresa.Location = new System.Drawing.Point(30, 506);
             this.labelEmpresa.Name = "labelEmpresa";
             this.labelEmpresa.Size = new System.Drawing.Size(143, 37);
             this.labelEmpresa.TabIndex = 0;
@@ -450,6 +458,13 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.panel1.Controls.Add(this.pictureBoxFoto);
+            this.panel1.Controls.Add(this.uploadButton);
+            this.panel1.Controls.Add(this.fotoLabel);
+            this.panel1.Controls.Add(this.visitanteToggleSwitch);
+            this.panel1.Controls.Add(this.labelVisitante);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.panel13);
             this.panel1.Controls.Add(this.panel12);
             this.panel1.Controls.Add(this.panel11);
@@ -457,6 +472,7 @@
             this.panel1.Controls.Add(this.panel7);
             this.panel1.Controls.Add(this.buttonCasario);
             this.panel1.Controls.Add(this.buttonCasaDeMaquinas);
+            this.panel1.Controls.Add(this.labelEmpresa);
             this.panel1.Controls.Add(this.panel6);
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.buttonConves);
@@ -481,6 +497,30 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(2206, 684);
             this.panel1.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
+            this.label2.Location = new System.Drawing.Point(1176, 126);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(31, 38);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "*";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
+            this.label1.Location = new System.Drawing.Point(1204, 221);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(31, 38);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "*";
             // 
             // panel13
             // 
@@ -538,7 +578,7 @@
             // 
             this.panel10.BackColor = System.Drawing.Color.White;
             this.panel10.Controls.Add(this.textBoxEmpresa);
-            this.panel10.Location = new System.Drawing.Point(37, 456);
+            this.panel10.Location = new System.Drawing.Point(37, 551);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(429, 38);
             this.panel10.TabIndex = 4;
@@ -750,7 +790,7 @@
             this.obrigatorioCpf.BackColor = System.Drawing.Color.Transparent;
             this.obrigatorioCpf.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.obrigatorioCpf.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
-            this.obrigatorioCpf.Location = new System.Drawing.Point(433, 513);
+            this.obrigatorioCpf.Location = new System.Drawing.Point(433, 415);
             this.obrigatorioCpf.Name = "obrigatorioCpf";
             this.obrigatorioCpf.Size = new System.Drawing.Size(31, 38);
             this.obrigatorioCpf.TabIndex = 0;
@@ -762,7 +802,7 @@
             this.obrigatorioEmpresa.BackColor = System.Drawing.Color.Transparent;
             this.obrigatorioEmpresa.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.obrigatorioEmpresa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
-            this.obrigatorioEmpresa.Location = new System.Drawing.Point(433, 417);
+            this.obrigatorioEmpresa.Location = new System.Drawing.Point(433, 511);
             this.obrigatorioEmpresa.Name = "obrigatorioEmpresa";
             this.obrigatorioEmpresa.Size = new System.Drawing.Size(31, 38);
             this.obrigatorioEmpresa.TabIndex = 0;
@@ -822,7 +862,7 @@
             this.labelCpf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.labelCpf.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCpf.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelCpf.Location = new System.Drawing.Point(30, 506);
+            this.labelCpf.Location = new System.Drawing.Point(30, 411);
             this.labelCpf.Name = "labelCpf";
             this.labelCpf.Size = new System.Drawing.Size(71, 37);
             this.labelCpf.TabIndex = 0;
@@ -832,7 +872,7 @@
             // 
             this.panel9.BackColor = System.Drawing.Color.White;
             this.panel9.Controls.Add(this.maskedTextBoxCpf);
-            this.panel9.Location = new System.Drawing.Point(37, 551);
+            this.panel9.Location = new System.Drawing.Point(37, 456);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(429, 38);
             this.panel9.TabIndex = 5;
@@ -880,6 +920,76 @@
             this.buttonRegistrar.Size = new System.Drawing.Size(418, 63);
             this.buttonRegistrar.TabIndex = 0;
             this.buttonRegistrar.Text = "Cadastrar e Registrar RFID";
+            this.buttonRegistrar.Click += new System.EventHandler(this.buttonRegistrar_Click);
+            // 
+            // labelVisitante
+            // 
+            this.labelVisitante.AutoSize = true;
+            this.labelVisitante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.labelVisitante.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelVisitante.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelVisitante.Location = new System.Drawing.Point(1030, 323);
+            this.labelVisitante.Name = "labelVisitante";
+            this.labelVisitante.Size = new System.Drawing.Size(140, 37);
+            this.labelVisitante.TabIndex = 1;
+            this.labelVisitante.Text = "Visitante";
+            // 
+            // visitanteToggleSwitch
+            // 
+            this.visitanteToggleSwitch.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.visitanteToggleSwitch.CheckedState.BorderRadius = 14;
+            this.visitanteToggleSwitch.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.visitanteToggleSwitch.CheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.visitanteToggleSwitch.CheckedState.InnerBorderRadius = 10;
+            this.visitanteToggleSwitch.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.visitanteToggleSwitch.Location = new System.Drawing.Point(1491, 328);
+            this.visitanteToggleSwitch.Name = "visitanteToggleSwitch";
+            this.visitanteToggleSwitch.Size = new System.Drawing.Size(70, 32);
+            this.visitanteToggleSwitch.TabIndex = 20;
+            this.visitanteToggleSwitch.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.visitanteToggleSwitch.UncheckedState.BorderRadius = 14;
+            this.visitanteToggleSwitch.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.visitanteToggleSwitch.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.visitanteToggleSwitch.UncheckedState.InnerBorderRadius = 10;
+            this.visitanteToggleSwitch.UncheckedState.InnerColor = System.Drawing.Color.White;
+            // 
+            // fotoLabel
+            // 
+            this.fotoLabel.AutoSize = true;
+            this.fotoLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.fotoLabel.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fotoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.fotoLabel.Location = new System.Drawing.Point(1030, 417);
+            this.fotoLabel.Name = "fotoLabel";
+            this.fotoLabel.Size = new System.Drawing.Size(78, 37);
+            this.fotoLabel.TabIndex = 21;
+            this.fotoLabel.Text = "Foto";
+            // 
+            // uploadButton
+            // 
+            this.uploadButton.BorderRadius = 12;
+            this.uploadButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.uploadButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.uploadButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.uploadButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.uploadButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.uploadButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uploadButton.ForeColor = System.Drawing.Color.White;
+            this.uploadButton.Location = new System.Drawing.Point(1406, 417);
+            this.uploadButton.Name = "uploadButton";
+            this.uploadButton.Size = new System.Drawing.Size(155, 43);
+            this.uploadButton.TabIndex = 22;
+            this.uploadButton.Text = "Escolher...";
+            this.uploadButton.Click += new System.EventHandler(this.uploadButton_Click);
+            // 
+            // pictureBoxFoto
+            // 
+            this.pictureBoxFoto.Location = new System.Drawing.Point(1037, 462);
+            this.pictureBoxFoto.Name = "pictureBoxFoto";
+            this.pictureBoxFoto.Size = new System.Drawing.Size(155, 136);
+            this.pictureBoxFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxFoto.TabIndex = 23;
+            this.pictureBoxFoto.TabStop = false;
             // 
             // UC_Cadastrar
             // 
@@ -897,7 +1007,6 @@
             this.Controls.Add(this.labelFuncao);
             this.Controls.Add(this.labelNr10);
             this.Controls.Add(this.labelNr33);
-            this.Controls.Add(this.labelEmpresa);
             this.Controls.Add(this.labelNr34);
             this.Controls.Add(this.labelAso);
             this.Controls.Add(this.labelNome);
@@ -931,6 +1040,7 @@
             this.panel9.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -994,5 +1104,12 @@
         private System.Windows.Forms.MaskedTextBox maskedTextBoxNr34;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelVisitante;
+        private Guna.UI2.WinForms.Guna2ToggleSwitch visitanteToggleSwitch;
+        private Guna.UI2.WinForms.Guna2Button uploadButton;
+        private System.Windows.Forms.Label fotoLabel;
+        private System.Windows.Forms.PictureBox pictureBoxFoto;
     }
 }

@@ -20,8 +20,13 @@ namespace DockCheckWindows
             addUserControl(home);
         }
 
-        private void addUserControl(UserControl userControl) {
+        private void addUserControl(UserControl userControl)
+        {
             userControl.Dock = DockStyle.Fill;
+            foreach (Control control in panelContainer.Controls)
+            {
+                control.Dispose();
+            }
             panelContainer.Controls.Clear();
             panelContainer.Controls.Add(userControl);
             userControl.BringToFront();
