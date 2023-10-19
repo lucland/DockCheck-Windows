@@ -53,6 +53,11 @@
             this.labelNumero = new System.Windows.Forms.Label();
             this.buttonCadastrar = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBoxFoto = new System.Windows.Forms.PictureBox();
+            this.uploadButton = new Guna.UI2.WinForms.Guna2Button();
+            this.fotoLabel = new System.Windows.Forms.Label();
+            this.visitanteToggleSwitch = new Guna.UI2.WinForms.Guna2ToggleSwitch();
+            this.labelVisitante = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
@@ -87,12 +92,10 @@
             this.maskedTextBoxCpf = new System.Windows.Forms.MaskedTextBox();
             this.panel8 = new System.Windows.Forms.Panel();
             this.buttonRegistrar = new Guna.UI2.WinForms.Guna2Button();
-            this.labelVisitante = new System.Windows.Forms.Label();
-            this.visitanteToggleSwitch = new Guna.UI2.WinForms.Guna2ToggleSwitch();
-            this.fotoLabel = new System.Windows.Forms.Label();
-            this.uploadButton = new Guna.UI2.WinForms.Guna2Button();
-            this.pictureBoxFoto = new System.Windows.Forms.PictureBox();
+            this.capturaButton = new Guna.UI2.WinForms.Guna2Button();
+            this.excludeImageButton = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).BeginInit();
             this.panel13.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel11.SuspendLayout();
@@ -104,7 +107,6 @@
             this.panel3.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).BeginInit();
             this.SuspendLayout();
             // 
             // labeEmbarcacao
@@ -458,6 +460,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.panel1.Controls.Add(this.excludeImageButton);
+            this.panel1.Controls.Add(this.capturaButton);
             this.panel1.Controls.Add(this.pictureBoxFoto);
             this.panel1.Controls.Add(this.uploadButton);
             this.panel1.Controls.Add(this.fotoLabel);
@@ -497,6 +501,76 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(2206, 684);
             this.panel1.TabIndex = 0;
+            // 
+            // pictureBoxFoto
+            // 
+            this.pictureBoxFoto.Location = new System.Drawing.Point(1037, 462);
+            this.pictureBoxFoto.Name = "pictureBoxFoto";
+            this.pictureBoxFoto.Size = new System.Drawing.Size(155, 136);
+            this.pictureBoxFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxFoto.TabIndex = 23;
+            this.pictureBoxFoto.TabStop = false;
+            // 
+            // uploadButton
+            // 
+            this.uploadButton.BorderRadius = 12;
+            this.uploadButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.uploadButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.uploadButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.uploadButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.uploadButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.uploadButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uploadButton.ForeColor = System.Drawing.Color.White;
+            this.uploadButton.Location = new System.Drawing.Point(1406, 417);
+            this.uploadButton.Name = "uploadButton";
+            this.uploadButton.Size = new System.Drawing.Size(155, 43);
+            this.uploadButton.TabIndex = 22;
+            this.uploadButton.Text = "Escolher...";
+            this.uploadButton.Click += new System.EventHandler(this.uploadButton_Click);
+            // 
+            // fotoLabel
+            // 
+            this.fotoLabel.AutoSize = true;
+            this.fotoLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.fotoLabel.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fotoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.fotoLabel.Location = new System.Drawing.Point(1030, 417);
+            this.fotoLabel.Name = "fotoLabel";
+            this.fotoLabel.Size = new System.Drawing.Size(78, 37);
+            this.fotoLabel.TabIndex = 21;
+            this.fotoLabel.Text = "Foto";
+            // 
+            // visitanteToggleSwitch
+            // 
+            this.visitanteToggleSwitch.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.visitanteToggleSwitch.CheckedState.BorderRadius = 14;
+            this.visitanteToggleSwitch.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.visitanteToggleSwitch.CheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.visitanteToggleSwitch.CheckedState.InnerBorderRadius = 10;
+            this.visitanteToggleSwitch.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.visitanteToggleSwitch.Location = new System.Drawing.Point(1491, 328);
+            this.visitanteToggleSwitch.Name = "visitanteToggleSwitch";
+            this.visitanteToggleSwitch.Size = new System.Drawing.Size(70, 32);
+            this.visitanteToggleSwitch.TabIndex = 20;
+            this.visitanteToggleSwitch.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.visitanteToggleSwitch.UncheckedState.BorderRadius = 14;
+            this.visitanteToggleSwitch.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.visitanteToggleSwitch.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.visitanteToggleSwitch.UncheckedState.InnerBorderRadius = 10;
+            this.visitanteToggleSwitch.UncheckedState.InnerColor = System.Drawing.Color.White;
+            this.visitanteToggleSwitch.CheckedChanged += new System.EventHandler(this.visitanteToggleSwitch_CheckedChanged);
+            // 
+            // labelVisitante
+            // 
+            this.labelVisitante.AutoSize = true;
+            this.labelVisitante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.labelVisitante.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelVisitante.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelVisitante.Location = new System.Drawing.Point(1030, 323);
+            this.labelVisitante.Name = "labelVisitante";
+            this.labelVisitante.Size = new System.Drawing.Size(140, 37);
+            this.labelVisitante.TabIndex = 1;
+            this.labelVisitante.Text = "Visitante";
             // 
             // label2
             // 
@@ -922,74 +996,40 @@
             this.buttonRegistrar.Text = "Cadastrar e Registrar RFID";
             this.buttonRegistrar.Click += new System.EventHandler(this.buttonRegistrar_Click);
             // 
-            // labelVisitante
+            // capturaButton
             // 
-            this.labelVisitante.AutoSize = true;
-            this.labelVisitante.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.labelVisitante.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVisitante.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelVisitante.Location = new System.Drawing.Point(1030, 323);
-            this.labelVisitante.Name = "labelVisitante";
-            this.labelVisitante.Size = new System.Drawing.Size(140, 37);
-            this.labelVisitante.TabIndex = 1;
-            this.labelVisitante.Text = "Visitante";
+            this.capturaButton.BorderRadius = 12;
+            this.capturaButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.capturaButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.capturaButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.capturaButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.capturaButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
+            this.capturaButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.capturaButton.ForeColor = System.Drawing.Color.White;
+            this.capturaButton.Location = new System.Drawing.Point(1245, 417);
+            this.capturaButton.Name = "capturaButton";
+            this.capturaButton.Size = new System.Drawing.Size(155, 43);
+            this.capturaButton.TabIndex = 24;
+            this.capturaButton.Text = "Capturar";
+            this.capturaButton.Click += new System.EventHandler(this.capturaButton_Click);
             // 
-            // visitanteToggleSwitch
+            // excludeImageButton
             // 
-            this.visitanteToggleSwitch.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.visitanteToggleSwitch.CheckedState.BorderRadius = 14;
-            this.visitanteToggleSwitch.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.visitanteToggleSwitch.CheckedState.InnerBorderColor = System.Drawing.Color.White;
-            this.visitanteToggleSwitch.CheckedState.InnerBorderRadius = 10;
-            this.visitanteToggleSwitch.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.visitanteToggleSwitch.Location = new System.Drawing.Point(1491, 328);
-            this.visitanteToggleSwitch.Name = "visitanteToggleSwitch";
-            this.visitanteToggleSwitch.Size = new System.Drawing.Size(70, 32);
-            this.visitanteToggleSwitch.TabIndex = 20;
-            this.visitanteToggleSwitch.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.visitanteToggleSwitch.UncheckedState.BorderRadius = 14;
-            this.visitanteToggleSwitch.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.visitanteToggleSwitch.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
-            this.visitanteToggleSwitch.UncheckedState.InnerBorderRadius = 10;
-            this.visitanteToggleSwitch.UncheckedState.InnerColor = System.Drawing.Color.White;
-            // 
-            // fotoLabel
-            // 
-            this.fotoLabel.AutoSize = true;
-            this.fotoLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.fotoLabel.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fotoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.fotoLabel.Location = new System.Drawing.Point(1030, 417);
-            this.fotoLabel.Name = "fotoLabel";
-            this.fotoLabel.Size = new System.Drawing.Size(78, 37);
-            this.fotoLabel.TabIndex = 21;
-            this.fotoLabel.Text = "Foto";
-            // 
-            // uploadButton
-            // 
-            this.uploadButton.BorderRadius = 12;
-            this.uploadButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.uploadButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.uploadButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.uploadButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.uploadButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.uploadButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uploadButton.ForeColor = System.Drawing.Color.White;
-            this.uploadButton.Location = new System.Drawing.Point(1406, 417);
-            this.uploadButton.Name = "uploadButton";
-            this.uploadButton.Size = new System.Drawing.Size(155, 43);
-            this.uploadButton.TabIndex = 22;
-            this.uploadButton.Text = "Escolher...";
-            this.uploadButton.Click += new System.EventHandler(this.uploadButton_Click);
-            // 
-            // pictureBoxFoto
-            // 
-            this.pictureBoxFoto.Location = new System.Drawing.Point(1037, 462);
-            this.pictureBoxFoto.Name = "pictureBoxFoto";
-            this.pictureBoxFoto.Size = new System.Drawing.Size(155, 136);
-            this.pictureBoxFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxFoto.TabIndex = 23;
-            this.pictureBoxFoto.TabStop = false;
+            this.excludeImageButton.BorderRadius = 15;
+            this.excludeImageButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.excludeImageButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.excludeImageButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.excludeImageButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.excludeImageButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
+            this.excludeImageButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.excludeImageButton.ForeColor = System.Drawing.Color.White;
+            this.excludeImageButton.Location = new System.Drawing.Point(1199, 462);
+            this.excludeImageButton.Name = "excludeImageButton";
+            this.excludeImageButton.Size = new System.Drawing.Size(36, 32);
+            this.excludeImageButton.TabIndex = 25;
+            this.excludeImageButton.Text = "x";
+            this.excludeImageButton.TextOffset = new System.Drawing.Point(1, -2);
+            this.excludeImageButton.Click += new System.EventHandler(this.excludeImageButton_Click);
             // 
             // UC_Cadastrar
             // 
@@ -1018,6 +1058,7 @@
             this.Size = new System.Drawing.Size(1904, 906);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).EndInit();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
             this.panel12.ResumeLayout(false);
@@ -1040,7 +1081,6 @@
             this.panel9.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1111,5 +1151,7 @@
         private Guna.UI2.WinForms.Guna2Button uploadButton;
         private System.Windows.Forms.Label fotoLabel;
         private System.Windows.Forms.PictureBox pictureBoxFoto;
+        private Guna.UI2.WinForms.Guna2Button capturaButton;
+        private Guna.UI2.WinForms.Guna2Button excludeImageButton;
     }
 }

@@ -40,6 +40,15 @@
     <Reference Include="AdvancedDataGridView, Version=1.2.28405.11, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DG.AdvancedDataGridView.1.2.28405.11\lib\net40\AdvancedDataGridView.dll</HintPath>
     </Reference>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
     <Reference Include="Alturos.Yolo, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <HintPath>..\packages\Alturos.YoloWithCuda101GpuSupport.1.0.5\lib\net461\Alturos.Yolo.dll</HintPath>
     </Reference>
@@ -186,15 +195,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cadastro.cs" />
+    <Compile Include="DatabaseManager.cs" />
+    <Compile Include="EdicaoUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EdicaoUsuario.Designer.cs">
+      <DependentUpon>EdicaoUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserControls\Cadastro.cs" />
     <Compile Include="UserControls\UC_Cadastrar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -225,8 +247,21 @@
     <Compile Include="UserControls\UC_Home.Designer.cs">
       <DependentUpon>UC_Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="Usuario.cs" />
+    <Compile Include="WebcamForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WebcamForm.Designer.cs">
+      <DependentUpon>WebcamForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="EdicaoUsuario.resx">
+      <DependentUpon>EdicaoUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -251,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_Home.resx">
       <DependentUpon>UC_Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebcamForm.resx">
+      <DependentUpon>WebcamForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="coco.names" />
     <None Include="packages.config" />

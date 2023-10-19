@@ -1,14 +1,18 @@
 ﻿using System;
-using AForge.Video;
-
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DockCheckWindows.UserControls
+namespace DockCheckWindows
 {
-    public partial class UC_Cadastrar : UserControl
+    public partial class EdicaoUsuario : Form
     {
-        public UC_Cadastrar()
+        public EdicaoUsuario(Cadastro cadastro)
         {
             InitializeComponent();
 
@@ -195,13 +199,13 @@ namespace DockCheckWindows.UserControls
             textBoxNome.Text = cadastro.Name;
             textBoxFuncao.Text = cadastro.Function;
             textBoxEmpresa.Text = cadastro.Company;
-            labelNumero.Text = cadastro.Number;
             // Add more fields as needed
         }
 
-        private void labelNumero_Click(object sender, EventArgs e)
+        private void fecharButton_Click(object sender, EventArgs e)
         {
-
+            //close this form
+            this.Close();
         }
     }
 }

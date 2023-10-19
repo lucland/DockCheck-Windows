@@ -118,6 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="buttonLogin.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAGPSURBVGhD7dnNTQMxEIbhbQHEjRYQddAKZy4g/qpJNXQBggNQARyWz9lXkyyKN2TXY2mQH8kH
+        hrG/sRTEJumapmn+t77vL7RetOZ601ppnXJkXQp+TlMU8KlV/xIKLXWBZMWx9Sh06Uto2yvHxsHghnIc
+        zG0ox8HchnIczG0o+1LOSVr8uMh66i2U/SjjUuubdUN5Np0xQtmPMt6HKPPAr2bhDEPZjzKehqiR2Zdg
+        v6HsRxlnWh/rtLF7Wg7CXkPZl3LOtXZd4o6WP2OfoexPWUUuwR5DuQ7l5S5xS8te9BvKeeop+fA15YrI
+        SfQaynnqKfn4O+VL64jYrKF1g3KeempdIP2jOyY2a2jdoJynnlovoWsiJ9FrKNehvNwf8SMte9FvKPtT
+        1uLhE/YYyr6UU2T4hH2Gsh9l5B4lDh4+Ya+h7EcZux7mZg2fsN9Q9qOM34/Ts4dPOMNQ9qOM2G9oEuXE
+        fUtZGnMbynEwt6EcB3MbynEwt6FcjzJjf7ir0PAfr4f/giP2V0xN0zQTuu4HjgwvN4lKf+AAAAAASUVO
+        RK5CYII=
+</value>
+  </data>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABDQAAAHVCAYAAAAOzqv6AAAABGdBTUEAALGPC/xhBQAAu1NJREFUeF7s
@@ -926,7 +939,7 @@
   <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgsAAACpCAYAAAClFH4CAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAASwNJREFUeF7tnQmAJVV97u/MmNXsy3vJy3uJSV5e8pKYl5hNjQICAjO9zbCNC+6A
+        wQAADsEBuJFr7QAASwNJREFUeF7tnQmAJVV97u/MmNXsy3vJy3uJSV5e8pKYl5hNjQICAjO9zbCNC+6A
         gICKCwoIIiTuUZBNRFGQXcQFRVCURRFQIwgoqwsgTC/Ts/T07DP1/r+q+/U9XV3rvbe7bw//D76p6jqn
         zvmfU3XP/6tTp85pOBwOh8PhcDgcDofD4XA4HA6Hw+FwOBwOh8PhcDgcDofD4XA4HA6Hw+FwOBwOh8Ph
         cDgcDofD4XA4HA6Hw+FwOBwOh8PhcDgcDofD4XA4HA6Hw+FwOBwOh8PhcDgcDofD4XA4HA6Hw+FwOBwO

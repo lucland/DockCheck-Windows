@@ -13,10 +13,13 @@ namespace DockCheckWindows
 {
     public partial class Form1 : Form
     {
+        private UC_Cadastrar uc_Cadastrar;
+
         public Form1()
         {
             InitializeComponent();
             UC_Home home = new UC_Home();
+            uc_Cadastrar = new UC_Cadastrar();
             addUserControl(home);
         }
 
@@ -25,7 +28,10 @@ namespace DockCheckWindows
             userControl.Dock = DockStyle.Fill;
             foreach (Control control in panelContainer.Controls)
             {
-                control.Dispose();
+                if (control != uc_Cadastrar)  // Skip disposing of uc_Cadastrar
+                {
+                    control.Dispose();
+                }
             }
             panelContainer.Controls.Clear();
             panelContainer.Controls.Add(userControl);
@@ -52,7 +58,11 @@ namespace DockCheckWindows
 
         private void bancoButton_Click(object sender, EventArgs e)
         {
-            UC_Dados dados = new UC_Dados();
+            UC_Dados dados = new UC_Dados(uc_Cadastrar);  // Pass the instance field
+            dados.SwitchToCadastro += () =>
+            {
+                addUserControl(uc_Cadastrar);
+            };
             addUserControl(dados);
         }
 
@@ -70,6 +80,13 @@ namespace DockCheckWindows
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonLogin_Click(object sender, EventArgs e)
+        {
+            //open LoginForm
+            Login login = new Login();
+            login.ShowDialog();
         }
     }
 }
