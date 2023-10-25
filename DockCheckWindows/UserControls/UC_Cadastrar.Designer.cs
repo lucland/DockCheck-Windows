@@ -53,6 +53,11 @@
             this.labelNumero = new System.Windows.Forms.Label();
             this.buttonCadastrar = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.excludeImageButton = new Guna.UI2.WinForms.Guna2Button();
+            this.capturaButton = new Guna.UI2.WinForms.Guna2Button();
             this.pictureBoxFoto = new System.Windows.Forms.PictureBox();
             this.uploadButton = new Guna.UI2.WinForms.Guna2Button();
             this.fotoLabel = new System.Windows.Forms.Label();
@@ -92,8 +97,7 @@
             this.maskedTextBoxCpf = new System.Windows.Forms.MaskedTextBox();
             this.panel8 = new System.Windows.Forms.Panel();
             this.buttonRegistrar = new Guna.UI2.WinForms.Guna2Button();
-            this.capturaButton = new Guna.UI2.WinForms.Guna2Button();
-            this.excludeImageButton = new Guna.UI2.WinForms.Guna2Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).BeginInit();
             this.panel13.SuspendLayout();
@@ -460,6 +464,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.guna2Button1);
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.excludeImageButton);
             this.panel1.Controls.Add(this.capturaButton);
             this.panel1.Controls.Add(this.pictureBoxFoto);
@@ -502,9 +509,82 @@
             this.panel1.Size = new System.Drawing.Size(2206, 684);
             this.panel1.TabIndex = 0;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(1599, 130);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 13);
+            this.label4.TabIndex = 28;
+            // 
+            // guna2Button1
+            // 
+            this.guna2Button1.BorderRadius = 12;
+            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.guna2Button1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button1.ForeColor = System.Drawing.Color.White;
+            this.guna2Button1.Location = new System.Drawing.Point(1751, 73);
+            this.guna2Button1.Name = "guna2Button1";
+            this.guna2Button1.Size = new System.Drawing.Size(155, 43);
+            this.guna2Button1.TabIndex = 27;
+            this.guna2Button1.Text = "Escolher...";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label3.Location = new System.Drawing.Point(1595, 77);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(123, 37);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "Anexar";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // excludeImageButton
+            // 
+            this.excludeImageButton.BorderRadius = 15;
+            this.excludeImageButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.excludeImageButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.excludeImageButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.excludeImageButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.excludeImageButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
+            this.excludeImageButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.excludeImageButton.ForeColor = System.Drawing.Color.White;
+            this.excludeImageButton.Location = new System.Drawing.Point(1199, 516);
+            this.excludeImageButton.Name = "excludeImageButton";
+            this.excludeImageButton.Size = new System.Drawing.Size(36, 32);
+            this.excludeImageButton.TabIndex = 25;
+            this.excludeImageButton.Text = "x";
+            this.excludeImageButton.TextOffset = new System.Drawing.Point(1, -2);
+            this.excludeImageButton.Click += new System.EventHandler(this.excludeImageButton_Click);
+            // 
+            // capturaButton
+            // 
+            this.capturaButton.BorderRadius = 12;
+            this.capturaButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.capturaButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.capturaButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.capturaButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.capturaButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
+            this.capturaButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.capturaButton.ForeColor = System.Drawing.Color.White;
+            this.capturaButton.Location = new System.Drawing.Point(1245, 471);
+            this.capturaButton.Name = "capturaButton";
+            this.capturaButton.Size = new System.Drawing.Size(155, 43);
+            this.capturaButton.TabIndex = 24;
+            this.capturaButton.Text = "Capturar";
+            this.capturaButton.Click += new System.EventHandler(this.capturaButton_Click);
+            // 
             // pictureBoxFoto
             // 
-            this.pictureBoxFoto.Location = new System.Drawing.Point(1037, 462);
+            this.pictureBoxFoto.Location = new System.Drawing.Point(1037, 516);
             this.pictureBoxFoto.Name = "pictureBoxFoto";
             this.pictureBoxFoto.Size = new System.Drawing.Size(155, 136);
             this.pictureBoxFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -521,7 +601,7 @@
             this.uploadButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
             this.uploadButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uploadButton.ForeColor = System.Drawing.Color.White;
-            this.uploadButton.Location = new System.Drawing.Point(1406, 417);
+            this.uploadButton.Location = new System.Drawing.Point(1406, 471);
             this.uploadButton.Name = "uploadButton";
             this.uploadButton.Size = new System.Drawing.Size(155, 43);
             this.uploadButton.TabIndex = 22;
@@ -534,7 +614,7 @@
             this.fotoLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.fotoLabel.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fotoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.fotoLabel.Location = new System.Drawing.Point(1030, 417);
+            this.fotoLabel.Location = new System.Drawing.Point(1030, 471);
             this.fotoLabel.Name = "fotoLabel";
             this.fotoLabel.Size = new System.Drawing.Size(78, 37);
             this.fotoLabel.TabIndex = 21;
@@ -996,46 +1076,21 @@
             this.buttonRegistrar.Text = "Cadastrar e Registrar RFID";
             this.buttonRegistrar.Click += new System.EventHandler(this.buttonRegistrar_Click);
             // 
-            // capturaButton
+            // label5
             // 
-            this.capturaButton.BorderRadius = 12;
-            this.capturaButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.capturaButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.capturaButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.capturaButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.capturaButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
-            this.capturaButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.capturaButton.ForeColor = System.Drawing.Color.White;
-            this.capturaButton.Location = new System.Drawing.Point(1245, 417);
-            this.capturaButton.Name = "capturaButton";
-            this.capturaButton.Size = new System.Drawing.Size(155, 43);
-            this.capturaButton.TabIndex = 24;
-            this.capturaButton.Text = "Capturar";
-            this.capturaButton.Click += new System.EventHandler(this.capturaButton_Click);
-            // 
-            // excludeImageButton
-            // 
-            this.excludeImageButton.BorderRadius = 15;
-            this.excludeImageButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.excludeImageButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.excludeImageButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.excludeImageButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.excludeImageButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
-            this.excludeImageButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.excludeImageButton.ForeColor = System.Drawing.Color.White;
-            this.excludeImageButton.Location = new System.Drawing.Point(1199, 462);
-            this.excludeImageButton.Name = "excludeImageButton";
-            this.excludeImageButton.Size = new System.Drawing.Size(36, 32);
-            this.excludeImageButton.TabIndex = 25;
-            this.excludeImageButton.Text = "x";
-            this.excludeImageButton.TextOffset = new System.Drawing.Point(1, -2);
-            this.excludeImageButton.Click += new System.EventHandler(this.excludeImageButton_Click);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(592, 25);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "label5";
             // 
             // UC_Cadastrar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.buttonCadastrar);
             this.Controls.Add(this.labelNumero);
             this.Controls.Add(this.labelCheckout);
@@ -1153,5 +1208,9 @@
         private System.Windows.Forms.PictureBox pictureBoxFoto;
         private Guna.UI2.WinForms.Guna2Button capturaButton;
         private Guna.UI2.WinForms.Guna2Button excludeImageButton;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

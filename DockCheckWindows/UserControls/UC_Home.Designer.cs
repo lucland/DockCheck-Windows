@@ -35,16 +35,16 @@
             this.labelTotal = new System.Windows.Forms.Label();
             this.labelPortalo = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.guna2Shapes1 = new Guna.UI2.WinForms.Guna2Shapes();
-            this.labelPortaloTitulo1 = new System.Windows.Forms.Label();
-            this.labelProaRfid1 = new System.Windows.Forms.Label();
-            this.labelProaRfid2 = new System.Windows.Forms.Label();
-            this.labelProaCamera = new System.Windows.Forms.Label();
-            this.guna2Shapes2 = new Guna.UI2.WinForms.Guna2Shapes();
-            this.guna2Shapes3 = new Guna.UI2.WinForms.Guna2Shapes();
-            this.guna2Shapes4 = new Guna.UI2.WinForms.Guna2Shapes();
-            this.labelProaUltimaAtualizacao = new System.Windows.Forms.Label();
             this.labelProaDateTime = new System.Windows.Forms.Label();
+            this.labelProaUltimaAtualizacao = new System.Windows.Forms.Label();
+            this.guna2Shapes4 = new Guna.UI2.WinForms.Guna2Shapes();
+            this.guna2Shapes3 = new Guna.UI2.WinForms.Guna2Shapes();
+            this.guna2Shapes2 = new Guna.UI2.WinForms.Guna2Shapes();
+            this.labelProaCamera = new System.Windows.Forms.Label();
+            this.labelProaRfid2 = new System.Windows.Forms.Label();
+            this.labelProaRfid1 = new System.Windows.Forms.Label();
+            this.labelPortaloTitulo1 = new System.Windows.Forms.Label();
+            this.guna2Shapes1 = new Guna.UI2.WinForms.Guna2Shapes();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -168,92 +168,26 @@
             this.panel2.TabIndex = 4;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // guna2Shapes1
+            // labelProaDateTime
             // 
-            this.guna2Shapes1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.guna2Shapes1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.guna2Shapes1.Location = new System.Drawing.Point(4, 4);
-            this.guna2Shapes1.Name = "guna2Shapes1";
-            this.guna2Shapes1.PolygonSkip = 1;
-            this.guna2Shapes1.Rotate = 0F;
-            this.guna2Shapes1.Shape = Guna.UI2.WinForms.Enums.ShapeType.Rectangle;
-            this.guna2Shapes1.Size = new System.Drawing.Size(24, 55);
-            this.guna2Shapes1.TabIndex = 0;
-            this.guna2Shapes1.Text = "guna2Shapes1";
-            this.guna2Shapes1.Zoom = 80;
+            this.labelProaDateTime.AutoSize = true;
+            this.labelProaDateTime.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelProaDateTime.Location = new System.Drawing.Point(1065, 21);
+            this.labelProaDateTime.Name = "labelProaDateTime";
+            this.labelProaDateTime.Size = new System.Drawing.Size(228, 22);
+            this.labelProaDateTime.TabIndex = 7;
+            this.labelProaDateTime.Text = "08/05/2006 03:05:15 PM";
+            this.labelProaDateTime.Click += new System.EventHandler(this.labelProaDateTime_Click);
             // 
-            // labelPortaloTitulo1
+            // labelProaUltimaAtualizacao
             // 
-            this.labelPortaloTitulo1.AutoSize = true;
-            this.labelPortaloTitulo1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPortaloTitulo1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelPortaloTitulo1.Location = new System.Drawing.Point(34, 13);
-            this.labelPortaloTitulo1.Name = "labelPortaloTitulo1";
-            this.labelPortaloTitulo1.Size = new System.Drawing.Size(73, 32);
-            this.labelPortaloTitulo1.TabIndex = 1;
-            this.labelPortaloTitulo1.Text = "Proa";
-            this.labelPortaloTitulo1.Click += new System.EventHandler(this.labelPortaloTitulo1_Click);
-            // 
-            // labelProaRfid1
-            // 
-            this.labelProaRfid1.AutoSize = true;
-            this.labelProaRfid1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelProaRfid1.Location = new System.Drawing.Point(320, 20);
-            this.labelProaRfid1.Name = "labelProaRfid1";
-            this.labelProaRfid1.Size = new System.Drawing.Size(69, 23);
-            this.labelProaRfid1.TabIndex = 2;
-            this.labelProaRfid1.Text = "RFID 1:";
-            // 
-            // labelProaRfid2
-            // 
-            this.labelProaRfid2.AutoSize = true;
-            this.labelProaRfid2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelProaRfid2.Location = new System.Drawing.Point(456, 20);
-            this.labelProaRfid2.Name = "labelProaRfid2";
-            this.labelProaRfid2.Size = new System.Drawing.Size(69, 23);
-            this.labelProaRfid2.TabIndex = 3;
-            this.labelProaRfid2.Text = "RFID 2:";
-            this.labelProaRfid2.Click += new System.EventHandler(this.labelProaRfid2_Click);
-            // 
-            // labelProaCamera
-            // 
-            this.labelProaCamera.AutoSize = true;
-            this.labelProaCamera.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelProaCamera.Location = new System.Drawing.Point(584, 20);
-            this.labelProaCamera.Name = "labelProaCamera";
-            this.labelProaCamera.Size = new System.Drawing.Size(92, 23);
-            this.labelProaCamera.TabIndex = 4;
-            this.labelProaCamera.Text = "Câmera:";
-            // 
-            // guna2Shapes2
-            // 
-            this.guna2Shapes2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.guna2Shapes2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.guna2Shapes2.Location = new System.Drawing.Point(391, 17);
-            this.guna2Shapes2.Name = "guna2Shapes2";
-            this.guna2Shapes2.PolygonSkip = 1;
-            this.guna2Shapes2.Rotate = 0F;
-            this.guna2Shapes2.Shape = Guna.UI2.WinForms.Enums.ShapeType.Ellipse;
-            this.guna2Shapes2.Size = new System.Drawing.Size(30, 30);
-            this.guna2Shapes2.TabIndex = 5;
-            this.guna2Shapes2.Text = "guna2Shapes2";
-            this.guna2Shapes2.Zoom = 80;
-            this.guna2Shapes2.Click += new System.EventHandler(this.guna2Shapes2_Click);
-            // 
-            // guna2Shapes3
-            // 
-            this.guna2Shapes3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.guna2Shapes3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.guna2Shapes3.Location = new System.Drawing.Point(527, 17);
-            this.guna2Shapes3.Name = "guna2Shapes3";
-            this.guna2Shapes3.PolygonSkip = 1;
-            this.guna2Shapes3.Rotate = 0F;
-            this.guna2Shapes3.Shape = Guna.UI2.WinForms.Enums.ShapeType.Ellipse;
-            this.guna2Shapes3.Size = new System.Drawing.Size(30, 30);
-            this.guna2Shapes3.TabIndex = 5;
-            this.guna2Shapes3.Text = "guna2Shapes2";
-            this.guna2Shapes3.Zoom = 80;
-            this.guna2Shapes3.Click += new System.EventHandler(this.guna2Shapes3_Click);
+            this.labelProaUltimaAtualizacao.AutoSize = true;
+            this.labelProaUltimaAtualizacao.Location = new System.Drawing.Point(854, 21);
+            this.labelProaUltimaAtualizacao.Name = "labelProaUltimaAtualizacao";
+            this.labelProaUltimaAtualizacao.Size = new System.Drawing.Size(192, 23);
+            this.labelProaUltimaAtualizacao.TabIndex = 6;
+            this.labelProaUltimaAtualizacao.Text = "Última atualização:";
+            this.labelProaUltimaAtualizacao.Click += new System.EventHandler(this.labelUltimaAtualizacao_Click);
             // 
             // guna2Shapes4
             // 
@@ -270,26 +204,92 @@
             this.guna2Shapes4.Zoom = 80;
             this.guna2Shapes4.Click += new System.EventHandler(this.guna2Shapes4_Click);
             // 
-            // labelProaUltimaAtualizacao
+            // guna2Shapes3
             // 
-            this.labelProaUltimaAtualizacao.AutoSize = true;
-            this.labelProaUltimaAtualizacao.Location = new System.Drawing.Point(854, 21);
-            this.labelProaUltimaAtualizacao.Name = "labelProaUltimaAtualizacao";
-            this.labelProaUltimaAtualizacao.Size = new System.Drawing.Size(192, 23);
-            this.labelProaUltimaAtualizacao.TabIndex = 6;
-            this.labelProaUltimaAtualizacao.Text = "Última atualização:";
-            this.labelProaUltimaAtualizacao.Click += new System.EventHandler(this.labelUltimaAtualizacao_Click);
+            this.guna2Shapes3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.guna2Shapes3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.guna2Shapes3.Location = new System.Drawing.Point(527, 17);
+            this.guna2Shapes3.Name = "guna2Shapes3";
+            this.guna2Shapes3.PolygonSkip = 1;
+            this.guna2Shapes3.Rotate = 0F;
+            this.guna2Shapes3.Shape = Guna.UI2.WinForms.Enums.ShapeType.Ellipse;
+            this.guna2Shapes3.Size = new System.Drawing.Size(30, 30);
+            this.guna2Shapes3.TabIndex = 5;
+            this.guna2Shapes3.Text = "guna2Shapes2";
+            this.guna2Shapes3.Zoom = 80;
+            this.guna2Shapes3.Click += new System.EventHandler(this.guna2Shapes3_Click);
             // 
-            // labelProaDateTime
+            // guna2Shapes2
             // 
-            this.labelProaDateTime.AutoSize = true;
-            this.labelProaDateTime.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelProaDateTime.Location = new System.Drawing.Point(1065, 21);
-            this.labelProaDateTime.Name = "labelProaDateTime";
-            this.labelProaDateTime.Size = new System.Drawing.Size(228, 22);
-            this.labelProaDateTime.TabIndex = 7;
-            this.labelProaDateTime.Text = "08/05/2006 03:05:15 PM";
-            this.labelProaDateTime.Click += new System.EventHandler(this.labelProaDateTime_Click);
+            this.guna2Shapes2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.guna2Shapes2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.guna2Shapes2.Location = new System.Drawing.Point(391, 17);
+            this.guna2Shapes2.Name = "guna2Shapes2";
+            this.guna2Shapes2.PolygonSkip = 1;
+            this.guna2Shapes2.Rotate = 0F;
+            this.guna2Shapes2.Shape = Guna.UI2.WinForms.Enums.ShapeType.Ellipse;
+            this.guna2Shapes2.Size = new System.Drawing.Size(30, 30);
+            this.guna2Shapes2.TabIndex = 5;
+            this.guna2Shapes2.Text = "guna2Shapes2";
+            this.guna2Shapes2.Zoom = 80;
+            this.guna2Shapes2.Click += new System.EventHandler(this.guna2Shapes2_Click);
+            // 
+            // labelProaCamera
+            // 
+            this.labelProaCamera.AutoSize = true;
+            this.labelProaCamera.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelProaCamera.Location = new System.Drawing.Point(584, 20);
+            this.labelProaCamera.Name = "labelProaCamera";
+            this.labelProaCamera.Size = new System.Drawing.Size(92, 23);
+            this.labelProaCamera.TabIndex = 4;
+            this.labelProaCamera.Text = "Câmera:";
+            // 
+            // labelProaRfid2
+            // 
+            this.labelProaRfid2.AutoSize = true;
+            this.labelProaRfid2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelProaRfid2.Location = new System.Drawing.Point(456, 20);
+            this.labelProaRfid2.Name = "labelProaRfid2";
+            this.labelProaRfid2.Size = new System.Drawing.Size(69, 23);
+            this.labelProaRfid2.TabIndex = 3;
+            this.labelProaRfid2.Text = "RFID 2:";
+            this.labelProaRfid2.Click += new System.EventHandler(this.labelProaRfid2_Click);
+            // 
+            // labelProaRfid1
+            // 
+            this.labelProaRfid1.AutoSize = true;
+            this.labelProaRfid1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelProaRfid1.Location = new System.Drawing.Point(320, 20);
+            this.labelProaRfid1.Name = "labelProaRfid1";
+            this.labelProaRfid1.Size = new System.Drawing.Size(69, 23);
+            this.labelProaRfid1.TabIndex = 2;
+            this.labelProaRfid1.Text = "RFID 1:";
+            // 
+            // labelPortaloTitulo1
+            // 
+            this.labelPortaloTitulo1.AutoSize = true;
+            this.labelPortaloTitulo1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPortaloTitulo1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelPortaloTitulo1.Location = new System.Drawing.Point(34, 13);
+            this.labelPortaloTitulo1.Name = "labelPortaloTitulo1";
+            this.labelPortaloTitulo1.Size = new System.Drawing.Size(73, 32);
+            this.labelPortaloTitulo1.TabIndex = 1;
+            this.labelPortaloTitulo1.Text = "Proa";
+            this.labelPortaloTitulo1.Click += new System.EventHandler(this.labelPortaloTitulo1_Click);
+            // 
+            // guna2Shapes1
+            // 
+            this.guna2Shapes1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.guna2Shapes1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.guna2Shapes1.Location = new System.Drawing.Point(4, 4);
+            this.guna2Shapes1.Name = "guna2Shapes1";
+            this.guna2Shapes1.PolygonSkip = 1;
+            this.guna2Shapes1.Rotate = 0F;
+            this.guna2Shapes1.Shape = Guna.UI2.WinForms.Enums.ShapeType.Rectangle;
+            this.guna2Shapes1.Size = new System.Drawing.Size(24, 55);
+            this.guna2Shapes1.TabIndex = 0;
+            this.guna2Shapes1.Text = "guna2Shapes1";
+            this.guna2Shapes1.Zoom = 80;
             // 
             // panel3
             // 
@@ -721,7 +721,7 @@
             this.buttonSincronizar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.buttonSincronizar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.buttonSincronizar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.buttonSincronizar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
+            this.buttonSincronizar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
             this.buttonSincronizar.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSincronizar.ForeColor = System.Drawing.Color.White;
             this.buttonSincronizar.Image = ((System.Drawing.Image)(resources.GetObject("buttonSincronizar.Image")));

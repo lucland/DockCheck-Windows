@@ -3,11 +3,14 @@ using AForge.Video;
 
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO.Ports;
 
 namespace DockCheckWindows.UserControls
 {
     public partial class UC_Cadastrar : UserControl
     {
+        private SerialPort serialPort;
+
         public UC_Cadastrar()
         {
             InitializeComponent();
@@ -29,7 +32,12 @@ namespace DockCheckWindows.UserControls
             buttonRegistrar.Enabled = false;
 
             excludeImageButton.Visible = false;
+
+            
         }
+
+    
+
 
         private void ValidateFields()
         {
@@ -202,6 +210,63 @@ namespace DockCheckWindows.UserControls
         private void labelNumero_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            //choose file and display the name of it on label4
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "PDF files (*.pdf) | *.pdf";
+            openFileDialog.FilterIndex = 0;
+            openFileDialog.RestoreDirectory = true;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //show only the file name instead of the whole path of it
+                if (string.IsNullOrEmpty(label4.Text))
+                {
+                    label4.Text = openFileDialog.SafeFileName;
+                }
+                else
+                {
+                    label4.Text += "\n" + openFileDialog.SafeFileName;
+                }
+            }
+        }
+
+        private void UC_Cadastrar_Load(object sender, EventArgs e)
+        {
+            // RFID
+            serialPort = new SerialPort("COM1");
+            serialPort.BaudRate = 115200;
+            serialPort.Parity = Parity.None;
+            serialPort.StopBits = StopBits.One;
+            serialPort.DataBits = 8;
+            serialPort.Handshake = Handshake.None;
+
+            serialPort.DataReceived += new SerialDataReceivedEventHandler(SerialPort_DataReceived);
+
+            serialPort.Open();
+        }
+
+        private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            // Read the data
+            string rfidData = serialPort.ReadLine();
+
+            // Update the label on the UI thread
+            this.Invoke((MethodInvoker)delegate
+            {
+                if (rfidData != "0") {
+                    label5.Text = rfidData;
+                }
+                
+                  // Replace "myLabel" with the name of your label
+            });
         }
     }
 }

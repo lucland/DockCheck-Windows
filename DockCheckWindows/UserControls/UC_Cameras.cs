@@ -12,7 +12,7 @@ namespace DockCheckWindows.UserControls
         public UC_Cameras()
         {
             InitializeComponent();
-          //  Task.Run(() => DetectMovement());
+          //Task.Run(() => DetectMovement());
         }
 
         private bool isDisposed = false;

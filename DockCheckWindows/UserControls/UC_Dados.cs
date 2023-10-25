@@ -194,5 +194,10 @@ namespace DockCheckWindows.UserControls
         {
             comboBoxOrdenar_SelectedIndexChanged(sender, e);
         }
+
+        private void cadastrosDataGrid_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

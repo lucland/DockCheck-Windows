@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ABordo" xml:space="preserve">
-    <value>À Bordo</value>
+    <value>On Boarded</value>
     <comment>Dashboard</comment>
   </data>
   <data name="Area" xml:space="preserve">
-    <value>Área</value>
+    <value>Area</value>
     <comment>Cadastrar</comment>
   </data>
   <data name="ASO" xml:space="preserve">
@@ -130,27 +130,27 @@
     <comment>Cadastrar</comment>
   </data>
   <data name="BaixarListaAtual" xml:space="preserve">
-    <value>Baixar Lista Atual</value>
+    <value>Download</value>
     <comment>Dados</comment>
   </data>
   <data name="BaixarPDF" xml:space="preserve">
-    <value>Baixar PDF</value>
+    <value>Download PDF</value>
     <comment>Dashboard</comment>
   </data>
   <data name="Bombordo" xml:space="preserve">
-    <value>Bombordo</value>
+    <value>Port</value>
     <comment>Home</comment>
   </data>
   <data name="Boroeste" xml:space="preserve">
-    <value>Boroeste</value>
+    <value>Starboard</value>
     <comment>Home</comment>
   </data>
   <data name="Cadastrar" xml:space="preserve">
-    <value>Cadastrar</value>
+    <value>Register</value>
     <comment>Form1</comment>
   </data>
   <data name="CadstrarRegistrarRfid" xml:space="preserve">
-    <value>Cadastrar e Gerar RFID</value>
+    <value>Register and Generate RFID</value>
     <comment>Cadastrar</comment>
   </data>
   <data name="Cameras" xml:space="preserve">
@@ -158,11 +158,11 @@
     <comment>Form1</comment>
   </data>
   <data name="Cancelar" xml:space="preserve">
-    <value>Cancelar</value>
+    <value>Cancel</value>
     <comment>Login</comment>
   </data>
   <data name="Capturar" xml:space="preserve">
-    <value>Capturar</value>
+    <value>Capture</value>
     <comment>Cadastrar</comment>
   </data>
   <data name="CheckIn" xml:space="preserve">
@@ -178,11 +178,11 @@
     <comment>Cadastrar</comment>
   </data>
   <data name="Crescente" xml:space="preserve">
-    <value>Crescente</value>
+    <value>Ascending</value>
     <comment>Dados</comment>
   </data>
   <data name="Dados" xml:space="preserve">
-    <value>Dados</value>
+    <value>Data</value>
     <comment>Form1</comment>
   </data>
   <data name="Dashnoard" xml:space="preserve">
@@ -190,11 +190,11 @@
     <comment>Form1</comment>
   </data>
   <data name="Decrescente" xml:space="preserve">
-    <value>Decrescente</value>
+    <value>Descending</value>
     <comment>Dados</comment>
   </data>
   <data name="Diario" xml:space="preserve">
-    <value>Diário</value>
+    <value>Daily</value>
     <comment>Dashboard</comment>
   </data>
   <data name="Email" xml:space="preserve">
@@ -202,39 +202,39 @@
     <comment>Cadastrar</comment>
   </data>
   <data name="Embarcacao" xml:space="preserve">
-    <value>Embarcação</value>
+    <value>Vessel</value>
     <comment>Cadastrar</comment>
   </data>
   <data name="Empresa" xml:space="preserve">
-    <value>Empresa</value>
+    <value>Company</value>
     <comment>Cadastrar</comment>
   </data>
   <data name="Escolher" xml:space="preserve">
-    <value>Escolher...</value>
+    <value>Choose</value>
     <comment>Cadastrar</comment>
   </data>
   <data name="Fechar" xml:space="preserve">
-    <value>Fechar</value>
+    <value>Close</value>
     <comment>Form1</comment>
   </data>
   <data name="Filtrar" xml:space="preserve">
-    <value>Filtrar:</value>
+    <value>Filter:</value>
     <comment>Dados</comment>
   </data>
   <data name="Foto" xml:space="preserve">
-    <value>Foto</value>
+    <value>Picture</value>
     <comment>Cadastrar</comment>
   </data>
   <data name="Funcao" xml:space="preserve">
-    <value>Função</value>
+    <value>Role</value>
     <comment>Cadastrar</comment>
   </data>
   <data name="GerarFormulario" xml:space="preserve">
-    <value>Gerar Formulário</value>
+    <value>Generate Form</value>
     <comment>Dashboard</comment>
   </data>
   <data name="Hoje" xml:space="preserve">
-    <value>Hoje</value>
+    <value>Today</value>
     <comment>Dashboard</comment>
   </data>
   <data name="Home" xml:space="preserve">
@@ -242,7 +242,7 @@
     <comment>Form1</comment>
   </data>
   <data name="Identidade" xml:space="preserve">
-    <value>Identidade</value>
+    <value>Identity</value>
     <comment>Cadastrar</comment>
   </data>
   <data name="Login" xml:space="preserve">
@@ -250,7 +250,7 @@
     <comment>Login</comment>
   </data>
   <data name="Nome" xml:space="preserve">
-    <value>Nome</value>
+    <value>Name</value>
     <comment>Cadastrar</comment>
   </data>
   <data name="Nr10" xml:space="preserve">
@@ -270,7 +270,7 @@
     <comment>Cadastrar</comment>
   </data>
   <data name="OrdenarPor" xml:space="preserve">
-    <value>Ordenar por:</value>
+    <value>Order by:</value>
     <comment>Dados</comment>
   </data>
   <data name="Portalos" xml:space="preserve">
@@ -278,27 +278,27 @@
     <comment>Home</comment>
   </data>
   <data name="Senha" xml:space="preserve">
-    <value>Senha</value>
+    <value>Password</value>
     <comment>Login</comment>
   </data>
   <data name="Sincronizar" xml:space="preserve">
-    <value>SIncronizar</value>
+    <value>Synch</value>
     <comment>Dashboard</comment>
   </data>
   <data name="SomenteCadastrar" xml:space="preserve">
-    <value>Somente Cadastrar</value>
+    <value>Register Only</value>
     <comment>Cadastrar</comment>
   </data>
   <data name="UltimaAtualizacao" xml:space="preserve">
-    <value>Última atualização:</value>
+    <value>Last update:</value>
     <comment>Home</comment>
   </data>
   <data name="Usuario" xml:space="preserve">
-    <value>Usuário</value>
+    <value>User</value>
     <comment>Login</comment>
   </data>
   <data name="Visitante" xml:space="preserve">
-    <value>Visitante</value>
+    <value>Visitor</value>
     <comment>Cadastrar</comment>
   </data>
 </root>
