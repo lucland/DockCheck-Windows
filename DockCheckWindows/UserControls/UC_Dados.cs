@@ -25,12 +25,12 @@ namespace DockCheckWindows.UserControls
         {
             if (db != null)
             {
-                var colecao = db.GetCollection<Cadastro>("cadastro");
+                var colecao = db.GetCollection<User>("users");
                 if (colecao != null)
                 {
                     var dados = colecao.FindAll().ToList();
                     cadastrosDataGrid.DataSource = new BindingSource(dados, null);
-                    comboBoxOrdenar.DataSource = typeof(Cadastro).GetProperties().Select(p => p.Name).ToList();
+                    comboBoxOrdenar.DataSource = typeof(User).GetProperties().Select(p => p.Name).ToList();
                 }
                 else
                 {
@@ -47,11 +47,11 @@ namespace DockCheckWindows.UserControls
         {
             if (comboBoxOrdenar.SelectedItem != null && db != null)
             {
-                var colecao = db.GetCollection<Cadastro>("cadastro");
+                var colecao = db.GetCollection<User>("cadastro");
                 if (colecao != null)
                 {
                     var dados = colecao.FindAll().ToList();
-                    var propriedade = typeof(Cadastro).GetProperty(comboBoxOrdenar.SelectedItem.ToString());
+                    var propriedade = typeof(User).GetProperty(comboBoxOrdenar.SelectedItem.ToString());
                     bool isAscending = crescenteDecrescente.SelectedItem.ToString() == "CRESCENTE";
 
                     if (comboBoxOrdenar.SelectedItem.ToString() == "Number") // Replace "Number" with the actual field name
@@ -106,11 +106,11 @@ namespace DockCheckWindows.UserControls
         {
             if (comboBoxOrdenar.SelectedItem != null)
             {
-                var colecao = db.GetCollection<Cadastro>("cadastro");
+                var colecao = db.GetCollection<User>("users");
                 var dados = colecao.FindAll().ToList();
                 if (dados != null && dados.Any())
                 {
-                    var propriedade = typeof(Cadastro).GetProperty(comboBoxOrdenar.SelectedItem.ToString());
+                    var propriedade = typeof(User).GetProperty(comboBoxOrdenar.SelectedItem.ToString());
                     if (propriedade != null)
                     {
                         var filteredData = dados.Where(x =>
@@ -131,11 +131,11 @@ namespace DockCheckWindows.UserControls
         {
             if (e.RowIndex >= 0)
             {
-                var cadastro = cadastrosDataGrid.Rows[e.RowIndex].DataBoundItem as Cadastro;
-                if (cadastro != null)
+                var user = cadastrosDataGrid.Rows[e.RowIndex].DataBoundItem as User;
+                if (user != null)
                 {
                     // Assuming uc_Cadastrar is an instance of UC_Cadastrar
-                    uc_Cadastrar.PopulateFields(cadastro);
+                    uc_Cadastrar.PopulateFields(user);
 
                     SwitchToCadastro?.Invoke();
 

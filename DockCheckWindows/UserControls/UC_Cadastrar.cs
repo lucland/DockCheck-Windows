@@ -198,13 +198,27 @@ namespace DockCheckWindows.UserControls
             excludeImageButton.Visible = false;
         }
 
-        public void PopulateFields(Cadastro cadastro)
+        public void PopulateFields(User user)
         {
-            textBoxNome.Text = cadastro.Name;
-            textBoxFuncao.Text = cadastro.Function;
-            textBoxEmpresa.Text = cadastro.Company;
-            labelNumero.Text = cadastro.Number;
-            // Add more fields as needed
+            textBoxNome.Text = user.Name;
+            textBoxFuncao.Text = user.Role;
+            textBoxEmpresa.Text = user.Company;
+            labelNumero.Text = user.Number;
+            maskedTextBoxIdentidade.Text = user.Identidade;
+            maskedTextBoxCpf.Text = user.Cpf;
+            //convert DateTime of ASO into DD/MM/YYYY format
+            maskedTextBoxAso.Text = user.Aso.ToString("dd/MM/yyyy");
+            //convert DateTime of NR34 into DD/MM/YYYY format
+            maskedTextBoxNr34.Text = user.Nr34.ToString("dd/MM/yyyy");
+            //convert DateTime of NR35 into DD/MM/YYYY format
+            maskedTextBoxNr35.Text = user.Nr35.ToString("dd/MM/yyyy");
+            //convert DateTime of NR33 into DD/MM/YYYY format
+            maskedTextBoxNr33.Text = user.Nr33.ToString("dd/MM/yyyy");
+            //convert DateTime of NR10 into DD/MM/YYYY format
+            maskedTextBoxNr10.Text = user.Nr10.ToString("dd/MM/yyyy");
+            dateTimePickerCheckin.Value = user.StartJob;
+            dateTimePickerCheckout.Value = user.EndJob;
+            textBoxEmail.Text = user.Email;
         }
 
         private void labelNumero_Click(object sender, EventArgs e)

@@ -103,6 +103,9 @@ namespace DockCheckWindows
 
         private void fecharButton_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.Token = "";
+            Properties.Settings.Default.Save();
+
             Application.Exit();
         }
 

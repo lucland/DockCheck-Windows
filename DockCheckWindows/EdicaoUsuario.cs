@@ -12,7 +12,7 @@ namespace DockCheckWindows
 {
     public partial class EdicaoUsuario : Form
     {
-        public EdicaoUsuario(Cadastro cadastro)
+        public EdicaoUsuario(User user)
         {
             InitializeComponent();
 
@@ -194,11 +194,20 @@ namespace DockCheckWindows
             excludeImageButton.Visible = false;
         }
 
-        public void PopulateFields(Cadastro cadastro)
+        public void PopulateFields(User user)
         {
-            textBoxNome.Text = cadastro.Name;
-            textBoxFuncao.Text = cadastro.Function;
-            textBoxEmpresa.Text = cadastro.Company;
+            textBoxNome.Text = user.Name;
+            textBoxFuncao.Text = user.Role;
+            textBoxEmpresa.Text = user.Company;
+            maskedTextBoxIdentidade.Text = user.Identidade;
+            maskedTextBoxCpf.Text = user.Cpf;
+            maskedTextBoxAso.Text = user.Aso.ToString("dd/MM/yyyy");
+            maskedTextBoxNr34.Text = user.Nr34.ToString("dd/MM/yyyy");
+            maskedTextBoxNr35.Text = user.Nr35.ToString("dd/MM/yyyy");
+            maskedTextBoxNr33.Text = user.Nr33.ToString("dd/MM/yyyy");
+            maskedTextBoxNr10.Text = user.Nr10.ToString("dd/MM/yyyy");
+            dateTimePickerCheckin.Value = user.StartJob;
+            dateTimePickerCheckout.Value = user.EndJob;
             // Add more fields as needed
         }
 

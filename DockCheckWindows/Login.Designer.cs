@@ -36,6 +36,7 @@
             this.buttonCancelar = new Guna.UI2.WinForms.Guna2Button();
             this.buttonLogin = new Guna.UI2.WinForms.Guna2Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.comboBoxRole = new Guna.UI2.WinForms.Guna2ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +46,7 @@
             this.labelUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.labelUsuario.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelUsuario.Location = new System.Drawing.Point(52, 104);
+            this.labelUsuario.Location = new System.Drawing.Point(88, 132);
             this.labelUsuario.Name = "labelUsuario";
             this.labelUsuario.Size = new System.Drawing.Size(123, 37);
             this.labelUsuario.TabIndex = 1;
@@ -57,7 +58,7 @@
             this.textBoxSenha.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxSenha.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxSenha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxSenha.Location = new System.Drawing.Point(185, 168);
+            this.textBoxSenha.Location = new System.Drawing.Point(221, 196);
             this.textBoxSenha.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxSenha.Name = "textBoxSenha";
             this.textBoxSenha.Size = new System.Drawing.Size(419, 30);
@@ -71,7 +72,7 @@
             this.labelSenha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.labelSenha.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSenha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelSenha.Location = new System.Drawing.Point(52, 163);
+            this.labelSenha.Location = new System.Drawing.Point(88, 191);
             this.labelSenha.Name = "labelSenha";
             this.labelSenha.Size = new System.Drawing.Size(108, 37);
             this.labelSenha.TabIndex = 3;
@@ -83,7 +84,7 @@
             this.textBoxUsuario.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxUsuario.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxUsuario.Location = new System.Drawing.Point(185, 109);
+            this.textBoxUsuario.Location = new System.Drawing.Point(221, 137);
             this.textBoxUsuario.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxUsuario.Name = "textBoxUsuario";
             this.textBoxUsuario.Size = new System.Drawing.Size(419, 30);
@@ -99,7 +100,7 @@
             this.buttonCancelar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
             this.buttonCancelar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCancelar.ForeColor = System.Drawing.Color.White;
-            this.buttonCancelar.Location = new System.Drawing.Point(195, 221);
+            this.buttonCancelar.Location = new System.Drawing.Point(185, 310);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(180, 45);
             this.buttonCancelar.TabIndex = 3;
@@ -115,7 +116,7 @@
             this.buttonLogin.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
             this.buttonLogin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogin.ForeColor = System.Drawing.Color.White;
-            this.buttonLogin.Location = new System.Drawing.Point(398, 221);
+            this.buttonLogin.Location = new System.Drawing.Point(388, 310);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(180, 45);
             this.buttonLogin.TabIndex = 4;
@@ -125,19 +126,41 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(230, -61);
+            this.pictureBox2.Location = new System.Drawing.Point(221, -33);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(278, 221);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
             // 
+            // comboBoxRole
+            // 
+            this.comboBoxRole.BackColor = System.Drawing.Color.Transparent;
+            this.comboBoxRole.BorderColor = System.Drawing.Color.White;
+            this.comboBoxRole.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.comboBoxRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRole.FocusedColor = System.Drawing.Color.White;
+            this.comboBoxRole.FocusedState.BorderColor = System.Drawing.Color.White;
+            this.comboBoxRole.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxRole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.comboBoxRole.ItemHeight = 30;
+            this.comboBoxRole.Items.AddRange(new object[] {
+            "admin",
+            "supervisor"});
+            this.comboBoxRole.Location = new System.Drawing.Point(95, 252);
+            this.comboBoxRole.MaxDropDownItems = 10;
+            this.comboBoxRole.Name = "comboBoxRole";
+            this.comboBoxRole.Size = new System.Drawing.Size(545, 36);
+            this.comboBoxRole.StartIndex = 0;
+            this.comboBoxRole.TabIndex = 7;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.ClientSize = new System.Drawing.Size(714, 294);
+            this.ClientSize = new System.Drawing.Size(727, 367);
+            this.Controls.Add(this.comboBoxRole);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonLogin);
             this.Controls.Add(this.labelUsuario);
@@ -165,5 +188,6 @@
         private Guna.UI2.WinForms.Guna2Button buttonCancelar;
         private Guna.UI2.WinForms.Guna2Button buttonLogin;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private Guna.UI2.WinForms.Guna2ComboBox comboBoxRole;
     }
 }
