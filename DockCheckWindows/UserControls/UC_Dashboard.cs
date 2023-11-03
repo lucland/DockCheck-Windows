@@ -26,21 +26,17 @@ namespace DockCheckWindows.UserControls
             // Read data from the database
             var db = DatabaseManager.Instance;
             {
-                var colecao = db.GetCollection<Usuario>("usuario");
+                var colecao = db.GetCollection<User>("usuario");
                 var dados = colecao.FindAll();
 
                 // Count the number of people onboarded each hour
                 foreach (var usuario in dados)
                 {
-                    if (usuario.Check_in_data != null && usuario.Check_out_data != null && usuario.Check_in_hora != null && usuario.Check_out_hora != null)
+                    if (usuario.StartJob != null && usuario.EndJob != null)
                     {
-                        if (usuario.Check_in_data != "*" && usuario.Check_out_data != "*" &&
-                            usuario.Check_in_hora != "*" && usuario.Check_out_hora != "*" &&
-                            usuario.Check_in_hora.Length < 11 && usuario.Check_out_hora.Length < 9 &&
-                            usuario.Check_in_data.Length > 1 && usuario.Check_out_data.Length > 0)
-                        {
-                            DateTime checkIn = DateTime.ParseExact(usuario.Check_in_data + " " + usuario.Check_in_hora, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-                            DateTime checkOut = DateTime.ParseExact(usuario.Check_out_data + " " + usuario.Check_out_hora, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                        
+                            DateTime checkIn = DateTime.ParseExact(usuario.StartJob + " ", "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                            DateTime checkOut = DateTime.ParseExact(usuario.EndJob + " ", "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
 
                             for (DateTime time = checkIn; time < checkOut; time = time.AddHours(1))
                             {
@@ -57,7 +53,7 @@ namespace DockCheckWindows.UserControls
                                 }
                                 dailyCountsAll[time.Date]++;
                             }
-                        }
+                        
                     }
                     if (usuario.Company != null)
                     {

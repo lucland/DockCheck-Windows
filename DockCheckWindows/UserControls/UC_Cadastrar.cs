@@ -4,6 +4,8 @@ using AForge.Video;
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO.Ports;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace DockCheckWindows.UserControls
 {
@@ -70,7 +72,43 @@ namespace DockCheckWindows.UserControls
 
         private void buttonCadastrar_Click(object sender, EventArgs e)
         {
+            // Assuming all fields are validated before this point
+            try
+            {
+                User newUser = new User
+                {
+                    Name = textBoxNome.Text,
+                    Role = textBoxFuncao.Text,
+                    Company = textBoxEmpresa.Text,
+                    Identidade = maskedTextBoxIdentidade.Text.Replace(" ", ""),
+                    CPF = maskedTextBoxCpf.Text.Replace(" ", ""),
+                    ASO = DateTime.ParseExact(maskedTextBoxAso.Text, "dd/MM/yyyy", null),
+                    NR34 = DateTime.ParseExact(maskedTextBoxNr34.Text, "dd/MM/yyyy", null),
+                    ASODocument = label4.Text,
+                    NR34Document = label4.Text,
+                    Number = int.Parse(labelNumero.Text),
 
+                    StartJob = dateTimePickerCheckin.Value,
+                    EndJob = dateTimePickerCheckout.Value,
+                    Email = textBoxEmail.Text,
+                    // Add other properties as needed
+                };
+
+                // Serialize the new user object to JSON
+                string json = JsonConvert.SerializeObject(newUser, Formatting.Indented);
+
+                // Write the JSON to a file, appending a new line if the file already exists.
+                string path = "path_to_your_output_directory";
+                string fileName = "users.json";
+                File.AppendAllText(Path.Combine(path, fileName), json + Environment.NewLine);
+
+                MessageBox.Show("Usuário cadastrado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                MessageBox.Show("Erro ao cadastrar usuário: " + ex.Message);
+            }
         }
 
         private void buttonConves_Click(object sender, EventArgs e)
@@ -203,19 +241,19 @@ namespace DockCheckWindows.UserControls
             textBoxNome.Text = user.Name;
             textBoxFuncao.Text = user.Role;
             textBoxEmpresa.Text = user.Company;
-            labelNumero.Text = user.Number;
+            labelNumero.Text =  user.Number.ToString();
             maskedTextBoxIdentidade.Text = user.Identidade;
-            maskedTextBoxCpf.Text = user.Cpf;
+            maskedTextBoxCpf.Text = user.CPF;
             //convert DateTime of ASO into DD/MM/YYYY format
-            maskedTextBoxAso.Text = user.Aso.ToString("dd/MM/yyyy");
+            maskedTextBoxAso.Text = user.ASO.ToString("dd/MM/yyyy");
             //convert DateTime of NR34 into DD/MM/YYYY format
-            maskedTextBoxNr34.Text = user.Nr34.ToString("dd/MM/yyyy");
+            maskedTextBoxNr34.Text = user.NR34.ToString("dd/MM/yyyy");
             //convert DateTime of NR35 into DD/MM/YYYY format
-            maskedTextBoxNr35.Text = user.Nr35.ToString("dd/MM/yyyy");
+            maskedTextBoxNr35.Text = user.NR35.ToString("dd/MM/yyyy");
             //convert DateTime of NR33 into DD/MM/YYYY format
-            maskedTextBoxNr33.Text = user.Nr33.ToString("dd/MM/yyyy");
+            maskedTextBoxNr33.Text = user.NR33.ToString("dd/MM/yyyy");
             //convert DateTime of NR10 into DD/MM/YYYY format
-            maskedTextBoxNr10.Text = user.Nr10.ToString("dd/MM/yyyy");
+            maskedTextBoxNr10.Text = user.NR10.ToString("dd/MM/yyyy");
             dateTimePickerCheckin.Value = user.StartJob;
             dateTimePickerCheckout.Value = user.EndJob;
             textBoxEmail.Text = user.Email;

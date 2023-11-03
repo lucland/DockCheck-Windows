@@ -1,0 +1,39 @@
+﻿using Newtonsoft.Json;
+using System;
+
+namespace DockCheckWindows.Models
+{
+    public class Company
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("logo")]
+        public string Logo { get; set; }
+
+        [JsonProperty("supervisors")]
+        public string[] Supervisors { get; set; }
+
+        [JsonProperty("vessels")]
+        public string[] Vessels { get; set; }
+
+        [JsonProperty("updated_at")]
+        public DateTime UpdatedAt { get; set; } // Assuming this should not be nullable
+
+        [JsonProperty("id")]
+        public string Id { get; set; } // Primary key, treated as non-nullable
+
+        [JsonProperty("expiration_date")]
+        public DateTime ExpirationDate { get; set; } // Nullable DateTime if the date can be null
+
+        public static Company FromJson(string jsonData)
+        {
+            return JsonConvert.DeserializeObject<Company>(jsonData);
+        }
+
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+    }
+}
