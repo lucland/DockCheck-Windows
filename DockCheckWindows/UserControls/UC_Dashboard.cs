@@ -1,4 +1,5 @@
-﻿using LiteDB;
+﻿using DockCheckWindows.Services;
+using LiteDB;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -24,10 +25,10 @@ namespace DockCheckWindows.UserControls
             DateTime specificDate = DateTime.ParseExact("09/25/2023", "MM/dd/yyyy", CultureInfo.InvariantCulture);
 
             // Read data from the database
-            var db = DatabaseManager.Instance;
+            var db = LiteDbService.Instance;
             {
-                var colecao = db.GetCollection<User>("usuario");
-                var dados = colecao.FindAll();
+                var colecao = db.GetAll<User>("User");
+                var dados = colecao;
 
                 // Count the number of people onboarded each hour
                 foreach (var usuario in dados)

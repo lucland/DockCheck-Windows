@@ -25,7 +25,7 @@ namespace DockCheckWindows.Models
         public int OnboardedCount { get; set; }
 
         [JsonProperty("portals")]
-        public List<string> Portals { get; set; }
+        public List<string> Portals { get; set; }  
 
         public static Vessel FromJson(string jsonData)
         {

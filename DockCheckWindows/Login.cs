@@ -1,31 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using DockCheckWindows.Repositories;
 using Newtonsoft.Json.Linq;
 
 namespace DockCheckWindows
 {
     public partial class Login : Form
     {
+        private readonly AuthenticationRepository _authenticationRepository;
+
         public bool IsAuthenticated { get; private set; }
+        public string Token { get; private set; } // Token property to store the JWT token
 
-
-        public Login()
+        public Login(AuthenticationRepository authenticationRepository)
         {
             InitializeComponent();
+            _authenticationRepository = authenticationRepository;
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
             Application.Exit();
-           
         }
 
         private async void buttonLogin_Click(object sender, EventArgs e)
@@ -35,55 +30,39 @@ namespace DockCheckWindows
             string role = comboBoxRole.Text;
             string system = "windows";
 
-            var apiService = new ApiService();
-            var payload = new
+            try
             {
-                username,
-                password,
-                role,
-                system
-            };
+                string response = await _authenticationRepository.LoginAsync(username, password, role, system);
 
-            string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(payload);
+                if (!string.IsNullOrEmpty(response))
+                {
+                    dynamic jsonResult = JObject.Parse(response);
+                    Token = jsonResult.token;
 
-            string response = await apiService.PostDataAsync("http://your_backend.com/api/v1/login", jsonPayload);
+                    IsAuthenticated = true;
 
-            if (response != null)
-            {
-                JObject jsonResult = JObject.Parse(response);
-                string token = jsonResult["token"].ToString();
+                    // Store the token in a static property or a settings file if needed
+                    // For example, using Properties.Settings:
+                    Properties.Settings.Default.Token = Token;
+                    Properties.Settings.Default.Save();
 
-                IsAuthenticated = true;
+                    //save user_id from login
+                    Properties.Settings.Default.UserId = jsonResult.user_id;
+                    Console.WriteLine("User id: " + jsonResult.user_id);
+                    Properties.Settings.Default.Save();
+                    Console.WriteLine("settings of UserId " + Properties.Settings.Default.UserId);
 
-                Properties.Settings.Default.Token = token;
-                Properties.Settings.Default.Save();
-
-                this.Close();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid username or password.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Invalid username or password.");
+                MessageBox.Show($"An error occurred: {ex.Message}");
             }
-        }
-
-        private void textBoxUsuario_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxSenha_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelSenha_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelUsuario_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void Login_Load(object sender, EventArgs e)

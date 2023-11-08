@@ -219,7 +219,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiService.cs" />
+    <Compile Include="Repositories\AuthorizationRepository.cs" />
+    <Compile Include="Services\ApiService.cs" />
     <Compile Include="Models\Authorization.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Docking.cs" />
@@ -228,7 +229,6 @@
     <Compile Include="Models\Portal.cs" />
     <Compile Include="Models\Supervisor.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="DatabaseManager.cs" />
     <Compile Include="EdicaoUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,11 +260,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>pt-BR.resx</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\AuthenticationRepository.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\CompanyRepository.cs" />
+    <Compile Include="Repositories\DockingRepository.cs" />
+    <Compile Include="Repositories\EventRepository.cs" />
+    <Compile Include="Repositories\PortalRepository.cs" />
+    <Compile Include="Repositories\SupervisorRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\VesselRepository.cs" />
     <Compile Include="Resources.en-US.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\LiteDbService.cs" />
     <Compile Include="UploadFirebase.cs" />
     <Compile Include="UserControls\UC_Cadastrar.cs">
       <SubType>UserControl</SubType>

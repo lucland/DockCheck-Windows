@@ -53,9 +53,21 @@
             this.labelNumero = new System.Windows.Forms.Label();
             this.buttonCadastrar = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.supervisorToggleSwitch = new Guna.UI2.WinForms.Guna2ToggleSwitch();
+            this.supervisorLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.senhaPanel = new System.Windows.Forms.Panel();
+            this.senhaTextBox = new System.Windows.Forms.TextBox();
+            this.senhaLabel = new System.Windows.Forms.Label();
+            this.senhaReqLabel = new System.Windows.Forms.Label();
+            this.usuarioPanel = new System.Windows.Forms.Panel();
+            this.usuarioTextBox = new System.Windows.Forms.TextBox();
+            this.guna2ToggleSwitch1 = new Guna.UI2.WinForms.Guna2ToggleSwitch();
+            this.usuarioLabel = new System.Windows.Forms.Label();
+            this.adminLabel = new System.Windows.Forms.Label();
+            this.usuarioReqLabel = new System.Windows.Forms.Label();
+            this.guardiaoToggleSwitch1 = new Guna.UI2.WinForms.Guna2ToggleSwitch();
+            this.label6 = new System.Windows.Forms.Label();
             this.excludeImageButton = new Guna.UI2.WinForms.Guna2Button();
             this.capturaButton = new Guna.UI2.WinForms.Guna2Button();
             this.pictureBoxFoto = new System.Windows.Forms.PictureBox();
@@ -72,14 +84,19 @@
             this.maskedTextBoxIdentidade = new System.Windows.Forms.MaskedTextBox();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.escolherNR35Button = new Guna.UI2.WinForms.Guna2Button();
             this.maskedTextBoxNr35 = new System.Windows.Forms.MaskedTextBox();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.escolherNR33Button = new Guna.UI2.WinForms.Guna2Button();
             this.maskedTextBoxNr33 = new System.Windows.Forms.MaskedTextBox();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.escolherNR10Button = new Guna.UI2.WinForms.Guna2Button();
             this.maskedTextBoxNr10 = new System.Windows.Forms.MaskedTextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.escolherASOButton = new Guna.UI2.WinForms.Guna2Button();
             this.maskedTextBoxAso = new System.Windows.Forms.MaskedTextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.escolherNR34Button = new Guna.UI2.WinForms.Guna2Button();
             this.maskedTextBoxNr34 = new System.Windows.Forms.MaskedTextBox();
             this.dateTimePickerCheckin = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.dateTimePickerCheckout = new Guna.UI2.WinForms.Guna2DateTimePicker();
@@ -99,6 +116,8 @@
             this.buttonRegistrar = new Guna.UI2.WinForms.Guna2Button();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.senhaPanel.SuspendLayout();
+            this.usuarioPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).BeginInit();
             this.panel13.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -438,7 +457,6 @@
             this.labelNumero.Text = "0001";
             this.labelNumero.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.labelNumero.UseMnemonic = false;
-            this.labelNumero.Click += new System.EventHandler(this.labelNumero_Click);
             // 
             // buttonCadastrar
             // 
@@ -460,13 +478,24 @@
             this.buttonCadastrar.Size = new System.Drawing.Size(418, 63);
             this.buttonCadastrar.TabIndex = 0;
             this.buttonCadastrar.Text = "Somente Cadastrar";
+            this.buttonCadastrar.Click += new System.EventHandler(this.buttonCadastrar_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.guna2Button1);
+            this.panel1.Controls.Add(this.supervisorToggleSwitch);
+            this.panel1.Controls.Add(this.supervisorLabel);
             this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.senhaPanel);
+            this.panel1.Controls.Add(this.senhaLabel);
+            this.panel1.Controls.Add(this.senhaReqLabel);
+            this.panel1.Controls.Add(this.usuarioPanel);
+            this.panel1.Controls.Add(this.guna2ToggleSwitch1);
+            this.panel1.Controls.Add(this.usuarioLabel);
+            this.panel1.Controls.Add(this.adminLabel);
+            this.panel1.Controls.Add(this.usuarioReqLabel);
+            this.panel1.Controls.Add(this.guardiaoToggleSwitch1);
+            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.excludeImageButton);
             this.panel1.Controls.Add(this.capturaButton);
             this.panel1.Controls.Add(this.pictureBoxFoto);
@@ -506,46 +535,213 @@
             this.panel1.Controls.Add(this.panel8);
             this.panel1.Location = new System.Drawing.Point(-5, 89);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(2206, 684);
+            this.panel1.Size = new System.Drawing.Size(2206, 696);
             this.panel1.TabIndex = 0;
             // 
-            // label4
+            // supervisorToggleSwitch
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1599, 130);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 13);
-            this.label4.TabIndex = 28;
+            this.supervisorToggleSwitch.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.supervisorToggleSwitch.CheckedState.BorderRadius = 14;
+            this.supervisorToggleSwitch.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.supervisorToggleSwitch.CheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.supervisorToggleSwitch.CheckedState.InnerBorderRadius = 10;
+            this.supervisorToggleSwitch.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.supervisorToggleSwitch.Location = new System.Drawing.Point(1806, 328);
+            this.supervisorToggleSwitch.Name = "supervisorToggleSwitch";
+            this.supervisorToggleSwitch.Size = new System.Drawing.Size(70, 32);
+            this.supervisorToggleSwitch.TabIndex = 38;
+            this.supervisorToggleSwitch.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.supervisorToggleSwitch.UncheckedState.BorderRadius = 14;
+            this.supervisorToggleSwitch.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.supervisorToggleSwitch.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.supervisorToggleSwitch.UncheckedState.InnerBorderRadius = 10;
+            this.supervisorToggleSwitch.UncheckedState.InnerColor = System.Drawing.Color.White;
+            this.supervisorToggleSwitch.Visible = false;
+            this.supervisorToggleSwitch.CheckedChanged += new System.EventHandler(this.supervisorToggleSwitch_CheckedChanged);
             // 
-            // guna2Button1
+            // supervisorLabel
             // 
-            this.guna2Button1.BorderRadius = 12;
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.guna2Button1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.Location = new System.Drawing.Point(1751, 73);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(155, 43);
-            this.guna2Button1.TabIndex = 27;
-            this.guna2Button1.Text = "Escolher...";
-            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
+            this.supervisorLabel.AutoSize = true;
+            this.supervisorLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.supervisorLabel.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supervisorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.supervisorLabel.Location = new System.Drawing.Point(1607, 322);
+            this.supervisorLabel.Name = "supervisorLabel";
+            this.supervisorLabel.Size = new System.Drawing.Size(166, 37);
+            this.supervisorLabel.TabIndex = 37;
+            this.supervisorLabel.Text = "Supervisor";
+            this.supervisorLabel.Visible = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(1595, 77);
+            this.label3.Location = new System.Drawing.Point(1611, 272);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(123, 37);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "Anexar";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.label3.Size = new System.Drawing.Size(0, 13);
+            this.label3.TabIndex = 36;
+            this.label3.Visible = false;
+            // 
+            // senhaPanel
+            // 
+            this.senhaPanel.BackColor = System.Drawing.Color.White;
+            this.senhaPanel.Controls.Add(this.senhaTextBox);
+            this.senhaPanel.Location = new System.Drawing.Point(1040, 637);
+            this.senhaPanel.Name = "senhaPanel";
+            this.senhaPanel.Size = new System.Drawing.Size(521, 38);
+            this.senhaPanel.TabIndex = 35;
+            this.senhaPanel.Visible = false;
+            // 
+            // senhaTextBox
+            // 
+            this.senhaTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.senhaTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.senhaTextBox.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.senhaTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.senhaTextBox.Location = new System.Drawing.Point(6, 3);
+            this.senhaTextBox.Margin = new System.Windows.Forms.Padding(5);
+            this.senhaTextBox.Name = "senhaTextBox";
+            this.senhaTextBox.Size = new System.Drawing.Size(495, 30);
+            this.senhaTextBox.TabIndex = 1;
+            this.senhaTextBox.Visible = false;
+            // 
+            // senhaLabel
+            // 
+            this.senhaLabel.AutoSize = true;
+            this.senhaLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.senhaLabel.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.senhaLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.senhaLabel.Location = new System.Drawing.Point(1033, 592);
+            this.senhaLabel.Name = "senhaLabel";
+            this.senhaLabel.Size = new System.Drawing.Size(108, 37);
+            this.senhaLabel.TabIndex = 33;
+            this.senhaLabel.Text = "Senha";
+            this.senhaLabel.Visible = false;
+            // 
+            // senhaReqLabel
+            // 
+            this.senhaReqLabel.AutoSize = true;
+            this.senhaReqLabel.BackColor = System.Drawing.Color.Transparent;
+            this.senhaReqLabel.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.senhaReqLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
+            this.senhaReqLabel.Location = new System.Drawing.Point(1530, 597);
+            this.senhaReqLabel.Name = "senhaReqLabel";
+            this.senhaReqLabel.Size = new System.Drawing.Size(31, 38);
+            this.senhaReqLabel.TabIndex = 34;
+            this.senhaReqLabel.Text = "*";
+            this.senhaReqLabel.Visible = false;
+            // 
+            // usuarioPanel
+            // 
+            this.usuarioPanel.BackColor = System.Drawing.Color.White;
+            this.usuarioPanel.Controls.Add(this.usuarioTextBox);
+            this.usuarioPanel.Location = new System.Drawing.Point(1040, 551);
+            this.usuarioPanel.Name = "usuarioPanel";
+            this.usuarioPanel.Size = new System.Drawing.Size(521, 38);
+            this.usuarioPanel.TabIndex = 7;
+            this.usuarioPanel.Visible = false;
+            // 
+            // usuarioTextBox
+            // 
+            this.usuarioTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.usuarioTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.usuarioTextBox.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usuarioTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.usuarioTextBox.Location = new System.Drawing.Point(6, 3);
+            this.usuarioTextBox.Margin = new System.Windows.Forms.Padding(5);
+            this.usuarioTextBox.Name = "usuarioTextBox";
+            this.usuarioTextBox.Size = new System.Drawing.Size(495, 30);
+            this.usuarioTextBox.TabIndex = 1;
+            this.usuarioTextBox.Visible = false;
+            // 
+            // guna2ToggleSwitch1
+            // 
+            this.guna2ToggleSwitch1.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.guna2ToggleSwitch1.CheckedState.BorderRadius = 14;
+            this.guna2ToggleSwitch1.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.guna2ToggleSwitch1.CheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.guna2ToggleSwitch1.CheckedState.InnerBorderRadius = 10;
+            this.guna2ToggleSwitch1.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.guna2ToggleSwitch1.Location = new System.Drawing.Point(1491, 456);
+            this.guna2ToggleSwitch1.Name = "guna2ToggleSwitch1";
+            this.guna2ToggleSwitch1.Size = new System.Drawing.Size(70, 32);
+            this.guna2ToggleSwitch1.TabIndex = 32;
+            this.guna2ToggleSwitch1.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2ToggleSwitch1.UncheckedState.BorderRadius = 14;
+            this.guna2ToggleSwitch1.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2ToggleSwitch1.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.guna2ToggleSwitch1.UncheckedState.InnerBorderRadius = 10;
+            this.guna2ToggleSwitch1.UncheckedState.InnerColor = System.Drawing.Color.White;
+            this.guna2ToggleSwitch1.CheckedChanged += new System.EventHandler(this.guna2ToggleSwitch1_CheckedChanged_1);
+            // 
+            // usuarioLabel
+            // 
+            this.usuarioLabel.AutoSize = true;
+            this.usuarioLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.usuarioLabel.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usuarioLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.usuarioLabel.Location = new System.Drawing.Point(1033, 506);
+            this.usuarioLabel.Name = "usuarioLabel";
+            this.usuarioLabel.Size = new System.Drawing.Size(123, 37);
+            this.usuarioLabel.TabIndex = 5;
+            this.usuarioLabel.Text = "Usuário";
+            this.usuarioLabel.Visible = false;
+            // 
+            // adminLabel
+            // 
+            this.adminLabel.AutoSize = true;
+            this.adminLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.adminLabel.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adminLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.adminLabel.Location = new System.Drawing.Point(1030, 451);
+            this.adminLabel.Name = "adminLabel";
+            this.adminLabel.Size = new System.Drawing.Size(220, 37);
+            this.adminLabel.TabIndex = 31;
+            this.adminLabel.Text = "Administrador";
+            // 
+            // usuarioReqLabel
+            // 
+            this.usuarioReqLabel.AutoSize = true;
+            this.usuarioReqLabel.BackColor = System.Drawing.Color.Transparent;
+            this.usuarioReqLabel.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usuarioReqLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
+            this.usuarioReqLabel.Location = new System.Drawing.Point(1530, 511);
+            this.usuarioReqLabel.Name = "usuarioReqLabel";
+            this.usuarioReqLabel.Size = new System.Drawing.Size(31, 38);
+            this.usuarioReqLabel.TabIndex = 6;
+            this.usuarioReqLabel.Text = "*";
+            this.usuarioReqLabel.Visible = false;
+            // 
+            // guardiaoToggleSwitch1
+            // 
+            this.guardiaoToggleSwitch1.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.guardiaoToggleSwitch1.CheckedState.BorderRadius = 14;
+            this.guardiaoToggleSwitch1.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.guardiaoToggleSwitch1.CheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.guardiaoToggleSwitch1.CheckedState.InnerBorderRadius = 10;
+            this.guardiaoToggleSwitch1.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.guardiaoToggleSwitch1.Location = new System.Drawing.Point(1491, 393);
+            this.guardiaoToggleSwitch1.Name = "guardiaoToggleSwitch1";
+            this.guardiaoToggleSwitch1.Size = new System.Drawing.Size(70, 32);
+            this.guardiaoToggleSwitch1.TabIndex = 30;
+            this.guardiaoToggleSwitch1.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guardiaoToggleSwitch1.UncheckedState.BorderRadius = 14;
+            this.guardiaoToggleSwitch1.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guardiaoToggleSwitch1.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.guardiaoToggleSwitch1.UncheckedState.InnerBorderRadius = 10;
+            this.guardiaoToggleSwitch1.UncheckedState.InnerColor = System.Drawing.Color.White;
+            this.guardiaoToggleSwitch1.CheckedChanged += new System.EventHandler(this.guardiaoToggleSwitch1_CheckedChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label6.Location = new System.Drawing.Point(1030, 388);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(156, 37);
+            this.label6.TabIndex = 29;
+            this.label6.Text = "Guardião";
             // 
             // excludeImageButton
             // 
@@ -557,7 +753,7 @@
             this.excludeImageButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
             this.excludeImageButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.excludeImageButton.ForeColor = System.Drawing.Color.White;
-            this.excludeImageButton.Location = new System.Drawing.Point(1199, 516);
+            this.excludeImageButton.Location = new System.Drawing.Point(1829, 75);
             this.excludeImageButton.Name = "excludeImageButton";
             this.excludeImageButton.Size = new System.Drawing.Size(36, 32);
             this.excludeImageButton.TabIndex = 25;
@@ -575,16 +771,16 @@
             this.capturaButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
             this.capturaButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.capturaButton.ForeColor = System.Drawing.Color.White;
-            this.capturaButton.Location = new System.Drawing.Point(1245, 471);
+            this.capturaButton.Location = new System.Drawing.Point(1748, 221);
             this.capturaButton.Name = "capturaButton";
-            this.capturaButton.Size = new System.Drawing.Size(155, 43);
+            this.capturaButton.Size = new System.Drawing.Size(128, 43);
             this.capturaButton.TabIndex = 24;
             this.capturaButton.Text = "Capturar";
             this.capturaButton.Click += new System.EventHandler(this.capturaButton_Click);
             // 
             // pictureBoxFoto
             // 
-            this.pictureBoxFoto.Location = new System.Drawing.Point(1037, 516);
+            this.pictureBoxFoto.Location = new System.Drawing.Point(1667, 75);
             this.pictureBoxFoto.Name = "pictureBoxFoto";
             this.pictureBoxFoto.Size = new System.Drawing.Size(155, 136);
             this.pictureBoxFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -601,11 +797,11 @@
             this.uploadButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
             this.uploadButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uploadButton.ForeColor = System.Drawing.Color.White;
-            this.uploadButton.Location = new System.Drawing.Point(1406, 471);
+            this.uploadButton.Location = new System.Drawing.Point(1614, 221);
             this.uploadButton.Name = "uploadButton";
-            this.uploadButton.Size = new System.Drawing.Size(155, 43);
+            this.uploadButton.Size = new System.Drawing.Size(128, 43);
             this.uploadButton.TabIndex = 22;
-            this.uploadButton.Text = "Escolher...";
+            this.uploadButton.Text = "Escolher foto";
             this.uploadButton.Click += new System.EventHandler(this.uploadButton_Click);
             // 
             // fotoLabel
@@ -614,7 +810,7 @@
             this.fotoLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.fotoLabel.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fotoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.fotoLabel.Location = new System.Drawing.Point(1030, 471);
+            this.fotoLabel.Location = new System.Drawing.Point(1596, 30);
             this.fotoLabel.Name = "fotoLabel";
             this.fotoLabel.Size = new System.Drawing.Size(78, 37);
             this.fotoLabel.TabIndex = 21;
@@ -740,11 +936,28 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.White;
+            this.panel7.Controls.Add(this.escolherNR35Button);
             this.panel7.Controls.Add(this.maskedTextBoxNr35);
             this.panel7.Location = new System.Drawing.Point(535, 456);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(429, 38);
             this.panel7.TabIndex = 10;
+            // 
+            // escolherNR35Button
+            // 
+            this.escolherNR35Button.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.escolherNR35Button.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.escolherNR35Button.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.escolherNR35Button.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.escolherNR35Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.escolherNR35Button.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.escolherNR35Button.ForeColor = System.Drawing.Color.White;
+            this.escolherNR35Button.Location = new System.Drawing.Point(276, -2);
+            this.escolherNR35Button.Name = "escolherNR35Button";
+            this.escolherNR35Button.Size = new System.Drawing.Size(155, 43);
+            this.escolherNR35Button.TabIndex = 31;
+            this.escolherNR35Button.Text = "Anexar doc.";
+            this.escolherNR35Button.Click += new System.EventHandler(this.escolherNR35Button_Click);
             // 
             // maskedTextBoxNr35
             // 
@@ -762,11 +975,28 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.Controls.Add(this.escolherNR33Button);
             this.panel6.Controls.Add(this.maskedTextBoxNr33);
             this.panel6.Location = new System.Drawing.Point(535, 361);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(429, 38);
             this.panel6.TabIndex = 9;
+            // 
+            // escolherNR33Button
+            // 
+            this.escolherNR33Button.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.escolherNR33Button.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.escolherNR33Button.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.escolherNR33Button.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.escolherNR33Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.escolherNR33Button.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.escolherNR33Button.ForeColor = System.Drawing.Color.White;
+            this.escolherNR33Button.Location = new System.Drawing.Point(276, -1);
+            this.escolherNR33Button.Name = "escolherNR33Button";
+            this.escolherNR33Button.Size = new System.Drawing.Size(155, 43);
+            this.escolherNR33Button.TabIndex = 28;
+            this.escolherNR33Button.Text = "Anexar doc.";
+            this.escolherNR33Button.Click += new System.EventHandler(this.escolherNR33Button_Click);
             // 
             // maskedTextBoxNr33
             // 
@@ -784,11 +1014,28 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.Controls.Add(this.escolherNR10Button);
             this.panel5.Controls.Add(this.maskedTextBoxNr10);
             this.panel5.Location = new System.Drawing.Point(535, 266);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(429, 38);
             this.panel5.TabIndex = 8;
+            // 
+            // escolherNR10Button
+            // 
+            this.escolherNR10Button.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.escolherNR10Button.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.escolherNR10Button.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.escolherNR10Button.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.escolherNR10Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.escolherNR10Button.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.escolherNR10Button.ForeColor = System.Drawing.Color.White;
+            this.escolherNR10Button.Location = new System.Drawing.Point(276, -3);
+            this.escolherNR10Button.Name = "escolherNR10Button";
+            this.escolherNR10Button.Size = new System.Drawing.Size(155, 43);
+            this.escolherNR10Button.TabIndex = 29;
+            this.escolherNR10Button.Text = "Anexar doc.";
+            this.escolherNR10Button.Click += new System.EventHandler(this.escolherNR10Button_Click);
             // 
             // maskedTextBoxNr10
             // 
@@ -806,11 +1053,28 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.escolherASOButton);
             this.panel4.Controls.Add(this.maskedTextBoxAso);
             this.panel4.Location = new System.Drawing.Point(535, 76);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(429, 38);
             this.panel4.TabIndex = 6;
+            // 
+            // escolherASOButton
+            // 
+            this.escolherASOButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.escolherASOButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.escolherASOButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.escolherASOButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.escolherASOButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.escolherASOButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.escolherASOButton.ForeColor = System.Drawing.Color.White;
+            this.escolherASOButton.Location = new System.Drawing.Point(274, -2);
+            this.escolherASOButton.Name = "escolherASOButton";
+            this.escolherASOButton.Size = new System.Drawing.Size(155, 43);
+            this.escolherASOButton.TabIndex = 27;
+            this.escolherASOButton.Text = "Anexar doc.";
+            this.escolherASOButton.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
             // maskedTextBoxAso
             // 
@@ -828,11 +1092,28 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Controls.Add(this.escolherNR34Button);
             this.panel3.Controls.Add(this.maskedTextBoxNr34);
             this.panel3.Location = new System.Drawing.Point(535, 171);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(429, 38);
             this.panel3.TabIndex = 7;
+            // 
+            // escolherNR34Button
+            // 
+            this.escolherNR34Button.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.escolherNR34Button.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.escolherNR34Button.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.escolherNR34Button.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.escolherNR34Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.escolherNR34Button.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.escolherNR34Button.ForeColor = System.Drawing.Color.White;
+            this.escolherNR34Button.Location = new System.Drawing.Point(276, -2);
+            this.escolherNR34Button.Name = "escolherNR34Button";
+            this.escolherNR34Button.Size = new System.Drawing.Size(155, 43);
+            this.escolherNR34Button.TabIndex = 28;
+            this.escolherNR34Button.Text = "Anexar doc.";
+            this.escolherNR34Button.Click += new System.EventHandler(this.escolherNR34Button_Click);
             // 
             // maskedTextBoxNr34
             // 
@@ -1074,16 +1355,17 @@
             this.buttonRegistrar.Size = new System.Drawing.Size(418, 63);
             this.buttonRegistrar.TabIndex = 0;
             this.buttonRegistrar.Text = "Cadastrar e Registrar RFID";
-            this.buttonRegistrar.Click += new System.EventHandler(this.buttonRegistrar_Click);
+            this.buttonRegistrar.Click += new System.EventHandler(this.buttonCadastrar_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(592, 25);
+            this.label5.Location = new System.Drawing.Point(1836, 61);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(0, 13);
             this.label5.TabIndex = 1;
-            this.label5.Text = "label5";
+            this.label5.Visible = false;
+            this.label5.TextChanged += new System.EventHandler(this.label5_TextChanged);
             // 
             // UC_Cadastrar
             // 
@@ -1113,6 +1395,10 @@
             this.Size = new System.Drawing.Size(1904, 906);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.senhaPanel.ResumeLayout(false);
+            this.senhaPanel.PerformLayout();
+            this.usuarioPanel.ResumeLayout(false);
+            this.usuarioPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).EndInit();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
@@ -1201,16 +1487,33 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label labelVisitante;
-        private Guna.UI2.WinForms.Guna2ToggleSwitch visitanteToggleSwitch;
         private Guna.UI2.WinForms.Guna2Button uploadButton;
         private System.Windows.Forms.Label fotoLabel;
         private System.Windows.Forms.PictureBox pictureBoxFoto;
         private Guna.UI2.WinForms.Guna2Button capturaButton;
         private Guna.UI2.WinForms.Guna2Button excludeImageButton;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private Guna.UI2.WinForms.Guna2Button escolherASOButton;
         private System.Windows.Forms.Label label5;
+        private Guna.UI2.WinForms.Guna2ToggleSwitch guardiaoToggleSwitch1;
+        private System.Windows.Forms.Label label6;
+        private Guna.UI2.WinForms.Guna2Button escolherNR35Button;
+        private Guna.UI2.WinForms.Guna2Button escolherNR33Button;
+        private Guna.UI2.WinForms.Guna2Button escolherNR10Button;
+        private Guna.UI2.WinForms.Guna2Button escolherNR34Button;
+        private System.Windows.Forms.Panel senhaPanel;
+        private System.Windows.Forms.TextBox senhaTextBox;
+        private System.Windows.Forms.Label senhaLabel;
+        private System.Windows.Forms.Label senhaReqLabel;
+        private System.Windows.Forms.Panel usuarioPanel;
+        private System.Windows.Forms.TextBox usuarioTextBox;
+        private Guna.UI2.WinForms.Guna2ToggleSwitch guna2ToggleSwitch1;
+        private System.Windows.Forms.Label usuarioLabel;
+        private System.Windows.Forms.Label adminLabel;
+        private System.Windows.Forms.Label usuarioReqLabel;
+        private Guna.UI2.WinForms.Guna2ToggleSwitch visitanteToggleSwitch;
+        private System.Windows.Forms.Label labelVisitante;
+        private System.Windows.Forms.Label label3;
+        private Guna.UI2.WinForms.Guna2ToggleSwitch supervisorToggleSwitch;
+        private System.Windows.Forms.Label supervisorLabel;
     }
 }

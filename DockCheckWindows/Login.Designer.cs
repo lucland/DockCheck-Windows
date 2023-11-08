@@ -51,7 +51,6 @@
             this.labelUsuario.Size = new System.Drawing.Size(123, 37);
             this.labelUsuario.TabIndex = 1;
             this.labelUsuario.Text = "Usuário";
-            this.labelUsuario.Click += new System.EventHandler(this.labelUsuario_Click);
             // 
             // textBoxSenha
             // 
@@ -64,7 +63,6 @@
             this.textBoxSenha.Size = new System.Drawing.Size(419, 30);
             this.textBoxSenha.TabIndex = 2;
             this.textBoxSenha.UseSystemPasswordChar = true;
-            this.textBoxSenha.TextChanged += new System.EventHandler(this.textBoxSenha_TextChanged);
             // 
             // labelSenha
             // 
@@ -77,7 +75,6 @@
             this.labelSenha.Size = new System.Drawing.Size(108, 37);
             this.labelSenha.TabIndex = 3;
             this.labelSenha.Text = "Senha";
-            this.labelSenha.Click += new System.EventHandler(this.labelSenha_Click);
             // 
             // textBoxUsuario
             // 
@@ -89,7 +86,6 @@
             this.textBoxUsuario.Name = "textBoxUsuario";
             this.textBoxUsuario.Size = new System.Drawing.Size(419, 30);
             this.textBoxUsuario.TabIndex = 1;
-            this.textBoxUsuario.TextChanged += new System.EventHandler(this.textBoxUsuario_TextChanged);
             // 
             // buttonCancelar
             // 

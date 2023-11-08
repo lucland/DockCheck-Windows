@@ -4,12 +4,13 @@ using System.Linq;
 using OfficeOpenXml;
 using System.IO;
 using System.Windows.Forms;
+using DockCheckWindows.Services;
 
 namespace DockCheckWindows.UserControls
 {
     public partial class UC_Dados : UserControl
     {
-        LiteDatabase db;
+        LiteDbService db;
         private UC_Cadastrar uc_Cadastrar;
 
         public UC_Dados(UC_Cadastrar uc_CadastrarInstance)
@@ -17,7 +18,7 @@ namespace DockCheckWindows.UserControls
             InitializeComponent();
             this.uc_Cadastrar = uc_CadastrarInstance;
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            db = DatabaseManager.Instance;  // Initialize db using the singleton instance
+            db = LiteDbService.Instance;  // This should now use the connection string
             CarregarDados();
         }
 
@@ -25,10 +26,10 @@ namespace DockCheckWindows.UserControls
         {
             if (db != null)
             {
-                var colecao = db.GetCollection<User>("users");
+                var colecao = db.GetAll<User>("User");
                 if (colecao != null)
                 {
-                    var dados = colecao.FindAll().ToList();
+                    var dados = colecao.ToList();
                     cadastrosDataGrid.DataSource = new BindingSource(dados, null);
                     comboBoxOrdenar.DataSource = typeof(User).GetProperties().Select(p => p.Name).ToList();
                 }
@@ -47,10 +48,10 @@ namespace DockCheckWindows.UserControls
         {
             if (comboBoxOrdenar.SelectedItem != null && db != null)
             {
-                var colecao = db.GetCollection<User>("cadastro");
+                var colecao = db.GetAll<User>("User");
                 if (colecao != null)
                 {
-                    var dados = colecao.FindAll().ToList();
+                    var dados = colecao.ToList();
                     var propriedade = typeof(User).GetProperty(comboBoxOrdenar.SelectedItem.ToString());
                     bool isAscending = crescenteDecrescente.SelectedItem.ToString() == "CRESCENTE";
 
@@ -106,8 +107,8 @@ namespace DockCheckWindows.UserControls
         {
             if (comboBoxOrdenar.SelectedItem != null)
             {
-                var colecao = db.GetCollection<User>("users");
-                var dados = colecao.FindAll().ToList();
+                var colecao = db.GetAll<User>("User");
+                var dados = colecao.ToList();
                 if (dados != null && dados.Any())
                 {
                     var propriedade = typeof(User).GetProperty(comboBoxOrdenar.SelectedItem.ToString());
@@ -198,6 +199,11 @@ namespace DockCheckWindows.UserControls
         private void cadastrosDataGrid_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void UC_Dados_Load(object sender, EventArgs e)
+        {
+            CarregarDados();
         }
     }
 }

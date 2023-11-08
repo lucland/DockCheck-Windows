@@ -1,4 +1,6 @@
-﻿using DockCheckWindows.UserControls;
+﻿using DockCheckWindows.Repositories;
+using DockCheckWindows.Services;
+using DockCheckWindows.UserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +24,10 @@ namespace DockCheckWindows
 
         private SerialPort serialPort;
 
+        private AuthenticationRepository _authenticationRepository = new AuthenticationRepository(
+                                   apiService: new ApiService()
+                                                      );
+
         public Form1()
         {
             CultureInfo newCulture = new CultureInfo("en");
@@ -34,14 +40,21 @@ namespace DockCheckWindows
             InitializeComponent();
 
             // Show login form
-            Login loginForm = new Login();
+            Login loginForm = new Login(
+                authenticationRepository: _authenticationRepository
+                );
             loginForm.ShowDialog();
 
             // Check if authenticated
             if (loginForm.IsAuthenticated)
             {
                 UC_Home home = new UC_Home();
-                uc_Cadastrar = new UC_Cadastrar();
+                uc_Cadastrar = new UC_Cadastrar(
+                userRepository: new UserRepository(apiService: new ApiService()),
+vesselRepository: new VesselRepository(
+    apiService: new ApiService()),
+authorizationRepository: new AuthorizationRepository(apiService: new ApiService())
+                );
                 addUserControl(home);
             }
             else
@@ -75,7 +88,12 @@ namespace DockCheckWindows
 
         private void cadastroButton_Click(object sender, EventArgs e)
         {
-            UC_Cadastrar cadastrar = new UC_Cadastrar();
+            UC_Cadastrar cadastrar = new UC_Cadastrar(
+                userRepository: new UserRepository(apiService: new ApiService()),
+vesselRepository: new VesselRepository(
+    apiService: new ApiService()),
+authorizationRepository: new AuthorizationRepository(apiService: new ApiService())
+                );
             addUserControl(cadastrar);
         }
 
@@ -101,24 +119,21 @@ namespace DockCheckWindows
             addUserControl(cameras);
         }
 
-        private void fecharButton_Click(object sender, EventArgs e)
+        private async void fecharButton_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.Token = "";
             Properties.Settings.Default.Save();
 
-            Application.Exit();
+            Console.WriteLine(Properties.Settings.Default.Token);
+            Console.WriteLine(Properties.Settings.Default.UserId);
+
+            //make logout request with userId using authenticationRepository, if successful, close the application, otherwise show error message
+            await _authenticationRepository.LogoutAsync(Properties.Settings.Default.UserId);
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void buttonLogin_Click(object sender, EventArgs e)
-        {
-            //open LoginForm
-            Login login = new Login();
-            login.ShowDialog();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -128,6 +143,9 @@ namespace DockCheckWindows
     
         }
 
-       
+        private void panelContainer_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

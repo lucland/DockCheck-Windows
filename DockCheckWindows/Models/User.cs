@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Google.Cloud.Firestore;
+using Newtonsoft.Json;
 using System;
 
 namespace DockCheckWindows
@@ -10,7 +11,7 @@ namespace DockCheckWindows
         public string Id { get; set; }
 
         [JsonProperty("authorizations_id")]
-        public string[] AuthorizationsId { get; set; }
+        public Guid[] AuthorizationsId { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }

@@ -218,6 +218,7 @@
             this.Controls.Add(this.buttonBaixar);
             this.Name = "UC_Dados";
             this.Size = new System.Drawing.Size(1904, 906);
+            this.Load += new System.EventHandler(this.UC_Dados_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cadastrosDataGrid)).EndInit();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();

@@ -14,10 +14,10 @@ namespace DockCheckWindows.Models
         public string Username { get; set; }
 
         [JsonProperty("salt")]
-        public string Salt { get; private set; } // This should probably not be exposed publicly
+        public string Salt { get; set; } // This should probably not be exposed publicly
 
         [JsonProperty("hash")]
-        public string Hash { get; private set; } // This should probably not be exposed publicly
+        public string Hash { get; set; } // This should probably not be exposed publicly
 
         [JsonProperty("company_id")]
         public string CompanyId { get; set; }
@@ -27,8 +27,6 @@ namespace DockCheckWindows.Models
 
         [JsonProperty("updated_at")]
         public DateTime UpdatedAt { get; set; }
-
-        // Constructor, other methods...
 
         public void SetPassword(string password)
         {
