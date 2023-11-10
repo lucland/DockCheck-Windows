@@ -1,76 +1,117 @@
 ﻿using DockCheckWindows.Services;
-using LiteDB;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using DockCheckWindows.Repositories;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace DockCheckWindows.UserControls
 {
     public partial class UC_Dashboard : UserControl
     {
+        private readonly UserRepository _userRepository;
+        private readonly LiteDbService _dbService;
+
         public UC_Dashboard()
         {
             InitializeComponent();
+            _userRepository = new UserRepository(new ApiService());
+            _dbService = LiteDbService.Instance;
             PopulateCharts();
         }
 
-        private void PopulateCharts()
+        private async void PopulateCharts()
+        {
+            // Try to fetch data from API
+            var users = await FetchDataFromApi();
+            if (users == null)
+            {
+                // If API fails, fetch data from LiteDB
+                users = _dbService.GetAll<User>("User");
+            }
+
+            // Process and display data
+            ProcessAndDisplayData(users);
+        }
+
+        private void ProcessAndDisplayData(List<User> users)
         {
             int[] hourlyCountsToday = new int[24];
             Dictionary<DateTime, int> dailyCountsAll = new Dictionary<DateTime, int>();
             Dictionary<string, int> companyCounts = new Dictionary<string, int>();
             DateTime specificDate = DateTime.ParseExact("09/25/2023", "MM/dd/yyyy", CultureInfo.InvariantCulture);
 
-            // Read data from the database
-            var db = LiteDbService.Instance;
+            foreach (var user in users)
             {
-                var colecao = db.GetAll<User>("User");
-                var dados = colecao;
-
-                // Count the number of people onboarded each hour
-                foreach (var usuario in dados)
+                // Process StartJob and EndJob
+                if (user.StartJob != DateTime.MinValue && user.EndJob != DateTime.MinValue)
                 {
-                    if (usuario.StartJob != null && usuario.EndJob != null)
+                    for (DateTime time = user.StartJob; time < user.EndJob; time = time.AddHours(1))
                     {
-                        
-                            DateTime checkIn = DateTime.ParseExact(usuario.StartJob + " ", "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
-                            DateTime checkOut = DateTime.ParseExact(usuario.EndJob + " ", "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                        int hour = time.Hour;
 
-                            for (DateTime time = checkIn; time < checkOut; time = time.AddHours(1))
-                            {
-                                int hour = time.Hour;
-
-                                if (time.Date == specificDate)
-                                {
-                                    hourlyCountsToday[hour]++;
-                                }
-
-                                if (!dailyCountsAll.ContainsKey(time.Date))
-                                {
-                                    dailyCountsAll[time.Date] = 0;
-                                }
-                                dailyCountsAll[time.Date]++;
-                            }
-                        
-                    }
-                    if (usuario.Company != null)
-                    {
-                        if (!companyCounts.ContainsKey(usuario.Company))
+                        if (time.Date == specificDate)
                         {
-                            companyCounts[usuario.Company] = 0;
+                            hourlyCountsToday[hour]++;
                         }
-                        companyCounts[usuario.Company]++;
+
+                        if (!dailyCountsAll.ContainsKey(time.Date))
+                        {
+                            dailyCountsAll[time.Date] = 0;
+                        }
+                        dailyCountsAll[time.Date]++;
                     }
                 }
+
+                // Process Company
+                if (!string.IsNullOrEmpty(user.Company))
+                {
+                    if (!companyCounts.ContainsKey(user.Company))
+                    {
+                        companyCounts[user.Company] = 0;
+                    }
+                    companyCounts[user.Company]++;
                 }
+            }
 
             // Populate the charts
             PopulateSingleChart(chartOnBoardedToday, hourlyCountsToday, "Hora do dia", "");
             PopulateDailyChart(chartOnBoardedAll, dailyCountsAll, "Data", "");
             PopulatePieChart(chartPieEmpresas, companyCounts);
+        }
+
+        private async Task<List<User>> FetchDataFromApi()
+        {
+            try
+            {
+                string jsonResponse = await _userRepository.GetAllUsersAsync();
+                var users = JsonConvert.DeserializeObject<List<User>>(jsonResponse);
+
+                // Sync with LiteDB
+                SyncWithLiteDb(users);
+
+                return users;
+            }
+            catch
+            {
+                // Log error or handle exception
+                return null;
+            }
+        }
+
+        private void SyncWithLiteDb(List<User> users)
+        {
+            foreach (var user in users)
+            {
+                if (!_dbService.Exists<User>(user.Identificacao))
+                {
+                    _dbService.Insert(user, "User");
+                }
+            }
         }
 
         private void PopulateDailyChart(Chart chart, Dictionary<DateTime, int> dailyCounts, string xAxisTitle, string yAxisTitle)

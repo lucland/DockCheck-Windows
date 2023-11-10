@@ -1,14 +1,16 @@
 ﻿using Google.Cloud.Firestore;
 using Newtonsoft.Json;
 using System;
+using LiteDB;
 
 namespace DockCheckWindows
 {
 
     public class User
     {
+
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public string Identificacao { get; set; }
 
         [JsonProperty("authorizations_id")]
         public Guid[] AuthorizationsId { get; set; }

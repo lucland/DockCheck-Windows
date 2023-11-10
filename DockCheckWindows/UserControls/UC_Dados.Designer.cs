@@ -93,7 +93,6 @@
             this.cadastrosDataGrid.Location = new System.Drawing.Point(89, 108);
             this.cadastrosDataGrid.Name = "cadastrosDataGrid";
             this.cadastrosDataGrid.ReadOnly = true;
-            this.cadastrosDataGrid.RowHeadersVisible = false;
             this.cadastrosDataGrid.Size = new System.Drawing.Size(1752, 709);
             this.cadastrosDataGrid.TabIndex = 2;
             this.cadastrosDataGrid.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -118,7 +117,6 @@
             this.cadastrosDataGrid.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.cadastrosDataGrid.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.cadastrosDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cadastrosDataGrid_CellContentClick);
-            this.cadastrosDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cadastrosDataGrid_CellContentClick_1);
             this.cadastrosDataGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cadastrosDataGrid_CellContentClick);
             // 
             // ordenarLabel

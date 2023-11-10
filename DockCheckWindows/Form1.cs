@@ -105,7 +105,7 @@ authorizationRepository: new AuthorizationRepository(apiService: new ApiService(
 
         private void bancoButton_Click(object sender, EventArgs e)
         {
-            UC_Dados dados = new UC_Dados(uc_Cadastrar);  // Pass the instance field
+            UC_Dados dados = new UC_Dados(uc_Cadastrar, apiService: new ApiService());  // Pass the instance field
             dados.SwitchToCadastro += () =>
             {
                 addUserControl(uc_Cadastrar);

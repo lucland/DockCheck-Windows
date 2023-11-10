@@ -134,7 +134,7 @@ namespace DockCheckWindows.UserControls
                 // Create new user object
                 User newUser = new User
                     {
-                        Id = Guid.NewGuid().ToString(),
+                        Identificacao = Guid.NewGuid().ToString(),
                         Name = textBoxNome.Text,
                         Role = textBoxFuncao.Text,
                         Company = textBoxEmpresa.Text,
@@ -175,7 +175,7 @@ namespace DockCheckWindows.UserControls
                     Authorization newAuthorization = new Authorization
                 {
                     Id = Guid.NewGuid(),
-                    UserId = newUser.Id,
+                    UserId = newUser.Identificacao,
                     ExpirationDate = newUser.EndJob,
                     // VesselId will be set after retrieving it from the VesselRepository
                 };
@@ -203,7 +203,7 @@ namespace DockCheckWindows.UserControls
                 {
                     var supervisor = new Supervisor
                     {
-                        Id = newUser.Id,
+                        Id = newUser.Identificacao,
                         Name = newUser.Name,
                         Username = newUser.Username,
                         Salt = newUser.Salt,

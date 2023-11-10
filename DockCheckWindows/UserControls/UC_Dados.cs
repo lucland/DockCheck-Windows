@@ -1,10 +1,12 @@
-﻿using LiteDB;
+﻿using DockCheckWindows.Services;
+using LiteDB;
 using System;
 using System.Linq;
+using System.Windows.Forms;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 using OfficeOpenXml;
 using System.IO;
-using System.Windows.Forms;
-using DockCheckWindows.Services;
 
 namespace DockCheckWindows.UserControls
 {
@@ -12,35 +14,64 @@ namespace DockCheckWindows.UserControls
     {
         LiteDbService db;
         private UC_Cadastrar uc_Cadastrar;
+        private ApiService apiService;
 
-        public UC_Dados(UC_Cadastrar uc_CadastrarInstance)
+        public UC_Dados(UC_Cadastrar uc_CadastrarInstance, ApiService apiService)
         {
             InitializeComponent();
             this.uc_Cadastrar = uc_CadastrarInstance;
+            this.apiService = apiService;
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            db = LiteDbService.Instance;  // This should now use the connection string
+            db = LiteDbService.Instance;
             CarregarDados();
         }
 
-        private void CarregarDados()
+        private async void CarregarDados()
         {
-            if (db != null)
+            List<User> users = null;
+
+            // Try to fetch data from API
+            try
             {
-                var colecao = db.GetAll<User>("User");
-                if (colecao != null)
+                string apiResponse = await apiService.GetDataAsync("api/url/for/users"); // Replace with actual API URL
+                if (!string.IsNullOrEmpty(apiResponse))
                 {
-                    var dados = colecao.ToList();
-                    cadastrosDataGrid.DataSource = new BindingSource(dados, null);
-                    comboBoxOrdenar.DataSource = typeof(User).GetProperties().Select(p => p.Name).ToList();
+                    users = JsonConvert.DeserializeObject<List<User>>(apiResponse);
                 }
-                else
-                {
-                    // Handle null collection (e.g., show a message or log the error)
-                }
+            }
+            catch (Exception ex)
+            {
+                // Log or handle API exception
+            }
+
+            // If API call fails, fetch data from LiteDB
+            if (users == null || !users.Any())
+            {
+                users = db.GetAll<User>("User").ToList();
+            }
+
+            if (users != null)
+            {
+                cadastrosDataGrid.DataSource = new BindingSource(users, null);
+                comboBoxOrdenar.DataSource = typeof(User).GetProperties().Select(p => p.Name).ToList();
+
+                // Hide specific columns
+                cadastrosDataGrid.Columns["hasAso"].Visible = false;
+                cadastrosDataGrid.Columns["hasNr34"].Visible = false;
+                //hide hasNr33, hasNr10, hasNr35, rfid, salt, hash fields
+                cadastrosDataGrid.Columns["hasNr33"].Visible = false;
+                cadastrosDataGrid.Columns["hasNr10"].Visible = false;
+                cadastrosDataGrid.Columns["hasNr35"].Visible = false;
+                cadastrosDataGrid.Columns["rfid"].Visible = false;
+                cadastrosDataGrid.Columns["salt"].Visible = false;
+                cadastrosDataGrid.Columns["hash"].Visible = false;
+                cadastrosDataGrid.Columns["isBlocked"].Visible = false;
+                cadastrosDataGrid.Columns["blockReason"].Visible = false;
+                cadastrosDataGrid.Columns["picture"].Visible = false;
             }
             else
             {
-                // Handle null database (e.g., show a message or log the error)
+                // Handle null or empty user list (e.g., show a message or log the error)
             }
         }
 
@@ -194,11 +225,6 @@ namespace DockCheckWindows.UserControls
         private void crescenteDecrescente_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBoxOrdenar_SelectedIndexChanged(sender, e);
-        }
-
-        private void cadastrosDataGrid_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void UC_Dados_Load(object sender, EventArgs e)

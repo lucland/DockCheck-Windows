@@ -52,5 +52,11 @@ namespace DockCheckWindows.Repositories
             string message = jsonResponse["message"].ToString();
             return message == "Username available";
         }
+
+        public async Task<string> SearchUsersAsync(string searchTerm, int page = 1, int pageSize = 10)
+        {
+            string url = $"{BaseUrl}/search?searchTerm={searchTerm}&page={page}&pageSize={pageSize}";
+            return await GetAsync(url);
+        }
     }
 }

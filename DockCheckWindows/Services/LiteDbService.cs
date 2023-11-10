@@ -12,8 +12,7 @@ namespace DockCheckWindows.Services
 
         static LiteDbService()
         {
-            // Set up the mapper before creating the LiteDatabase instance
-            BsonMapper.Global.Entity<User>().Id(x => x.Id, false);
+            
         }
 
         private LiteDbService(string connectionString)
@@ -40,9 +39,10 @@ namespace DockCheckWindows.Services
             return collection.FindById(new BsonValue(id));
         }
 
-        public List<T> GetAll<T>(string collectionName) where T : new()
+        public List<User> GetAll<User>(string collectionName) where User : new()
         {
-            var collection = _liteDb.GetCollection<T>(collectionName);
+            //fetch all users from LiteDB
+            var collection = _liteDb.GetCollection<User>("User");
             return collection.FindAll().ToList();
         }
 
@@ -62,6 +62,12 @@ namespace DockCheckWindows.Services
         {
             var collection = _liteDb.GetCollection<T>();
             return collection.Delete(new BsonValue(id));
+        }
+
+        public bool Exists<T>(string id)
+        {
+            var collection = _liteDb.GetCollection<T>();
+            return collection.Exists(Query.EQ("_id", id));
         }
     }
 }
