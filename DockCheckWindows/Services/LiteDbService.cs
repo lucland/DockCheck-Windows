@@ -33,10 +33,11 @@ namespace DockCheckWindows.Services
             }
         }
 
-        public T GetById<T>(string id) where T : new()
+        public T GetByIdentificacao<T>(string identificacao) where T : new()
         {
             var collection = _liteDb.GetCollection<T>();
-            return collection.FindById(new BsonValue(id));
+            return collection.FindOne(Query.EQ("Identificacao", identificacao));
+
         }
 
         public List<User> GetAll<User>(string collectionName) where User : new()
@@ -62,6 +63,13 @@ namespace DockCheckWindows.Services
         {
             var collection = _liteDb.GetCollection<T>();
             return collection.Delete(new BsonValue(id));
+        }
+
+        //delete all users from LiteDB
+        public void DeleteAll<T>(string collectionName)
+        {
+            var collection = _liteDb.GetCollection<T>(collectionName);
+            collection.DeleteAll();
         }
 
         public bool Exists<T>(string id)

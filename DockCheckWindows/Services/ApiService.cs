@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Google.Type;
 
 namespace DockCheckWindows.Services
 {
@@ -33,7 +34,7 @@ namespace DockCheckWindows.Services
             }
             else
             {
-                // Tratar erros aqui
+                Console.WriteLine("GER ERROR" + url);
                 return null;
             }
         }
