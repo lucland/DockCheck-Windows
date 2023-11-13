@@ -61,7 +61,7 @@
             this.textBoxSenha.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxSenha.Name = "textBoxSenha";
             this.textBoxSenha.Size = new System.Drawing.Size(419, 30);
-            this.textBoxSenha.TabIndex = 2;
+            this.textBoxSenha.TabIndex = 1;
             this.textBoxSenha.UseSystemPasswordChar = true;
             // 
             // labelSenha
@@ -85,7 +85,7 @@
             this.textBoxUsuario.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxUsuario.Name = "textBoxUsuario";
             this.textBoxUsuario.Size = new System.Drawing.Size(419, 30);
-            this.textBoxUsuario.TabIndex = 1;
+            this.textBoxUsuario.TabIndex = 0;
             // 
             // buttonCancelar
             // 
@@ -148,7 +148,7 @@
             this.comboBoxRole.Name = "comboBoxRole";
             this.comboBoxRole.Size = new System.Drawing.Size(545, 36);
             this.comboBoxRole.StartIndex = 0;
-            this.comboBoxRole.TabIndex = 7;
+            this.comboBoxRole.TabIndex = 2;
             // 
             // Login
             // 

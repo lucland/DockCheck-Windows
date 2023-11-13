@@ -53,6 +53,7 @@
             this.labelNumero = new System.Windows.Forms.Label();
             this.buttonCadastrar = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.supervisorToggleSwitch = new Guna.UI2.WinForms.Guna2ToggleSwitch();
             this.supervisorLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -62,11 +63,11 @@
             this.senhaReqLabel = new System.Windows.Forms.Label();
             this.usuarioPanel = new System.Windows.Forms.Panel();
             this.usuarioTextBox = new System.Windows.Forms.TextBox();
-            this.guna2ToggleSwitch1 = new Guna.UI2.WinForms.Guna2ToggleSwitch();
+            this.adminToggleSwitch = new Guna.UI2.WinForms.Guna2ToggleSwitch();
             this.usuarioLabel = new System.Windows.Forms.Label();
             this.adminLabel = new System.Windows.Forms.Label();
             this.usuarioReqLabel = new System.Windows.Forms.Label();
-            this.guardiaoToggleSwitch1 = new Guna.UI2.WinForms.Guna2ToggleSwitch();
+            this.guardiaoToggleSwitch = new Guna.UI2.WinForms.Guna2ToggleSwitch();
             this.label6 = new System.Windows.Forms.Label();
             this.excludeImageButton = new Guna.UI2.WinForms.Guna2Button();
             this.capturaButton = new Guna.UI2.WinForms.Guna2Button();
@@ -114,7 +115,12 @@
             this.maskedTextBoxCpf = new System.Windows.Forms.MaskedTextBox();
             this.panel8 = new System.Windows.Forms.Panel();
             this.buttonRegistrar = new Guna.UI2.WinForms.Guna2Button();
-            this.label5 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.textBoxRFID = new System.Windows.Forms.TextBox();
+            this.labelRFID = new System.Windows.Forms.Label();
+            this.labelAvisoRFID = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.loadingBar = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
             this.senhaPanel.SuspendLayout();
             this.usuarioPanel.SuspendLayout();
@@ -130,6 +136,7 @@
             this.panel3.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // labeEmbarcacao
@@ -214,7 +221,7 @@
             this.textBoxEmpresa.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxEmpresa.Name = "textBoxEmpresa";
             this.textBoxEmpresa.Size = new System.Drawing.Size(403, 30);
-            this.textBoxEmpresa.TabIndex = 1;
+            this.textBoxEmpresa.TabIndex = 0;
             this.textBoxEmpresa.TextChanged += new System.EventHandler(this.textBoxEmpresa_TextChanged);
             // 
             // labelEmail
@@ -353,7 +360,7 @@
             this.buttonConves.Location = new System.Drawing.Point(1035, 76);
             this.buttonConves.Name = "buttonConves";
             this.buttonConves.Size = new System.Drawing.Size(172, 38);
-            this.buttonConves.TabIndex = 12;
+            this.buttonConves.TabIndex = 11;
             this.buttonConves.Text = "Convés";
             this.buttonConves.Click += new System.EventHandler(this.buttonConves_Click);
             // 
@@ -385,7 +392,7 @@
             this.buttonCasaDeMaquinas.Location = new System.Drawing.Point(1211, 76);
             this.buttonCasaDeMaquinas.Name = "buttonCasaDeMaquinas";
             this.buttonCasaDeMaquinas.Size = new System.Drawing.Size(172, 38);
-            this.buttonCasaDeMaquinas.TabIndex = 13;
+            this.buttonCasaDeMaquinas.TabIndex = 12;
             this.buttonCasaDeMaquinas.Text = "Casa de Máquinas";
             this.buttonCasaDeMaquinas.Click += new System.EventHandler(this.buttonCasaDeMaquinas_Click);
             // 
@@ -416,7 +423,7 @@
             this.buttonCasario.Location = new System.Drawing.Point(1389, 76);
             this.buttonCasario.Name = "buttonCasario";
             this.buttonCasario.Size = new System.Drawing.Size(172, 38);
-            this.buttonCasario.TabIndex = 14;
+            this.buttonCasario.TabIndex = 13;
             this.buttonCasario.Text = "Casario";
             this.buttonCasario.Click += new System.EventHandler(this.buttonCasario_Click);
             // 
@@ -476,13 +483,14 @@
             this.buttonCadastrar.Location = new System.Drawing.Point(1486, 791);
             this.buttonCadastrar.Name = "buttonCadastrar";
             this.buttonCadastrar.Size = new System.Drawing.Size(418, 63);
-            this.buttonCadastrar.TabIndex = 0;
+            this.buttonCadastrar.TabIndex = 1;
             this.buttonCadastrar.Text = "Somente Cadastrar";
             this.buttonCadastrar.Click += new System.EventHandler(this.buttonCadastrar_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.supervisorToggleSwitch);
             this.panel1.Controls.Add(this.supervisorLabel);
             this.panel1.Controls.Add(this.label3);
@@ -490,11 +498,11 @@
             this.panel1.Controls.Add(this.senhaLabel);
             this.panel1.Controls.Add(this.senhaReqLabel);
             this.panel1.Controls.Add(this.usuarioPanel);
-            this.panel1.Controls.Add(this.guna2ToggleSwitch1);
+            this.panel1.Controls.Add(this.adminToggleSwitch);
             this.panel1.Controls.Add(this.usuarioLabel);
             this.panel1.Controls.Add(this.adminLabel);
             this.panel1.Controls.Add(this.usuarioReqLabel);
-            this.panel1.Controls.Add(this.guardiaoToggleSwitch1);
+            this.panel1.Controls.Add(this.guardiaoToggleSwitch);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.excludeImageButton);
             this.panel1.Controls.Add(this.capturaButton);
@@ -537,6 +545,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(2206, 696);
             this.panel1.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
+            this.label5.Location = new System.Drawing.Point(1669, 28);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(31, 38);
+            this.label5.TabIndex = 39;
+            this.label5.Text = "*";
             // 
             // supervisorToggleSwitch
             // 
@@ -653,25 +673,25 @@
             this.usuarioTextBox.TabIndex = 1;
             this.usuarioTextBox.Visible = false;
             // 
-            // guna2ToggleSwitch1
+            // adminToggleSwitch
             // 
-            this.guna2ToggleSwitch1.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.guna2ToggleSwitch1.CheckedState.BorderRadius = 14;
-            this.guna2ToggleSwitch1.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.guna2ToggleSwitch1.CheckedState.InnerBorderColor = System.Drawing.Color.White;
-            this.guna2ToggleSwitch1.CheckedState.InnerBorderRadius = 10;
-            this.guna2ToggleSwitch1.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.guna2ToggleSwitch1.Location = new System.Drawing.Point(1491, 456);
-            this.guna2ToggleSwitch1.Name = "guna2ToggleSwitch1";
-            this.guna2ToggleSwitch1.Size = new System.Drawing.Size(70, 32);
-            this.guna2ToggleSwitch1.TabIndex = 32;
-            this.guna2ToggleSwitch1.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guna2ToggleSwitch1.UncheckedState.BorderRadius = 14;
-            this.guna2ToggleSwitch1.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guna2ToggleSwitch1.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
-            this.guna2ToggleSwitch1.UncheckedState.InnerBorderRadius = 10;
-            this.guna2ToggleSwitch1.UncheckedState.InnerColor = System.Drawing.Color.White;
-            this.guna2ToggleSwitch1.CheckedChanged += new System.EventHandler(this.guna2ToggleSwitch1_CheckedChanged_1);
+            this.adminToggleSwitch.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.adminToggleSwitch.CheckedState.BorderRadius = 14;
+            this.adminToggleSwitch.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.adminToggleSwitch.CheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.adminToggleSwitch.CheckedState.InnerBorderRadius = 10;
+            this.adminToggleSwitch.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.adminToggleSwitch.Location = new System.Drawing.Point(1491, 456);
+            this.adminToggleSwitch.Name = "adminToggleSwitch";
+            this.adminToggleSwitch.Size = new System.Drawing.Size(70, 32);
+            this.adminToggleSwitch.TabIndex = 18;
+            this.adminToggleSwitch.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.adminToggleSwitch.UncheckedState.BorderRadius = 14;
+            this.adminToggleSwitch.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.adminToggleSwitch.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.adminToggleSwitch.UncheckedState.InnerBorderRadius = 10;
+            this.adminToggleSwitch.UncheckedState.InnerColor = System.Drawing.Color.White;
+            this.adminToggleSwitch.CheckedChanged += new System.EventHandler(this.guna2ToggleSwitch1_CheckedChanged_1);
             // 
             // usuarioLabel
             // 
@@ -711,25 +731,25 @@
             this.usuarioReqLabel.Text = "*";
             this.usuarioReqLabel.Visible = false;
             // 
-            // guardiaoToggleSwitch1
+            // guardiaoToggleSwitch
             // 
-            this.guardiaoToggleSwitch1.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.guardiaoToggleSwitch1.CheckedState.BorderRadius = 14;
-            this.guardiaoToggleSwitch1.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.guardiaoToggleSwitch1.CheckedState.InnerBorderColor = System.Drawing.Color.White;
-            this.guardiaoToggleSwitch1.CheckedState.InnerBorderRadius = 10;
-            this.guardiaoToggleSwitch1.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.guardiaoToggleSwitch1.Location = new System.Drawing.Point(1491, 393);
-            this.guardiaoToggleSwitch1.Name = "guardiaoToggleSwitch1";
-            this.guardiaoToggleSwitch1.Size = new System.Drawing.Size(70, 32);
-            this.guardiaoToggleSwitch1.TabIndex = 30;
-            this.guardiaoToggleSwitch1.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guardiaoToggleSwitch1.UncheckedState.BorderRadius = 14;
-            this.guardiaoToggleSwitch1.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guardiaoToggleSwitch1.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
-            this.guardiaoToggleSwitch1.UncheckedState.InnerBorderRadius = 10;
-            this.guardiaoToggleSwitch1.UncheckedState.InnerColor = System.Drawing.Color.White;
-            this.guardiaoToggleSwitch1.CheckedChanged += new System.EventHandler(this.guardiaoToggleSwitch1_CheckedChanged);
+            this.guardiaoToggleSwitch.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.guardiaoToggleSwitch.CheckedState.BorderRadius = 14;
+            this.guardiaoToggleSwitch.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.guardiaoToggleSwitch.CheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.guardiaoToggleSwitch.CheckedState.InnerBorderRadius = 10;
+            this.guardiaoToggleSwitch.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.guardiaoToggleSwitch.Location = new System.Drawing.Point(1491, 393);
+            this.guardiaoToggleSwitch.Name = "guardiaoToggleSwitch";
+            this.guardiaoToggleSwitch.Size = new System.Drawing.Size(70, 32);
+            this.guardiaoToggleSwitch.TabIndex = 17;
+            this.guardiaoToggleSwitch.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guardiaoToggleSwitch.UncheckedState.BorderRadius = 14;
+            this.guardiaoToggleSwitch.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guardiaoToggleSwitch.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.guardiaoToggleSwitch.UncheckedState.InnerBorderRadius = 10;
+            this.guardiaoToggleSwitch.UncheckedState.InnerColor = System.Drawing.Color.White;
+            this.guardiaoToggleSwitch.CheckedChanged += new System.EventHandler(this.guardiaoToggleSwitch1_CheckedChanged);
             // 
             // label6
             // 
@@ -774,7 +794,7 @@
             this.capturaButton.Location = new System.Drawing.Point(1748, 221);
             this.capturaButton.Name = "capturaButton";
             this.capturaButton.Size = new System.Drawing.Size(128, 43);
-            this.capturaButton.TabIndex = 24;
+            this.capturaButton.TabIndex = 20;
             this.capturaButton.Text = "Capturar";
             this.capturaButton.Click += new System.EventHandler(this.capturaButton_Click);
             // 
@@ -800,7 +820,7 @@
             this.uploadButton.Location = new System.Drawing.Point(1614, 221);
             this.uploadButton.Name = "uploadButton";
             this.uploadButton.Size = new System.Drawing.Size(128, 43);
-            this.uploadButton.TabIndex = 22;
+            this.uploadButton.TabIndex = 19;
             this.uploadButton.Text = "Escolher foto";
             this.uploadButton.Click += new System.EventHandler(this.uploadButton_Click);
             // 
@@ -827,7 +847,7 @@
             this.visitanteToggleSwitch.Location = new System.Drawing.Point(1491, 328);
             this.visitanteToggleSwitch.Name = "visitanteToggleSwitch";
             this.visitanteToggleSwitch.Size = new System.Drawing.Size(70, 32);
-            this.visitanteToggleSwitch.TabIndex = 20;
+            this.visitanteToggleSwitch.TabIndex = 16;
             this.visitanteToggleSwitch.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.visitanteToggleSwitch.UncheckedState.BorderRadius = 14;
             this.visitanteToggleSwitch.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
@@ -879,7 +899,7 @@
             this.panel13.Location = new System.Drawing.Point(37, 171);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(429, 38);
-            this.panel13.TabIndex = 1;
+            this.panel13.TabIndex = 0;
             // 
             // textBoxNome
             // 
@@ -900,7 +920,7 @@
             this.panel12.Location = new System.Drawing.Point(37, 266);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(429, 38);
-            this.panel12.TabIndex = 2;
+            this.panel12.TabIndex = 1;
             // 
             // panel11
             // 
@@ -909,7 +929,7 @@
             this.panel11.Location = new System.Drawing.Point(37, 361);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(429, 38);
-            this.panel11.TabIndex = 3;
+            this.panel11.TabIndex = 2;
             // 
             // maskedTextBoxIdentidade
             // 
@@ -941,7 +961,7 @@
             this.panel7.Location = new System.Drawing.Point(535, 456);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(429, 38);
-            this.panel7.TabIndex = 10;
+            this.panel7.TabIndex = 9;
             // 
             // escolherNR35Button
             // 
@@ -980,7 +1000,7 @@
             this.panel6.Location = new System.Drawing.Point(535, 361);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(429, 38);
-            this.panel6.TabIndex = 9;
+            this.panel6.TabIndex = 8;
             // 
             // escolherNR33Button
             // 
@@ -1019,7 +1039,7 @@
             this.panel5.Location = new System.Drawing.Point(535, 266);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(429, 38);
-            this.panel5.TabIndex = 8;
+            this.panel5.TabIndex = 7;
             // 
             // escolherNR10Button
             // 
@@ -1058,7 +1078,7 @@
             this.panel4.Location = new System.Drawing.Point(535, 76);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(429, 38);
-            this.panel4.TabIndex = 6;
+            this.panel4.TabIndex = 5;
             // 
             // escolherASOButton
             // 
@@ -1097,7 +1117,7 @@
             this.panel3.Location = new System.Drawing.Point(535, 171);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(429, 38);
-            this.panel3.TabIndex = 7;
+            this.panel3.TabIndex = 6;
             // 
             // escolherNR34Button
             // 
@@ -1146,7 +1166,7 @@
             this.dateTimePickerCheckin.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dateTimePickerCheckin.Name = "dateTimePickerCheckin";
             this.dateTimePickerCheckin.Size = new System.Drawing.Size(526, 38);
-            this.dateTimePickerCheckin.TabIndex = 15;
+            this.dateTimePickerCheckin.TabIndex = 14;
             this.dateTimePickerCheckin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.dateTimePickerCheckin.Value = new System.DateTime(2023, 10, 4, 10, 7, 40, 324);
             // 
@@ -1168,7 +1188,7 @@
             this.dateTimePickerCheckout.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dateTimePickerCheckout.Name = "dateTimePickerCheckout";
             this.dateTimePickerCheckout.Size = new System.Drawing.Size(526, 38);
-            this.dateTimePickerCheckout.TabIndex = 16;
+            this.dateTimePickerCheckout.TabIndex = 15;
             this.dateTimePickerCheckout.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.dateTimePickerCheckout.Value = new System.DateTime(2023, 10, 4, 10, 7, 40, 324);
             // 
@@ -1310,7 +1330,7 @@
             this.panel9.Location = new System.Drawing.Point(37, 456);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(429, 38);
-            this.panel9.TabIndex = 5;
+            this.panel9.TabIndex = 3;
             // 
             // maskedTextBoxCpf
             // 
@@ -1322,7 +1342,7 @@
             this.maskedTextBoxCpf.Name = "maskedTextBoxCpf";
             this.maskedTextBoxCpf.RejectInputOnFirstFailure = true;
             this.maskedTextBoxCpf.Size = new System.Drawing.Size(403, 30);
-            this.maskedTextBoxCpf.TabIndex = 6;
+            this.maskedTextBoxCpf.TabIndex = 0;
             this.maskedTextBoxCpf.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // panel8
@@ -1332,7 +1352,7 @@
             this.panel8.Location = new System.Drawing.Point(535, 551);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(431, 38);
-            this.panel8.TabIndex = 11;
+            this.panel8.TabIndex = 10;
             // 
             // buttonRegistrar
             // 
@@ -1353,26 +1373,91 @@
             this.buttonRegistrar.Location = new System.Drawing.Point(1486, 863);
             this.buttonRegistrar.Name = "buttonRegistrar";
             this.buttonRegistrar.Size = new System.Drawing.Size(418, 63);
-            this.buttonRegistrar.TabIndex = 0;
+            this.buttonRegistrar.TabIndex = 2;
             this.buttonRegistrar.Text = "Cadastrar e Registrar RFID";
             this.buttonRegistrar.Click += new System.EventHandler(this.buttonCadastrar_Click);
             // 
-            // label5
+            // panel2
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1836, 61);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 13);
-            this.label5.TabIndex = 1;
-            this.label5.Visible = false;
-            this.label5.TextChanged += new System.EventHandler(this.label5_TextChanged);
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.textBoxRFID);
+            this.panel2.Location = new System.Drawing.Point(102, 860);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(429, 38);
+            this.panel2.TabIndex = 0;
+            // 
+            // textBoxRFID
+            // 
+            this.textBoxRFID.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxRFID.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxRFID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxRFID.Location = new System.Drawing.Point(6, 4);
+            this.textBoxRFID.Margin = new System.Windows.Forms.Padding(5);
+            this.textBoxRFID.MaxLength = 24;
+            this.textBoxRFID.Name = "textBoxRFID";
+            this.textBoxRFID.Size = new System.Drawing.Size(403, 30);
+            this.textBoxRFID.TabIndex = 0;
+            this.textBoxRFID.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBoxRFID_MouseClick);
+            this.textBoxRFID.TextChanged += new System.EventHandler(this.textBoxRFID_TextChanged);
+            // 
+            // labelRFID
+            // 
+            this.labelRFID.AutoSize = true;
+            this.labelRFID.BackColor = System.Drawing.Color.White;
+            this.labelRFID.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRFID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelRFID.Location = new System.Drawing.Point(19, 861);
+            this.labelRFID.Name = "labelRFID";
+            this.labelRFID.Size = new System.Drawing.Size(77, 37);
+            this.labelRFID.TabIndex = 5;
+            this.labelRFID.Text = "RFID";
+            // 
+            // labelAvisoRFID
+            // 
+            this.labelAvisoRFID.AutoSize = true;
+            this.labelAvisoRFID.BackColor = System.Drawing.Color.White;
+            this.labelAvisoRFID.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAvisoRFID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelAvisoRFID.Location = new System.Drawing.Point(104, 792);
+            this.labelAvisoRFID.Name = "labelAvisoRFID";
+            this.labelAvisoRFID.Size = new System.Drawing.Size(418, 60);
+            this.labelAvisoRFID.TabIndex = 7;
+            this.labelAvisoRFID.Text = "ATENÇÃO! Não digitar no campo abaixo, apenas clique no campo\r\ne leia o RFID com o" +
+    " leitor convectado. \r\nAssim que o código for incluso, não alterá-lo.";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
+            this.label4.Location = new System.Drawing.Point(78, 788);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(26, 38);
+            this.label4.TabIndex = 39;
+            this.label4.Text = "!";
+            // 
+            // loadingBar
+            // 
+            this.loadingBar.ForeColor = System.Drawing.Color.Lime;
+            this.loadingBar.Location = new System.Drawing.Point(571, 802);
+            this.loadingBar.Name = "loadingBar";
+            this.loadingBar.Size = new System.Drawing.Size(779, 50);
+            this.loadingBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.loadingBar.TabIndex = 40;
+            this.loadingBar.Visible = false;
             // 
             // UC_Cadastrar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.loadingBar);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.labelAvisoRFID);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.labelRFID);
             this.Controls.Add(this.buttonCadastrar);
             this.Controls.Add(this.labelNumero);
             this.Controls.Add(this.labelCheckout);
@@ -1422,6 +1507,8 @@
             this.panel9.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1493,8 +1580,7 @@
         private Guna.UI2.WinForms.Guna2Button capturaButton;
         private Guna.UI2.WinForms.Guna2Button excludeImageButton;
         private Guna.UI2.WinForms.Guna2Button escolherASOButton;
-        private System.Windows.Forms.Label label5;
-        private Guna.UI2.WinForms.Guna2ToggleSwitch guardiaoToggleSwitch1;
+        private Guna.UI2.WinForms.Guna2ToggleSwitch guardiaoToggleSwitch;
         private System.Windows.Forms.Label label6;
         private Guna.UI2.WinForms.Guna2Button escolherNR35Button;
         private Guna.UI2.WinForms.Guna2Button escolherNR33Button;
@@ -1506,7 +1592,7 @@
         private System.Windows.Forms.Label senhaReqLabel;
         private System.Windows.Forms.Panel usuarioPanel;
         private System.Windows.Forms.TextBox usuarioTextBox;
-        private Guna.UI2.WinForms.Guna2ToggleSwitch guna2ToggleSwitch1;
+        private Guna.UI2.WinForms.Guna2ToggleSwitch adminToggleSwitch;
         private System.Windows.Forms.Label usuarioLabel;
         private System.Windows.Forms.Label adminLabel;
         private System.Windows.Forms.Label usuarioReqLabel;
@@ -1515,5 +1601,12 @@
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2ToggleSwitch supervisorToggleSwitch;
         private System.Windows.Forms.Label supervisorLabel;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TextBox textBoxRFID;
+        private System.Windows.Forms.Label labelRFID;
+        private System.Windows.Forms.Label labelAvisoRFID;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ProgressBar loadingBar;
     }
 }

@@ -93,6 +93,8 @@
             this.cadastrosDataGrid.Location = new System.Drawing.Point(89, 108);
             this.cadastrosDataGrid.Name = "cadastrosDataGrid";
             this.cadastrosDataGrid.ReadOnly = true;
+            this.cadastrosDataGrid.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.cadastrosDataGrid.RowHeadersVisible = false;
             this.cadastrosDataGrid.Size = new System.Drawing.Size(1752, 709);
             this.cadastrosDataGrid.TabIndex = 2;
             this.cadastrosDataGrid.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -117,6 +119,7 @@
             this.cadastrosDataGrid.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.cadastrosDataGrid.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.cadastrosDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cadastrosDataGrid_CellContentClick);
+            this.cadastrosDataGrid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cadastrosDataGrid_CellContentDoubleClick);
             this.cadastrosDataGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cadastrosDataGrid_CellContentClick);
             // 
             // ordenarLabel
@@ -199,7 +202,7 @@
             this.crescenteDecrescente.MaxDropDownItems = 10;
             this.crescenteDecrescente.Name = "crescenteDecrescente";
             this.crescenteDecrescente.Size = new System.Drawing.Size(429, 36);
-            this.crescenteDecrescente.StartIndex = 0;
+            this.crescenteDecrescente.StartIndex = 1;
             this.crescenteDecrescente.TabIndex = 8;
             this.crescenteDecrescente.SelectedIndexChanged += new System.EventHandler(this.crescenteDecrescente_SelectedIndexChanged);
             // 
@@ -216,7 +219,6 @@
             this.Controls.Add(this.buttonBaixar);
             this.Name = "UC_Dados";
             this.Size = new System.Drawing.Size(1904, 906);
-            this.Load += new System.EventHandler(this.UC_Dados_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cadastrosDataGrid)).EndInit();
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
