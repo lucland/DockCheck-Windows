@@ -1,6 +1,7 @@
 ﻿using DockCheckWindows.Repositories;
 using DockCheckWindows.Services;
 using DockCheckWindows.UserControls;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,8 @@ namespace DockCheckWindows
     {
         private UC_Cadastrar uc_Cadastrar;
 
+        private UC_Dados uc_Dados;
+
         private SerialPort serialPort;
 
         private AuthenticationRepository _authenticationRepository = new AuthenticationRepository(
@@ -39,27 +42,28 @@ namespace DockCheckWindows
 
             InitializeComponent();
 
-            // Show login form
-            Login loginForm = new Login(
+             Login loginForm = new Login(
                 authenticationRepository: _authenticationRepository
                 );
             loginForm.ShowDialog();
 
-            // Check if authenticated
             if (loginForm.IsAuthenticated)
             {
                 UC_Home home = new UC_Home();
+
                 uc_Cadastrar = new UC_Cadastrar(
-                userRepository: new UserRepository(apiService: new ApiService()),
-vesselRepository: new VesselRepository(
-    apiService: new ApiService()),
-authorizationRepository: new AuthorizationRepository(apiService: new ApiService())
-                );
+                    userRepository: new UserRepository(apiService: new ApiService()),
+                    vesselRepository: new VesselRepository(
+                    apiService: new ApiService()),
+                    authorizationRepository: new AuthorizationRepository(apiService: new ApiService()),
+                    uc_DadosInstance: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService())));
+
+                uc_Dados = new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()));
+
                 addUserControl(home);
             }
             else
             {
-                // Close the application if not authenticated
                 Application.Exit();
             }
             cadastroButton.Text = Properties.Resources.Cadastrar;
@@ -92,8 +96,13 @@ authorizationRepository: new AuthorizationRepository(apiService: new ApiService(
                 userRepository: new UserRepository(apiService: new ApiService()),
 vesselRepository: new VesselRepository(
     apiService: new ApiService()),
-authorizationRepository: new AuthorizationRepository(apiService: new ApiService())
+authorizationRepository: new AuthorizationRepository(apiService: new ApiService()),
+uc_DadosInstance: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()))
                 );
+            cadastrar.SwitchToDados += () =>
+            {
+                addUserControl(uc_Dados);
+            };
             addUserControl(cadastrar);
         }
 
@@ -105,7 +114,7 @@ authorizationRepository: new AuthorizationRepository(apiService: new ApiService(
 
         private void bancoButton_Click(object sender, EventArgs e)
         {
-            UC_Dados dados = new UC_Dados(uc_Cadastrar, apiService: new ApiService());  // Pass the instance field
+            UC_Dados dados = new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()));  // Pass the instance field
             dados.SwitchToCadastro += () =>
             {
                 addUserControl(uc_Cadastrar);
@@ -127,7 +136,6 @@ authorizationRepository: new AuthorizationRepository(apiService: new ApiService(
             Console.WriteLine(Properties.Settings.Default.Token);
             Console.WriteLine(Properties.Settings.Default.UserId);
 
-            //make logout request with userId using authenticationRepository, if successful, close the application, otherwise show error message
             await _authenticationRepository.LogoutAsync(Properties.Settings.Default.UserId);
         }
 

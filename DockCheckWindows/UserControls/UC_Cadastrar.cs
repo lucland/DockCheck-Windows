@@ -14,20 +14,25 @@ using DockCheckWindows.Services;
 using DockCheckWindows.Repositories;
 using Alturos.Yolo.Extensions;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace DockCheckWindows.UserControls
 {
     public partial class UC_Cadastrar : UserControl
     {
         private SerialPort serialPort;
+        private UC_Dados uc_Dados;
         private readonly UserRepository _userRepository;
         private readonly SupervisorRepository _supervisorRepository;
         private readonly AuthorizationRepository _authorizationRepository;
         private readonly VesselRepository _vesselRepository;
+        private bool isEditar = false;
 
-        public UC_Cadastrar(UserRepository userRepository, VesselRepository vesselRepository, AuthorizationRepository authorizationRepository)
+        public UC_Cadastrar(UserRepository userRepository, VesselRepository vesselRepository, AuthorizationRepository authorizationRepository, UC_Dados uc_DadosInstance)
         {
             InitializeComponent();
+
+            this.uc_Dados = uc_DadosInstance;
 
             textBoxNome.TextChanged += new EventHandler(this.textBoxNome_TextChanged);
             textBoxFuncao.TextChanged += new EventHandler(this.textBoxFuncao_TextChanged);
@@ -50,11 +55,12 @@ namespace DockCheckWindows.UserControls
             _userRepository = userRepository;
             _vesselRepository = vesselRepository;
             _authorizationRepository = authorizationRepository;
-            
+
+            if (!isEditar)
+            {
+                GetLastNumberAsync();
+            }
         }
-
-    
-
 
         private async void ValidateFields()
         {
@@ -82,7 +88,7 @@ namespace DockCheckWindows.UserControls
                 pictureBoxFoto.Image != null;
 
             //if isAdmin or isSupervisor is checked, require username and password
-            if (guna2ToggleSwitch1.Checked)
+            if (adminToggleSwitch.Checked)
             {
                 areFieldsFilled = areFieldsFilled &&
                     !string.IsNullOrEmpty(usuarioTextBox.Text) &&
@@ -91,7 +97,7 @@ namespace DockCheckWindows.UserControls
 
             if (areFieldsFilled)
             {
-                   if (guna2ToggleSwitch1.Checked)
+                   if (adminToggleSwitch.Checked)
                 {
                     //check if username is already in use
                     bool username = await _userRepository.CheckUsernameAsync(usuarioTextBox.Text);
@@ -104,16 +110,27 @@ namespace DockCheckWindows.UserControls
             }
 
             buttonCadastrar.Enabled = areFieldsFilled;
-            buttonRegistrar.Enabled = areFieldsFilled;
+            buttonRegistrar.Enabled = areFieldsFilled && textBoxRFID.Text.Length == 24;
         }
+
+        private byte[] ImageToByteArray(PictureBox pictureBox)
+        {
+            using (var ms = new MemoryStream())
+            {
+                pictureBox.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                return ms.ToArray();
+            }
+        }
+
+        public event Action SwitchToDados;
 
         private async void buttonCadastrar_Click(object sender, EventArgs e)
         {
             try
             {
                 // Generate salt and hash if needed
-                var salt = guna2ToggleSwitch1.Checked ? GenerateSalt() : "";
-                var hash = (guna2ToggleSwitch1.Checked && senhaTextBox.Text != "") ? GenerateHash(senhaTextBox.Text, salt) : "";
+                var salt = adminToggleSwitch.Checked ? GenerateSalt() : "";
+                var hash = (adminToggleSwitch.Checked && senhaTextBox.Text != "") ? GenerateHash(senhaTextBox.Text, salt) : "";
 
                 DateTime asoDate;
                 bool asoDateParsed = DateTime.TryParseExact(maskedTextBoxAso.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out asoDate);
@@ -133,46 +150,46 @@ namespace DockCheckWindows.UserControls
 
                 // Create new user object
                 User newUser = new User
-                    {
-                        Identificacao = Guid.NewGuid().ToString(),
-                        Name = textBoxNome.Text,
-                        Role = textBoxFuncao.Text,
-                        Company = textBoxEmpresa.Text,
-                        Identidade = maskedTextBoxIdentidade.Text.Replace(" ", ""),
-                        CPF = maskedTextBoxCpf.Text.Replace(" ", ""),
-                        ASO = asoDateParsed ? asoDate : DateTime.MinValue,
-                        NR34 = nr34DateParsed ? nr34Date : DateTime.MinValue,
-                        Number = int.Parse(labelNumero.Text),
-                        HasNR10 = maskedTextBoxNr10.Text != "",
-                        NR10 = nr10DateParsed ? nr10Date : DateTime.MinValue,
-                        HasNR33 = maskedTextBoxNr33.Text != "",
-                        NR33 = nr33DateParsed ? nr33Date : DateTime.MinValue,
-                        HasNR35 = maskedTextBoxNr35.Text != "",
-                        NR35 = nr35DateParsed ? nr35Date : DateTime.MinValue,
-                        HasASO = maskedTextBoxAso.Text != "",
-                        ASODocument = escolherASOButton.Text ?? "",
-                        NR34Document = escolherNR34Button.Text ?? "",
-                        NR35Document = escolherNR35Button.Text ?? "",
-                        NR33Document = escolherNR33Button.Text ?? "",
-                        NR10Document = escolherNR10Button.Text ?? "",
-                        IsAdmin = guna2ToggleSwitch1.Checked,
-                        CreatedAt = DateTime.Now,
-                        UpdatedAt = DateTime.Now,
-                        IsGuardian = guardiaoToggleSwitch1.Checked,
-                        Username = guna2ToggleSwitch1.Checked == true ? usuarioTextBox.Text : "",
-                        Salt = guna2ToggleSwitch1.Checked == true ? salt : "",
-                        Hash = guna2ToggleSwitch1.Checked == true ? hash : "",
-                        StartJob = dateTimePickerCheckin.Value,
-                        EndJob = dateTimePickerCheckout.Value,
-                        Email = textBoxEmail.Text ?? "",
-                        Picture = pictureBoxFoto.Image != null ? label3.Text : "",
-                        RFID = label5.Text ?? "",
-                        Project = comboBoxEmbarcacao.Text ?? "",
-                        IsVisitor = visitanteToggleSwitch.Checked,
-                    };
+                {
+                    Identificacao = Guid.NewGuid().ToString(),
+                    Name = textBoxNome.Text,
+                    Role = textBoxFuncao.Text,
+                    Company = textBoxEmpresa.Text,
+                    Identidade = maskedTextBoxIdentidade.Text.Replace(" ", ""),
+                    CPF = maskedTextBoxCpf.Text.Replace(" ", ""),
+                    ASO = asoDateParsed ? asoDate : DateTime.MinValue,
+                    NR34 = nr34DateParsed ? nr34Date : DateTime.MinValue,
+                    Number = int.Parse(labelNumero.Text),
+                    HasNR10 = maskedTextBoxNr10.Text != "",
+                    NR10 = nr10DateParsed ? nr10Date : DateTime.MinValue,
+                    HasNR33 = maskedTextBoxNr33.Text != "",
+                    NR33 = nr33DateParsed ? nr33Date : DateTime.MinValue,
+                    HasNR35 = maskedTextBoxNr35.Text != "",
+                    NR35 = nr35DateParsed ? nr35Date : DateTime.MinValue,
+                    HasASO = maskedTextBoxAso.Text != "",
+                    ASODocument = escolherASOButton.Text ?? "",
+                    NR34Document = escolherNR34Button.Text ?? "",
+                    NR35Document = escolherNR35Button.Text ?? "",
+                    NR33Document = escolherNR33Button.Text ?? "",
+                    NR10Document = escolherNR10Button.Text ?? "",
+                    IsAdmin = adminToggleSwitch.Checked,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now,
+                    IsGuardian = guardiaoToggleSwitch.Checked,
+                    Username = adminToggleSwitch.Checked == true ? usuarioTextBox.Text : "",
+                    Salt = adminToggleSwitch.Checked == true ? salt : "",
+                    Hash = adminToggleSwitch.Checked == true ? hash : "",
+                    StartJob = dateTimePickerCheckin.Value,
+                    EndJob = dateTimePickerCheckout.Value,
+                    Email = textBoxEmail.Text ?? "",
+                    Picture = pictureBoxFoto.Image != null ? "" : "",
+                    RFID = textBoxRFID.Text ?? "",
+                    Project = comboBoxEmbarcacao.Text ?? "",
+                    IsVisitor = visitanteToggleSwitch.Checked,
+                };
 
-                    // Create new authorization object
-                    Authorization newAuthorization = new Authorization
+                // Create new authorization object
+                Authorization newAuthorization = new Authorization
                 {
                     Id = Guid.NewGuid(),
                     UserId = newUser.Identificacao,
@@ -199,7 +216,7 @@ namespace DockCheckWindows.UserControls
                 // Save the user using UserRepository
                 //if user is supervisor, save it using SupervisorRepository
                 Console.WriteLine(newUser.ToJson()) ;
-                if (guna2ToggleSwitch1.Checked)
+                if (adminToggleSwitch.Checked)
                 {
                     var supervisor = new Supervisor
                     {
@@ -220,7 +237,7 @@ namespace DockCheckWindows.UserControls
                     }
                 }
 
-                if (!guna2ToggleSwitch1.Checked)
+                if (!adminToggleSwitch.Checked)
                 {
                     var userCreationResult = await _userRepository.CreateUserAsync(newUser);
                     if (userCreationResult == false)
@@ -237,8 +254,26 @@ namespace DockCheckWindows.UserControls
                         return;
                     }
                 }
+                //show loading bar
+                loadingBar.Visible = true;
+                loadingBar.Value = 0;
+
+                //wait 1 second
+                await Task.Delay(1000);
+                loadingBar.Value = 20;
+
+                await Task.Delay(500);
+                loadingBar.Value = 40;
+
+                await Task.Delay(500);
+                loadingBar.Value = 60;
+
+                await Task.Delay(1000);
+                loadingBar.Value = 100;
 
                 MessageBox.Show("Usuário cadastrado com sucesso!");
+                //switch to UC_Dados
+                SwitchToDados?.Invoke();
             }
             catch (Exception ex)
             {
@@ -309,16 +344,6 @@ namespace DockCheckWindows.UserControls
         private void maskedTextBoxCpf_TextChanged(object sender, EventArgs e)
         {
             ValidateFields();
-            if (maskedTextBoxCpf.Text == "12086189702")
-            {
-                supervisorToggleSwitch.Visible = true;
-                supervisorLabel.Visible = true;
-            }
-            else
-            {
-                supervisorToggleSwitch.Visible = false;
-                supervisorLabel.Visible = false;
-            }
         }
 
         private void maskedTextBoxAso_TextChanged(object sender, EventArgs e)
@@ -405,9 +430,17 @@ namespace DockCheckWindows.UserControls
 
             ValidateFields();
         }
-
+        
+        public Image byteArrayToImage(string byteArrayIn)
+        {
+            byte[] byteArray = Encoding.ASCII.GetBytes(byteArrayIn);
+            MemoryStream ms = new MemoryStream(byteArray);
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
+        }
         public void PopulateFields(User user)
         {
+            isEditar = true;
             textBoxNome.Text = user.Name;
             textBoxFuncao.Text = user.Role;
             textBoxEmpresa.Text = user.Company;
@@ -422,7 +455,9 @@ namespace DockCheckWindows.UserControls
             dateTimePickerCheckin.Value = user.StartJob;
             dateTimePickerCheckout.Value = user.EndJob;
             textBoxEmail.Text = user.Email;
-            pictureBoxFoto.Image = user.Picture != "" ? new Bitmap(user.Picture) : null;
+            textBoxRFID.Text = user.RFID;
+            //byteArrayToImage(user.Picture);
+            //pictureBoxFoto.Image = byteArrayToImage(user.Picture);
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
@@ -444,36 +479,6 @@ namespace DockCheckWindows.UserControls
             }
         }
 
-        private void UC_Cadastrar_Load(object sender, EventArgs e)
-        {
-            // RFID
-            serialPort = new SerialPort("COM1");
-            serialPort.BaudRate = 115200;
-            serialPort.Parity = Parity.None;
-            serialPort.StopBits = StopBits.One;
-            serialPort.DataBits = 8;
-            serialPort.Handshake = Handshake.None;
-
-            serialPort.DataReceived += new SerialDataReceivedEventHandler(SerialPort_DataReceived);
-
-            serialPort.Open();
-        }
-
-        private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            // Read the data
-            string rfidData = serialPort.ReadLine();
-
-            // Update the label on the UI thread
-            this.Invoke((MethodInvoker)delegate
-            {
-                if (rfidData != "0") {
-                    label5.Text = rfidData;
-                }
-                
-                  // Replace "myLabel" with the name of your label
-            });
-        }
 
         private void escolherNR34Button_Click(object sender, EventArgs e)
         {
@@ -567,7 +572,90 @@ namespace DockCheckWindows.UserControls
 
         private void guna2ToggleSwitch1_CheckedChanged_1(object sender, EventArgs e)
         {
-            if (guna2ToggleSwitch1.Checked)
+            if (adminToggleSwitch.Checked)
+            {
+                visitanteToggleSwitch.Checked = false;
+                usuarioLabel.Visible = true;
+                usuarioPanel.Visible = true;
+                usuarioReqLabel.Visible = true;
+                usuarioTextBox.Visible = true;
+
+                senhaLabel.Visible = true;
+                senhaPanel.Visible = true;
+                senhaReqLabel.Visible = true;
+                senhaTextBox.Visible = true;
+            }
+            else {
+                if (supervisorToggleSwitch.Checked)
+                {
+                    supervisorToggleSwitch.Checked = false;
+                    usuarioLabel.Visible = false;
+                    usuarioPanel.Visible = false;
+                    usuarioReqLabel.Visible = false;
+                    usuarioTextBox.Visible = false;
+
+                    senhaLabel.Visible = false;
+                    senhaPanel.Visible = false;
+                    senhaReqLabel.Visible = false;
+                    senhaTextBox.Visible = false;
+                }
+                else {
+                    supervisorToggleSwitch.Checked = false;
+                    usuarioLabel.Visible = false;
+                    usuarioPanel.Visible = false;
+                    usuarioReqLabel.Visible = false;
+                    usuarioTextBox.Visible = false;
+
+                    senhaLabel.Visible = false;
+                    senhaPanel.Visible = false;
+                    senhaReqLabel.Visible = false;
+                    senhaTextBox.Visible = false;
+                }
+            }
+
+            ValidateFields();
+        }
+
+        private void guardiaoToggleSwitch1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (guardiaoToggleSwitch.Checked)
+            {
+                visitanteToggleSwitch.Checked = false;
+                usuarioLabel.Visible = true;
+                usuarioPanel.Visible = true;
+                usuarioReqLabel.Visible = true;
+                usuarioTextBox.Visible = true;
+
+                senhaLabel.Visible = true;
+                senhaPanel.Visible = true;
+                senhaReqLabel.Visible = true;
+                senhaTextBox.Visible = true;
+            }
+            else
+            {
+                if(adminToggleSwitch.Checked == false)
+                {
+                    usuarioLabel.Visible = false;
+                    usuarioPanel.Visible = false;
+                    usuarioReqLabel.Visible = false;
+                    usuarioTextBox.Visible = false;
+
+                    senhaLabel.Visible = false;
+                    senhaPanel.Visible = false;
+                    senhaReqLabel.Visible = false;
+                    senhaTextBox.Visible = false;
+                }
+            }
+        }
+
+        private void supervisorToggleSwitch_CheckedChanged(object sender, EventArgs e)
+        {
+            if (supervisorToggleSwitch.Checked == true)
+            {
+                visitanteToggleSwitch.Checked = false;
+                adminToggleSwitch.Checked = true;
+            }
+            if (supervisorToggleSwitch.Checked && adminToggleSwitch.Checked)
             {
                 usuarioLabel.Visible = true;
                 usuarioPanel.Visible = true;
@@ -581,29 +669,43 @@ namespace DockCheckWindows.UserControls
             }
 
             ValidateFields();
+
         }
 
-        private void guardiaoToggleSwitch1_CheckedChanged(object sender, EventArgs e)
+        private void textBoxRFID_TextChanged(object sender, EventArgs e)
         {
-            
-        }
-
-        private void supervisorToggleSwitch_CheckedChanged(object sender, EventArgs e)
-        {
-            ValidateFields();
-        }
-
-        private void label5_TextChanged(object sender, EventArgs e)
-        {
-            //if RFID is empty, disable the registrar button, otherwise enable it
-            if (label5.Text == "")
+            string rfid = textBoxRFID.Text;
+            if (!string.IsNullOrEmpty(rfid) && rfid.Length == 24)
             {
-                buttonRegistrar.Enabled = false;
+                textBoxRFID.ReadOnly = true;
+                ValidateFields();
+
+            }
+            if (textBoxRFID.Text == "issupervisor")
+            {
+                supervisorToggleSwitch.Visible = true;
+                supervisorLabel.Visible = true;
             }
             else
             {
-                buttonRegistrar.Enabled = true;
+                supervisorToggleSwitch.Visible = false;
+                supervisorLabel.Visible = false;
             }
+        }
+
+        private void textBoxRFID_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (textBoxRFID.Text.Length < 24)
+            {
+                textBoxRFID.Text = "";
+            }
+        }
+
+        private async void GetLastNumberAsync()
+        {
+            string lastNumber = await _userRepository.GetLastNumberAsync();
+            lastNumber = lastNumber.Replace("\"", "");
+            labelNumero.Text = lastNumber.ToString();
         }
     }
 }

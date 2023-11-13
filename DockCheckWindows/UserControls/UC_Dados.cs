@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using OfficeOpenXml;
 using System.IO;
+using DockCheckWindows.Repositories;
 
 namespace DockCheckWindows.UserControls
 {
@@ -14,46 +15,79 @@ namespace DockCheckWindows.UserControls
     {
         LiteDbService db;
         private UC_Cadastrar uc_Cadastrar;
-        private ApiService apiService;
+        private readonly UserRepository _userRepository;
+        private bool isDataLoaded = false;
 
-        public UC_Dados(UC_Cadastrar uc_CadastrarInstance, ApiService apiService)
+        public UC_Dados(UC_Cadastrar uc_CadastrarInstance, UserRepository userRepository)
         {
             InitializeComponent();
             this.uc_Cadastrar = uc_CadastrarInstance;
-            this.apiService = apiService;
+            _userRepository = userRepository;
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            db = LiteDbService.Instance;
-            CarregarDados();
+            if (db == null)
+            {
+                db = LiteDbService.Instance;
+            }
+            if (!isDataLoaded)
+            {
+                CarregarDados();
+            }
         }
 
         private async void CarregarDados()
         {
             List<User> users = null;
+            bool apiFailed = false;
 
             // Try to fetch data from API
             try
             {
-                string apiResponse = await apiService.GetDataAsync("api/url/for/users"); // Replace with actual API URL
+                string apiResponse = await _userRepository.GetAllUsersAsync(limit: 99, offset: 0);
                 if (!string.IsNullOrEmpty(apiResponse))
                 {
-                    users = JsonConvert.DeserializeObject<List<User>>(apiResponse);
+                    var settings = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+                        MissingMemberHandling = MissingMemberHandling.Ignore
+                    };
+                    users = JsonConvert.DeserializeObject<List<User>>(apiResponse, settings);
+                    isDataLoaded = true;
+                    //synch data with LiteDB
+                    foreach (var user in users)
+                    {
+                        var userInDb = db.GetByIdentificacao<User>(user.Identificacao);
+                        //use exist method from LiteDbService
+                        if (userInDb == null)
+                        {
+                            MessageBox.Show("User not in db. Inserting...");
+                           db.Insert(user, "User");
+                        }
+                        
+                    }
                 }
             }
             catch (Exception ex)
             {
-                // Log or handle API exception
+                apiFailed = true;
+                // Log the exception
+                Console.WriteLine("API call exception: " + ex.Message);
             }
 
             // If API call fails, fetch data from LiteDB
-            if (users == null || !users.Any())
+            if (apiFailed == true)
             {
-                users = db.GetAll<User>("User").ToList();
+                MessageBox.Show("API call failed. Fetching data from LiteDB.");
+                //users = db.GetAll<User>("User").ToList();
+                isDataLoaded = true;
             }
 
             if (users != null)
             {
                 cadastrosDataGrid.DataSource = new BindingSource(users, null);
-                comboBoxOrdenar.DataSource = typeof(User).GetProperties().Select(p => p.Name).ToList();
+                comboBoxOrdenar.DataSource = typeof(User).GetProperties()
+                    .Where(p => p.Name != "Salt" && p.Name != "Hash" && p.Name != "Username" && p.Name != "AuthorizationsId")
+                    .Select(p => p.Name)
+                    .ToList();
 
                 // Hide specific columns
                 cadastrosDataGrid.Columns["hasAso"].Visible = false;
@@ -68,6 +102,7 @@ namespace DockCheckWindows.UserControls
                 cadastrosDataGrid.Columns["isBlocked"].Visible = false;
                 cadastrosDataGrid.Columns["blockReason"].Visible = false;
                 cadastrosDataGrid.Columns["picture"].Visible = false;
+                cadastrosDataGrid.Columns["username"].Visible = false;
             }
             else
             {
@@ -161,25 +196,8 @@ namespace DockCheckWindows.UserControls
 
         private void cadastrosDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                var user = cadastrosDataGrid.Rows[e.RowIndex].DataBoundItem as User;
-                if (user != null)
-                {
-                    // Assuming uc_Cadastrar is an instance of UC_Cadastrar
-                    uc_Cadastrar.PopulateFields(user);
-
-                    SwitchToCadastro?.Invoke();
-
-                    //call EdicaoUsuario passing the selected Cadastro
-                    //EdicaoUsuario edicaoUsuario = new EdicaoUsuario(cadastro);
-                    //show EdicaoUsuario as a dialog
-                    //edicaoUsuario.ShowDialog();
-
-                    // Code to switch to the UC_Cadastrar UserControl
-                    // This depends on how you're managing UserControls in your application
-                }
-            }
+            //select row of the clicked cell
+            cadastrosDataGrid.Rows[e.RowIndex].Selected = true;
         }
 
 
@@ -227,9 +245,27 @@ namespace DockCheckWindows.UserControls
             comboBoxOrdenar_SelectedIndexChanged(sender, e);
         }
 
-        private void UC_Dados_Load(object sender, EventArgs e)
+        private void cadastrosDataGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            CarregarDados();
+            if (e.RowIndex >= 0)
+            {
+                var user = cadastrosDataGrid.Rows[e.RowIndex].DataBoundItem as User;
+                if (user != null)
+                {
+                    // Assuming uc_Cadastrar is an instance of UC_Cadastrar
+                    uc_Cadastrar.PopulateFields(user);
+
+                    SwitchToCadastro?.Invoke();
+
+                    //call EdicaoUsuario passing the selected Cadastro
+                    //EdicaoUsuario edicaoUsuario = new EdicaoUsuario(cadastro);
+                    //show EdicaoUsuario as a dialog
+                    //edicaoUsuario.ShowDialog();
+
+                    // Code to switch to the UC_Cadastrar UserControl
+                    // This depends on how you're managing UserControls in your application
+                }
+            }
         }
     }
 }
