@@ -1,7 +1,10 @@
 ﻿using System.Threading.Tasks;
+using System.Windows.Forms;
 using DockCheckWindows.Models;
 using DockCheckWindows.Services;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace DockCheckWindows.Repositories
 {
@@ -22,7 +25,7 @@ namespace DockCheckWindows.Repositories
             return User.FromJson(jsonResponse);
         }
 
-        public async Task<string> GetAllUsersAsync(int limit = 10, int offset = 0)
+        public async Task<string> GetAllUsersAsync(int limit = 99, int offset = 0)
         {
             string url = $"{BaseUrl}?limit={limit}&offset={offset}";
             return await GetAsync(url);
@@ -56,6 +59,12 @@ namespace DockCheckWindows.Repositories
         public async Task<string> SearchUsersAsync(string searchTerm, int page = 1, int pageSize = 10)
         {
             string url = $"{BaseUrl}/search?searchTerm={searchTerm}&page={page}&pageSize={pageSize}";
+            return await GetAsync(url);
+        }
+
+        public async Task<string> GetLastNumberAsync()
+        {
+            string url = $"{BaseUrl}/all/lastnumber";
             return await GetAsync(url);
         }
     }

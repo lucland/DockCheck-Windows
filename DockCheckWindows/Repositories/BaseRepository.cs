@@ -19,10 +19,12 @@ namespace DockCheckWindows.Repositories
         {
             try
             {
+                Console.WriteLine($"GET {url}");
                 return await _apiService.GetDataAsync(url);
             }
             catch
             {
+                Console.WriteLine($"GET {url} failed. Fetching data from LiteDB.");
                 // Use the singleton instance of LiteDbService
                 return JsonConvert.SerializeObject(LiteDbService.Instance.GetAll<T>("User"));
             }
