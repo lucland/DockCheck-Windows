@@ -48,13 +48,13 @@
             // 
             this.buttonBaixar.BackColor = System.Drawing.Color.Transparent;
             this.buttonBaixar.BorderRadius = 3;
-            this.buttonBaixar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
+            this.buttonBaixar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.buttonBaixar.CustomBorderThickness = new System.Windows.Forms.Padding(5);
             this.buttonBaixar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.buttonBaixar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.buttonBaixar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.buttonBaixar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.buttonBaixar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
+            this.buttonBaixar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.buttonBaixar.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBaixar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.buttonBaixar.Image = ((System.Drawing.Image)(resources.GetObject("buttonBaixar.Image")));

@@ -265,7 +265,7 @@
             this.labelN.AutoSize = true;
             this.labelN.BackColor = System.Drawing.Color.Transparent;
             this.labelN.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.labelN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.labelN.Location = new System.Drawing.Point(25, 25);
             this.labelN.Name = "labelN";
             this.labelN.Size = new System.Drawing.Size(79, 56);
@@ -339,9 +339,9 @@
             this.buttonConves.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.buttonConves.BorderRadius = 18;
             this.buttonConves.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
-            this.buttonConves.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.buttonConves.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.buttonConves.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.buttonConves.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.buttonConves.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.buttonConves.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.buttonConves.CheckedState.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonConves.CheckedState.ForeColor = System.Drawing.Color.White;
             this.buttonConves.CustomBorderThickness = new System.Windows.Forms.Padding(3);
@@ -371,9 +371,9 @@
             this.buttonCasaDeMaquinas.BorderRadius = 18;
             this.buttonCasaDeMaquinas.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
             this.buttonCasaDeMaquinas.Checked = true;
-            this.buttonCasaDeMaquinas.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.buttonCasaDeMaquinas.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.buttonCasaDeMaquinas.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.buttonCasaDeMaquinas.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.buttonCasaDeMaquinas.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.buttonCasaDeMaquinas.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.buttonCasaDeMaquinas.CheckedState.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCasaDeMaquinas.CheckedState.ForeColor = System.Drawing.Color.White;
             this.buttonCasaDeMaquinas.CustomBorderThickness = new System.Windows.Forms.Padding(3);
@@ -402,9 +402,9 @@
             this.buttonCasario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.buttonCasario.BorderRadius = 18;
             this.buttonCasario.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.ToogleButton;
-            this.buttonCasario.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.buttonCasario.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.buttonCasario.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.buttonCasario.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.buttonCasario.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.buttonCasario.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.buttonCasario.CheckedState.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCasario.CheckedState.ForeColor = System.Drawing.Color.White;
             this.buttonCasario.CustomBorderThickness = new System.Windows.Forms.Padding(3);
@@ -456,7 +456,7 @@
             this.labelNumero.AutoSize = true;
             this.labelNumero.BackColor = System.Drawing.Color.Transparent;
             this.labelNumero.Font = new System.Drawing.Font("Century Gothic", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNumero.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.labelNumero.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.labelNumero.Location = new System.Drawing.Point(92, 25);
             this.labelNumero.Name = "labelNumero";
             this.labelNumero.Size = new System.Drawing.Size(132, 56);
@@ -469,15 +469,15 @@
             // 
             this.buttonCadastrar.BackColor = System.Drawing.Color.Transparent;
             this.buttonCadastrar.BorderRadius = 3;
-            this.buttonCadastrar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
-            this.buttonCadastrar.CustomBorderThickness = new System.Windows.Forms.Padding(5);
+            this.buttonCadastrar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.buttonCadastrar.CustomBorderThickness = new System.Windows.Forms.Padding(3);
             this.buttonCadastrar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.buttonCadastrar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.buttonCadastrar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.buttonCadastrar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.buttonCadastrar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
+            this.buttonCadastrar.FillColor = System.Drawing.Color.White;
             this.buttonCadastrar.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCadastrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.buttonCadastrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.buttonCadastrar.Image = ((System.Drawing.Image)(resources.GetObject("buttonCadastrar.Image")));
             this.buttonCadastrar.ImageSize = new System.Drawing.Size(30, 30);
             this.buttonCadastrar.Location = new System.Drawing.Point(1486, 791);
@@ -560,9 +560,9 @@
             // 
             // supervisorToggleSwitch
             // 
-            this.supervisorToggleSwitch.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.supervisorToggleSwitch.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.supervisorToggleSwitch.CheckedState.BorderRadius = 14;
-            this.supervisorToggleSwitch.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.supervisorToggleSwitch.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.supervisorToggleSwitch.CheckedState.InnerBorderColor = System.Drawing.Color.White;
             this.supervisorToggleSwitch.CheckedState.InnerBorderRadius = 10;
             this.supervisorToggleSwitch.CheckedState.InnerColor = System.Drawing.Color.White;
@@ -675,9 +675,9 @@
             // 
             // adminToggleSwitch
             // 
-            this.adminToggleSwitch.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.adminToggleSwitch.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.adminToggleSwitch.CheckedState.BorderRadius = 14;
-            this.adminToggleSwitch.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.adminToggleSwitch.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.adminToggleSwitch.CheckedState.InnerBorderColor = System.Drawing.Color.White;
             this.adminToggleSwitch.CheckedState.InnerBorderRadius = 10;
             this.adminToggleSwitch.CheckedState.InnerColor = System.Drawing.Color.White;
@@ -733,9 +733,9 @@
             // 
             // guardiaoToggleSwitch
             // 
-            this.guardiaoToggleSwitch.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.guardiaoToggleSwitch.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.guardiaoToggleSwitch.CheckedState.BorderRadius = 14;
-            this.guardiaoToggleSwitch.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.guardiaoToggleSwitch.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.guardiaoToggleSwitch.CheckedState.InnerBorderColor = System.Drawing.Color.White;
             this.guardiaoToggleSwitch.CheckedState.InnerBorderRadius = 10;
             this.guardiaoToggleSwitch.CheckedState.InnerColor = System.Drawing.Color.White;
@@ -783,14 +783,16 @@
             // 
             // capturaButton
             // 
+            this.capturaButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.capturaButton.BorderRadius = 12;
+            this.capturaButton.BorderThickness = 2;
             this.capturaButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.capturaButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.capturaButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.capturaButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.capturaButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
+            this.capturaButton.FillColor = System.Drawing.Color.White;
             this.capturaButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.capturaButton.ForeColor = System.Drawing.Color.White;
+            this.capturaButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.capturaButton.Location = new System.Drawing.Point(1748, 221);
             this.capturaButton.Name = "capturaButton";
             this.capturaButton.Size = new System.Drawing.Size(128, 43);
@@ -814,7 +816,7 @@
             this.uploadButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.uploadButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.uploadButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.uploadButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.uploadButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.uploadButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uploadButton.ForeColor = System.Drawing.Color.White;
             this.uploadButton.Location = new System.Drawing.Point(1614, 221);
@@ -838,9 +840,9 @@
             // 
             // visitanteToggleSwitch
             // 
-            this.visitanteToggleSwitch.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.visitanteToggleSwitch.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.visitanteToggleSwitch.CheckedState.BorderRadius = 14;
-            this.visitanteToggleSwitch.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.visitanteToggleSwitch.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.visitanteToggleSwitch.CheckedState.InnerBorderColor = System.Drawing.Color.White;
             this.visitanteToggleSwitch.CheckedState.InnerBorderRadius = 10;
             this.visitanteToggleSwitch.CheckedState.InnerColor = System.Drawing.Color.White;
@@ -969,7 +971,7 @@
             this.escolherNR35Button.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.escolherNR35Button.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.escolherNR35Button.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.escolherNR35Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.escolherNR35Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.escolherNR35Button.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.escolherNR35Button.ForeColor = System.Drawing.Color.White;
             this.escolherNR35Button.Location = new System.Drawing.Point(276, -2);
@@ -1008,7 +1010,7 @@
             this.escolherNR33Button.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.escolherNR33Button.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.escolherNR33Button.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.escolherNR33Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.escolherNR33Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.escolherNR33Button.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.escolherNR33Button.ForeColor = System.Drawing.Color.White;
             this.escolherNR33Button.Location = new System.Drawing.Point(276, -1);
@@ -1047,7 +1049,7 @@
             this.escolherNR10Button.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.escolherNR10Button.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.escolherNR10Button.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.escolherNR10Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.escolherNR10Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.escolherNR10Button.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.escolherNR10Button.ForeColor = System.Drawing.Color.White;
             this.escolherNR10Button.Location = new System.Drawing.Point(276, -3);
@@ -1086,7 +1088,7 @@
             this.escolherASOButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.escolherASOButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.escolherASOButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.escolherASOButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.escolherASOButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.escolherASOButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.escolherASOButton.ForeColor = System.Drawing.Color.White;
             this.escolherASOButton.Location = new System.Drawing.Point(274, -2);
@@ -1125,7 +1127,7 @@
             this.escolherNR34Button.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.escolherNR34Button.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.escolherNR34Button.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.escolherNR34Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.escolherNR34Button.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.escolherNR34Button.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.escolherNR34Button.ForeColor = System.Drawing.Color.White;
             this.escolherNR34Button.Location = new System.Drawing.Point(276, -2);
@@ -1358,13 +1360,13 @@
             // 
             this.buttonRegistrar.BackColor = System.Drawing.Color.Transparent;
             this.buttonRegistrar.BorderRadius = 3;
-            this.buttonRegistrar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.buttonRegistrar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.buttonRegistrar.CustomBorderThickness = new System.Windows.Forms.Padding(5);
             this.buttonRegistrar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.buttonRegistrar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.buttonRegistrar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.buttonRegistrar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.buttonRegistrar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.buttonRegistrar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.buttonRegistrar.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonRegistrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.buttonRegistrar.Image = ((System.Drawing.Image)(resources.GetObject("buttonRegistrar.Image")));

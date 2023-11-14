@@ -721,7 +721,7 @@
             this.buttonSincronizar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.buttonSincronizar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.buttonSincronizar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.buttonSincronizar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
+            this.buttonSincronizar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.buttonSincronizar.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSincronizar.ForeColor = System.Drawing.Color.White;
             this.buttonSincronizar.Image = ((System.Drawing.Image)(resources.GetObject("buttonSincronizar.Image")));

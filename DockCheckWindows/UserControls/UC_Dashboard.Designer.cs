@@ -227,13 +227,13 @@
             // 
             this.buttonBaixar.BackColor = System.Drawing.Color.Transparent;
             this.buttonBaixar.BorderRadius = 3;
-            this.buttonBaixar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.buttonBaixar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.buttonBaixar.CustomBorderThickness = new System.Windows.Forms.Padding(5);
             this.buttonBaixar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.buttonBaixar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.buttonBaixar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.buttonBaixar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.buttonBaixar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.buttonBaixar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.buttonBaixar.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBaixar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.buttonBaixar.Image = ((System.Drawing.Image)(resources.GetObject("buttonBaixar.Image")));
@@ -249,14 +249,15 @@
             // buttonSincronizar
             // 
             this.buttonSincronizar.BorderRadius = 3;
+            this.buttonSincronizar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.buttonSincronizar.CustomBorderThickness = new System.Windows.Forms.Padding(3);
             this.buttonSincronizar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.buttonSincronizar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.buttonSincronizar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.buttonSincronizar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.buttonSincronizar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(79)))), ((int)(((byte)(235)))));
+            this.buttonSincronizar.FillColor = System.Drawing.Color.White;
             this.buttonSincronizar.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSincronizar.ForeColor = System.Drawing.Color.White;
-            this.buttonSincronizar.Image = ((System.Drawing.Image)(resources.GetObject("buttonSincronizar.Image")));
+            this.buttonSincronizar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.buttonSincronizar.ImageSize = new System.Drawing.Size(30, 30);
             this.buttonSincronizar.Location = new System.Drawing.Point(1059, 865);
             this.buttonSincronizar.Name = "buttonSincronizar";

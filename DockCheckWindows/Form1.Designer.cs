@@ -68,7 +68,7 @@
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.panel4.Controls.Add(this.labelUser);
             this.panel4.Controls.Add(this.pictureBox3);
             this.panel4.Location = new System.Drawing.Point(1698, 0);
@@ -105,13 +105,14 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(18, -59);
+            this.pictureBox2.Location = new System.Drawing.Point(-93, -86);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(229, 183);
+            this.pictureBox2.Size = new System.Drawing.Size(427, 252);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
@@ -134,7 +135,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.panel3.Location = new System.Drawing.Point(0, 52);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1920, 13);
@@ -168,8 +169,8 @@
             // cameraButton
             // 
             this.cameraButton.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.cameraButton.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
-            this.cameraButton.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
+            this.cameraButton.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.cameraButton.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.cameraButton.CheckedState.ForeColor = System.Drawing.Color.White;
             this.cameraButton.CustomBorderColor = System.Drawing.Color.White;
             this.cameraButton.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 4);
@@ -194,8 +195,8 @@
             // bancoButton
             // 
             this.bancoButton.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.bancoButton.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
-            this.bancoButton.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
+            this.bancoButton.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.bancoButton.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.bancoButton.CheckedState.ForeColor = System.Drawing.Color.White;
             this.bancoButton.CustomBorderColor = System.Drawing.Color.White;
             this.bancoButton.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 4);
@@ -220,8 +221,8 @@
             // dashboardButton
             // 
             this.dashboardButton.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.dashboardButton.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
-            this.dashboardButton.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
+            this.dashboardButton.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.dashboardButton.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.dashboardButton.CheckedState.ForeColor = System.Drawing.Color.White;
             this.dashboardButton.CustomBorderColor = System.Drawing.Color.White;
             this.dashboardButton.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 4);
@@ -246,8 +247,8 @@
             // cadastroButton
             // 
             this.cadastroButton.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            this.cadastroButton.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
-            this.cadastroButton.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
+            this.cadastroButton.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.cadastroButton.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.cadastroButton.CheckedState.ForeColor = System.Drawing.Color.White;
             this.cadastroButton.CustomBorderColor = System.Drawing.Color.White;
             this.cadastroButton.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 4);
@@ -273,8 +274,8 @@
             // 
             this.homeButton.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
             this.homeButton.Checked = true;
-            this.homeButton.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
-            this.homeButton.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
+            this.homeButton.CheckedState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.homeButton.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.homeButton.CheckedState.ForeColor = System.Drawing.Color.White;
             this.homeButton.CustomBorderColor = System.Drawing.Color.White;
             this.homeButton.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 4);
