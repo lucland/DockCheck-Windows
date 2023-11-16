@@ -1,33 +1,42 @@
-# DockCheckWindows
+# DockCheck-Windows
 
-## Description
+## Overview
+DockCheck-Windows is a sophisticated maritime software solution designed to streamline and enhance the efficiency of maritime operations. This application, developed using .NET and Windows Forms, offers a range of features to facilitate vessel management, docking operations, and crew handling.
 
-Briefly describe what your .NET Windows Forms application does. Include any unique features or functionality that sets your application apart.
+## Features
 
-## Getting Started
+### User Authentication and Authorization
+- **Secure Login System**: Ensures that only authorized users can access the application.
+- **Role-Based Access Control**: Different access levels based on user roles to ensure operational integrity.
 
-### Dependencies
+### Vessel Management
+- **Vessel Registration and Tracking**: Allows users to register and track vessels, providing essential information like vessel ID, name, and status.
+- **Docking Management**: Facilitates the management of docking operations, including start and end dates, and onboarded personnel count.
 
-List any dependencies that are required for your application, such as:
+### Event Monitoring
+- **Real-Time Event Tracking**: Tracks events related to vessels and crew, including timestamps, user IDs, and action details.
+- **Camera and RFID Integration**: Monitors vessel and crew movements using camera and RFID technologies.
 
-- Windows operating system (specify which versions are supported)
-- .NET Framework or .NET Core version (specify the required version)
-- Any other libraries or frameworks used in the project
+### Data Management
+- **User and Supervisor Management**: Manages user profiles and supervisor roles, including authentication details.
+- **Company Profiles**: Handles company-related information, including name, logo, and associated vessels.
 
-### Installing
+### Localization and Internationalization
+- **Multi-Language Support**: The application supports multiple languages, enhancing usability for a global user base.
 
-Provide step-by-step instructions on how to install your application. For example:
+## Technologies Used
+- **.NET Framework 4.7.2**: For robust and scalable application development.
+- **Windows Forms**: For creating a user-friendly graphical user interface.
+- **Google APIs and Newtonsoft.Json**: For handling external data and JSON operations.
 
-1. Download the installer from [link to installer].
-2. Run the installer and follow the on-screen instructions.
+## Installation and Setup
+Detailed instructions on how to install and configure the application.
 
-### Executing Program
+## Contributing
+Guidelines for contributing to the project, including coding standards and pull request process.
 
-Explain how to run the application after installation. For example:
+## License
+Information about the software license.
 
-1. Open the application from the Start menu or desktop shortcut.
-2. [Any additional steps required for using the application.]
-
-## Usage
-
-Include examples of how to use your application. Screenshots or code snippets can be very helpful here. For instance:
+## Contact
+Contact information for support, feedback, and collaboration.
