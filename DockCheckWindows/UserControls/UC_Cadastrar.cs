@@ -15,6 +15,7 @@ using DockCheckWindows.Repositories;
 using Alturos.Yolo.Extensions;
 using System.Globalization;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace DockCheckWindows.UserControls
 {
@@ -59,7 +60,9 @@ namespace DockCheckWindows.UserControls
             if (!isEditar)
             {
                 GetLastNumberAsync();
+                GetUsersRfidsByVesselAsync("vessel1");
             }
+
         }
 
         private async void ValidateFields()
@@ -97,7 +100,7 @@ namespace DockCheckWindows.UserControls
 
             if (areFieldsFilled)
             {
-                   if (adminToggleSwitch.Checked)
+                if (adminToggleSwitch.Checked)
                 {
                     //check if username is already in use
                     bool username = await _userRepository.CheckUsernameAsync(usuarioTextBox.Text);
@@ -278,14 +281,14 @@ namespace DockCheckWindows.UserControls
                     ExpirationDate = newUser.EndJob,
                     // VesselId will be set after retrieving it from the VesselRepository
                 };
-                
+
                 var vesselId = await _vesselRepository.GetVesselIdByNameAsync(comboBoxEmbarcacao.Text);
                 if (string.IsNullOrEmpty(vesselId))
                 {
                     MessageBox.Show("Embarcação não encontrada.");
                     return;
                 }
-                
+
                 newAuthorization.VesselId = "vessel1";
 
                 // Add the authorization id to the  AuthorizationsId from the new user
@@ -297,7 +300,7 @@ namespace DockCheckWindows.UserControls
 
                 // Save the user using UserRepository
                 //if user is supervisor, save it using SupervisorRepository
-                Console.WriteLine(newUser.ToJson()) ;
+                Console.WriteLine(newUser.ToJson());
                 if (adminToggleSwitch.Checked)
                 {
                     var supervisor = new Supervisor
@@ -343,6 +346,8 @@ namespace DockCheckWindows.UserControls
                 await Task.Delay(500);
                 loadingBar.Value = 60;
 
+                SendRfidsOverSerialAsync(new List<string> { newUser.RFID });
+
                 await Task.Delay(1000);
                 loadingBar.Value = 100;
 
@@ -362,6 +367,7 @@ namespace DockCheckWindows.UserControls
                 errorControl.Size = new Size(683, 397); // Set appropriate size
                 this.Controls.Add(errorControl);
                 errorControl.BringToFront();
+
                 errorControl.Show();
 
             }
@@ -484,7 +490,7 @@ namespace DockCheckWindows.UserControls
         private void buttonRegistrar_Click(object sender, EventArgs e)
         {
             ValidateFields();
-            
+
 
         }
 
@@ -525,7 +531,7 @@ namespace DockCheckWindows.UserControls
 
             ValidateFields();
         }
-        
+
         public Image byteArrayToImage(string byteArrayIn)
         {
             byte[] byteArray = Encoding.ASCII.GetBytes(byteArrayIn);
@@ -541,7 +547,7 @@ namespace DockCheckWindows.UserControls
             textBoxNome.Text = user.Name;
             textBoxFuncao.Text = user.Role;
             textBoxEmpresa.Text = user.Company;
-            labelNumero.Text =  user.Number.ToString();
+            labelNumero.Text = user.Number.ToString();
             maskedTextBoxIdentidade.Text = user.Identidade;
             maskedTextBoxCpf.Text = user.CPF;
             maskedTextBoxAso.Text = user.ASO.ToString("dd/MM/yyyy");
@@ -682,7 +688,8 @@ namespace DockCheckWindows.UserControls
                 senhaReqLabel.Visible = true;
                 senhaTextBox.Visible = true;
             }
-            else {
+            else
+            {
                 if (supervisorToggleSwitch.Checked)
                 {
                     supervisorToggleSwitch.Checked = false;
@@ -696,7 +703,8 @@ namespace DockCheckWindows.UserControls
                     senhaReqLabel.Visible = false;
                     senhaTextBox.Visible = false;
                 }
-                else {
+                else
+                {
                     supervisorToggleSwitch.Checked = false;
                     usuarioLabel.Visible = false;
                     usuarioPanel.Visible = false;
@@ -730,7 +738,7 @@ namespace DockCheckWindows.UserControls
             }
             else
             {
-                if(adminToggleSwitch.Checked == false)
+                if (adminToggleSwitch.Checked == false)
                 {
                     usuarioLabel.Visible = false;
                     usuarioPanel.Visible = false;
@@ -804,5 +812,75 @@ namespace DockCheckWindows.UserControls
             lastNumber = lastNumber.Replace("\"", "");
             labelNumero.Text = lastNumber.ToString();
         }
+
+        private async Task<List<string>> GetUsersRfidsByVesselAsync(string vesselId)
+        {
+            try
+            {
+                // Fetch the RFIDs from the repository
+                var rfidsArray = await _userRepository.GetUsersRfidsByVesselAsync(vesselId);
+
+                //show the rfids in a message box
+                MessageBox.Show(string.Join("\n", rfidsArray));
+                SendRfidsOverSerialAsync(rfidsArray.ToList());
+                // Convert the array to a list and return
+                return rfidsArray.ToList();
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions here
+                MessageBox.Show($"Error fetching RFIDs: {ex.Message}");
+                return new List<string>();  // Return an empty list in case of an error
+            }
+        }
+        private void SendRfidsOverSerialAsync(List<string> rfids)
+        {
+            try
+            {
+                // Configure the serial port
+                using (SerialPort serialPort = new SerialPort("COM3", 9600))
+                {
+                    serialPort.Open();
+
+                    foreach (var rfid in rfids)
+                    {
+
+                        // Calculate checksum (sum of ASCII values of all characters % 256)
+                        int checksum = rfid.Sum(c => (int)c) % 256;
+
+                        // Append the checksum to the RFID string
+                        string rfidToSend = rfid + "*" + checksum.ToString();
+
+                       MessageBox.Show(rfidToSend);
+                        serialPort.WriteLine(rfidToSend);
+                    
+
+                       string received = serialPort.ReadLine();
+                        int i = 0;
+                        MessageBox.Show(received);
+
+                       /* while (!received.Contains(checksum.ToString()) && i < 5)
+                        {
+                            MessageBox.Show(rfidToSend);
+                               serialPort.WriteLine(rfidToSend);
+                            received = serialPort.ReadLine();
+                            i++;
+                        } */
+                                            }
+                    //wait 2 seconds before closing the serial port
+                    for (int i = 0; i < 2; i++)
+                    {
+                        System.Threading.Thread.Sleep(1000);
+                    }
+
+                    serialPort.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error sending RFIDs over serial: {ex.Message}");
+            }
+        }
+      
     }
 }

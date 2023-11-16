@@ -67,5 +67,14 @@ namespace DockCheckWindows.Repositories
             string url = $"{BaseUrl}/all/lastnumber";
             return await GetAsync(url);
         }
+
+        public async Task<string[]> GetUsersRfidsByVesselAsync(string vesselId)
+        {
+            string url = $"{BaseUrl}/valids/{vesselId}";
+            string jsonResponse = await GetAsync(url);
+
+            // Assuming the response is a JSON array of strings (RFIDs)
+            return JsonConvert.DeserializeObject<string[]>(jsonResponse);
+        }
     }
 }

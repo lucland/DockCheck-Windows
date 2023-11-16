@@ -63,7 +63,7 @@ namespace DockCheckWindows.UserControls
                            db.Insert(user, "User");
                         }
                         
-                    }
+                    }                   
                 }
             }
             catch (Exception ex)
@@ -88,6 +88,8 @@ namespace DockCheckWindows.UserControls
                     .Where(p => p.Name != "Salt" && p.Name != "Hash" && p.Name != "Username" && p.Name != "AuthorizationsId")
                     .Select(p => p.Name)
                     .ToList();
+                //order the db by user.CreatedAt in descending order
+                cadastrosDataGrid.DataSource = new BindingSource(users.OrderByDescending(x => x.Number).ToList(), null);
 
                 // Hide specific columns
                 cadastrosDataGrid.Columns["hasAso"].Visible = false;
@@ -197,7 +199,10 @@ namespace DockCheckWindows.UserControls
         private void cadastrosDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //select row of the clicked cell
-            cadastrosDataGrid.Rows[e.RowIndex].Selected = true;
+            if (e.RowIndex > 0)
+            {
+                cadastrosDataGrid.Rows[e.RowIndex].Selected = true;
+            }
         }
 
 
