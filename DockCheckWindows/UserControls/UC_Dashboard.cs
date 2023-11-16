@@ -91,7 +91,6 @@ namespace DockCheckWindows.UserControls
             }
 
             // Populate the charts
-            PopulateSingleChart(chartOnBoardedToday, hourlyCountsToday, "Hora do dia", "");
             PopulateDailyChart(chartOnBoardedAll, dailyCountsAll, "Data", "");
             PopulatePieChart(chartPieEmpresas, companyCounts); 
             PopulateRfidChart(chartRfid, dailyRfidCount, "Data", "");
@@ -118,25 +117,55 @@ namespace DockCheckWindows.UserControls
             }
         }
 
-        private void SyncWithLiteDb(List<User> users)
+        private void SyncWithLiteDb(List<User> usersFromApi)
         {
-            
+            foreach (var user in usersFromApi)
+            {
+                // Check if the user already exists in the LiteDB
+                bool exists = _dbService.Exists<User>(user.Identificacao);
+
+                if (exists)
+                {
+                    // Update the existing user
+                    _dbService.Update<User>(user);
+                }
+                else
+                {
+                    // Insert the new user
+                    _dbService.Insert<User>(user, "User");
+                }
+            }
         }
+
 
         private void PopulateDailyChart(Chart chart, Dictionary<DateTime, int> dailyCounts, string xAxisTitle, string yAxisTitle)
         {
-            foreach (var entry in dailyCounts)
+            // Clear existing points in the series
+            chart.Series["A bordo"].Points.Clear();
+
+            DateTime startDate = DateTime.Now.AddDays(-30);
+            DateTime endDate = DateTime.Now;
+
+            for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
             {
-                chart.Series["A bordo"].Points.AddXY(entry.Key, entry.Value);
+                int count = dailyCounts.ContainsKey(date.Date) ? dailyCounts[date.Date] : 0;
+                chart.Series["A bordo"].Points.AddXY(date.Date, count);
             }
 
-            // Customize the chart appearance (optional)
+            // Customize the chart appearance
             chart.ChartAreas[0].AxisX.Title = xAxisTitle;
             chart.ChartAreas[0].AxisY.Title = yAxisTitle;
             chart.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             chart.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             chart.Series["A bordo"].ChartType = SeriesChartType.Column;
+
+            //hover over the chart to see the exact value
+            chart.Series["A bordo"].ToolTip = "#VALY";
+
+            // Set AxisX LabelStyle to show labels in a readable format
+            chart.ChartAreas[0].AxisX.LabelStyle.Format = "MM/dd";
         }
+
 
 
         private void PopulateSingleChart(Chart chart, int[] hourlyCounts, string xAxisTitle, string yAxisTitle)
@@ -328,7 +357,7 @@ namespace DockCheckWindows.UserControls
                 iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 10f, 10f, 10f, 0f);
                 iTextSharp.text.pdf.PdfWriter.GetInstance(pdfDoc, stream);
                 pdfDoc.Open();
-                var charts = new List<Chart> { chartOnBoardedToday, chartOnBoardedAll, chartPieEmpresas, chartCompanyRange, chartRfid, chartValidades};
+                var charts = new List<Chart> { chartPieEmpresas, chartCompanyRange, chartRfid, chartValidades};
                 foreach (var chart in charts)
                 {
                     using (MemoryStream ms = new MemoryStream())

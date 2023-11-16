@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using DockCheckWindows.Repositories;
+using DockCheckWindows.Services;
 using Newtonsoft.Json.Linq;
 
 namespace DockCheckWindows
@@ -51,6 +52,8 @@ namespace DockCheckWindows
                     Console.WriteLine("User id: " + jsonResult.user_id);
                     Properties.Settings.Default.Save();
                     Console.WriteLine("settings of UserId " + Properties.Settings.Default.UserId);
+
+                  
 
                     this.Close();
                 }

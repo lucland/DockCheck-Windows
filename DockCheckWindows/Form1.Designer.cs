@@ -71,13 +71,14 @@
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.panel4.Controls.Add(this.labelUser);
             this.panel4.Controls.Add(this.pictureBox3);
-            this.panel4.Location = new System.Drawing.Point(1698, 0);
+            this.panel4.Location = new System.Drawing.Point(1666, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(226, 70);
+            this.panel4.Size = new System.Drawing.Size(258, 70);
             this.panel4.TabIndex = 4;
             // 
             // labelUser
             // 
+            this.labelUser.AutoEllipsis = true;
             this.labelUser.AutoSize = true;
             this.labelUser.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
             this.labelUser.ForeColor = System.Drawing.Color.White;
@@ -86,6 +87,7 @@
             this.labelUser.Size = new System.Drawing.Size(78, 25);
             this.labelUser.TabIndex = 1;
             this.labelUser.Text = "admin";
+            this.labelUser.Click += new System.EventHandler(this.labelUser_Click);
             // 
             // pictureBox3
             // 
@@ -190,6 +192,7 @@
             this.cameraButton.TabIndex = 4;
             this.cameraButton.TabStop = false;
             this.cameraButton.Text = "Câmeras";
+            this.cameraButton.Visible = false;
             this.cameraButton.Click += new System.EventHandler(this.cameraButton_Click);
             // 
             // bancoButton

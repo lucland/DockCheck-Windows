@@ -40,6 +40,7 @@ namespace DockCheckWindows.Services
 
         }
 
+
         public List<User> GetAll<User>(string collectionName) where User : new()
         {
             //fetch all users from LiteDB

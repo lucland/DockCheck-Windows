@@ -678,6 +678,7 @@ namespace DockCheckWindows.UserControls
             if (adminToggleSwitch.Checked)
             {
                 visitanteToggleSwitch.Checked = false;
+                visitanteToggleSwitch.Enabled = false;
                 usuarioLabel.Visible = true;
                 usuarioPanel.Visible = true;
                 usuarioReqLabel.Visible = true;
@@ -706,6 +707,7 @@ namespace DockCheckWindows.UserControls
                 else
                 {
                     supervisorToggleSwitch.Checked = false;
+                    visitanteToggleSwitch.Enabled = true;
                     usuarioLabel.Visible = false;
                     usuarioPanel.Visible = false;
                     usuarioReqLabel.Visible = false;
@@ -726,6 +728,7 @@ namespace DockCheckWindows.UserControls
             if (guardiaoToggleSwitch.Checked)
             {
                 visitanteToggleSwitch.Checked = false;
+                visitanteToggleSwitch.Enabled = false;
                 usuarioLabel.Visible = true;
                 usuarioPanel.Visible = true;
                 usuarioReqLabel.Visible = true;
@@ -742,6 +745,7 @@ namespace DockCheckWindows.UserControls
                 {
                     usuarioLabel.Visible = false;
                     usuarioPanel.Visible = false;
+                    usuarioReqLabel.Visible = true;
                     usuarioReqLabel.Visible = false;
                     usuarioTextBox.Visible = false;
 
@@ -758,10 +762,12 @@ namespace DockCheckWindows.UserControls
             if (supervisorToggleSwitch.Checked == true)
             {
                 visitanteToggleSwitch.Checked = false;
+                visitanteToggleSwitch.Enabled = false;
                 adminToggleSwitch.Checked = true;
             }
             if (supervisorToggleSwitch.Checked && adminToggleSwitch.Checked)
             {
+                adminToggleSwitch.Checked = false;
                 usuarioLabel.Visible = true;
                 usuarioPanel.Visible = true;
                 usuarioReqLabel.Visible = true;
@@ -771,6 +777,20 @@ namespace DockCheckWindows.UserControls
                 senhaPanel.Visible = true;
                 senhaReqLabel.Visible = true;
                 senhaTextBox.Visible = true;
+            }
+            if (supervisorToggleSwitch.Checked == false)
+            {
+                visitanteToggleSwitch.Enabled = true;
+                adminToggleSwitch.Checked = false;
+                usuarioLabel.Visible = false;
+                usuarioPanel.Visible = false;
+                usuarioReqLabel.Visible = false;
+                usuarioTextBox.Visible = false;
+
+                senhaLabel.Visible = false;
+                senhaPanel.Visible = false;
+                senhaReqLabel.Visible = false;
+                senhaTextBox.Visible = false;
             }
 
             ValidateFields();
@@ -822,7 +842,7 @@ namespace DockCheckWindows.UserControls
 
                 //show the rfids in a message box
                 MessageBox.Show(string.Join("\n", rfidsArray));
-                SendRfidsOverSerialAsync(rfidsArray.ToList());
+               // SendRfidsOverSerialAsync(rfidsArray.ToList());
                 // Convert the array to a list and return
                 return rfidsArray.ToList();
             }

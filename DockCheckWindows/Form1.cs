@@ -60,6 +60,8 @@ namespace DockCheckWindows
 
                 uc_Dados = new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()));
 
+                loggedUserName(Properties.Settings.Default.UserId);
+
                 addUserControl(home);
             }
             else
@@ -67,6 +69,18 @@ namespace DockCheckWindows
                 Application.Exit();
             }
             cadastroButton.Text = Properties.Resources.Cadastrar;
+        }
+
+        //retieve user object from user_id with UserRepository
+        private async void loggedUserName(String userId)
+        {
+            UserRepository userRepository = new UserRepository(apiService: new ApiService());
+            var user = await userRepository.GetUserByIdAsync(userId);
+            Console.WriteLine("User: " + user.ToJson());
+
+            labelUser.Text = user.Name;
+            Properties.Settings.Default.Name = user.Name;
+            Properties.Settings.Default.Save();
         }
 
         private void addUserControl(UserControl userControl)
@@ -152,6 +166,11 @@ uc_DadosInstance: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(
         }
 
         private void panelContainer_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void labelUser_Click(object sender, EventArgs e)
         {
 
         }
