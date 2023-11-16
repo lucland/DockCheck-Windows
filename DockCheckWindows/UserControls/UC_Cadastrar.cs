@@ -124,8 +124,90 @@ namespace DockCheckWindows.UserControls
 
         public event Action SwitchToDados;
 
+        //function to disable/enable all buttons and textboxes
+        private void DisableAll()
+        {
+            textBoxNome.Enabled = false;
+            textBoxFuncao.Enabled = false;
+            textBoxEmpresa.Enabled = false;
+            maskedTextBoxIdentidade.Enabled = false;
+            maskedTextBoxCpf.Enabled = false;
+            maskedTextBoxAso.Enabled = false;
+            maskedTextBoxNr34.Enabled = false;
+            dateTimePickerCheckin.Enabled = false;
+            dateTimePickerCheckout.Enabled = false;
+            buttonCadastrar.Enabled = false;
+            buttonRegistrar.Enabled = false;
+            buttonConves.Enabled = false;
+            buttonCasaDeMaquinas.Enabled = false;
+            buttonCasario.Enabled = false;
+            uploadButton.Enabled = false;
+            capturaButton.Enabled = false;
+            escolherASOButton.Enabled = false;
+            escolherNR34Button.Enabled = false;
+            escolherNR10Button.Enabled = false;
+            escolherNR33Button.Enabled = false;
+            escolherNR35Button.Enabled = false;
+            visitanteToggleSwitch.Enabled = false;
+            adminToggleSwitch.Enabled = false;
+            guardiaoToggleSwitch.Enabled = false;
+            supervisorToggleSwitch.Enabled = false;
+            usuarioTextBox.Enabled = false;
+            senhaTextBox.Enabled = false;
+            textBoxEmail.Enabled = false;
+            textBoxRFID.Enabled = false;
+            pictureBoxFoto.Enabled = false;
+            excludeImageButton.Enabled = false;
+        }
+
+        //function to enable all buttons and textboxes
+        private void EnableAll()
+        {
+            textBoxNome.Enabled = true;
+            textBoxFuncao.Enabled = true;
+            textBoxEmpresa.Enabled = true;
+            maskedTextBoxIdentidade.Enabled = true;
+            maskedTextBoxCpf.Enabled = true;
+            maskedTextBoxAso.Enabled = true;
+            maskedTextBoxNr34.Enabled = true;
+            dateTimePickerCheckin.Enabled = true;
+            dateTimePickerCheckout.Enabled = true;
+            buttonCadastrar.Enabled = true;
+            buttonRegistrar.Enabled = true;
+            buttonConves.Enabled = true;
+            buttonCasaDeMaquinas.Enabled = true;
+            buttonCasario.Enabled = true;
+            uploadButton.Enabled = true;
+            capturaButton.Enabled = true;
+            escolherASOButton.Enabled = true;
+            escolherNR34Button.Enabled = true;
+            escolherNR10Button.Enabled = true;
+            escolherNR33Button.Enabled = true;
+            escolherNR35Button.Enabled = true;
+            visitanteToggleSwitch.Enabled = true;
+            adminToggleSwitch.Enabled = true;
+            guardiaoToggleSwitch.Enabled = true;
+            supervisorToggleSwitch.Enabled = true;
+            usuarioTextBox.Enabled = true;
+            senhaTextBox.Enabled = true;
+            textBoxEmail.Enabled = true;
+            textBoxRFID.Enabled = true;
+            pictureBoxFoto.Enabled = true;
+            excludeImageButton.Enabled = true;
+        }
+
         private async void buttonCadastrar_Click(object sender, EventArgs e)
         {
+            DisableAll();
+
+            //show loading bar
+            loadingBar.Visible = true;
+            loadingBar.Value = 0;
+
+            //wait 1 second
+            await Task.Delay(1000);
+            loadingBar.Value = 20;
+
             try
             {
                 // Generate salt and hash if needed
@@ -254,13 +336,6 @@ namespace DockCheckWindows.UserControls
                         return;
                     }
                 }
-                //show loading bar
-                loadingBar.Visible = true;
-                loadingBar.Value = 0;
-
-                //wait 1 second
-                await Task.Delay(1000);
-                loadingBar.Value = 20;
 
                 await Task.Delay(500);
                 loadingBar.Value = 40;
@@ -272,13 +347,33 @@ namespace DockCheckWindows.UserControls
                 loadingBar.Value = 100;
 
                 MessageBox.Show("Usuário cadastrado com sucesso!");
+                EnableAll();
+
                 //switch to UC_Dados
                 SwitchToDados?.Invoke();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao cadastrar usuário: " + ex.Message);
+                EnableAll();
+                loadingBar.Value = 0;
+                loadingBar.Visible = false;
+                UC_Error errorControl = new UC_Error(RetryUserRegistration, "Erro ao cadastrar o usuário, tente novamente.");
+                errorControl.Location = new Point(600, 200); // Set appropriate location
+                errorControl.Size = new Size(683, 397); // Set appropriate size
+                this.Controls.Add(errorControl);
+                errorControl.BringToFront();
+                errorControl.Show();
+
             }
+        }
+
+        private async void RetryUserRegistration()
+        {
+            // Logic to retry user registration
+            // For simplicity, I'm calling buttonCadastrar_Click again.
+            // You might want to refactor the code inside buttonCadastrar_Click 
+            // into a separate method and call that method here and inside buttonCadastrar_Click.
+            buttonCadastrar_Click(this, EventArgs.Empty);
         }
 
         private string GenerateSalt()
@@ -441,6 +536,8 @@ namespace DockCheckWindows.UserControls
         public void PopulateFields(User user)
         {
             isEditar = true;
+            buttonCadastrar.Text = "Salvar";
+            buttonRegistrar.Visible = false;
             textBoxNome.Text = user.Name;
             textBoxFuncao.Text = user.Role;
             textBoxEmpresa.Text = user.Company;

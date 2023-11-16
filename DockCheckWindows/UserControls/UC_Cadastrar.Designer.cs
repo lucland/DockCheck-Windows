@@ -478,7 +478,6 @@
             this.buttonCadastrar.FillColor = System.Drawing.Color.White;
             this.buttonCadastrar.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCadastrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
-            this.buttonCadastrar.Image = ((System.Drawing.Image)(resources.GetObject("buttonCadastrar.Image")));
             this.buttonCadastrar.ImageSize = new System.Drawing.Size(30, 30);
             this.buttonCadastrar.Location = new System.Drawing.Point(1486, 791);
             this.buttonCadastrar.Name = "buttonCadastrar";
@@ -771,7 +770,7 @@
             this.excludeImageButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.excludeImageButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.excludeImageButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
-            this.excludeImageButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.excludeImageButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.excludeImageButton.ForeColor = System.Drawing.Color.White;
             this.excludeImageButton.Location = new System.Drawing.Point(1829, 75);
             this.excludeImageButton.Name = "excludeImageButton";
