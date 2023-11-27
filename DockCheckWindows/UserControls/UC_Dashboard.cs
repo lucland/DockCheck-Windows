@@ -338,6 +338,13 @@ namespace DockCheckWindows.UserControls
 
         private void buttonSincronizar_Click(object sender, EventArgs e)
         {
+            //erase all charts and populate them again
+            chartPieEmpresas.Series["Empresas"].Points.Clear();
+            chartCompanyRange.Series["Empresas"].Points.Clear();
+            chartRfid.Series["RFID's"].Points.Clear();
+            chartValidades.Series["Total"].Points.Clear();
+            chartValidades.Series["Liberados"].Points.Clear();
+
             PopulateCharts();
         }
 
