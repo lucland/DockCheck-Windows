@@ -76,5 +76,14 @@ namespace DockCheckWindows.Repositories
             // Assuming the response is a JSON array of strings (RFIDs)
             return JsonConvert.DeserializeObject<string[]>(jsonResponse);
         }
+
+        public async Task<bool> BlockUserAsync(string userId, string blockReason)
+        {
+            string url = $"{BaseUrl}/block/{userId}";
+            var data = new {blockReason};
+            string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(data);
+            string response = await PutAsync(url, jsonData, "User");
+            return !string.IsNullOrEmpty(response);
+        }
     }
 }
