@@ -491,8 +491,66 @@ namespace DockCheckWindows.UserControls
         {
             ValidateFields();
 
+            if (isEditar)
+            {
+                // Show a popup to get the block reason
+                using (var form = new Form())
+                {
+                    var textBox = new TextBox() { Width = 250, Height = 60 };
+                    var buttonOk = new Button() { Text = "Ok", DialogResult = DialogResult.OK, Left = 170, Width = 60 };
+                    var buttonCancel = new Button() { Text = "Cancel", DialogResult = DialogResult.Cancel, Left = 240, Width = 60 };
 
+                    form.Text = "Block Reason";
+                    form.Controls.Add(textBox);
+                    form.Controls.Add(buttonOk);
+                    form.Controls.Add(buttonCancel);
+                    form.AcceptButton = buttonOk;
+                    form.CancelButton = buttonCancel;
+                    form.FormBorderStyle = FormBorderStyle.FixedDialog;
+                    form.StartPosition = FormStartPosition.CenterScreen;
+
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        string blockReason = textBox.Text;
+
+                        // Call the method to block the user
+                        BlockUser(blockReason);
+                    }
+                }
+            }
+            else
+            {
+                // Other registration logic for when not editing
+            }
         }
+
+        private async Task BlockUser(string blockReason)
+        {
+            try
+            {
+                // Assuming you have a selected user to blo
+                var selectedUser = new User();
+
+                selectedUser.IsBlocked = true;
+                selectedUser.BlockReason = blockReason;
+
+                var result = await _userRepository.BlockUserAsync(); // Replace UpdateAsync with your actual update method
+
+                if (result)
+                {
+                    MessageBox.Show("User blocked successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to block the user.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
 
         private void visitanteToggleSwitch_CheckedChanged(object sender, EventArgs e)
         {
@@ -543,7 +601,11 @@ namespace DockCheckWindows.UserControls
         {
             isEditar = true;
             buttonCadastrar.Text = "Salvar";
-            buttonRegistrar.Visible = false;
+            buttonRegistrar.Text = "Bloquear";
+            buttonRegistrar.FillColor = Color.FromArgb(199, 0, 57);
+            buttonRegistrar.CustomBorderColor = Color.FromArgb(199, 0, 57);
+            buttonRegistrar.Enabled = true;
+            buttonRegistrar.Image = null;
             textBoxNome.Text = user.Name;
             textBoxFuncao.Text = user.Role;
             textBoxEmpresa.Text = user.Company;
