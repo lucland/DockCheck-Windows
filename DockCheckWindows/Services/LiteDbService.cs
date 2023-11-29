@@ -54,9 +54,9 @@ namespace DockCheckWindows.Services
             collection.Insert(item);
         }
 
-        public bool Update<T>(T item)
+        public bool Update<T>(T item, string collectionName)
         {
-            var collection = _liteDb.GetCollection<T>();
+            var collection = _liteDb.GetCollection<T>(collectionName);
             return collection.Update(item);
         }
 
