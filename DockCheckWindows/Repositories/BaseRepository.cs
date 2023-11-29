@@ -30,6 +30,31 @@ namespace DockCheckWindows.Repositories
             }
         }
 
+        protected async Task<string> PutAsync(string url, string data, string collectionName)
+        {
+            try
+            {
+                var item = JsonConvert.DeserializeObject<T>(data);
+                if (item == null) throw new InvalidOperationException("Deserialized item is null.");
+
+                // Use the singleton instance of LiteDbService
+                LiteDbService.Instance.Update(item, collectionName);
+                return await _apiService.PutDataAsync(url, data);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if necessary
+                Console.WriteLine($"An error occurred: {ex.Message}");
+
+                var item = JsonConvert.DeserializeObject<T>(data);
+                if (item == null) throw new InvalidOperationException("Deserialized item is null.");
+
+                // Use the singleton instance of LiteDbService
+                LiteDbService.Instance.Update(item, collectionName);
+                return JsonConvert.SerializeObject(item);
+            }
+        }
+
         protected async Task<string> PostAsync(string url, string data, string collectionName)
         {
             try
