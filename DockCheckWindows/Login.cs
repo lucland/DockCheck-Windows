@@ -47,13 +47,16 @@ namespace DockCheckWindows
                     Properties.Settings.Default.Token = Token;
                     Properties.Settings.Default.Save();
 
+                    //save authorization from login
+                    Properties.Settings.Default.Authorization = jsonResult.authorizations_id;
+                    Console.WriteLine("Authorization: " + jsonResult.aut);
+
+
                     //save user_id from login
                     Properties.Settings.Default.UserId = jsonResult.user_id;
                     Console.WriteLine("User id: " + jsonResult.user_id);
                     Properties.Settings.Default.Save();
                     Console.WriteLine("settings of UserId " + Properties.Settings.Default.UserId);
-
-                  
 
                     this.Close();
                 }
