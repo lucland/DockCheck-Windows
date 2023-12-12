@@ -534,16 +534,18 @@ namespace DockCheckWindows.UserControls
                 selectedUser.IsBlocked = true;
                 selectedUser.BlockReason = blockReason;
 
-                var result = await _userRepository.BlockUserAsync(); // Replace UpdateAsync with your actual update method
 
-                if (result)
+                //userId from instance of edited user.
+                //var result = await _userRepository.BlockUserAsync(); // Replace UpdateAsync with your actual update method
+
+             /*   if (result)
                 {
                     MessageBox.Show("User blocked successfully.");
                 }
                 else
                 {
                     MessageBox.Show("Failed to block the user.");
-                }
+                }*/
             }
             catch (Exception ex)
             {
@@ -903,7 +905,7 @@ namespace DockCheckWindows.UserControls
                 var rfidsArray = await _userRepository.GetUsersRfidsByVesselAsync(vesselId);
 
                 //show the rfids in a message box
-                MessageBox.Show(string.Join("\n", rfidsArray));
+                //MessageBox.Show(string.Join("\n", rfidsArray));
                // SendRfidsOverSerialAsync(rfidsArray.ToList());
                 // Convert the array to a list and return
                 return rfidsArray.ToList();
@@ -911,7 +913,7 @@ namespace DockCheckWindows.UserControls
             catch (Exception ex)
             {
                 // Handle any exceptions here
-                MessageBox.Show($"Error fetching RFIDs: {ex.Message}");
+                //MessageBox.Show($"Error fetching RFIDs: {ex.Message}");
                 return new List<string>();  // Return an empty list in case of an error
             }
         }
@@ -933,13 +935,13 @@ namespace DockCheckWindows.UserControls
                         // Append the checksum to the RFID string
                         string rfidToSend = rfid + "*" + checksum.ToString();
 
-                       MessageBox.Show(rfidToSend);
+                      // MessageBox.Show(rfidToSend);
                         serialPort.WriteLine(rfidToSend);
                     
 
                        string received = serialPort.ReadLine();
                         int i = 0;
-                        MessageBox.Show(received);
+                       // MessageBox.Show(received);
 
                        /* while (!received.Contains(checksum.ToString()) && i < 5)
                         {
