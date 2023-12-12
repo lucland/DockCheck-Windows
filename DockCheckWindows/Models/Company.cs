@@ -18,13 +18,13 @@ namespace DockCheckWindows.Models
         public string[] Vessels { get; set; }
 
         [JsonProperty("updated_at")]
-        public DateTime UpdatedAt { get; set; } // Assuming this should not be nullable
+        public DateTime UpdatedAt { get; set; }
 
         [JsonProperty("id")]
-        public string Id { get; set; } // Primary key, treated as non-nullable
+        public string Id { get; set; }
 
         [JsonProperty("expiration_date")]
-        public DateTime ExpirationDate { get; set; } // Nullable DateTime if the date can be null
+        public DateTime ExpirationDate { get; set; }
 
         public static Company FromJson(string jsonData)
         {
