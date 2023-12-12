@@ -1,4 +1,5 @@
-﻿using DockCheckWindows.Repositories;
+﻿using DockCheckWindows.Models;
+using DockCheckWindows.Repositories;
 using DockCheckWindows.Services;
 using DockCheckWindows.UserControls;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
@@ -49,6 +50,9 @@ namespace DockCheckWindows
 
             if (loginForm.IsAuthenticated)
             {
+                BackgroundTaskManager backgroundTaskManager = new BackgroundTaskManager();
+                backgroundTaskManager.StartBackgroundTask();
+
                 UC_Home home = new UC_Home();
 
                 uc_Cadastrar = new UC_Cadastrar(
@@ -108,10 +112,9 @@ namespace DockCheckWindows
         {
             UC_Cadastrar cadastrar = new UC_Cadastrar(
                 userRepository: new UserRepository(apiService: new ApiService()),
-vesselRepository: new VesselRepository(
-    apiService: new ApiService()),
-authorizationRepository: new AuthorizationRepository(apiService: new ApiService()),
-uc_DadosInstance: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()))
+                vesselRepository: new VesselRepository(apiService: new ApiService()),
+                authorizationRepository: new AuthorizationRepository(apiService: new ApiService()),
+                uc_DadosInstance: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()))
                 );
             cadastrar.SwitchToDados += () =>
             {
@@ -173,6 +176,25 @@ uc_DadosInstance: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(
         private void labelUser_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void vesselLabel_Click(object sender, EventArgs e)
+        {
+            //retrieve authorization from settings
+            string authorization = Properties.Settings.Default.Authorization;
+            //retieve vessel object from authorization with VesselRepository
+            VesselRepository vesselRepository = new VesselRepository(apiService: new ApiService());
+            Task<Vessel> task = vesselRepository.GetVesselByIdAsync(authorization);
+            Vessel vessel = task;
+            if (vessel != null)
+            {
+                //save vessel name in settings and write in label
+                Properties.Settings.Default.Vessel = vessel.Name;
+                Properties.Settings.Default.Save();
+
+                vesselLabel.Text = vessel.Name;
+            }
+            Console.WriteLine("Vessel: " + vessel.ToJson());
         }
     }
 }
