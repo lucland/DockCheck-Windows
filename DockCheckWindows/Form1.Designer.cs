@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBoxRecebendo = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.labelUser = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -46,7 +47,9 @@
             this.homeButton = new Guna.UI2.WinForms.Guna2Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panelContainer = new System.Windows.Forms.Panel();
+            this.vesselLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRecebendo)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -57,6 +60,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.panel1.Controls.Add(this.vesselLabel);
+            this.panel1.Controls.Add(this.pictureBoxRecebendo);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.pictureBox2);
@@ -65,6 +70,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1904, 70);
             this.panel1.TabIndex = 0;
+            // 
+            // pictureBoxRecebendo
+            // 
+            this.pictureBoxRecebendo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.pictureBoxRecebendo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxRecebendo.Image")));
+            this.pictureBoxRecebendo.Location = new System.Drawing.Point(1567, -14);
+            this.pictureBoxRecebendo.Name = "pictureBoxRecebendo";
+            this.pictureBoxRecebendo.Size = new System.Drawing.Size(107, 88);
+            this.pictureBoxRecebendo.TabIndex = 5;
+            this.pictureBoxRecebendo.TabStop = false;
             // 
             // panel4
             // 
@@ -315,6 +330,20 @@
             this.panelContainer.TabIndex = 2;
             this.panelContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContainer_Paint);
             // 
+            // vesselLabel
+            // 
+            this.vesselLabel.AutoEllipsis = true;
+            this.vesselLabel.AutoSize = true;
+            this.vesselLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
+            this.vesselLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.vesselLabel.Location = new System.Drawing.Point(1250, 21);
+            this.vesselLabel.Name = "vesselLabel";
+            this.vesselLabel.Size = new System.Drawing.Size(78, 25);
+            this.vesselLabel.TabIndex = 2;
+            this.vesselLabel.Text = "admin";
+            this.vesselLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.vesselLabel.Click += new System.EventHandler(this.vesselLabel_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -330,6 +359,8 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRecebendo)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -358,6 +389,8 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label labelUser;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBoxRecebendo;
+        private System.Windows.Forms.Label vesselLabel;
     }
 }
 
