@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DockCheckWindows.Models
 {
@@ -35,6 +36,11 @@ namespace DockCheckWindows.Models
         public string ToJson()
         {
             return JsonConvert.SerializeObject(this);
+        }
+
+        public static implicit operator Vessel(Task<Vessel> v)
+        {
+            throw new NotImplementedException();
         }
     }
 
