@@ -127,7 +127,7 @@ namespace DockCheckWindows.UserControls
                 if (exists)
                 {
                     // Update the existing user
-                    _dbService.Update<User>(user);
+                    _dbService.Update<User>(user, "User");
                 }
                 else
                 {
