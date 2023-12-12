@@ -58,5 +58,8 @@ namespace DockCheckWindows.Properties {
                 this["Name"] = value;
             }
         }
+
+        public dynamic Authorization { get; internal set; }
+        public object Vessel { get; internal set; }
     }
 }
