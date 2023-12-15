@@ -28,6 +28,9 @@ namespace DockCheckWindows.Models
         [JsonProperty("updated_at")]
         public DateTime UpdatedAt { get; set; }
 
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
         public void SetPassword(string password)
         {
             using (var rng = new RNGCryptoServiceProvider())

@@ -15,7 +15,10 @@ namespace DockCheckWindows.Models
         public string VesselId { get; set; }
 
         [JsonProperty("expiration_date")]
-        public DateTime? ExpirationDate { get; set; } // Nullable DateTime if the date can be null
+        public DateTime? ExpirationDate { get; set; }// Nullable DateTime if the date can be null
+
+        [JsonProperty("status")]
+        public string Status { get; set; }
 
         public static Authorization FromJson(string jsonData)
         {

@@ -134,6 +134,10 @@ namespace DockCheckWindows
 
         [JsonProperty("hash")]
         public string Hash { get; set; }
+
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
         /*
         [JsonProperty("beacon_id")]
         public string BeaconId { get; set; }

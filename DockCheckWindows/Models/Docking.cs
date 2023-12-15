@@ -29,6 +29,9 @@ namespace DockCheckWindows.Models
         [JsonProperty("draft_meters")]
         public double DraftMeters { get; set; } // Double value, non-nullable
 
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
         public static Docking FromJson(string jsonData)
         {
             return JsonConvert.DeserializeObject<Docking>(jsonData);

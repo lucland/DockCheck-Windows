@@ -17,6 +17,9 @@ namespace DockCheckWindows.Models
         [JsonProperty("system")]
         public string System { get; set; } // Assuming non-nullable
 
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
         public static Login FromJson(string jsonData)
         {
             return JsonConvert.DeserializeObject<Login>(jsonData);

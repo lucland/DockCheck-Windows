@@ -35,6 +35,9 @@ namespace DockCheckWindows.Models
         [JsonProperty("justification")]
         public string Justification { get; set; }
 
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
         public static Event FromJson(string jsonData)
         {
             return JsonConvert.DeserializeObject<Event>(jsonData);

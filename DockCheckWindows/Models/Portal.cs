@@ -32,6 +32,9 @@ namespace DockCheckWindows.Models
         [JsonProperty("updated_at")]
         public DateTime UpdatedAt { get; set; } // Non-nullable, assuming this is always provided
 
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
         public static Portal FromJson(string jsonData)
         {
             return JsonConvert.DeserializeObject<Portal>(jsonData);

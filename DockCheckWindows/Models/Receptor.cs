@@ -17,6 +17,9 @@ namespace DockCheckWindows.Models
         [JsonProperty("id")]
         public string Id { get; set; }
 
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
         public static Receptor FromJson(string jsonData)
         {
             return JsonConvert.DeserializeObject<Receptor>(jsonData);
