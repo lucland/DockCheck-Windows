@@ -108,6 +108,7 @@
             title1.Font = new System.Drawing.Font("Century Schoolbook", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title1.Name = "2023";
             this.chartOnBoardedAll.Titles.Add(title1);
+            this.chartOnBoardedAll.Click += new System.EventHandler(this.chartOnBoardedAll_Click);
             // 
             // chartPieEmpresas
             // 

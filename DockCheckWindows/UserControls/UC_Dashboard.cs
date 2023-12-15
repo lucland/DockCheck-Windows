@@ -387,5 +387,10 @@ namespace DockCheckWindows.UserControls
         {
 
         }
+
+        private void chartOnBoardedAll_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
