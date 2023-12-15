@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.vesselLabel = new System.Windows.Forms.Label();
             this.pictureBoxRecebendo = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.labelUser = new System.Windows.Forms.Label();
@@ -47,7 +48,6 @@
             this.homeButton = new Guna.UI2.WinForms.Guna2Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panelContainer = new System.Windows.Forms.Panel();
-            this.vesselLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRecebendo)).BeginInit();
             this.panel4.SuspendLayout();
@@ -70,6 +70,21 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1904, 70);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // vesselLabel
+            // 
+            this.vesselLabel.AutoEllipsis = true;
+            this.vesselLabel.AutoSize = true;
+            this.vesselLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
+            this.vesselLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.vesselLabel.Location = new System.Drawing.Point(1250, 21);
+            this.vesselLabel.Name = "vesselLabel";
+            this.vesselLabel.Size = new System.Drawing.Size(78, 25);
+            this.vesselLabel.TabIndex = 2;
+            this.vesselLabel.Text = "admin";
+            this.vesselLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.vesselLabel.Click += new System.EventHandler(this.vesselLabel_Click);
             // 
             // pictureBoxRecebendo
             // 
@@ -329,20 +344,6 @@
             this.panelContainer.Size = new System.Drawing.Size(1904, 906);
             this.panelContainer.TabIndex = 2;
             this.panelContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContainer_Paint);
-            // 
-            // vesselLabel
-            // 
-            this.vesselLabel.AutoEllipsis = true;
-            this.vesselLabel.AutoSize = true;
-            this.vesselLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.vesselLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
-            this.vesselLabel.Location = new System.Drawing.Point(1250, 21);
-            this.vesselLabel.Name = "vesselLabel";
-            this.vesselLabel.Size = new System.Drawing.Size(78, 25);
-            this.vesselLabel.TabIndex = 2;
-            this.vesselLabel.Text = "admin";
-            this.vesselLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.vesselLabel.Click += new System.EventHandler(this.vesselLabel_Click);
             // 
             // Form1
             // 
