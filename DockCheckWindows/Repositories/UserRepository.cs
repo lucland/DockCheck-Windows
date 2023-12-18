@@ -85,5 +85,18 @@ namespace DockCheckWindows.Repositories
             string response = await PutAsync(url, jsonData, "User");
             return !string.IsNullOrEmpty(response);
         }
+
+        //get all blocked users ids in /blocked
+        public async Task<string> GetAllBlockedUsersAsync(int limit = 99, int offset = 0)
+        {
+            string url = $"{BaseUrl}/blocked?limit={limit}&offset={offset}";
+            return await GetAsync(url);
+        }
+
+        public async Task<string> GetAllApprovedUsersAsync(int page = 1, int pageSize = 10)
+        {
+            string url = $"{BaseUrl}/approved?page={page}&pageSize={pageSize}";
+            return await GetAsync(url);
+        }
     }
 }
