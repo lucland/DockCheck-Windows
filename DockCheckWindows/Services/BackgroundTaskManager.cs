@@ -1,15 +1,17 @@
-﻿using System;
-using System.Threading;
+﻿using DockCheckWindows.Repositories;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Threading;
+using System;
 
 public class BackgroundTaskManager
 {
     private CancellationTokenSource cancellationTokenSource;
+    private UserRepository userRepository; // Assuming UserRepository is accessible here
 
-    public BackgroundTaskManager()
+    public BackgroundTaskManager(UserRepository userRepository)
     {
         cancellationTokenSource = new CancellationTokenSource();
+        this.userRepository = userRepository;
     }
 
     public void StartBackgroundTask()
@@ -23,11 +25,18 @@ public class BackgroundTaskManager
         {
             try
             {
-                // Trigger the function every 5 seconds
-                await Task.Delay(5000, cancellationToken);
+                var nextRunTime = GetNextRunTime();
+                var delay = nextRunTime - DateTime.Now;
 
-                // Safe way to call a function that interacts with the UI
-                UpdateUI();
+                if (delay.TotalMilliseconds > 0)
+                {
+                    await Task.Delay(delay, cancellationToken);
+                }
+
+                await ExecuteTaskAsync();
+
+                // Wait for 24 hours before the next run
+                await Task.Delay(TimeSpan.FromHours(24), cancellationToken);
             }
             catch (TaskCanceledException)
             {
@@ -37,22 +46,32 @@ public class BackgroundTaskManager
         }
     }
 
-    private void UpdateUI()
+    private DateTime GetNextRunTime()
     {
-        // Check if the call is from a different thread than the UI thread
-        if (Application.OpenForms[0].InvokeRequired)
+        var now = DateTime.Now;
+        var nextRunTime = now.Date.AddHours(1); // 1 AM today
+
+        // If it's already past 1 AM today, schedule for 1 AM next day
+        if (now > nextRunTime)
         {
-            Application.OpenForms[0].Invoke(new MethodInvoker(ShowMessage));
+            nextRunTime = nextRunTime.AddDays(1);
         }
-        else
-        {
-            ShowMessage();
-        }
+
+        return nextRunTime;
     }
 
-    private void ShowMessage()
+    private async Task ExecuteTaskAsync()
     {
-        MessageBox.Show("Triggered every 5 seconds");
+        try
+        {
+            // Call GetAllApprovedUsersAsync method here
+            var response = await userRepository.GetAllApprovedUsersAsync();
+            // Process the response as required
+        }
+        catch (Exception ex)
+        {
+            // Handle exceptions
+        }
     }
 
     public void StopBackgroundTask()
