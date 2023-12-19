@@ -31,33 +31,6 @@ namespace DockCheckWindows.Models
         [JsonProperty("status")]
         public string Status { get; set; }
 
-        public void SetPassword(string password)
-        {
-            using (var rng = new RNGCryptoServiceProvider())
-            {
-                byte[] saltBytes = new byte[16];
-                rng.GetBytes(saltBytes);
-                Salt = BitConverter.ToString(saltBytes).Replace("-", "").ToLower();
-            }
-
-            Hash = HashPassword(password, Salt);
-        }
-
-        public bool ValidPassword(string password)
-        {
-            string testHash = HashPassword(password, Salt);
-            return Hash == testHash;
-        }
-
-        private static string HashPassword(string password, string salt)
-        {
-            byte[] saltBytes = Encoding.UTF8.GetBytes(salt);
-            using (var rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, saltBytes, 1000, HashAlgorithmName.SHA512))
-            {
-                return BitConverter.ToString(rfc2898DeriveBytes.GetBytes(64)).Replace("-", "").ToLower();
-            }
-        }
-
         public static Supervisor FromJson(string jsonData)
         {
             return JsonConvert.DeserializeObject<Supervisor>(jsonData);
