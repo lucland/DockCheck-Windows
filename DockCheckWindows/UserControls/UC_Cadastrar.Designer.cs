@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Cadastrar));
-            this.labeEmbarcacao = new System.Windows.Forms.Label();
             this.labelNome = new System.Windows.Forms.Label();
             this.labelFuncao = new System.Windows.Forms.Label();
             this.textBoxFuncao = new System.Windows.Forms.TextBox();
@@ -101,7 +100,6 @@
             this.maskedTextBoxNr34 = new System.Windows.Forms.MaskedTextBox();
             this.dateTimePickerCheckin = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.dateTimePickerCheckout = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.comboBoxEmbarcacao = new Guna.UI2.WinForms.Guna2ComboBox();
             this.obrigatorioNr34 = new System.Windows.Forms.Label();
             this.obrigatorioAso = new System.Windows.Forms.Label();
             this.obrigatorioCpf = new System.Windows.Forms.Label();
@@ -109,7 +107,6 @@
             this.obrigatorioIdentidade = new System.Windows.Forms.Label();
             this.obrigatorioFuncao = new System.Windows.Forms.Label();
             this.obrigatorioNome = new System.Windows.Forms.Label();
-            this.obrigatorioEmbarcacao = new System.Windows.Forms.Label();
             this.labelCpf = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.maskedTextBoxCpf = new System.Windows.Forms.MaskedTextBox();
@@ -138,18 +135,6 @@
             this.panel8.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // labeEmbarcacao
-            // 
-            this.labeEmbarcacao.AutoSize = true;
-            this.labeEmbarcacao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.labeEmbarcacao.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labeEmbarcacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labeEmbarcacao.Location = new System.Drawing.Point(25, 120);
-            this.labeEmbarcacao.Name = "labeEmbarcacao";
-            this.labeEmbarcacao.Size = new System.Drawing.Size(199, 36);
-            this.labeEmbarcacao.TabIndex = 0;
-            this.labeEmbarcacao.Text = "Embarcação";
             // 
             // labelNome
             // 
@@ -527,7 +512,6 @@
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.dateTimePickerCheckin);
             this.panel1.Controls.Add(this.dateTimePickerCheckout);
-            this.panel1.Controls.Add(this.comboBoxEmbarcacao);
             this.panel1.Controls.Add(this.obrigatorioNr34);
             this.panel1.Controls.Add(this.obrigatorioAso);
             this.panel1.Controls.Add(this.obrigatorioCpf);
@@ -535,7 +519,6 @@
             this.panel1.Controls.Add(this.obrigatorioIdentidade);
             this.panel1.Controls.Add(this.obrigatorioFuncao);
             this.panel1.Controls.Add(this.obrigatorioNome);
-            this.panel1.Controls.Add(this.obrigatorioEmbarcacao);
             this.panel1.Controls.Add(this.labelCpf);
             this.panel1.Controls.Add(this.labelEmail);
             this.panel1.Controls.Add(this.panel9);
@@ -551,7 +534,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
-            this.label5.Location = new System.Drawing.Point(1669, 28);
+            this.label5.Location = new System.Drawing.Point(103, 29);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(31, 38);
             this.label5.TabIndex = 39;
@@ -565,7 +548,7 @@
             this.supervisorToggleSwitch.CheckedState.InnerBorderColor = System.Drawing.Color.White;
             this.supervisorToggleSwitch.CheckedState.InnerBorderRadius = 10;
             this.supervisorToggleSwitch.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.supervisorToggleSwitch.Location = new System.Drawing.Point(1806, 328);
+            this.supervisorToggleSwitch.Location = new System.Drawing.Point(232, 605);
             this.supervisorToggleSwitch.Name = "supervisorToggleSwitch";
             this.supervisorToggleSwitch.Size = new System.Drawing.Size(70, 32);
             this.supervisorToggleSwitch.TabIndex = 38;
@@ -584,7 +567,7 @@
             this.supervisorLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.supervisorLabel.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.supervisorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.supervisorLabel.Location = new System.Drawing.Point(1607, 322);
+            this.supervisorLabel.Location = new System.Drawing.Point(33, 599);
             this.supervisorLabel.Name = "supervisorLabel";
             this.supervisorLabel.Size = new System.Drawing.Size(166, 37);
             this.supervisorLabel.TabIndex = 37;
@@ -613,7 +596,6 @@
             // senhaTextBox
             // 
             this.senhaTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.senhaTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.senhaTextBox.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.senhaTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.senhaTextBox.Location = new System.Drawing.Point(6, 3);
@@ -662,7 +644,6 @@
             // usuarioTextBox
             // 
             this.usuarioTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.usuarioTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.usuarioTextBox.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usuarioTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.usuarioTextBox.Location = new System.Drawing.Point(6, 3);
@@ -772,7 +753,7 @@
             this.excludeImageButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
             this.excludeImageButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.excludeImageButton.ForeColor = System.Drawing.Color.White;
-            this.excludeImageButton.Location = new System.Drawing.Point(1829, 75);
+            this.excludeImageButton.Location = new System.Drawing.Point(430, 71);
             this.excludeImageButton.Name = "excludeImageButton";
             this.excludeImageButton.Size = new System.Drawing.Size(36, 32);
             this.excludeImageButton.TabIndex = 25;
@@ -792,7 +773,7 @@
             this.capturaButton.FillColor = System.Drawing.Color.White;
             this.capturaButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.capturaButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
-            this.capturaButton.Location = new System.Drawing.Point(1748, 221);
+            this.capturaButton.Location = new System.Drawing.Point(171, 71);
             this.capturaButton.Name = "capturaButton";
             this.capturaButton.Size = new System.Drawing.Size(128, 43);
             this.capturaButton.TabIndex = 20;
@@ -801,9 +782,9 @@
             // 
             // pictureBoxFoto
             // 
-            this.pictureBoxFoto.Location = new System.Drawing.Point(1667, 75);
+            this.pictureBoxFoto.Location = new System.Drawing.Point(1575, 29);
             this.pictureBoxFoto.Name = "pictureBoxFoto";
-            this.pictureBoxFoto.Size = new System.Drawing.Size(155, 136);
+            this.pictureBoxFoto.Size = new System.Drawing.Size(331, 240);
             this.pictureBoxFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxFoto.TabIndex = 23;
             this.pictureBoxFoto.TabStop = false;
@@ -818,7 +799,7 @@
             this.uploadButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.uploadButton.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uploadButton.ForeColor = System.Drawing.Color.White;
-            this.uploadButton.Location = new System.Drawing.Point(1614, 221);
+            this.uploadButton.Location = new System.Drawing.Point(37, 71);
             this.uploadButton.Name = "uploadButton";
             this.uploadButton.Size = new System.Drawing.Size(128, 43);
             this.uploadButton.TabIndex = 19;
@@ -831,7 +812,7 @@
             this.fotoLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.fotoLabel.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fotoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.fotoLabel.Location = new System.Drawing.Point(1596, 30);
+            this.fotoLabel.Location = new System.Drawing.Point(30, 31);
             this.fotoLabel.Name = "fotoLabel";
             this.fotoLabel.Size = new System.Drawing.Size(78, 37);
             this.fotoLabel.TabIndex = 21;
@@ -1193,29 +1174,6 @@
             this.dateTimePickerCheckout.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.dateTimePickerCheckout.Value = new System.DateTime(2023, 10, 4, 10, 7, 40, 324);
             // 
-            // comboBoxEmbarcacao
-            // 
-            this.comboBoxEmbarcacao.BackColor = System.Drawing.Color.Transparent;
-            this.comboBoxEmbarcacao.BorderColor = System.Drawing.Color.White;
-            this.comboBoxEmbarcacao.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEmbarcacao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxEmbarcacao.FocusedColor = System.Drawing.Color.White;
-            this.comboBoxEmbarcacao.FocusedState.BorderColor = System.Drawing.Color.White;
-            this.comboBoxEmbarcacao.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxEmbarcacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.comboBoxEmbarcacao.ItemHeight = 30;
-            this.comboBoxEmbarcacao.Items.AddRange(new object[] {
-            "SKANDI RECIFE",
-            "SKANDI AMAZONAS",
-            "SKANDI IGUAÇU"});
-            this.comboBoxEmbarcacao.Location = new System.Drawing.Point(35, 73);
-            this.comboBoxEmbarcacao.MaxDropDownItems = 10;
-            this.comboBoxEmbarcacao.Name = "comboBoxEmbarcacao";
-            this.comboBoxEmbarcacao.Size = new System.Drawing.Size(429, 36);
-            this.comboBoxEmbarcacao.StartIndex = 0;
-            this.comboBoxEmbarcacao.TabIndex = 0;
-            this.comboBoxEmbarcacao.SelectedIndexChanged += new System.EventHandler(this.comboBoxEmbarcacao_SelectedIndexChanged);
-            // 
             // obrigatorioNr34
             // 
             this.obrigatorioNr34.AutoSize = true;
@@ -1299,18 +1257,6 @@
             this.obrigatorioNome.Size = new System.Drawing.Size(31, 38);
             this.obrigatorioNome.TabIndex = 0;
             this.obrigatorioNome.Text = "*";
-            // 
-            // obrigatorioEmbarcacao
-            // 
-            this.obrigatorioEmbarcacao.AutoSize = true;
-            this.obrigatorioEmbarcacao.BackColor = System.Drawing.Color.Transparent;
-            this.obrigatorioEmbarcacao.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.obrigatorioEmbarcacao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
-            this.obrigatorioEmbarcacao.Location = new System.Drawing.Point(433, 35);
-            this.obrigatorioEmbarcacao.Name = "obrigatorioEmbarcacao";
-            this.obrigatorioEmbarcacao.Size = new System.Drawing.Size(31, 38);
-            this.obrigatorioEmbarcacao.TabIndex = 0;
-            this.obrigatorioEmbarcacao.Text = "*";
             // 
             // labelCpf
             // 
@@ -1474,7 +1420,6 @@
             this.Controls.Add(this.labelAso);
             this.Controls.Add(this.labelNome);
             this.Controls.Add(this.labelIdentidade);
-            this.Controls.Add(this.labeEmbarcacao);
             this.Controls.Add(this.panel1);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
             this.Name = "UC_Cadastrar";
@@ -1516,8 +1461,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label labeEmbarcacao;
         private System.Windows.Forms.Label labelNome;
         private System.Windows.Forms.Label labelFuncao;
         private System.Windows.Forms.TextBox textBoxFuncao;
@@ -1550,9 +1493,7 @@
         private System.Windows.Forms.Label obrigatorioIdentidade;
         private System.Windows.Forms.Label obrigatorioFuncao;
         private System.Windows.Forms.Label obrigatorioNome;
-        private System.Windows.Forms.Label obrigatorioEmbarcacao;
         private Guna.UI2.WinForms.Guna2Button buttonRegistrar;
-        private Guna.UI2.WinForms.Guna2ComboBox comboBoxEmbarcacao;
         private Guna.UI2.WinForms.Guna2DateTimePicker dateTimePickerCheckout;
         private Guna.UI2.WinForms.Guna2DateTimePicker dateTimePickerCheckin;
         private System.Windows.Forms.Panel panel13;
