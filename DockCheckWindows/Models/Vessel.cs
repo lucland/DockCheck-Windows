@@ -40,11 +40,6 @@ namespace DockCheckWindows.Models
         {
             return JsonConvert.SerializeObject(this);
         }
-
-        public static implicit operator Vessel(Task<Vessel> v)
-        {
-            throw new NotImplementedException();
-        }
     }
 
 }
