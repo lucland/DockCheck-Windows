@@ -39,18 +39,16 @@ namespace DockCheckWindows.UserControls
             List<User> users = null;
             bool apiFailed = false;
 
-            // Try to fetch data from API
             try
             {
                 string apiResponse = await _userRepository.GetAllUsersAsync(limit: 99, offset: 0);
                 if (!string.IsNullOrEmpty(apiResponse))
                 {
-                    var settings = new JsonSerializerSettings
+                    users = JsonConvert.DeserializeObject<List<User>>(apiResponse, new JsonSerializerSettings
                     {
                         NullValueHandling = NullValueHandling.Ignore,
                         MissingMemberHandling = MissingMemberHandling.Ignore
-                    };
-                    users = JsonConvert.DeserializeObject<List<User>>(apiResponse, settings);
+                    });
                     isDataLoaded = true;
                     //synch data with LiteDB
                     foreach (var user in users)
