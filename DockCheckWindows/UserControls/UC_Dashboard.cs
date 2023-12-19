@@ -392,5 +392,10 @@ namespace DockCheckWindows.UserControls
         {
 
         }
+
+        private void chartRfid_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
