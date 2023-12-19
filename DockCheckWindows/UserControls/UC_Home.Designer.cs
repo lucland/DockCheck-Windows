@@ -30,9 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Home));
             this.labelABordo = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.labelTotal = new System.Windows.Forms.Label();
+            this.labelTotalABordo = new System.Windows.Forms.Label();
             this.labelPortalo = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelProaDateTime = new System.Windows.Forms.Label();
@@ -79,6 +77,12 @@
             this.label18 = new System.Windows.Forms.Label();
             this.guna2Shapes16 = new Guna.UI2.WinForms.Guna2Shapes();
             this.buttonSincronizar = new Guna.UI2.WinForms.Guna2Button();
+            this.listViewABordo = new System.Windows.Forms.ListView();
+            this.listViewBloqueados = new System.Windows.Forms.ListView();
+            this.labelBloqueados = new System.Windows.Forms.Label();
+            this.labelTotalBloqueados = new System.Windows.Forms.Label();
+            this.listViewEventos = new System.Windows.Forms.ListView();
+            this.labelEventos = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -95,48 +99,17 @@
             this.labelABordo.Size = new System.Drawing.Size(173, 38);
             this.labelABordo.TabIndex = 1;
             this.labelABordo.Text = "À BORDO:";
-            this.labelABordo.Click += new System.EventHandler(this.labelABordo_Click);
             // 
-            // listBox1
+            // labelTotalABordo
             // 
-            this.listBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 25;
-            this.listBox1.Items.AddRange(new object[] {
-            "SKANDI RECIFE: 245",
-            "",
-            "SKANDI AMAZONAS: 0",
-            "",
-            "SKANDI IGUAÇU: 96"});
-            this.listBox1.Location = new System.Drawing.Point(67, 99);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.listBox1.Size = new System.Drawing.Size(430, 175);
-            this.listBox1.TabIndex = 2;
-            this.listBox1.TabStop = false;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel1.Location = new System.Drawing.Point(54, 86);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(458, 585);
-            this.panel1.TabIndex = 3;
-            // 
-            // labelTotal
-            // 
-            this.labelTotal.AutoSize = true;
-            this.labelTotal.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelTotal.Location = new System.Drawing.Point(47, 686);
-            this.labelTotal.Name = "labelTotal";
-            this.labelTotal.Size = new System.Drawing.Size(167, 38);
-            this.labelTotal.TabIndex = 4;
-            this.labelTotal.Text = "TOAL: 341";
-            this.labelTotal.Click += new System.EventHandler(this.labelTotal_Click);
+            this.labelTotalABordo.AutoSize = true;
+            this.labelTotalABordo.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotalABordo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelTotalABordo.Location = new System.Drawing.Point(311, 355);
+            this.labelTotalABordo.Name = "labelTotalABordo";
+            this.labelTotalABordo.Size = new System.Drawing.Size(180, 38);
+            this.labelTotalABordo.TabIndex = 4;
+            this.labelTotalABordo.Text = "TOTAL: 341";
             // 
             // labelPortalo
             // 
@@ -166,7 +139,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1337, 62);
             this.panel2.TabIndex = 4;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // labelProaDateTime
             // 
@@ -177,7 +149,6 @@
             this.labelProaDateTime.Size = new System.Drawing.Size(228, 22);
             this.labelProaDateTime.TabIndex = 7;
             this.labelProaDateTime.Text = "08/05/2006 03:05:15 PM";
-            this.labelProaDateTime.Click += new System.EventHandler(this.labelProaDateTime_Click);
             // 
             // labelProaUltimaAtualizacao
             // 
@@ -187,7 +158,6 @@
             this.labelProaUltimaAtualizacao.Size = new System.Drawing.Size(192, 23);
             this.labelProaUltimaAtualizacao.TabIndex = 6;
             this.labelProaUltimaAtualizacao.Text = "Última atualização:";
-            this.labelProaUltimaAtualizacao.Click += new System.EventHandler(this.labelUltimaAtualizacao_Click);
             // 
             // guna2Shapes4
             // 
@@ -202,7 +172,6 @@
             this.guna2Shapes4.TabIndex = 5;
             this.guna2Shapes4.Text = "guna2Shapes2";
             this.guna2Shapes4.Zoom = 80;
-            this.guna2Shapes4.Click += new System.EventHandler(this.guna2Shapes4_Click);
             // 
             // guna2Shapes3
             // 
@@ -217,7 +186,6 @@
             this.guna2Shapes3.TabIndex = 5;
             this.guna2Shapes3.Text = "guna2Shapes2";
             this.guna2Shapes3.Zoom = 80;
-            this.guna2Shapes3.Click += new System.EventHandler(this.guna2Shapes3_Click);
             // 
             // guna2Shapes2
             // 
@@ -232,7 +200,6 @@
             this.guna2Shapes2.TabIndex = 5;
             this.guna2Shapes2.Text = "guna2Shapes2";
             this.guna2Shapes2.Zoom = 80;
-            this.guna2Shapes2.Click += new System.EventHandler(this.guna2Shapes2_Click);
             // 
             // labelProaCamera
             // 
@@ -253,7 +220,6 @@
             this.labelProaRfid2.Size = new System.Drawing.Size(69, 23);
             this.labelProaRfid2.TabIndex = 3;
             this.labelProaRfid2.Text = "RFID 2:";
-            this.labelProaRfid2.Click += new System.EventHandler(this.labelProaRfid2_Click);
             // 
             // labelProaRfid1
             // 
@@ -275,7 +241,6 @@
             this.labelPortaloTitulo1.Size = new System.Drawing.Size(73, 32);
             this.labelPortaloTitulo1.TabIndex = 1;
             this.labelPortaloTitulo1.Text = "Proa";
-            this.labelPortaloTitulo1.Click += new System.EventHandler(this.labelPortaloTitulo1_Click);
             // 
             // guna2Shapes1
             // 
@@ -308,7 +273,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1337, 62);
             this.panel3.TabIndex = 4;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // label1
             // 
@@ -319,7 +283,6 @@
             this.label1.Size = new System.Drawing.Size(228, 22);
             this.label1.TabIndex = 7;
             this.label1.Text = "08/05/2006 03:05:15 PM";
-            this.label1.Click += new System.EventHandler(this.labelProaDateTime_Click);
             // 
             // label2
             // 
@@ -329,7 +292,6 @@
             this.label2.Size = new System.Drawing.Size(192, 23);
             this.label2.TabIndex = 6;
             this.label2.Text = "Última atualização:";
-            this.label2.Click += new System.EventHandler(this.labelUltimaAtualizacao_Click);
             // 
             // guna2Shapes5
             // 
@@ -344,7 +306,6 @@
             this.guna2Shapes5.TabIndex = 5;
             this.guna2Shapes5.Text = "guna2Shapes2";
             this.guna2Shapes5.Zoom = 80;
-            this.guna2Shapes5.Click += new System.EventHandler(this.guna2Shapes4_Click);
             // 
             // guna2Shapes6
             // 
@@ -359,7 +320,6 @@
             this.guna2Shapes6.TabIndex = 5;
             this.guna2Shapes6.Text = "guna2Shapes2";
             this.guna2Shapes6.Zoom = 80;
-            this.guna2Shapes6.Click += new System.EventHandler(this.guna2Shapes3_Click);
             // 
             // guna2Shapes7
             // 
@@ -374,7 +334,6 @@
             this.guna2Shapes7.TabIndex = 5;
             this.guna2Shapes7.Text = "guna2Shapes2";
             this.guna2Shapes7.Zoom = 80;
-            this.guna2Shapes7.Click += new System.EventHandler(this.guna2Shapes2_Click);
             // 
             // label3
             // 
@@ -395,7 +354,6 @@
             this.label4.Size = new System.Drawing.Size(69, 23);
             this.label4.TabIndex = 3;
             this.label4.Text = "RFID 2:";
-            this.label4.Click += new System.EventHandler(this.labelProaRfid2_Click);
             // 
             // label5
             // 
@@ -449,7 +407,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1337, 62);
             this.panel4.TabIndex = 4;
-            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // label7
             // 
@@ -460,7 +417,6 @@
             this.label7.Size = new System.Drawing.Size(228, 22);
             this.label7.TabIndex = 7;
             this.label7.Text = "08/05/2006 03:05:15 PM";
-            this.label7.Click += new System.EventHandler(this.labelProaDateTime_Click);
             // 
             // label8
             // 
@@ -470,7 +426,6 @@
             this.label8.Size = new System.Drawing.Size(192, 23);
             this.label8.TabIndex = 6;
             this.label8.Text = "Última atualização:";
-            this.label8.Click += new System.EventHandler(this.labelUltimaAtualizacao_Click);
             // 
             // guna2Shapes9
             // 
@@ -485,7 +440,6 @@
             this.guna2Shapes9.TabIndex = 5;
             this.guna2Shapes9.Text = "guna2Shapes2";
             this.guna2Shapes9.Zoom = 80;
-            this.guna2Shapes9.Click += new System.EventHandler(this.guna2Shapes4_Click);
             // 
             // guna2Shapes10
             // 
@@ -500,7 +454,6 @@
             this.guna2Shapes10.TabIndex = 5;
             this.guna2Shapes10.Text = "guna2Shapes2";
             this.guna2Shapes10.Zoom = 80;
-            this.guna2Shapes10.Click += new System.EventHandler(this.guna2Shapes3_Click);
             // 
             // guna2Shapes11
             // 
@@ -515,7 +468,6 @@
             this.guna2Shapes11.TabIndex = 5;
             this.guna2Shapes11.Text = "guna2Shapes2";
             this.guna2Shapes11.Zoom = 80;
-            this.guna2Shapes11.Click += new System.EventHandler(this.guna2Shapes2_Click);
             // 
             // label9
             // 
@@ -536,7 +488,6 @@
             this.label10.Size = new System.Drawing.Size(69, 23);
             this.label10.TabIndex = 3;
             this.label10.Text = "RFID 2:";
-            this.label10.Click += new System.EventHandler(this.labelProaRfid2_Click);
             // 
             // label11
             // 
@@ -590,7 +541,6 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1337, 62);
             this.panel5.TabIndex = 4;
-            this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // label13
             // 
@@ -601,7 +551,6 @@
             this.label13.Size = new System.Drawing.Size(228, 22);
             this.label13.TabIndex = 7;
             this.label13.Text = "08/05/2006 03:05:15 PM";
-            this.label13.Click += new System.EventHandler(this.labelProaDateTime_Click);
             // 
             // label14
             // 
@@ -611,7 +560,6 @@
             this.label14.Size = new System.Drawing.Size(192, 23);
             this.label14.TabIndex = 6;
             this.label14.Text = "Última atualização:";
-            this.label14.Click += new System.EventHandler(this.labelUltimaAtualizacao_Click);
             // 
             // guna2Shapes13
             // 
@@ -626,7 +574,6 @@
             this.guna2Shapes13.TabIndex = 5;
             this.guna2Shapes13.Text = "guna2Shapes2";
             this.guna2Shapes13.Zoom = 80;
-            this.guna2Shapes13.Click += new System.EventHandler(this.guna2Shapes4_Click);
             // 
             // guna2Shapes14
             // 
@@ -641,7 +588,6 @@
             this.guna2Shapes14.TabIndex = 5;
             this.guna2Shapes14.Text = "guna2Shapes2";
             this.guna2Shapes14.Zoom = 80;
-            this.guna2Shapes14.Click += new System.EventHandler(this.guna2Shapes3_Click);
             // 
             // guna2Shapes15
             // 
@@ -656,7 +602,6 @@
             this.guna2Shapes15.TabIndex = 5;
             this.guna2Shapes15.Text = "guna2Shapes2";
             this.guna2Shapes15.Zoom = 80;
-            this.guna2Shapes15.Click += new System.EventHandler(this.guna2Shapes2_Click);
             // 
             // label15
             // 
@@ -677,7 +622,6 @@
             this.label16.Size = new System.Drawing.Size(69, 23);
             this.label16.TabIndex = 3;
             this.label16.Text = "RFID 2:";
-            this.label16.Click += new System.EventHandler(this.labelProaRfid2_Click);
             // 
             // label17
             // 
@@ -731,22 +675,100 @@
             this.buttonSincronizar.Size = new System.Drawing.Size(304, 71);
             this.buttonSincronizar.TabIndex = 6;
             this.buttonSincronizar.Text = "Sincronizar";
+            this.buttonSincronizar.Click += new System.EventHandler(this.buttonSincronizar_Click);
+            // 
+            // listViewABordo
+            // 
+            this.listViewABordo.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.listViewABordo.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewABordo.FullRowSelect = true;
+            this.listViewABordo.HideSelection = false;
+            this.listViewABordo.LabelWrap = false;
+            this.listViewABordo.Location = new System.Drawing.Point(54, 70);
+            this.listViewABordo.Name = "listViewABordo";
+            this.listViewABordo.Size = new System.Drawing.Size(424, 282);
+            this.listViewABordo.TabIndex = 7;
+            this.listViewABordo.UseCompatibleStateImageBehavior = false;
+            this.listViewABordo.View = System.Windows.Forms.View.List;
+            // 
+            // listViewBloqueados
+            // 
+            this.listViewBloqueados.FullRowSelect = true;
+            this.listViewBloqueados.HideSelection = false;
+            this.listViewBloqueados.LabelWrap = false;
+            this.listViewBloqueados.Location = new System.Drawing.Point(54, 440);
+            this.listViewBloqueados.Name = "listViewBloqueados";
+            this.listViewBloqueados.Size = new System.Drawing.Size(424, 389);
+            this.listViewBloqueados.TabIndex = 9;
+            this.listViewBloqueados.UseCompatibleStateImageBehavior = false;
+            this.listViewBloqueados.View = System.Windows.Forms.View.List;
+            // 
+            // labelBloqueados
+            // 
+            this.labelBloqueados.AutoSize = true;
+            this.labelBloqueados.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBloqueados.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelBloqueados.Location = new System.Drawing.Point(47, 399);
+            this.labelBloqueados.Name = "labelBloqueados";
+            this.labelBloqueados.Size = new System.Drawing.Size(240, 38);
+            this.labelBloqueados.TabIndex = 8;
+            this.labelBloqueados.Text = "BLOQUEADOS:";
+            // 
+            // labelTotalBloqueados
+            // 
+            this.labelTotalBloqueados.AutoSize = true;
+            this.labelTotalBloqueados.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotalBloqueados.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelTotalBloqueados.Location = new System.Drawing.Point(298, 852);
+            this.labelTotalBloqueados.Name = "labelTotalBloqueados";
+            this.labelTotalBloqueados.Size = new System.Drawing.Size(180, 38);
+            this.labelTotalBloqueados.TabIndex = 10;
+            this.labelTotalBloqueados.Text = "TOTAL: 341";
+            // 
+            // listViewEventos
+            // 
+            this.listViewEventos.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.listViewEventos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewEventos.FullRowSelect = true;
+            this.listViewEventos.HideSelection = false;
+            this.listViewEventos.LabelWrap = false;
+            this.listViewEventos.Location = new System.Drawing.Point(551, 440);
+            this.listViewEventos.Name = "listViewEventos";
+            this.listViewEventos.Size = new System.Drawing.Size(1337, 389);
+            this.listViewEventos.TabIndex = 12;
+            this.listViewEventos.UseCompatibleStateImageBehavior = false;
+            this.listViewEventos.View = System.Windows.Forms.View.List;
+            // 
+            // labelEventos
+            // 
+            this.labelEventos.AutoSize = true;
+            this.labelEventos.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEventos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelEventos.Location = new System.Drawing.Point(544, 399);
+            this.labelEventos.Name = "labelEventos";
+            this.labelEventos.Size = new System.Drawing.Size(321, 38);
+            this.labelEventos.TabIndex = 11;
+            this.labelEventos.Text = "EVENTOS RECENTES:";
             // 
             // UC_Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.listViewEventos);
+            this.Controls.Add(this.labelEventos);
+            this.Controls.Add(this.labelTotalBloqueados);
+            this.Controls.Add(this.listViewBloqueados);
+            this.Controls.Add(this.labelBloqueados);
+            this.Controls.Add(this.listViewABordo);
             this.Controls.Add(this.buttonSincronizar);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.labelPortalo);
-            this.Controls.Add(this.labelTotal);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.labelTotalABordo);
             this.Controls.Add(this.labelABordo);
-            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "UC_Home";
@@ -767,9 +789,7 @@
 
         #endregion
         private System.Windows.Forms.Label labelABordo;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label labelTotal;
+        private System.Windows.Forms.Label labelTotalABordo;
         private System.Windows.Forms.Label labelPortalo;
         private System.Windows.Forms.Panel panel2;
         private Guna.UI2.WinForms.Guna2Shapes guna2Shapes1;
@@ -816,5 +836,11 @@
         private System.Windows.Forms.Label label18;
         private Guna.UI2.WinForms.Guna2Shapes guna2Shapes16;
         private Guna.UI2.WinForms.Guna2Button buttonSincronizar;
+        private System.Windows.Forms.ListView listViewABordo;
+        private System.Windows.Forms.ListView listViewBloqueados;
+        private System.Windows.Forms.Label labelBloqueados;
+        private System.Windows.Forms.Label labelTotalBloqueados;
+        private System.Windows.Forms.ListView listViewEventos;
+        private System.Windows.Forms.Label labelEventos;
     }
 }
