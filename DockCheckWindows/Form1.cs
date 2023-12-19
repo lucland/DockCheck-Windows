@@ -32,6 +32,13 @@ namespace DockCheckWindows
                                    apiService: new ApiService()
                                                       );
 
+
+        private UserRepository userRepository = new UserRepository(apiService: new ApiService());
+
+        private VesselRepository vesselRepository = new VesselRepository(apiService: new ApiService());
+
+        private AuthorizationRepository authorizationRepository = new AuthorizationRepository(apiService: new ApiService());
+
         public Form1()
         {
             CultureInfo newCulture = new CultureInfo("en");
@@ -43,14 +50,14 @@ namespace DockCheckWindows
 
             InitializeComponent();
 
-             Login loginForm = new Login(
+            Login loginForm = new Login(
                 authenticationRepository: _authenticationRepository
                 );
             loginForm.ShowDialog();
 
             if (loginForm.IsAuthenticated)
             {
-                BackgroundTaskManager backgroundTaskManager = new BackgroundTaskManager();
+                BackgroundTaskManager backgroundTaskManager = new BackgroundTaskManager(userRepository: userRepository);
                 backgroundTaskManager.StartBackgroundTask();
 
                 UC_Home home = new UC_Home();
@@ -78,7 +85,6 @@ namespace DockCheckWindows
         //retieve user object from user_id with UserRepository
         private async void loggedUserName(String userId)
         {
-            UserRepository userRepository = new UserRepository(apiService: new ApiService());
             var user = await userRepository.GetUserByIdAsync(userId);
             Console.WriteLine("User: " + user.ToJson());
 
@@ -161,11 +167,38 @@ namespace DockCheckWindows
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
+            //retrieve authorization from settings
+            string authorization = Properties.Settings.Default.Authorization;
+            //split the authorizations by comma
+            var authorizationIds = authorization.Split(',');
 
-            
-    
+            List<string> vesselNames = new List<string>();
+            List<string> vesselIds = new List<string>();
+
+            foreach (var authId in authorizationIds)
+            {
+                var authorizationComplete = await authorizationRepository.GetAuthorizationByIdAsync(authId);
+
+                if (authorizationComplete != null)
+                {
+                    string vesselId = authorizationComplete.VesselId;
+                    var vessel = await vesselRepository.GetVesselByIdAsync(vesselId);
+                    if (vessel != null)
+                    {
+                        //save the Vessel Name, Vessel IDs into our settings
+                        vesselNames.Add(vessel.Name);
+                        vesselIds.Add(vessel.Id);
+                    }
+
+                    Properties.Settings.Default.Vessel = string.Join(",", vesselNames);
+                    Properties.Settings.Default.VesselId = string.Join(",", vesselIds);
+                    Properties.Settings.Default.Save();
+
+                }
+                
+            }
         }
 
         private void panelContainer_Paint(object sender, PaintEventArgs e)
@@ -178,18 +211,24 @@ namespace DockCheckWindows
 
         }
 
-        private void vesselLabel_Click(object sender, EventArgs e)
+        async private void vesselLabel_Click(object sender, EventArgs e)
         {
             //retrieve authorization from settings
             string authorization = Properties.Settings.Default.Authorization;
             //retieve vessel object from authorization with VesselRepository
             VesselRepository vesselRepository = new VesselRepository(apiService: new ApiService());
-            Task<Vessel> task = vesselRepository.GetVesselByIdAsync(authorization);
-            Vessel vessel = task;
+            AuthorizationRepository authorizationRepository = new AuthorizationRepository(apiService: new ApiService());
+            Authorization authorization1 = await authorizationRepository.GetAuthorizationByIdAsync(authorization);
+            Vessel vessel = await vesselRepository.GetVesselByIdAsync(authorization1.VesselId);
+     
             if (vessel != null)
             {
                 //save vessel name in settings and write in label
                 Properties.Settings.Default.Vessel = vessel.Name;
+                Properties.Settings.Default.Save();
+
+                //save vessel id in settings and write in label
+                Properties.Settings.Default.VesselId = vessel.Id;
                 Properties.Settings.Default.Save();
 
                 vesselLabel.Text = vessel.Name;
