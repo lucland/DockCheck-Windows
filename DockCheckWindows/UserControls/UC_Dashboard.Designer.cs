@@ -56,7 +56,7 @@
             this.buttonBaixar = new Guna.UI2.WinForms.Guna2Button();
             this.buttonSincronizar = new Guna.UI2.WinForms.Guna2Button();
             this.chartRfid = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.labelRfids = new System.Windows.Forms.Label();
+            this.labelBeacons = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.chartCompanyRange = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label4 = new System.Windows.Forms.Label();
@@ -250,18 +250,19 @@
             title3.Font = new System.Drawing.Font("Century Schoolbook", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title3.Name = "2023";
             this.chartRfid.Titles.Add(title3);
+            this.chartRfid.Click += new System.EventHandler(this.chartRfid_Click);
             // 
-            // labelRfids
+            // labelBeacons
             // 
-            this.labelRfids.AutoSize = true;
-            this.labelRfids.BackColor = System.Drawing.Color.Transparent;
-            this.labelRfids.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRfids.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelRfids.Location = new System.Drawing.Point(949, 30);
-            this.labelRfids.Name = "labelRfids";
-            this.labelRfids.Size = new System.Drawing.Size(272, 37);
-            this.labelRfids.TabIndex = 10;
-            this.labelRfids.Text = "RFID\'s Registrados";
+            this.labelBeacons.AutoSize = true;
+            this.labelBeacons.BackColor = System.Drawing.Color.Transparent;
+            this.labelBeacons.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBeacons.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelBeacons.Location = new System.Drawing.Point(949, 30);
+            this.labelBeacons.Name = "labelBeacons";
+            this.labelBeacons.Size = new System.Drawing.Size(317, 37);
+            this.labelBeacons.TabIndex = 10;
+            this.labelBeacons.Text = "Beacons Registrados";
             // 
             // label3
             // 
@@ -390,7 +391,7 @@
             this.Controls.Add(this.chartValidades);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.chartCompanyRange);
-            this.Controls.Add(this.labelRfids);
+            this.Controls.Add(this.labelBeacons);
             this.Controls.Add(this.chartRfid);
             this.Controls.Add(this.buttonSincronizar);
             this.Controls.Add(this.buttonBaixar);
@@ -416,7 +417,7 @@
         private Guna.UI2.WinForms.Guna2Button buttonBaixar;
         private Guna.UI2.WinForms.Guna2Button buttonSincronizar;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartRfid;
-        private System.Windows.Forms.Label labelRfids;
+        private System.Windows.Forms.Label labelBeacons;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartCompanyRange;
         private System.Windows.Forms.Label label4;
