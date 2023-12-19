@@ -61,5 +61,6 @@ namespace DockCheckWindows.Properties {
 
         public dynamic Authorization { get; internal set; }
         public object Vessel { get; internal set; }
+        public string VesselId { get; internal set; }
     }
 }
