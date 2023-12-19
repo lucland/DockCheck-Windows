@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using DockCheckWindows.Repositories;
 using DockCheckWindows.Services;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace DockCheckWindows
@@ -21,6 +23,7 @@ namespace DockCheckWindows
 
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
+            Close();
             Application.Exit();
         }
 
@@ -42,21 +45,17 @@ namespace DockCheckWindows
 
                     IsAuthenticated = true;
 
-                    // Store the token in a static property or a settings file if needed
-                    // For example, using Properties.Settings:
                     Properties.Settings.Default.Token = Token;
                     Properties.Settings.Default.Save();
 
-                    //save authorization from login
-                    Properties.Settings.Default.Authorization = jsonResult.authorizations_id;
-                    Console.WriteLine("Authorization: " + jsonResult.aut);
-
-
-                    //save user_id from login
-                    Properties.Settings.Default.UserId = jsonResult.user_id;
-                    Console.WriteLine("User id: " + jsonResult.user_id);
+                    // Save authorization IDs from login response
+                    var authorizations = jsonResult.authorizations_id.ToObject<List<string>>();
+                    Properties.Settings.Default.Authorization = string.Join(",", authorizations); // Join the array into a comma-separated string
                     Properties.Settings.Default.Save();
-                    Console.WriteLine("settings of UserId " + Properties.Settings.Default.UserId);
+
+                    // Save user_id from login response
+                    Properties.Settings.Default.UserId = jsonResult.user_id.ToString();
+                    Properties.Settings.Default.Save();
 
                     this.Close();
                 }
@@ -70,6 +69,8 @@ namespace DockCheckWindows
                 MessageBox.Show($"An error occurred: {ex.Message}");
             }
         }
+
+
 
         private void Login_Load(object sender, EventArgs e)
         {
