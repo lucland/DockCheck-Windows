@@ -11,7 +11,7 @@ namespace DockCheckWindows.Repositories
 {
     public class VesselRepository : BaseRepository<Vessel>
     {
-        private const string BaseUrl = "http://localhost:3000/api/v1/vessel";
+        private const string BaseUrl = "http://localhost:3000/api/v1/vessels";
 
         public VesselRepository(ApiService apiService)
             : base(apiService)
@@ -36,13 +36,11 @@ namespace DockCheckWindows.Repositories
             return JsonConvert.DeserializeObject<Vessel>(response);
         }
 
-        public async Task<string> GetVesselIdByNameAsync(string vesselName)
+        public async Task<List<Event>> GetEventsByVesselIdAsync(string vesselId, int limit = 50, int offset = 0)
         {
-            Console.WriteLine("GET ALL VESSELS");
-            var vesselsJson = await GetAllVesselsAsync();
-            var vessels = JsonConvert.DeserializeObject<List<Vessel>>(vesselsJson);
-            var vessel = vessels.FirstOrDefault(v => v.Name.Equals(vesselName, StringComparison.OrdinalIgnoreCase));
-            return vessel == null ? "vessel1" : vessel?.Id;
+            string url = $"{BaseUrl}/events/{vesselId}?limit={limit}&offset={offset}";
+            var json = await GetAsync(url);
+            return JsonConvert.DeserializeObject<List<Event>>(json);
         }
     }
 }
