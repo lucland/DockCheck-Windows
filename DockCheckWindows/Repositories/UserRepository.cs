@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using DockCheckWindows.Models;
 using DockCheckWindows.Services;
@@ -45,17 +47,6 @@ namespace DockCheckWindows.Repositories
             return await GetAsync(url);
         }
 
-        public async Task<bool> CheckUsernameAsync(string username)
-        {
-            string url = $"{BaseUrl}/checkUsername";
-            var data = new {username};
-            string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(data);
-            string response = await PostAsync(url, jsonData, "usernames");
-            JObject jsonResponse = JObject.Parse(response);
-            string message = jsonResponse["message"].ToString();
-            return message == "Username available";
-        }
-
         public async Task<string> SearchUsersAsync(string searchTerm, int page = 1, int pageSize = 10)
         {
             string url = $"{BaseUrl}/search?searchTerm={searchTerm}&page={page}&pageSize={pageSize}";
@@ -85,17 +76,17 @@ namespace DockCheckWindows.Repositories
             string response = await PutAsync(url, jsonData, "User");
             return !string.IsNullOrEmpty(response);
         }
-
-        //get all blocked users ids in /blocked
-        public async Task<string> GetAllBlockedUsersAsync(int limit = 99, int offset = 0)
+        public async Task<List<string>> GetAllBlockedUsersAsync()
         {
-            string url = $"{BaseUrl}/blocked?limit={limit}&offset={offset}";
-            return await GetAsync(url);
+            string url = $"{BaseUrl}/all/blocked";
+            string jsonResponse = await GetAsync(url);
+            var blockedUserIds = JsonConvert.DeserializeObject<List<string>>(jsonResponse);
+            return blockedUserIds;
         }
 
         public async Task<string> GetAllApprovedUsersAsync(int page = 1, int pageSize = 10)
         {
-            string url = $"{BaseUrl}/approved?page={page}&pageSize={pageSize}";
+            string url = $"{BaseUrl}/all/approved?page={page}&pageSize={pageSize}";
             return await GetAsync(url);
         }
     }
