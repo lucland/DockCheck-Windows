@@ -98,20 +98,6 @@ namespace DockCheckWindows.UserControls
                     !string.IsNullOrEmpty(senhaTextBox.Text);
             }
 
-            if (areFieldsFilled)
-            {
-                if (adminToggleSwitch.Checked)
-                {
-                    //check if username is already in use
-                    bool username = await _userRepository.CheckUsernameAsync(usuarioTextBox.Text);
-                    if (username == false)
-                    {
-                        areFieldsFilled = false;
-                        MessageBox.Show("Nome de usuário já está em uso.");
-                    }
-                }
-            }
-
             buttonCadastrar.Enabled = areFieldsFilled;
             buttonRegistrar.Enabled = areFieldsFilled && textBoxRFID.Text.Length == 24;
         }
@@ -214,8 +200,8 @@ namespace DockCheckWindows.UserControls
             try
             {
                 // Generate salt and hash if needed
-                var salt = adminToggleSwitch.Checked ? GenerateSalt() : "";
-                var hash = (adminToggleSwitch.Checked && senhaTextBox.Text != "") ? GenerateHash(senhaTextBox.Text, salt) : "";
+                var salt = "";
+                var hash = "";
 
                 DateTime asoDate;
                 bool asoDateParsed = DateTime.TryParseExact(maskedTextBoxAso.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out asoDate);
@@ -231,6 +217,7 @@ namespace DockCheckWindows.UserControls
 
                 DateTime nr35Date;
                 bool nr35DateParsed = DateTime.TryParseExact(maskedTextBoxNr35.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out nr35Date);
+
 
 
                 // Create new user object
@@ -269,7 +256,7 @@ namespace DockCheckWindows.UserControls
                     Email = textBoxEmail.Text ?? "",
                     Picture = pictureBoxFoto.Image != null ? "" : "",
                     RFID = textBoxRFID.Text ?? "",
-                    Project = comboBoxEmbarcacao.Text ?? "",
+                    Project = "",
                     IsVisitor = visitanteToggleSwitch.Checked,
                 };
 
@@ -282,14 +269,10 @@ namespace DockCheckWindows.UserControls
                     // VesselId will be set after retrieving it from the VesselRepository
                 };
 
-                var vesselId = await _vesselRepository.GetVesselIdByNameAsync(comboBoxEmbarcacao.Text);
-                if (string.IsNullOrEmpty(vesselId))
-                {
-                    MessageBox.Show("Embarcação não encontrada.");
-                    return;
-                }
+                //get first saved vessel id from settings
+                string vesselId = Properties.Settings.Default.VesselId.Split(',')[0];
 
-                newAuthorization.VesselId = "vessel1";
+                newAuthorization.VesselId = vesselId;
 
                 // Add the authorization id to the  AuthorizationsId from the new user
                 List<Guid> authorizationsId = new List<Guid>
@@ -297,48 +280,46 @@ namespace DockCheckWindows.UserControls
                     newAuthorization.Id
                 };
                 newUser.AuthorizationsId = authorizationsId.ToArray();
-
+             
                 // Save the user using UserRepository
-                //if user is supervisor, save it using SupervisorRepository
-                Console.WriteLine(newUser.ToJson());
-                if (adminToggleSwitch.Checked)
-                {
-                    var supervisor = new Supervisor
-                    {
-                        Id = newUser.Identificacao,
-                        Name = newUser.Name,
-                        Username = newUser.Username,
-                        Salt = newUser.Salt,
-                        Hash = newUser.Hash,
-                        CompanyId = newUser.Company,
-                        UpdatedAt = DateTime.Now
-                    };
+               
 
-                    var supervisorCreationResult = await _supervisorRepository.CreateSupervisorAsync(supervisor);
-                    if (supervisorCreationResult == null)
-                    {
-                        MessageBox.Show("Erro ao cadastrar supervisor.");
-                        return;
-                    }
-                }
-
-                if (!adminToggleSwitch.Checked)
-                {
                     var userCreationResult = await _userRepository.CreateUserAsync(newUser);
                     if (userCreationResult == false)
                     {
                         MessageBox.Show("Erro ao cadastrar usuário.");
                         return;
-                    }
+                    } else
+                {
+                    Event eventoCriacao = new Event
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        PortalId = "portal1",
+                        UserId = newUser.Identificacao,
+                        VesselId = vesselId,
+                        Action = 0,
+                        Direction = 0,
+                        Manual = false,
+                        Status = "sync_pending",
+                        Timestamp = DateTime.Now,
+                        Picture = "",
+                        Justification = ""
+                    };
 
-                    // Save the authorization using AuthorizationRepository
-                    var authorizationCreationResult = await _authorizationRepository.CreateAuthorizationAsync(newAuthorization);
+                    //post new event to api
+                    EventRepository eventRepository = new EventRepository(apiService: new ApiService());
+                    await eventRepository.CreateEventAsync(eventoCriacao);
+
+                }
+
+                // Save the authorization using AuthorizationRepository
+                var authorizationCreationResult = await _authorizationRepository.CreateAuthorizationAsync(newAuthorization);
                     if (authorizationCreationResult == null)
                     {
                         MessageBox.Show("Erro ao criar autorização.");
                         return;
                     }
-                }
+                
 
                 await Task.Delay(500);
                 loadingBar.Value = 40;
@@ -380,25 +361,6 @@ namespace DockCheckWindows.UserControls
             // You might want to refactor the code inside buttonCadastrar_Click 
             // into a separate method and call that method here and inside buttonCadastrar_Click.
             buttonCadastrar_Click(this, EventArgs.Empty);
-        }
-
-        private string GenerateSalt()
-        {
-            byte[] randomBytes = new byte[128 / 8];
-            using (var generator = RandomNumberGenerator.Create())
-            {
-                generator.GetBytes(randomBytes);
-                return Convert.ToBase64String(randomBytes);
-            }
-        }
-
-        private string GenerateHash(string password, string salt)
-        {
-            using (var pbkdf2 = new Rfc2898DeriveBytes(password, Encoding.UTF8.GetBytes(salt), 10000))
-            {
-                byte[] hash = pbkdf2.GetBytes(20);
-                return Convert.ToBase64String(hash);
-            }
         }
 
         private void buttonConves_Click(object sender, EventArgs e)
@@ -465,11 +427,6 @@ namespace DockCheckWindows.UserControls
         private void dateTimePickerCheckout_ValueChanged(object sender, EventArgs e)
         {
             ValidateFields();
-        }
-
-        private void comboBoxEmbarcacao_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void uploadButton_Click(object sender, EventArgs e)
