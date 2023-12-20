@@ -52,6 +52,9 @@
             this.labelNumero = new System.Windows.Forms.Label();
             this.buttonCadastrar = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.motivoLabel = new System.Windows.Forms.Label();
+            this.bloquearButton = new Guna.UI2.WinForms.Guna2Button();
+            this.motivoTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.supervisorToggleSwitch = new Guna.UI2.WinForms.Guna2ToggleSwitch();
             this.supervisorLabel = new System.Windows.Forms.Label();
@@ -474,6 +477,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.panel1.Controls.Add(this.motivoLabel);
+            this.panel1.Controls.Add(this.bloquearButton);
+            this.panel1.Controls.Add(this.motivoTextBox);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.supervisorToggleSwitch);
             this.panel1.Controls.Add(this.supervisorLabel);
@@ -527,6 +533,61 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(2206, 696);
             this.panel1.TabIndex = 0;
+            // 
+            // motivoLabel
+            // 
+            this.motivoLabel.AutoSize = true;
+            this.motivoLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.motivoLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.motivoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.motivoLabel.Location = new System.Drawing.Point(1605, 301);
+            this.motivoLabel.Name = "motivoLabel";
+            this.motivoLabel.Size = new System.Drawing.Size(305, 46);
+            this.motivoLabel.TabIndex = 42;
+            this.motivoLabel.Text = "Caso queira bloquea o usuário, \r\ndescreva o motivo abaixo:";
+            // 
+            // bloquearButton
+            // 
+            this.bloquearButton.BackColor = System.Drawing.Color.Transparent;
+            this.bloquearButton.BorderRadius = 3;
+            this.bloquearButton.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
+            this.bloquearButton.CustomBorderThickness = new System.Windows.Forms.Padding(5);
+            this.bloquearButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.bloquearButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.bloquearButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.bloquearButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.bloquearButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
+            this.bloquearButton.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bloquearButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.bloquearButton.ImageOffset = new System.Drawing.Point(0, 1);
+            this.bloquearButton.ImageSize = new System.Drawing.Size(30, 30);
+            this.bloquearButton.Location = new System.Drawing.Point(1609, 619);
+            this.bloquearButton.Name = "bloquearButton";
+            this.bloquearButton.Size = new System.Drawing.Size(297, 56);
+            this.bloquearButton.TabIndex = 41;
+            this.bloquearButton.Text = "Bloquear Usuário";
+            this.bloquearButton.Click += new System.EventHandler(this.bloquearButton_Click);
+            // 
+            // motivoTextBox
+            // 
+            this.motivoTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.motivoTextBox.DefaultText = "";
+            this.motivoTextBox.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.motivoTextBox.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.motivoTextBox.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.motivoTextBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.motivoTextBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.motivoTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.motivoTextBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.motivoTextBox.Location = new System.Drawing.Point(1609, 356);
+            this.motivoTextBox.Multiline = true;
+            this.motivoTextBox.Name = "motivoTextBox";
+            this.motivoTextBox.PasswordChar = '\0';
+            this.motivoTextBox.PlaceholderText = "";
+            this.motivoTextBox.SelectedText = "";
+            this.motivoTextBox.Size = new System.Drawing.Size(297, 253);
+            this.motivoTextBox.TabIndex = 40;
+            this.motivoTextBox.TextChanged += new System.EventHandler(this.motivoTextBox_TextChanged);
             // 
             // label5
             // 
@@ -646,11 +707,11 @@
             this.usuarioTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.usuarioTextBox.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usuarioTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.usuarioTextBox.Location = new System.Drawing.Point(6, 3);
+            this.usuarioTextBox.Location = new System.Drawing.Point(5, 6);
             this.usuarioTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.usuarioTextBox.Name = "usuarioTextBox";
             this.usuarioTextBox.Size = new System.Drawing.Size(495, 30);
-            this.usuarioTextBox.TabIndex = 1;
+            this.usuarioTextBox.TabIndex = 2;
             this.usuarioTextBox.Visible = false;
             // 
             // adminToggleSwitch
@@ -671,7 +732,7 @@
             this.adminToggleSwitch.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
             this.adminToggleSwitch.UncheckedState.InnerBorderRadius = 10;
             this.adminToggleSwitch.UncheckedState.InnerColor = System.Drawing.Color.White;
-            this.adminToggleSwitch.CheckedChanged += new System.EventHandler(this.guna2ToggleSwitch1_CheckedChanged_1);
+            this.adminToggleSwitch.CheckedChanged += new System.EventHandler(this.adminToggleSwitch_CheckedChanged);
             // 
             // usuarioLabel
             // 
@@ -729,7 +790,7 @@
             this.guardiaoToggleSwitch.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
             this.guardiaoToggleSwitch.UncheckedState.InnerBorderRadius = 10;
             this.guardiaoToggleSwitch.UncheckedState.InnerColor = System.Drawing.Color.White;
-            this.guardiaoToggleSwitch.CheckedChanged += new System.EventHandler(this.guardiaoToggleSwitch1_CheckedChanged);
+            this.guardiaoToggleSwitch.CheckedChanged += new System.EventHandler(this.guardiaoToggleSwitch_CheckedChanged);
             // 
             // label6
             // 
@@ -782,9 +843,9 @@
             // 
             // pictureBoxFoto
             // 
-            this.pictureBoxFoto.Location = new System.Drawing.Point(1575, 29);
+            this.pictureBoxFoto.Location = new System.Drawing.Point(1609, 54);
             this.pictureBoxFoto.Name = "pictureBoxFoto";
-            this.pictureBoxFoto.Size = new System.Drawing.Size(331, 240);
+            this.pictureBoxFoto.Size = new System.Drawing.Size(297, 210);
             this.pictureBoxFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxFoto.TabIndex = 23;
             this.pictureBoxFoto.TabStop = false;
@@ -1533,7 +1594,6 @@
         private System.Windows.Forms.Label senhaLabel;
         private System.Windows.Forms.Label senhaReqLabel;
         private System.Windows.Forms.Panel usuarioPanel;
-        private System.Windows.Forms.TextBox usuarioTextBox;
         private Guna.UI2.WinForms.Guna2ToggleSwitch adminToggleSwitch;
         private System.Windows.Forms.Label usuarioLabel;
         private System.Windows.Forms.Label adminLabel;
@@ -1550,5 +1610,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ProgressBar loadingBar;
+        private Guna.UI2.WinForms.Guna2Button bloquearButton;
+        private System.Windows.Forms.Label motivoLabel;
+        private Guna.UI2.WinForms.Guna2TextBox motivoTextBox;
+        private System.Windows.Forms.TextBox usuarioTextBox;
     }
 }
