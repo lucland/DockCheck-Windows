@@ -255,18 +255,8 @@ namespace DockCheckWindows.UserControls
                 var user = cadastrosDataGrid.Rows[e.RowIndex].DataBoundItem as User;
                 if (user != null)
                 {
-                    // Assuming uc_Cadastrar is an instance of UC_Cadastrar
                     uc_Cadastrar.PopulateFields(user);
-
                     SwitchToCadastro?.Invoke();
-
-                    //call EdicaoUsuario passing the selected Cadastro
-                    //EdicaoUsuario edicaoUsuario = new EdicaoUsuario(cadastro);
-                    //show EdicaoUsuario as a dialog
-                    //edicaoUsuario.ShowDialog();
-
-                    // Code to switch to the UC_Cadastrar UserControl
-                    // This depends on how you're managing UserControls in your application
                 }
             }
         }
