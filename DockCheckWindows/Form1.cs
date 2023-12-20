@@ -64,10 +64,8 @@ namespace DockCheckWindows
 
                 uc_Cadastrar = new UC_Cadastrar(
                     userRepository: new UserRepository(apiService: new ApiService()),
-                    vesselRepository: new VesselRepository(
-                    apiService: new ApiService()),
                     authorizationRepository: new AuthorizationRepository(apiService: new ApiService()),
-                    uc_DadosInstance: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService())));
+                    ucDados: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService())));
 
                 uc_Dados = new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()));
 
@@ -118,9 +116,8 @@ namespace DockCheckWindows
         {
             UC_Cadastrar cadastrar = new UC_Cadastrar(
                 userRepository: new UserRepository(apiService: new ApiService()),
-                vesselRepository: new VesselRepository(apiService: new ApiService()),
                 authorizationRepository: new AuthorizationRepository(apiService: new ApiService()),
-                uc_DadosInstance: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()))
+                ucDados: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()))
                 );
             cadastrar.SwitchToDados += () =>
             {
