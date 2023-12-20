@@ -233,10 +233,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\ActionEnum.cs" />
     <Compile Include="Models\Beacon.cs" />
+    <Compile Include="Models\Pic.cs" />
     <Compile Include="Models\Receptor.cs" />
     <Compile Include="Repositories\AuthorizationRepository.cs" />
     <Compile Include="Repositories\BeaconRepository.cs" />
+    <Compile Include="Repositories\PicRepository.cs" />
     <Compile Include="Repositories\ReceptorRepository.cs" />
     <Compile Include="Services\ApiService.cs" />
     <Compile Include="Models\Authorization.cs" />
