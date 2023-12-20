@@ -53,6 +53,14 @@ namespace DockCheckWindows.Repositories
             return await GetAsync(url);
         }
 
+        public async Task<bool> UpdateUserAsync(User user)
+        {
+            string url = $"{BaseUrl}/update/{user.Identificacao}";
+            string data = user.ToJson();
+            string response = await PutAsync(url, data, "User");
+            return !string.IsNullOrEmpty(response);
+        }
+
         public async Task<string> GetLastNumberAsync()
         {
             string url = $"{BaseUrl}/all/lastnumber";
