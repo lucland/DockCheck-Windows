@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 using OfficeOpenXml;
 using System.IO;
 using DockCheckWindows.Repositories;
+using DockCheckWindows.Models;
+using static Microsoft.IO.RecyclableMemoryStreamManager;
 
 namespace DockCheckWindows.UserControls
 {
@@ -16,193 +18,235 @@ namespace DockCheckWindows.UserControls
         LiteDbService db;
         private UC_Cadastrar uc_Cadastrar;
         private readonly UserRepository _userRepository;
+        private readonly EventRepository _eventRepository;
         private bool isDataLoaded = false;
+        private List<User> _users;
+        private List<Event> _events;
 
-        public UC_Dados(UC_Cadastrar uc_CadastrarInstance, UserRepository userRepository)
+        public Action SwitchToCadastro { get; set; }
+
+        public UC_Dados(UC_Cadastrar uc_CadastrarInstance, UserRepository userRepository, EventRepository eventRepository)
         {
             InitializeComponent();
             this.uc_Cadastrar = uc_CadastrarInstance;
             _userRepository = userRepository;
+            _eventRepository = eventRepository;
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            if (db == null)
-            {
-                db = LiteDbService.Instance;
-            }
+            db = LiteDbService.Instance;
+
+            InitializeDropdowns();
+            CarregarDados();
+        }
+
+        private void InitializeDropdowns()
+        {
+            crescenteDecrescente.Items.Add("CRESCENTE");
+            crescenteDecrescente.Items.Add("DECRESCENTE");
+            crescenteDecrescente.SelectedIndex = 0;
+        }
+
+        private void CarregarDados()
+        {
             if (!isDataLoaded)
             {
-                CarregarDados();
+                if (tableSwitchDropdown.SelectedItem.ToString() == "Usuários")
+                {
+                    LoadUsers();
+                }
+                else if (tableSwitchDropdown.SelectedItem.ToString() == "Eventos")
+                {
+                    LoadEvents();
+                }
             }
         }
 
-        private async void CarregarDados()
+        private async void LoadUsers()
         {
-            List<User> users = null;
-            bool apiFailed = false;
+            if (isDataLoaded) return;
 
             try
             {
                 string apiResponse = await _userRepository.GetAllUsersAsync(limit: 99, offset: 0);
                 if (!string.IsNullOrEmpty(apiResponse))
                 {
-                    users = JsonConvert.DeserializeObject<List<User>>(apiResponse, new JsonSerializerSettings
+                    _users = JsonConvert.DeserializeObject<List<User>>(apiResponse, new JsonSerializerSettings
                     {
                         NullValueHandling = NullValueHandling.Ignore,
                         MissingMemberHandling = MissingMemberHandling.Ignore
                     });
                     isDataLoaded = true;
-                    //synch data with LiteDB
-                    foreach (var user in users)
+                    UpdateSortedAndFilteredUserDataSource();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("API call exception: " + ex.Message);
+                MessageBox.Show("API call failed. Fetching data from LiteDB.");
+                _users = db.GetAll<User>("User").ToList();
+                isDataLoaded = true;
+                UpdateSortedAndFilteredUserDataSource();
+            }
+            UpdateComboBoxOrdenarForUsers();
+        }
+
+        private async void LoadEvents()
+        {
+            List<Event> events = null;
+            bool apiFailed = false;
+
+            try
+            {
+                string apiResponse = await _eventRepository.GetAllEventsAsync(limit: 99, offset: 0);
+                if (!string.IsNullOrEmpty(apiResponse))
+                {
+                    events = JsonConvert.DeserializeObject<List<Event>>(apiResponse, new JsonSerializerSettings
                     {
-                        var userInDb = db.GetByIdentificacao<User>(user.Identificacao);
-                        //use exist method from LiteDbService
-                        if (userInDb == null)
-                        {
-                            MessageBox.Show("User not in db. Inserting...");
-                           db.Insert(user, "User");
-                        }
-                        
-                    }                   
+                        NullValueHandling = NullValueHandling.Ignore,
+                        MissingMemberHandling = MissingMemberHandling.Ignore
+                    });
+                    isDataLoaded = true;
+                    cadastrosDataGrid.DataSource = new BindingSource(events, null);
                 }
             }
             catch (Exception ex)
             {
                 apiFailed = true;
-                // Log the exception
                 Console.WriteLine("API call exception: " + ex.Message);
+                MessageBox.Show("API call failed.");
             }
+            _events = events;
+            UpdateComboBoxOrdenarForEvents();
+            SortAndFilterEventData(_events);
+        }
 
-            // If API call fails, fetch data from LiteDB
-            if (apiFailed == true)
-            {
-                MessageBox.Show("API call failed. Fetching data from LiteDB.");
-                //users = db.GetAll<User>("User").ToList();
-                isDataLoaded = true;
-            }
+        private void UpdateComboBoxOrdenarForUsers()
+        {
+            comboBoxOrdenar.DataSource = null;
+            comboBoxOrdenar.Items.Clear();
+            comboBoxOrdenar.Items.AddRange(typeof(User).GetProperties()
+                .Where(p => p.Name != "Salt" && p.Name != "Hash" && p.Name != "Username" && p.Name != "AuthorizationsId")
+                .Select(p => p.Name).ToArray());
+            if (comboBoxOrdenar.Items.Count > 0) comboBoxOrdenar.SelectedIndex = 0;
+        }
 
-            if (users != null)
-            {
-                cadastrosDataGrid.DataSource = new BindingSource(users, null);
-                comboBoxOrdenar.DataSource = typeof(User).GetProperties()
-                    .Where(p => p.Name != "Salt" && p.Name != "Hash" && p.Name != "Username" && p.Name != "AuthorizationsId")
-                    .Select(p => p.Name)
-                    .ToList();
-                //order the db by user.CreatedAt in descending order
-                cadastrosDataGrid.DataSource = new BindingSource(users.OrderByDescending(x => x.Number).ToList(), null);
+        private void UpdateComboBoxOrdenarForEvents()
+        {
+            comboBoxOrdenar.DataSource = null;
+            comboBoxOrdenar.Items.Clear();
+            comboBoxOrdenar.Items.AddRange(typeof(Event).GetProperties()
+                .Select(p => p.Name).ToArray());
+            if (comboBoxOrdenar.Items.Count > 0) comboBoxOrdenar.SelectedIndex = 0;
+        }
+        private void UpdateSortedAndFilteredUserDataSource()
+        {
+            if (_users == null) return;
+            var sortedUsers = SortUsers(_users);
+            var filteredUsers = FilterUsers(sortedUsers, textBoxFiltrar.Text);
+            cadastrosDataGrid.DataSource = new BindingSource(filteredUsers, null);
+        }
 
-                // Hide specific columns
-                cadastrosDataGrid.Columns["hasAso"].Visible = false;
-                cadastrosDataGrid.Columns["hasNr34"].Visible = false;
-                //hide hasNr33, hasNr10, hasNr35, rfid, salt, hash fields
-                cadastrosDataGrid.Columns["hasNr33"].Visible = false;
-                cadastrosDataGrid.Columns["hasNr10"].Visible = false;
-                cadastrosDataGrid.Columns["hasNr35"].Visible = false;
-                cadastrosDataGrid.Columns["rfid"].Visible = false;
-                cadastrosDataGrid.Columns["salt"].Visible = false;
-                cadastrosDataGrid.Columns["hash"].Visible = false;
-                cadastrosDataGrid.Columns["isBlocked"].Visible = false;
-                cadastrosDataGrid.Columns["blockReason"].Visible = false;
-                cadastrosDataGrid.Columns["picture"].Visible = false;
-                cadastrosDataGrid.Columns["username"].Visible = false;
-            }
-            else
+        private List<User> SortUsers(List<User> users)
+        {
+            if (comboBoxOrdenar.SelectedItem == null) return users;
+
+            var selectedProperty = typeof(User).GetProperty(comboBoxOrdenar.SelectedItem.ToString());
+            bool isAscending = crescenteDecrescente.SelectedItem.ToString() == "CRESCENTE";
+
+            return isAscending
+                ? users.OrderBy(x => selectedProperty.GetValue(x, null)).ToList()
+                : users.OrderByDescending(x => selectedProperty.GetValue(x, null)).ToList();
+        }
+
+        private List<User> FilterUsers(List<User> users, string filterText)
+        {
+            if (string.IsNullOrWhiteSpace(filterText)) return users;
+
+            var selectedProperty = typeof(User).GetProperty(comboBoxOrdenar.SelectedItem?.ToString());
+            if (selectedProperty == null) return users;
+
+            return users.Where(user =>
             {
-                // Handle null or empty user list (e.g., show a message or log the error)
-            }
+                var value = selectedProperty.GetValue(user, null);
+                return value != null && value.ToString().ToLower().Contains(filterText.ToLower());
+            }).ToList();
         }
 
         private void comboBoxOrdenar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxOrdenar.SelectedItem != null && db != null)
+            if (tableSwitchDropdown.SelectedItem.ToString() == "Eventos")
             {
-                var colecao = db.GetAll<User>("User");
-                if (colecao != null)
-                {
-                    var dados = colecao.ToList();
-                    var propriedade = typeof(User).GetProperty(comboBoxOrdenar.SelectedItem.ToString());
-                    bool isAscending = crescenteDecrescente.SelectedItem.ToString() == "CRESCENTE";
-
-                    if (comboBoxOrdenar.SelectedItem.ToString() == "Number") // Replace "Number" with the actual field name
-                    {
-                        if (isAscending)
-                        {
-                            cadastrosDataGrid.DataSource = new BindingSource(
-                                dados.OrderBy(x =>
-                                {
-                                    var value = propriedade.GetValue(x, null);
-                                    int number;
-                                    return int.TryParse(value.ToString(), out number) ? number : int.MaxValue;
-                                }).ToList(), null);
-                        }
-                        else
-                        {
-                            cadastrosDataGrid.DataSource = new BindingSource(
-                                dados.OrderByDescending(x =>
-                                {
-                                    var value = propriedade.GetValue(x, null);
-                                    int number;
-                                    return int.TryParse(value.ToString(), out number) ? number : int.MinValue;
-                                }).ToList(), null);
-                        }
-                    }
-                    else
-                    {
-                        if (isAscending)
-                        {
-                            cadastrosDataGrid.DataSource = new BindingSource(dados.OrderBy(x => propriedade.GetValue(x, null)).ToList(), null);
-                        }
-                        else
-                        {
-                            cadastrosDataGrid.DataSource = new BindingSource(dados.OrderByDescending(x => propriedade.GetValue(x, null)).ToList(), null);
-                        }
-                    }
-                }
-                else
-                {
-                    // Handle null collection (e.g., show a message or log the error)
-                }
+                if (_events != null) SortAndFilterEventData(_events);
             }
             else
             {
-                // Handle null database or null selectedItem (e.g., show a message or log the error)
+                if (_users != null) UpdateSortedAndFilteredUserDataSource();
             }
         }
 
-
-
         private void textBoxFiltrar_TextChanged(object sender, EventArgs e)
         {
-            if (comboBoxOrdenar.SelectedItem != null)
-            {
-                var colecao = db.GetAll<User>("User");
-                var dados = colecao.ToList();
-                if (dados != null && dados.Any())
-                {
-                    var propriedade = typeof(User).GetProperty(comboBoxOrdenar.SelectedItem.ToString());
-                    if (propriedade != null)
-                    {
-                        var filteredData = dados.Where(x =>
-                        {
-                            var value = propriedade.GetValue(x, null);
-                            return value != null && value.ToString().ToLower().Contains(textBoxFiltrar.Text.ToLower());
-                        }).ToList();
+            comboBoxOrdenar_SelectedIndexChanged(sender, e); // Reuse sorting logic
+        }
 
-                        cadastrosDataGrid.DataSource = new BindingSource(filteredData, null);
-                    }
+        private void crescenteDecrescente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBoxOrdenar_SelectedIndexChanged(sender, e); // Reuse sorting logic
+        }
+
+        private void cadastrosDataGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var user = cadastrosDataGrid.Rows[e.RowIndex].DataBoundItem as User;
+                if (user != null)
+                {
+                    uc_Cadastrar.PopulateFields(user);
+                    SwitchToCadastro?.Invoke();
                 }
             }
         }
 
-        public event Action SwitchToCadastro;
-
-        private void cadastrosDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void SortAndFilterEventData(List<Event> events)
         {
-            //select row of the clicked cell
-            if (e.RowIndex > 0)
-            {
-                cadastrosDataGrid.Rows[e.RowIndex].Selected = true;
-            }
+            if (events == null || comboBoxOrdenar.SelectedItem == null) return;
+            var sortedEvents = SortEvents(events);
+            var filteredEvents = FilterEvents(sortedEvents, textBoxFiltrar.Text);
+            cadastrosDataGrid.DataSource = new BindingSource(filteredEvents, null);
         }
 
+        private List<Event> SortEvents(List<Event> events)
+        {
+            var selectedProperty = typeof(Event).GetProperty(comboBoxOrdenar.SelectedItem.ToString());
+            bool isAscending = crescenteDecrescente.SelectedItem.ToString() == "CRESCENTE";
+            return isAscending
+                ? events.OrderBy(x => selectedProperty.GetValue(x, null)).ToList()
+                : events.OrderByDescending(x => selectedProperty.GetValue(x, null)).ToList();
+        }
+
+        private List<Event> FilterEvents(List<Event> events, string filterText)
+        {
+            if (string.IsNullOrWhiteSpace(filterText) || comboBoxOrdenar.SelectedItem == null) return events;
+            var selectedProperty = typeof(Event).GetProperty(comboBoxOrdenar.SelectedItem.ToString());
+            return events.Where(eventItem =>
+            {
+                var value = selectedProperty.GetValue(eventItem, null);
+                return value != null && value.ToString().ToLower().Contains(filterText.ToLower());
+            }).ToList();
+        }
+
+        private void tableSwitchDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tableSwitchDropdown.SelectedItem.ToString() == "Eventos")
+            {
+                LoadEvents();
+                UpdateComboBoxOrdenarForEvents();
+            }
+            else
+            {
+                LoadUsers();
+                UpdateComboBoxOrdenarForUsers();
+            }
+        }
 
         private void buttonBaixar_Click(object sender, EventArgs e)
         {
@@ -240,24 +284,6 @@ namespace DockCheckWindows.UserControls
                 }
 
                 pck.SaveAs(new FileInfo(path));
-            }
-        }
-
-        private void crescenteDecrescente_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            comboBoxOrdenar_SelectedIndexChanged(sender, e);
-        }
-
-        private void cadastrosDataGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                var user = cadastrosDataGrid.Rows[e.RowIndex].DataBoundItem as User;
-                if (user != null)
-                {
-                    uc_Cadastrar.PopulateFields(user);
-                    SwitchToCadastro?.Invoke();
-                }
             }
         }
     }

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Dados));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonBaixar = new Guna.UI2.WinForms.Guna2Button();
             this.cadastrosDataGrid = new Guna.UI2.WinForms.Guna2DataGridView();
             this.ordenarLabel = new System.Windows.Forms.Label();
@@ -40,6 +40,7 @@
             this.panel13 = new System.Windows.Forms.Panel();
             this.textBoxFiltrar = new System.Windows.Forms.TextBox();
             this.crescenteDecrescente = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.tableSwitchDropdown = new Guna.UI2.WinForms.Guna2ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.cadastrosDataGrid)).BeginInit();
             this.panel13.SuspendLayout();
             this.SuspendLayout();
@@ -70,25 +71,25 @@
             // 
             this.cadastrosDataGrid.AllowUserToAddRows = false;
             this.cadastrosDataGrid.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.cadastrosDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.cadastrosDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.cadastrosDataGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.cadastrosDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.cadastrosDataGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(59)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cadastrosDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.cadastrosDataGrid.DefaultCellStyle = dataGridViewCellStyle6;
             this.cadastrosDataGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.cadastrosDataGrid.Location = new System.Drawing.Point(89, 108);
             this.cadastrosDataGrid.Name = "cadastrosDataGrid";
@@ -118,9 +119,7 @@
             this.cadastrosDataGrid.ThemeStyle.RowsStyle.Height = 22;
             this.cadastrosDataGrid.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.cadastrosDataGrid.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.cadastrosDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cadastrosDataGrid_CellContentClick);
             this.cadastrosDataGrid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cadastrosDataGrid_CellContentDoubleClick);
-            this.cadastrosDataGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cadastrosDataGrid_CellContentClick);
             // 
             // ordenarLabel
             // 
@@ -156,7 +155,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(795, 51);
+            this.label1.Location = new System.Drawing.Point(720, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(97, 36);
             this.label1.TabIndex = 5;
@@ -166,7 +165,7 @@
             // 
             this.panel13.BackColor = System.Drawing.Color.White;
             this.panel13.Controls.Add(this.textBoxFiltrar);
-            this.panel13.Location = new System.Drawing.Point(895, 51);
+            this.panel13.Location = new System.Drawing.Point(820, 51);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(429, 38);
             this.panel13.TabIndex = 6;
@@ -177,7 +176,7 @@
             this.textBoxFiltrar.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBoxFiltrar.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxFiltrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxFiltrar.Location = new System.Drawing.Point(5, 6);
+            this.textBoxFiltrar.Location = new System.Drawing.Point(0, 6);
             this.textBoxFiltrar.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxFiltrar.Name = "textBoxFiltrar";
             this.textBoxFiltrar.Size = new System.Drawing.Size(419, 30);
@@ -198,18 +197,41 @@
             this.crescenteDecrescente.Items.AddRange(new object[] {
             "CRESCENTE",
             "DECRESCENTE"});
-            this.crescenteDecrescente.Location = new System.Drawing.Point(1412, 51);
+            this.crescenteDecrescente.Location = new System.Drawing.Point(1255, 51);
             this.crescenteDecrescente.MaxDropDownItems = 10;
             this.crescenteDecrescente.Name = "crescenteDecrescente";
-            this.crescenteDecrescente.Size = new System.Drawing.Size(429, 36);
+            this.crescenteDecrescente.Size = new System.Drawing.Size(300, 36);
             this.crescenteDecrescente.StartIndex = 1;
             this.crescenteDecrescente.TabIndex = 8;
             this.crescenteDecrescente.SelectedIndexChanged += new System.EventHandler(this.crescenteDecrescente_SelectedIndexChanged);
+            // 
+            // tableSwitchDropdown
+            // 
+            this.tableSwitchDropdown.BackColor = System.Drawing.Color.Transparent;
+            this.tableSwitchDropdown.BorderColor = System.Drawing.Color.White;
+            this.tableSwitchDropdown.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.tableSwitchDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tableSwitchDropdown.FocusedColor = System.Drawing.Color.White;
+            this.tableSwitchDropdown.FocusedState.BorderColor = System.Drawing.Color.White;
+            this.tableSwitchDropdown.Font = new System.Drawing.Font("Century Gothic", 18F);
+            this.tableSwitchDropdown.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.tableSwitchDropdown.ItemHeight = 30;
+            this.tableSwitchDropdown.Items.AddRange(new object[] {
+            "Usuários",
+            "Eventos"});
+            this.tableSwitchDropdown.Location = new System.Drawing.Point(1561, 51);
+            this.tableSwitchDropdown.MaxDropDownItems = 10;
+            this.tableSwitchDropdown.Name = "tableSwitchDropdown";
+            this.tableSwitchDropdown.Size = new System.Drawing.Size(280, 36);
+            this.tableSwitchDropdown.StartIndex = 0;
+            this.tableSwitchDropdown.TabIndex = 9;
+            this.tableSwitchDropdown.SelectedIndexChanged += new System.EventHandler(this.tableSwitchDropdown_SelectedIndexChanged);
             // 
             // UC_Dados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tableSwitchDropdown);
             this.Controls.Add(this.crescenteDecrescente);
             this.Controls.Add(this.panel13);
             this.Controls.Add(this.label1);
@@ -236,5 +258,6 @@
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.TextBox textBoxFiltrar;
         private Guna.UI2.WinForms.Guna2ComboBox crescenteDecrescente;
+        private Guna.UI2.WinForms.Guna2ComboBox tableSwitchDropdown;
     }
 }
