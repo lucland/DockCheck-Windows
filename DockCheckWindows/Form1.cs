@@ -37,6 +37,8 @@ namespace DockCheckWindows
 
         private VesselRepository vesselRepository = new VesselRepository(apiService: new ApiService());
 
+        private EventRepository eventRepository = new EventRepository(apiService: new ApiService());
+
         private AuthorizationRepository authorizationRepository = new AuthorizationRepository(apiService: new ApiService());
 
         public Form1()
@@ -52,32 +54,56 @@ namespace DockCheckWindows
 
             Login loginForm = new Login(
                 authenticationRepository: _authenticationRepository
-                );
+            );
             loginForm.ShowDialog();
 
-            if (loginForm.IsAuthenticated)
-            {
-                BackgroundTaskManager backgroundTaskManager = new BackgroundTaskManager(userRepository: userRepository);
-                backgroundTaskManager.StartBackgroundTask();
-
-                UC_Home home = new UC_Home();
-
-                uc_Cadastrar = new UC_Cadastrar(
-                    userRepository: new UserRepository(apiService: new ApiService()),
-                    authorizationRepository: new AuthorizationRepository(apiService: new ApiService()),
-                    ucDados: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService())));
-
-                uc_Dados = new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()));
-
-                loggedUserName(Properties.Settings.Default.UserId);
-
-                addUserControl(home);
-            }
-            else
+            if (!loginForm.IsAuthenticated)
             {
                 Application.Exit();
+                return; // Add this to prevent further execution if not authenticated
             }
+
+            SerialDataProcessor backgroundTaskManager = new SerialDataProcessor(eventRepository, UpdateStatus);
+            backgroundTaskManager.StartProcessing();
+
+            UC_Home home = new UC_Home();
+            uc_Cadastrar = new UC_Cadastrar(
+                userRepository: new UserRepository(apiService: new ApiService()),
+                authorizationRepository: new AuthorizationRepository(apiService: new ApiService()),
+                ucDados: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService())));
+
+            uc_Dados = new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService()));
+
+            loggedUserName(Properties.Settings.Default.UserId);
+            addUserControl(home);
             cadastroButton.Text = Properties.Resources.Cadastrar;
+        }
+
+        private System.Windows.Forms.Timer blinkTimer;
+
+        private void InitializeBlinkTimer()
+        {
+            blinkTimer = new System.Windows.Forms.Timer();
+            blinkTimer.Interval = 500; // Blink interval in milliseconds
+            blinkTimer.Tick += BlinkTimer_Tick;
+        }
+
+        private void BlinkTimer_Tick(object sender, EventArgs e)
+        {
+            signalPictureBox.Visible = !signalPictureBox.Visible;
+        }
+
+
+        private void StartBlinking()
+        {
+            InitializeBlinkTimer();
+            signalPictureBox.Visible = true;
+            blinkTimer.Start();
+        }
+
+        private void StopBlinking()
+        {
+            blinkTimer.Stop();
         }
 
         //retieve user object from user_id with UserRepository
@@ -117,7 +143,7 @@ namespace DockCheckWindows
             UC_Cadastrar cadastrar = new UC_Cadastrar(
                 userRepository: new UserRepository(apiService: new ApiService()),
                 authorizationRepository: new AuthorizationRepository(apiService: new ApiService()),
-                ucDados: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()))
+                ucDados: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService()))
                 );
             cadastrar.SwitchToDados += () =>
             {
@@ -134,7 +160,7 @@ namespace DockCheckWindows
 
         private void bancoButton_Click(object sender, EventArgs e)
         {
-            UC_Dados dados = new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()));  // Pass the instance field
+            UC_Dados dados = new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService()));  // Pass the instance field
             dados.SwitchToCadastro += () =>
             {
                 addUserControl(uc_Cadastrar);
@@ -159,16 +185,47 @@ namespace DockCheckWindows
             await _authenticationRepository.LogoutAsync(Properties.Settings.Default.UserId);
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void UpdateStatus(string message)
         {
+            // Check for UI thread and invoke if necessary
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => UpdateStatus(message)));
+                return;
+            }
 
+            // Update the UI based on the message
+            if (message.Contains("P"))
+            {
+                StartBlinking();
+            }
+            else if (message.Contains("Receiving") || message.Contains("Sending"))
+            {
+                signalLabel.Text = message;
+            }
+            else if (message.Contains("Data processing completed"))
+            {
+                // Reset or update the label when data processing is completed
+                signalLabel.Text = "----------------";
+                StopBlinking();
+            }
         }
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            //retrieve authorization from settings
+            // Retrieve authorization from settings
             string authorization = Properties.Settings.Default.Authorization;
-            //split the authorizations by comma
+
+            // Check if the authorization string is null or empty
+            if (string.IsNullOrEmpty(authorization))
+            {
+                return; // Exit the method if there is no authorization data
+            }
+
+            signalLabel.Text = "-------------------------------";
+            signalPictureBox.Visible = true;
+
+            // Split the authorizations by comma
             var authorizationIds = authorization.Split(',');
 
             List<string> vesselNames = new List<string>();
@@ -177,65 +234,30 @@ namespace DockCheckWindows
             foreach (var authId in authorizationIds)
             {
                 var authorizationComplete = await authorizationRepository.GetAuthorizationByIdAsync(authId);
-
                 if (authorizationComplete != null)
                 {
                     string vesselId = authorizationComplete.VesselId;
                     var vessel = await vesselRepository.GetVesselByIdAsync(vesselId);
                     if (vessel != null)
                     {
-                        //save the Vessel Name, Vessel IDs into our settings
+                        // Save the Vessel Name, Vessel IDs into our settings
                         vesselNames.Add(vessel.Name);
                         vesselIds.Add(vessel.Id);
+                        vesselLabel.Text = vessel.Name;
                     }
 
                     Properties.Settings.Default.Vessel = string.Join(",", vesselNames);
                     Properties.Settings.Default.VesselId = string.Join(",", vesselIds);
                     Properties.Settings.Default.Save();
-
                 }
-                
             }
         }
 
-        private void panelContainer_Paint(object sender, PaintEventArgs e)
+        protected override void OnFormClosing(FormClosingEventArgs e)
         {
-
+            base.OnFormClosing(e);
+            blinkTimer?.Dispose();
         }
 
-        private void labelUser_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        async private void vesselLabel_Click(object sender, EventArgs e)
-        {
-            //retrieve authorization from settings
-            string authorization = Properties.Settings.Default.Authorization;
-            //retieve vessel object from authorization with VesselRepository
-            VesselRepository vesselRepository = new VesselRepository(apiService: new ApiService());
-            AuthorizationRepository authorizationRepository = new AuthorizationRepository(apiService: new ApiService());
-            Authorization authorization1 = await authorizationRepository.GetAuthorizationByIdAsync(authorization);
-            Vessel vessel = await vesselRepository.GetVesselByIdAsync(authorization1.VesselId);
-     
-            if (vessel != null)
-            {
-                //save vessel name in settings and write in label
-                Properties.Settings.Default.Vessel = vessel.Name;
-                Properties.Settings.Default.Save();
-
-                //save vessel id in settings and write in label
-                Properties.Settings.Default.VesselId = vessel.Id;
-                Properties.Settings.Default.Save();
-
-                vesselLabel.Text = vessel.Name;
-            }
-            Console.WriteLine("Vessel: " + vessel.ToJson());
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.vesselLabel = new System.Windows.Forms.Label();
-            this.pictureBoxRecebendo = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.labelUser = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -48,62 +47,54 @@
             this.homeButton = new Guna.UI2.WinForms.Guna2Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panelContainer = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.signalLabel = new System.Windows.Forms.Label();
+            this.signalPictureBox = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRecebendo)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.signalPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.panel1.Controls.Add(this.vesselLabel);
-            this.panel1.Controls.Add(this.pictureBoxRecebendo);
-            this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.panel5);
+            this.panel1.Controls.Add(this.vesselLabel);
+            this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1904, 70);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // vesselLabel
             // 
             this.vesselLabel.AutoEllipsis = true;
             this.vesselLabel.AutoSize = true;
-            this.vesselLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.vesselLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
-            this.vesselLabel.Location = new System.Drawing.Point(1250, 21);
+            this.vesselLabel.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vesselLabel.ForeColor = System.Drawing.Color.Black;
+            this.vesselLabel.Location = new System.Drawing.Point(1445, 14);
             this.vesselLabel.Name = "vesselLabel";
-            this.vesselLabel.Size = new System.Drawing.Size(78, 25);
+            this.vesselLabel.Size = new System.Drawing.Size(126, 41);
             this.vesselLabel.TabIndex = 2;
             this.vesselLabel.Text = "admin";
             this.vesselLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.vesselLabel.Click += new System.EventHandler(this.vesselLabel_Click);
-            // 
-            // pictureBoxRecebendo
-            // 
-            this.pictureBoxRecebendo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
-            this.pictureBoxRecebendo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxRecebendo.Image")));
-            this.pictureBoxRecebendo.Location = new System.Drawing.Point(1567, -14);
-            this.pictureBoxRecebendo.Name = "pictureBoxRecebendo";
-            this.pictureBoxRecebendo.Size = new System.Drawing.Size(107, 88);
-            this.pictureBoxRecebendo.TabIndex = 5;
-            this.pictureBoxRecebendo.TabStop = false;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.panel4.Controls.Add(this.labelUser);
             this.panel4.Controls.Add(this.pictureBox3);
-            this.panel4.Location = new System.Drawing.Point(1666, 0);
+            this.panel4.Location = new System.Drawing.Point(1017, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(258, 70);
+            this.panel4.Size = new System.Drawing.Size(422, 70);
             this.panel4.TabIndex = 4;
             // 
             // labelUser
@@ -117,21 +108,20 @@
             this.labelUser.Size = new System.Drawing.Size(78, 25);
             this.labelUser.TabIndex = 1;
             this.labelUser.Text = "admin";
-            this.labelUser.Click += new System.EventHandler(this.labelUser_Click);
             // 
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(36, 9);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox3.Size = new System.Drawing.Size(214, 50);
             this.pictureBox3.TabIndex = 0;
             this.pictureBox3.TabStop = false;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(250, 9);
+            this.pictureBox1.Location = new System.Drawing.Point(1792, 9);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 50);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -343,7 +333,38 @@
             this.panelContainer.Name = "panelContainer";
             this.panelContainer.Size = new System.Drawing.Size(1904, 906);
             this.panelContainer.TabIndex = 2;
-            this.panelContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContainer_Paint);
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.panel5.Controls.Add(this.signalLabel);
+            this.panel5.Controls.Add(this.signalPictureBox);
+            this.panel5.Location = new System.Drawing.Point(238, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(791, 70);
+            this.panel5.TabIndex = 5;
+            // 
+            // signalLabel
+            // 
+            this.signalLabel.AutoEllipsis = true;
+            this.signalLabel.AutoSize = true;
+            this.signalLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
+            this.signalLabel.ForeColor = System.Drawing.Color.White;
+            this.signalLabel.Location = new System.Drawing.Point(84, 21);
+            this.signalLabel.Name = "signalLabel";
+            this.signalLabel.Size = new System.Drawing.Size(78, 25);
+            this.signalLabel.TabIndex = 1;
+            this.signalLabel.Text = "admin";
+            // 
+            // signalPictureBox
+            // 
+            this.signalPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("signalPictureBox.Image")));
+            this.signalPictureBox.Location = new System.Drawing.Point(10, 0);
+            this.signalPictureBox.Name = "signalPictureBox";
+            this.signalPictureBox.Size = new System.Drawing.Size(68, 67);
+            this.signalPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.signalPictureBox.TabIndex = 0;
+            this.signalPictureBox.TabStop = false;
             // 
             // Form1
             // 
@@ -361,13 +382,15 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRecebendo)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.signalPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -390,8 +413,10 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label labelUser;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBoxRecebendo;
         private System.Windows.Forms.Label vesselLabel;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label signalLabel;
+        private System.Windows.Forms.PictureBox signalPictureBox;
     }
 }
 
