@@ -13,18 +13,12 @@ namespace DockCheckWindows
         private readonly AuthenticationRepository _authenticationRepository;
 
         public bool IsAuthenticated { get; private set; }
-        public string Token { get; private set; } // Token property to store the JWT token
+        public string Token { get; private set; }
 
         public Login(AuthenticationRepository authenticationRepository)
         {
             InitializeComponent();
             _authenticationRepository = authenticationRepository;
-        }
-
-        private void buttonCancelar_Click(object sender, EventArgs e)
-        {
-            Close();
-            Application.Exit();
         }
 
         private async void buttonLogin_Click(object sender, EventArgs e)
@@ -37,32 +31,7 @@ namespace DockCheckWindows
             try
             {
                 string response = await _authenticationRepository.LoginAsync(username, password, role, system);
-
-                if (!string.IsNullOrEmpty(response))
-                {
-                    dynamic jsonResult = JObject.Parse(response);
-                    Token = jsonResult.token;
-
-                    IsAuthenticated = true;
-
-                    Properties.Settings.Default.Token = Token;
-                    Properties.Settings.Default.Save();
-
-                    // Save authorization IDs from login response
-                    var authorizations = jsonResult.authorizations_id.ToObject<List<string>>();
-                    Properties.Settings.Default.Authorization = string.Join(",", authorizations); // Join the array into a comma-separated string
-                    Properties.Settings.Default.Save();
-
-                    // Save user_id from login response
-                    Properties.Settings.Default.UserId = jsonResult.user_id.ToString();
-                    Properties.Settings.Default.Save();
-
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Invalid username or password.");
-                }
+                ProcessLoginResponse(response);
             }
             catch (Exception ex)
             {
@@ -70,11 +39,34 @@ namespace DockCheckWindows
             }
         }
 
-
-
-        private void Login_Load(object sender, EventArgs e)
+        private void ProcessLoginResponse(string response)
         {
+            if (string.IsNullOrEmpty(response))
+            {
+                MessageBox.Show("Invalid username or password.");
+                return;
+            }
 
+            dynamic jsonResult = JObject.Parse(response);
+            Token = jsonResult.token;
+            IsAuthenticated = true;
+            UpdatePropertiesSettings(jsonResult);
+            this.Close();
+        }
+
+        private void UpdatePropertiesSettings(dynamic jsonResult)
+        {
+            Properties.Settings.Default.Token = Token;
+            var authorizations = jsonResult.authorizations_id.ToObject<List<string>>();
+            Properties.Settings.Default.Authorization = string.Join(",", authorizations);
+            Properties.Settings.Default.UserId = jsonResult.user_id.ToString();
+            Properties.Settings.Default.Save();
+        }
+
+        private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+            Application.Exit();
         }
     }
 }
