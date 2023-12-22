@@ -1383,7 +1383,7 @@
             this.buttonRegistrar.Size = new System.Drawing.Size(418, 63);
             this.buttonRegistrar.TabIndex = 2;
             this.buttonRegistrar.Text = "Cadastrar e Registrar RFID";
-            this.buttonRegistrar.Click += new System.EventHandler(this.buttonCadastrar_Click);
+            this.buttonRegistrar.Click += new System.EventHandler(this.buttonRegistrar_Click);
             // 
             // panel2
             // 

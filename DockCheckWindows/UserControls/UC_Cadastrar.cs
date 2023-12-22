@@ -48,6 +48,10 @@ namespace DockCheckWindows.UserControls
             _isEditMode = true;
             _currentUser = user;
 
+            buttonRegistrar.Enabled = true;
+            buttonRegistrar.Image = null;
+
+            labelNumero.Text = user.Number.ToString();
             textBoxNome.Text = user.Name;
             textBoxFuncao.Text = user.Role;
             textBoxEmpresa.Text = user.Company;
@@ -136,7 +140,9 @@ namespace DockCheckWindows.UserControls
         {
             if (_isEditMode)
             {
-                buttonCadastrar.Enabled = buttonRegistrar.Enabled = true;
+               buttonRegistrar.Enabled = true;
+                buttonRegistrar.Image = null;
+                buttonCadastrar.Enabled = false;
             } else
             {
                 bloquearButton.Enabled = false;
@@ -895,7 +901,7 @@ namespace DockCheckWindows.UserControls
         {
             if (_isEditMode)
             {
-                RevertChanges();
+                SwitchToDados?.Invoke();
             }
             else
             {
@@ -912,6 +918,12 @@ namespace DockCheckWindows.UserControls
                     HandleRegistrationError(ex);
                 }
             }
+        }
+
+        private void HandleCancelInEditMode()
+        {
+            // Revert changes to the user object
+            RevertChanges();
         }
 
 
