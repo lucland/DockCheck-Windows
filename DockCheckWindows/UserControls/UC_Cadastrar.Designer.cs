@@ -32,7 +32,7 @@
             this.labelNome = new System.Windows.Forms.Label();
             this.labelFuncao = new System.Windows.Forms.Label();
             this.textBoxFuncao = new System.Windows.Forms.TextBox();
-            this.labelIdentidade = new System.Windows.Forms.Label();
+            this.labelSangue = new System.Windows.Forms.Label();
             this.labelEmpresa = new System.Windows.Forms.Label();
             this.textBoxEmpresa = new System.Windows.Forms.TextBox();
             this.labelEmail = new System.Windows.Forms.Label();
@@ -84,7 +84,6 @@
             this.textBoxNome = new System.Windows.Forms.TextBox();
             this.panel12 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.maskedTextBoxIdentidade = new System.Windows.Forms.MaskedTextBox();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.escolherNR35Button = new Guna.UI2.WinForms.Guna2Button();
@@ -107,7 +106,6 @@
             this.obrigatorioAso = new System.Windows.Forms.Label();
             this.obrigatorioCpf = new System.Windows.Forms.Label();
             this.obrigatorioEmpresa = new System.Windows.Forms.Label();
-            this.obrigatorioIdentidade = new System.Windows.Forms.Label();
             this.obrigatorioFuncao = new System.Windows.Forms.Label();
             this.obrigatorioNome = new System.Windows.Forms.Label();
             this.labelCpf = new System.Windows.Forms.Label();
@@ -121,6 +119,9 @@
             this.labelAvisoRFID = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.loadingBar = new System.Windows.Forms.ProgressBar();
+            this.printButton = new Guna.UI2.WinForms.Guna2Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.sangueComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             this.panel1.SuspendLayout();
             this.senhaPanel.SuspendLayout();
             this.usuarioPanel.SuspendLayout();
@@ -175,17 +176,18 @@
             this.textBoxFuncao.Size = new System.Drawing.Size(417, 30);
             this.textBoxFuncao.TabIndex = 0;
             // 
-            // labelIdentidade
+            // labelSangue
             // 
-            this.labelIdentidade.AutoSize = true;
-            this.labelIdentidade.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.labelIdentidade.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelIdentidade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelIdentidade.Location = new System.Drawing.Point(25, 405);
-            this.labelIdentidade.Name = "labelIdentidade";
-            this.labelIdentidade.Size = new System.Drawing.Size(177, 37);
-            this.labelIdentidade.TabIndex = 0;
-            this.labelIdentidade.Text = "Identidade";
+            this.labelSangue.AutoSize = true;
+            this.labelSangue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.labelSangue.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSangue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelSangue.Location = new System.Drawing.Point(25, 405);
+            this.labelSangue.Name = "labelSangue";
+            this.labelSangue.Size = new System.Drawing.Size(221, 37);
+            this.labelSangue.TabIndex = 0;
+            this.labelSangue.Text = "Tipo Sangíneo";
+            this.labelSangue.Click += new System.EventHandler(this.labelIdentidade_Click);
             // 
             // labelEmpresa
             // 
@@ -522,7 +524,6 @@
             this.panel1.Controls.Add(this.obrigatorioAso);
             this.panel1.Controls.Add(this.obrigatorioCpf);
             this.panel1.Controls.Add(this.obrigatorioEmpresa);
-            this.panel1.Controls.Add(this.obrigatorioIdentidade);
             this.panel1.Controls.Add(this.obrigatorioFuncao);
             this.panel1.Controls.Add(this.obrigatorioNome);
             this.panel1.Controls.Add(this.labelCpf);
@@ -542,9 +543,9 @@
             this.motivoLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.motivoLabel.Location = new System.Drawing.Point(1605, 301);
             this.motivoLabel.Name = "motivoLabel";
-            this.motivoLabel.Size = new System.Drawing.Size(305, 46);
+            this.motivoLabel.Size = new System.Drawing.Size(311, 46);
             this.motivoLabel.TabIndex = 42;
-            this.motivoLabel.Text = "Caso queira bloquea o usuário, \r\ndescreva o motivo abaixo:";
+            this.motivoLabel.Text = "Caso queira bloquear o usuário, \r\ndescreva o motivo abaixo:";
             // 
             // bloquearButton
             // 
@@ -576,6 +577,7 @@
             this.motivoTextBox.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.motivoTextBox.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.motivoTextBox.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.motivoTextBox.Enabled = false;
             this.motivoTextBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.motivoTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.motivoTextBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
@@ -959,6 +961,7 @@
             // panel12
             // 
             this.panel12.BackColor = System.Drawing.Color.White;
+            this.panel12.Controls.Add(this.textBox1);
             this.panel12.Controls.Add(this.textBoxFuncao);
             this.panel12.Location = new System.Drawing.Point(37, 266);
             this.panel12.Name = "panel12";
@@ -968,24 +971,11 @@
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.Color.White;
-            this.panel11.Controls.Add(this.maskedTextBoxIdentidade);
+            this.panel11.Controls.Add(this.sangueComboBox);
             this.panel11.Location = new System.Drawing.Point(37, 361);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(429, 38);
             this.panel11.TabIndex = 2;
-            // 
-            // maskedTextBoxIdentidade
-            // 
-            this.maskedTextBoxIdentidade.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.maskedTextBoxIdentidade.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBoxIdentidade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.maskedTextBoxIdentidade.Location = new System.Drawing.Point(6, 2);
-            this.maskedTextBoxIdentidade.Mask = "00-000-000-0";
-            this.maskedTextBoxIdentidade.Name = "maskedTextBoxIdentidade";
-            this.maskedTextBoxIdentidade.RejectInputOnFirstFailure = true;
-            this.maskedTextBoxIdentidade.Size = new System.Drawing.Size(417, 30);
-            this.maskedTextBoxIdentidade.TabIndex = 0;
-            this.maskedTextBoxIdentidade.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // panel10
             // 
@@ -1283,18 +1273,6 @@
             this.obrigatorioEmpresa.TabIndex = 0;
             this.obrigatorioEmpresa.Text = "*";
             // 
-            // obrigatorioIdentidade
-            // 
-            this.obrigatorioIdentidade.AutoSize = true;
-            this.obrigatorioIdentidade.BackColor = System.Drawing.Color.Transparent;
-            this.obrigatorioIdentidade.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.obrigatorioIdentidade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
-            this.obrigatorioIdentidade.Location = new System.Drawing.Point(433, 321);
-            this.obrigatorioIdentidade.Name = "obrigatorioIdentidade";
-            this.obrigatorioIdentidade.Size = new System.Drawing.Size(31, 38);
-            this.obrigatorioIdentidade.TabIndex = 0;
-            this.obrigatorioIdentidade.Text = "*";
-            // 
             // obrigatorioFuncao
             // 
             this.obrigatorioFuncao.AutoSize = true;
@@ -1456,11 +1434,73 @@
             this.loadingBar.TabIndex = 40;
             this.loadingBar.Visible = false;
             // 
+            // printButton
+            // 
+            this.printButton.BackColor = System.Drawing.Color.Transparent;
+            this.printButton.BorderRadius = 3;
+            this.printButton.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.printButton.CustomBorderThickness = new System.Windows.Forms.Padding(3);
+            this.printButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.printButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.printButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.printButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.printButton.FillColor = System.Drawing.Color.White;
+            this.printButton.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.printButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.printButton.ImageSize = new System.Drawing.Size(30, 30);
+            this.printButton.Location = new System.Drawing.Point(1062, 858);
+            this.printButton.Name = "printButton";
+            this.printButton.Size = new System.Drawing.Size(418, 63);
+            this.printButton.TabIndex = 41;
+            this.printButton.Text = "Imprimir";
+            this.printButton.Click += new System.EventHandler(this.printButton_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox1.Location = new System.Drawing.Point(6, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(5);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(417, 30);
+            this.textBox1.TabIndex = 1;
+            // 
+            // sangueComboBox
+            // 
+            this.sangueComboBox.BackColor = System.Drawing.Color.Transparent;
+            this.sangueComboBox.BorderThickness = 0;
+            this.sangueComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.sangueComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sangueComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.sangueComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.sangueComboBox.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sangueComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.sangueComboBox.ItemHeight = 30;
+            this.sangueComboBox.Items.AddRange(new object[] {
+            "",
+            "A-",
+            "A+",
+            "B-",
+            "B+",
+            "AB-",
+            "AB+",
+            "O-",
+            "O+"});
+            this.sangueComboBox.ItemsAppearance.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sangueComboBox.ItemsAppearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.sangueComboBox.Location = new System.Drawing.Point(0, 1);
+            this.sangueComboBox.Name = "sangueComboBox";
+            this.sangueComboBox.Size = new System.Drawing.Size(429, 36);
+            this.sangueComboBox.TabIndex = 0;
+            // 
             // UC_Cadastrar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.printButton);
             this.Controls.Add(this.loadingBar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.labelAvisoRFID);
@@ -1480,7 +1520,7 @@
             this.Controls.Add(this.labelNr34);
             this.Controls.Add(this.labelAso);
             this.Controls.Add(this.labelNome);
-            this.Controls.Add(this.labelIdentidade);
+            this.Controls.Add(this.labelSangue);
             this.Controls.Add(this.panel1);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
             this.Name = "UC_Cadastrar";
@@ -1497,7 +1537,6 @@
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
             this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.panel7.ResumeLayout(false);
@@ -1525,7 +1564,7 @@
         private System.Windows.Forms.Label labelNome;
         private System.Windows.Forms.Label labelFuncao;
         private System.Windows.Forms.TextBox textBoxFuncao;
-        private System.Windows.Forms.Label labelIdentidade;
+        private System.Windows.Forms.Label labelSangue;
         private System.Windows.Forms.Label labelEmpresa;
         private System.Windows.Forms.TextBox textBoxEmpresa;
         private System.Windows.Forms.Label labelEmail;
@@ -1551,7 +1590,6 @@
         private System.Windows.Forms.Label obrigatorioAso;
         private System.Windows.Forms.Label obrigatorioCpf;
         private System.Windows.Forms.Label obrigatorioEmpresa;
-        private System.Windows.Forms.Label obrigatorioIdentidade;
         private System.Windows.Forms.Label obrigatorioFuncao;
         private System.Windows.Forms.Label obrigatorioNome;
         private Guna.UI2.WinForms.Guna2Button buttonRegistrar;
@@ -1561,7 +1599,6 @@
         private System.Windows.Forms.TextBox textBoxNome;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.MaskedTextBox maskedTextBoxIdentidade;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxNr35;
@@ -1614,5 +1651,8 @@
         private System.Windows.Forms.Label motivoLabel;
         private Guna.UI2.WinForms.Guna2TextBox motivoTextBox;
         private System.Windows.Forms.TextBox usuarioTextBox;
+        private Guna.UI2.WinForms.Guna2Button printButton;
+        private System.Windows.Forms.TextBox textBox1;
+        private Guna.UI2.WinForms.Guna2ComboBox sangueComboBox;
     }
 }
