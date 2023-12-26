@@ -108,7 +108,6 @@
             title1.Font = new System.Drawing.Font("Century Schoolbook", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title1.Name = "2023";
             this.chartOnBoardedAll.Titles.Add(title1);
-            this.chartOnBoardedAll.Click += new System.EventHandler(this.chartOnBoardedAll_Click);
             // 
             // chartPieEmpresas
             // 
@@ -250,7 +249,6 @@
             title3.Font = new System.Drawing.Font("Century Schoolbook", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title3.Name = "2023";
             this.chartRfid.Titles.Add(title3);
-            this.chartRfid.Click += new System.EventHandler(this.chartRfid_Click);
             // 
             // labelBeacons
             // 
@@ -380,7 +378,6 @@
             title5.Font = new System.Drawing.Font("Century Schoolbook", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title5.Name = "2023";
             this.chartValidades.Titles.Add(title5);
-            this.chartValidades.Click += new System.EventHandler(this.chartValidades_Click);
             // 
             // UC_Dashboard
             // 

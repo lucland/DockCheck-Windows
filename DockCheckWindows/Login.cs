@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using DockCheckWindows.Repositories;
-using DockCheckWindows.Services;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace DockCheckWindows

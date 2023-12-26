@@ -382,20 +382,5 @@ namespace DockCheckWindows.UserControls
                 pdfDoc.Close();
             }
         }
-
-        private void chartValidades_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chartOnBoardedAll_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chartRfid_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

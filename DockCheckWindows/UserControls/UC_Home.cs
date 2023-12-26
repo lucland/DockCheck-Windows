@@ -2,7 +2,6 @@
 using DockCheckWindows.Repositories;
 using DockCheckWindows.Services;
 using System;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DockCheckWindows.UserControls
@@ -16,8 +15,6 @@ namespace DockCheckWindows.UserControls
             CarregarDados();
 
         }
-
-        // Other methods...
 
         private async void PopulateListViewWithVessels()
         {
@@ -155,7 +152,6 @@ namespace DockCheckWindows.UserControls
                 
         private void UC_Home_Load(object sender, EventArgs e)
         {
-          
         }
 
         private void buttonSincronizar_Click(object sender, EventArgs e)

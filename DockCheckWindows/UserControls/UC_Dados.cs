@@ -9,7 +9,6 @@ using OfficeOpenXml;
 using System.IO;
 using DockCheckWindows.Repositories;
 using DockCheckWindows.Models;
-using static Microsoft.IO.RecyclableMemoryStreamManager;
 
 namespace DockCheckWindows.UserControls
 {

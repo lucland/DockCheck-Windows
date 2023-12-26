@@ -1,8 +1,5 @@
-﻿using Google.Cloud.Firestore;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
-using LiteDB;
-using System.Drawing;
 
 namespace DockCheckWindows
 {
