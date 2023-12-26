@@ -55,7 +55,7 @@ namespace DockCheckWindows.UserControls
             textBoxNome.Text = user.Name;
             textBoxFuncao.Text = user.Role;
             textBoxEmpresa.Text = user.Company;
-            maskedTextBoxIdentidade.Text = user.Identidade;
+            sangueComboBox.Text = user.Identidade;
             maskedTextBoxCpf.Text = user.CPF;
             maskedTextBoxAso.Text = user.ASO != DateTime.MinValue ? user.ASO.ToString("dd/MM/yyyy") : "";
             maskedTextBoxNr34.Text = user.NR34 != DateTime.MinValue ? user.NR34.ToString("dd/MM/yyyy") : "";
@@ -110,11 +110,13 @@ namespace DockCheckWindows.UserControls
                 textBox.TextChanged += (sender, e) => ValidateFields();
             }
 
-            MaskedTextBox[] maskedTextBoxes = { maskedTextBoxIdentidade, maskedTextBoxCpf, maskedTextBoxAso, maskedTextBoxNr34 };
+            MaskedTextBox[] maskedTextBoxes = {maskedTextBoxCpf, maskedTextBoxAso, maskedTextBoxNr34 };
             foreach (var maskedTextBox in maskedTextBoxes)
             {
                 maskedTextBox.TextChanged += (sender, e) => ValidateFields();
             }
+
+            sangueComboBox.SelectedIndexChanged += (sender, e) => ValidateFields();
 
             Guna2DateTimePicker[] dateTimePickers = { dateTimePickerCheckin, dateTimePickerCheckout };
             foreach (var dateTimePicker in dateTimePickers)
@@ -143,8 +145,10 @@ namespace DockCheckWindows.UserControls
                buttonRegistrar.Enabled = true;
                 buttonRegistrar.Image = null;
                 buttonCadastrar.Enabled = false;
+                motivoTextBox.Enabled = true;
             } else
             {
+                motivoTextBox.Enabled = false;
                 bloquearButton.Enabled = false;
                 buttonCadastrar.Enabled = buttonRegistrar.Enabled = false;
                 excludeImageButton.Visible = false;
@@ -188,7 +192,6 @@ namespace DockCheckWindows.UserControls
         {
             return !string.IsNullOrEmpty(textBoxNome.Text) &&
                    !string.IsNullOrEmpty(textBoxFuncao.Text) &&
-                   maskedTextBoxIdentidade.Text.Length == 9 &&
                    !string.IsNullOrEmpty(textBoxEmpresa.Text) &&
                    maskedTextBoxCpf.Text.Length == 11;
         }
@@ -485,7 +488,6 @@ namespace DockCheckWindows.UserControls
         {
             return !string.IsNullOrEmpty(textBoxNome.Text) &&
                    !string.IsNullOrEmpty(textBoxFuncao.Text) &&
-                   maskedTextBoxIdentidade.Text.Length == 9 &&
                    !string.IsNullOrEmpty(textBoxEmpresa.Text) &&
                    maskedTextBoxCpf.Text.Length == 11 &&
                    (visitanteToggleSwitch.Checked || IsAsoDateValid()) &&
@@ -513,7 +515,7 @@ namespace DockCheckWindows.UserControls
                 Name = textBoxNome.Text,
                 Role = textBoxFuncao.Text,
                 Company = textBoxEmpresa.Text,
-                Identidade = maskedTextBoxIdentidade.Text.Replace(" ", ""),
+                Identidade = sangueComboBox.Text.Trim(),
                 Events = new string[] { },
                 CPF = maskedTextBoxCpf.Text.Replace(" ", ""),
                 ASO = IsAsoDateValid() ? DateTime.ParseExact(maskedTextBoxAso.Text, "dd/MM/yyyy", null) : DateTime.MinValue,
@@ -721,7 +723,7 @@ namespace DockCheckWindows.UserControls
             user.Name = textBoxNome.Text;
             user.Role = textBoxFuncao.Text;
             user.Company = textBoxEmpresa.Text;
-            user.Identidade = maskedTextBoxIdentidade.Text.Replace(" ", "");
+            user.Identidade = sangueComboBox.Text.Trim();
             user.CPF = maskedTextBoxCpf.Text.Replace(" ", "");
             user.ASO = IsAsoDateValid() ? DateTime.ParseExact(maskedTextBoxAso.Text, "dd/MM/yyyy", null) : DateTime.MinValue;
             user.NR34 = IsNr34DateValid() ? DateTime.ParseExact(maskedTextBoxNr34.Text, "dd/MM/yyyy", null) : DateTime.MinValue;
@@ -771,7 +773,7 @@ namespace DockCheckWindows.UserControls
             textBoxNome.Enabled = false;
             textBoxFuncao.Enabled = false;
             textBoxEmpresa.Enabled = false;
-            maskedTextBoxIdentidade.Enabled = false;
+            sangueComboBox.Enabled = false;
             maskedTextBoxCpf.Enabled = false;
             maskedTextBoxAso.Enabled = false;
             maskedTextBoxNr34.Enabled = false;
@@ -807,7 +809,7 @@ namespace DockCheckWindows.UserControls
             textBoxNome.Enabled = true;
             textBoxFuncao.Enabled = true;
             textBoxEmpresa.Enabled = true;
-            maskedTextBoxIdentidade.Enabled = true;
+            sangueComboBox.Enabled = true;
             maskedTextBoxCpf.Enabled = true;
             maskedTextBoxAso.Enabled = true;
             maskedTextBoxNr34.Enabled = true;
@@ -1179,6 +1181,33 @@ namespace DockCheckWindows.UserControls
             {
                 bloquearButton.Enabled = true;
             }
+        }
+
+        private void DisplayEtiquetaControl()
+        {
+            var ucEtiqueta = new UC_Etiqueta(
+                name: textBoxNome.Text,
+                identificacao: labelNumero.Text,
+                embarcacao: textBoxFuncao.Text,
+                empresa: textBoxEmpresa.Text,
+                checkin: dateTimePickerCheckout.Value.ToString("dd/MM/yyyy"),
+                checkout: dateTimePickerCheckin.Value.ToString("dd/MM/yyyy")
+                );
+            ucEtiqueta.Location = new Point(600, 200);
+            ucEtiqueta.Size = new Size(308, 216);
+            Controls.Add(ucEtiqueta);
+            ucEtiqueta.BringToFront();
+            ucEtiqueta.Show();
+        }
+
+        private void printButton_Click(object sender, EventArgs e)
+        {
+            DisplayEtiquetaControl();
+        }
+
+        private void labelIdentidade_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
