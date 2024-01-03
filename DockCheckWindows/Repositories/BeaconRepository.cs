@@ -7,7 +7,8 @@ namespace DockCheckWindows.Repositories
 {
     public class BeaconRepository : BaseRepository<Beacon>
     {
-        private const string BaseUrl = "http://localhost:3000/api/v1/beacons";
+        //private const string BaseUrl = "http://localhost:3000/api/v1/beacons";
+        private string BaseUrl = GlobalConfig.BaseApiUrl + "/beacons";
 
         public BeaconRepository(ApiService apiService)
             : base(apiService)
