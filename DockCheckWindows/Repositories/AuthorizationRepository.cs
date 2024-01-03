@@ -8,7 +8,8 @@ namespace DockCheckWindows.Repositories
 {
     public class AuthorizationRepository : BaseRepository<Authorization>
     {
-        private const string BaseUrl = "http://localhost:3000/api/v1/authorizations";
+        private string BaseUrl = GlobalConfig.BaseApiUrl + "/authorizations";
+        //private const string BaseUrl = "http://localhost:3000/api/v1/authorizations";
         //liteDbService is a local database service
         private LiteDbService _liteDbService { get; set; }
 
