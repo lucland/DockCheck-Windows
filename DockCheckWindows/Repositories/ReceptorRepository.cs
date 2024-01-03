@@ -7,7 +7,8 @@ namespace DockCheckWindows.Repositories
 {
     public class ReceptorRepository : BaseRepository<Receptor>
     {
-        private const string BaseUrl = "http://localhost:3000/api/v1/receptors";
+        private string BaseUrl = GlobalConfig.BaseApiUrl + "/receptors";
+        // private const string BaseUrl = "http://localhost:3000/api/v1/receptors";
 
         public ReceptorRepository(ApiService apiService)
             : base(apiService)
