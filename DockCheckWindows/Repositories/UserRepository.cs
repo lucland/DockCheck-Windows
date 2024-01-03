@@ -7,7 +7,9 @@ namespace DockCheckWindows.Repositories
 {
     public class UserRepository : BaseRepository<User>
     {
-        private const string BaseUrl = "http://localhost:3000/api/v1/users";
+        // private const string BaseUrl = "http://localhost:3000/api/v1/users";
+        private string BaseUrl = GlobalConfig.BaseApiUrl + "/users";
+
         private static readonly ApiService apiService = new ApiService();
 
         public UserRepository(ApiService apiService)
