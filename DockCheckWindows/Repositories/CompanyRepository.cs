@@ -7,7 +7,8 @@ namespace DockCheckWindows.Repositories
 {
     public class CompanyRepository : BaseRepository<Company>
     {
-        private const string BaseUrl = "http://localhost:3000/api/v1/companies";
+        //private const string BaseUrl = "http://localhost:3000/api/v1/companies";
+        private string BaseUrl = GlobalConfig.BaseApiUrl + "/companies";
 
         public CompanyRepository(ApiService apiService)
             : base(apiService)
