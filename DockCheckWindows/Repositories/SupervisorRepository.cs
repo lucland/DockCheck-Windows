@@ -7,7 +7,8 @@ namespace DockCheckWindows.Repositories
 {
     public class SupervisorRepository : BaseRepository<Supervisor>
     {
-        private const string BaseUrl = "http://localhost:3000/api/v1/supervisors";
+        // private const string BaseUrl = "http://localhost:3000/api/v1/supervisors";
+        private string BaseUrl = GlobalConfig.BaseApiUrl + "/supervisors";
 
         public SupervisorRepository(ApiService apiService)
             : base(apiService)
