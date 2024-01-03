@@ -8,7 +8,8 @@ namespace DockCheckWindows.Repositories
 {
     public class VesselRepository : BaseRepository<Vessel>
     {
-        private const string BaseUrl = "http://localhost:3000/api/v1/vessels";
+        // private const string BaseUrl = "http://localhost:3000/api/v1/vessels";
+        private string BaseUrl = GlobalConfig.BaseApiUrl + "/vessels";
 
         public VesselRepository(ApiService apiService)
             : base(apiService)
