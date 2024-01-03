@@ -7,7 +7,8 @@ namespace DockCheckWindows.Repositories
 {
     public class PicRepository : BaseRepository<Pic>
     {
-        private const string BaseUrl = "http://localhost:3000/api/v1/pictures";
+        //private const string BaseUrl = "http://localhost:3000/api/v1/pictures";
+        private string BaseUrl = GlobalConfig.BaseApiUrl + "/pictures";
 
         public PicRepository(ApiService apiService)
             : base(apiService)
