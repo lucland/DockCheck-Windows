@@ -10,7 +10,8 @@ namespace DockCheckWindows.Repositories
 {
     public class EventRepository : BaseRepository<Event>
     {
-        private const string BaseUrl = "http://localhost:3000/api/v1/events";
+        //private const string BaseUrl = "http://localhost:3000/api/v1/events";
+        private string BaseUrl = GlobalConfig.BaseApiUrl + "/events";
 
         public EventRepository(ApiService apiService)
             : base(apiService)
