@@ -7,7 +7,8 @@ namespace DockCheckWindows.Repositories
 {
     public class PortalRepository : BaseRepository<Portal>
     {
-        private const string BaseUrl = "http://localhost:3000/api/v1/portals";
+        // private const string BaseUrl = "http://localhost:3000/api/v1/portals";
+        private string BaseUrl = GlobalConfig.BaseApiUrl + "/portals";
 
         public PortalRepository(ApiService apiService)
             : base(apiService)
