@@ -7,7 +7,8 @@ namespace DockCheckWindows.Repositories
 {
     public class DockingRepository : BaseRepository<Docking>
     {
-        private const string BaseUrl = "http://localhost:3000/api/v1/dockings";
+        //private const string BaseUrl = "http://localhost:3000/api/v1/dockings";
+        private string BaseUrl = GlobalConfig.BaseApiUrl + "/dockings";
 
         public DockingRepository(ApiService apiService)
             : base(apiService)
