@@ -97,6 +97,9 @@ namespace DockCheckWindows
         [JsonProperty("is_blocked")]
         public bool IsBlocked { get; set; }
 
+        [JsonProperty("is_onboarded")]
+        public bool IsOnboarded { get; set; }
+
         [JsonProperty("block_reason")]
         public string BlockReason { get; set; }
 

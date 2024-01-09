@@ -29,6 +29,7 @@ namespace DockCheckWindows.Models
         [JsonProperty("created_at")]
         public DateTime CreatedAt { get; set; } // Non-nullable, assuming this is always provided
 
+
         [JsonProperty("updated_at")]
         public DateTime UpdatedAt { get; set; } // Non-nullable, assuming this is always provided
 
