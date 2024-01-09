@@ -39,7 +39,7 @@ namespace DockCheckWindows.UserControls
 
         private void InitializeDropdowns()
         {
-            crescenteDecrescente.Items.Add("CRESCENTE");
+           crescenteDecrescente.Items.Add("CRESCENTE");
             crescenteDecrescente.Items.Add("DECRESCENTE");
             crescenteDecrescente.SelectedIndex = 0;
         }
@@ -68,25 +68,38 @@ namespace DockCheckWindows.UserControls
                 string apiResponse = await _userRepository.GetAllUsersAsync(limit: 99, offset: 0);
                 if (!string.IsNullOrEmpty(apiResponse))
                 {
-                    _users = JsonConvert.DeserializeObject<List<User>>(apiResponse, new JsonSerializerSettings
+                    var usersFromApi = JsonConvert.DeserializeObject<List<User>>(apiResponse, new JsonSerializerSettings
                     {
                         NullValueHandling = NullValueHandling.Ignore,
                         MissingMemberHandling = MissingMemberHandling.Ignore
                     });
+
+                    // Upsert each user into the local database
+                    foreach (var user in usersFromApi)
+                    {
+                        db.UpsertUser(user);
+                    }
+
+                    // Reload the updated user list from the local database
+                    _users = db.GetAll<User>("User");
+
                     isDataLoaded = true;
-                    UpdateSortedAndFilteredUserDataSource();
+                    // UpdateSortedAndFilteredUserDataSource();
+                    cadastrosDataGrid.DataSource = new BindingSource(_users, null);
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("API call exception: " + ex.Message);
                 MessageBox.Show("API call failed. Fetching data from LiteDB.");
-                _users = db.GetAll<User>("User").ToList();
+                _users = db.GetAll<User>("User");
+
                 isDataLoaded = true;
                 UpdateSortedAndFilteredUserDataSource();
             }
             UpdateComboBoxOrdenarForUsers();
         }
+
 
         private async void LoadEvents()
         {
@@ -139,7 +152,8 @@ namespace DockCheckWindows.UserControls
         private void UpdateSortedAndFilteredUserDataSource()
         {
             if (_users == null) return;
-            var sortedUsers = SortUsers(_users);
+            var distinctUsers = _users.GroupBy(user => user.Identificacao).Select(group => group.First()).ToList();
+            var sortedUsers = SortUsers(distinctUsers);
             var filteredUsers = FilterUsers(sortedUsers, textBoxFiltrar.Text);
             cadastrosDataGrid.DataSource = new BindingSource(filteredUsers, null);
         }
