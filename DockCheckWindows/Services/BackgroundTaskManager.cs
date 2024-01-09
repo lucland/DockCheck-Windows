@@ -20,7 +20,7 @@ public class SerialDataProcessor
     {
         _eventRepository = eventRepository;
         _updateStatusAction = updateStatusAction;
-        _serialPort = new SerialPort("COM7", 115200);
+        _serialPort = new SerialPort("COM5", 115200);
         _cancellationTokenSource = new CancellationTokenSource();
         _receivedPCodes = new List<string>();
     }
@@ -31,7 +31,7 @@ public class SerialDataProcessor
         {
             _serialPort.Open();
             //MessageBox.Show("Serial port opened successfully.", "Information");
-            _serialPort.WriteLine("P3 CLDATA");
+            _serialPort.WriteLine("P1 CLDATA");
             Task.Run(() => CheckPCodesAsync());
         }
         catch (Exception ex)
@@ -44,10 +44,10 @@ public class SerialDataProcessor
     {
         while (_receivedPCodes.Count == 0)
         {
-            for (int i = 3; i <= 3; i++)
+            for (int i = 1; i <= 5; i++)
             {
                 string pCode = $"P{i}";
-                _serialPort.WriteLine($"{pCode} ok");
+                _serialPort.WriteLine($"{pCode} OK");
                 //MessageBox.Show($"Sent: {pCode} ok", "Command Sent");
                 if (await WaitForPCodeResponse(pCode))
                 {
@@ -76,25 +76,44 @@ public class SerialDataProcessor
         var completedTask = await Task.WhenAny(timeout, readTask);
         if (completedTask == readTask)
         {
-           // MessageBox.Show($"Received: {readTask.Result}", "Response Received");
             string response = await readTask;
-           // MessageBox.Show($"Received: {response}", "Response Received");
-            return response.Contains("Yes");
+            if (response != null)
+            {
+                MessageBox.Show($"Received: {response}", "Data Received");
+                return response.Contains("Yes");
+            }
         }
         return false;
     }
 
     private async Task<string> ReadLineAsync()
     {
-        //MessageBox.Show("Waiting for response...", "Waiting");
-        return await Task.Run(() => _serialPort.ReadLine());
+        try
+        {
+            return await Task.Run(() =>
+            {
+                // Check if there is data available to read
+                if (_serialPort.BytesToRead > 0)
+                {
+                    return _serialPort.ReadLine();
+                }
+                return null; // or throw an appropriate exception
+            });
+        }
+        catch (Exception ex)
+        {
+            // Handle the exception, possibly logging it or displaying a message
+            MessageBox.Show($"Error reading from serial port: {ex.Message}", "Read Error");
+            return null; // or rethrow the exception
+        }
     }
+
 
     private async Task ProcessPCodeDataAsync(string pCode)
     {
         _serialPort.WriteLine($"{pCode} SDATA");
        // MessageBox.Show($"Sent: {pCode} SDATA", "Command Sent");
-        _updateStatusAction($"Receiving data from {pCode}");
+        _updateStatusAction($"Recebendo dados do {pCode}");
 
         string line;
         List<Event> events = new List<Event>();
