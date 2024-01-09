@@ -9,15 +9,11 @@ namespace DockCheckWindows.Services
         private readonly LiteDatabase _liteDb;
 
         private static LiteDbService _instance;
-
-        static LiteDbService()
-        {
-            
-        }
-
         private LiteDbService(string connectionString)
         {
             _liteDb = new LiteDatabase(connectionString);
+            //delete all users from LiteDB
+            DeleteAll<User>("User");
         }
 
         public static LiteDbService Instance
@@ -43,7 +39,6 @@ namespace DockCheckWindows.Services
 
         public List<User> GetAll<User>(string collectionName) where User : new()
         {
-            //fetch all users from LiteDB
             var collection = _liteDb.GetCollection<User>("User");
             return collection.FindAll().ToList();
         }
@@ -77,6 +72,25 @@ namespace DockCheckWindows.Services
         {
             var collection = _liteDb.GetCollection<T>();
             return collection.Exists(Query.EQ("_id", id));
+        }
+
+        public bool UserExists(string userId)
+        {
+            var collection = _liteDb.GetCollection<User>("User");
+            return collection.Exists(Query.EQ("_id", new BsonValue(userId)));
+        }
+
+        public void UpsertUser(User user)
+        {
+            var collection = _liteDb.GetCollection<User>("User");
+            if (UserExists(user.Identificacao))
+            {
+                collection.Update(user);
+            }
+            else
+            {
+                collection.Insert(user);
+            }
         }
     }
 }
