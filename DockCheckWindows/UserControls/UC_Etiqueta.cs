@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Drawing.Printing;
+using System.IO.Ports;
 using System.Windows.Forms;
-using Image = System.Drawing.Image;
 
 namespace DockCheckWindows.UserControls
 {
@@ -34,7 +33,7 @@ namespace DockCheckWindows.UserControls
             labelEmpresa.Text = empresa;
             labelCheckIn.Text = "De: " + checkin;
             labelCheckOut.Text = "Até: " + checkout;
-            labelEmbarcacao.Text = "Embarcação: " + embarcacao;
+            labelEmbarcacao.Text = embarcacao;
 
             PrintSticker();
         }
@@ -42,39 +41,75 @@ namespace DockCheckWindows.UserControls
         public void PrintSticker()
         {
             try
-            {       
-                    int width = panelFundo.Size.Width;
-                    int height = panelFundo.Size.Height;
-                    Bitmap bm = new Bitmap(width, height);
-                    panelFundo.DrawToBitmap(bm, new System.Drawing.Rectangle(0, 0, width, height));
-                    bm.Save(@"C:\compartilhamento\data_picture\qr\Qrcode10.png", ImageFormat.Png);
-
-
-                    PrintDocument pd = new PrintDocument();
-                    System.Drawing.Printing.PaperSize pkSize;
-                    pkSize = pd.PrinterSettings.PaperSizes[57];
-                    //   pd.DefaultPageSettings.PrinterResolution = new PrinterResolution() { Kind = PrinterResolutionKind.Medium };
-
-                    pd.DefaultPageSettings.Landscape = true;
-                    pd.PrintPage += (sender, args) =>
-                    {
-                        Image i = bm;
-                        System.Drawing.Rectangle m = args.PageBounds;
-                        args.Graphics.DrawImage(i, 20, 5, 296, 216);
-                    };
-
-                    //  bm.Save(@"C:\data_picture\qr\Qrcode10.png", ImageFormat.Png);
-                    pd.Print();
-                    pd.Print();
-                    this.Hide();
-            }
-            catch
             {
-                MessageBox.Show("A IMPRESSORA BROTHER QL810 ou QL800 NÃO ESTÁ DEFINIDA COMO IMPRESSORA PADRÃO, FAVOR DEFINIR NO PAINEL DE CONTROLE DO WINDOWS NA OPÇÃO (Dispositivos e Impressoras)!");
-               // this.Hide();
-               // panelFundo.Hide();
+                Bitmap bm = GenerateBitmapFromPanel();
 
+                // Convert bitmap to a format suitable for the printer
+                byte[] printerCommands = ConvertImageToPrinterCommands(bm);
+
+                // Send data to printer
+                SendDataToPrinter("COM11", printerCommands);
+
+                this.Hide();
+                panelFundo.Hide();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Printing failed: {ex.Message}");
+            }
+        }
+
+        private byte[] ConvertImageToPrinterCommands(Bitmap bitmap)
+        {
+            // Convert your bitmap to a byte array or a string of commands 
+            // that your printer understands. This highly depends on your printer's command set.
+            // You might need a third-party library or a custom implementation for this.
+            // This is a placeholder for the conversion logic.
+            return new byte[0]; // Replace this with actual conversion logic
+        }
+
+        private void SendDataToPrinter(string portName, byte[] data)
+        {
+            using (SerialPort printerPort = new SerialPort(portName))
+            {
+                printerPort.BaudRate = 9600; // Set appropriate baud rate
+                printerPort.Parity = Parity.None;
+                printerPort.StopBits = StopBits.One;
+                printerPort.DataBits = 8;
+                printerPort.Handshake = Handshake.None;
+
+                printerPort.Open();
+                printerPort.Write(data, 0, data.Length);
+                printerPort.Close();
+            }
+        }
+
+        private Bitmap GenerateBitmapFromPanel()
+        {
+            int width = panelFundo.Size.Width;
+            int height = panelFundo.Size.Height;
+            Bitmap bm = new Bitmap(width, height);
+            panelFundo.DrawToBitmap(bm, new Rectangle(0, 0, width, height));
+            bm.Save(@"C:\compartilhamento\data_picture\qr\Qrcode10.png", System.Drawing.Imaging.ImageFormat.Png);
+            return bm;
+        }
+
+        private PrintDocument CreatePrintDocument(Bitmap bm)
+        {
+            PrintDocument pd = new PrintDocument();
+            pd.DefaultPageSettings.Landscape = true;
+            pd.PrintPage += (sender, args) =>
+            {
+                Image i = bm;
+                Rectangle m = args.PageBounds;
+                args.Graphics.DrawImage(i, 20, 5, 296, 216);
+            };
+            return pd;
+        }
+
+        private void excludeImageButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

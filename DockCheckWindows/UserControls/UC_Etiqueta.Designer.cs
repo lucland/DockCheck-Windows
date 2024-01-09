@@ -30,9 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Etiqueta));
             this.panelFundo = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.labelEmpresa = new System.Windows.Forms.TextBox();
             this.labelCheckOut = new System.Windows.Forms.Label();
             this.labelIdentificacao = new System.Windows.Forms.TextBox();
             this.labelNome = new System.Windows.Forms.Label();
@@ -40,9 +42,9 @@
             this.label30 = new System.Windows.Forms.Label();
             this.labelEmbarcacao = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.excludeImageButton = new Guna.UI2.WinForms.Guna2Button();
+            this.labelImprimir = new System.Windows.Forms.Label();
+            this.labelEmpresa = new System.Windows.Forms.Label();
             this.panelFundo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.SuspendLayout();
@@ -51,12 +53,12 @@
             // 
             this.panelFundo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelFundo.BackColor = System.Drawing.Color.White;
+            this.panelFundo.Controls.Add(this.labelEmpresa);
             this.panelFundo.Controls.Add(this.label4);
             this.panelFundo.Controls.Add(this.label2);
             this.panelFundo.Controls.Add(this.label3);
             this.panelFundo.Controls.Add(this.label1);
             this.panelFundo.Controls.Add(this.pictureBox9);
-            this.panelFundo.Controls.Add(this.labelEmpresa);
             this.panelFundo.Controls.Add(this.labelCheckOut);
             this.panelFundo.Controls.Add(this.labelIdentificacao);
             this.panelFundo.Controls.Add(this.labelNome);
@@ -64,12 +66,43 @@
             this.panelFundo.Controls.Add(this.label30);
             this.panelFundo.Controls.Add(this.labelEmbarcacao);
             this.panelFundo.Controls.Add(this.panel10);
-            this.panelFundo.Location = new System.Drawing.Point(0, 0);
+            this.panelFundo.Location = new System.Drawing.Point(22, 47);
             this.panelFundo.MaximumSize = new System.Drawing.Size(400, 400);
             this.panelFundo.Name = "panelFundo";
             this.panelFundo.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.panelFundo.Size = new System.Drawing.Size(308, 216);
             this.panelFundo.TabIndex = 81;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(236, 155);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 29);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "AB+";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(177, 131);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(120, 16);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Casa de Máquinas";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(165, 111);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 16);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Acesso:";
             // 
             // label1
             // 
@@ -86,23 +119,11 @@
             this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
             this.pictureBox9.InitialImage = null;
-            this.pictureBox9.Location = new System.Drawing.Point(5, 12);
+            this.pictureBox9.Location = new System.Drawing.Point(3, 11);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(30, 205);
             this.pictureBox9.TabIndex = 9;
             this.pictureBox9.TabStop = false;
-            // 
-            // labelEmpresa
-            // 
-            this.labelEmpresa.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.labelEmpresa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEmpresa.Location = new System.Drawing.Point(39, 194);
-            this.labelEmpresa.MaxLength = 20;
-            this.labelEmpresa.Name = "labelEmpresa";
-            this.labelEmpresa.Size = new System.Drawing.Size(263, 19);
-            this.labelEmpresa.TabIndex = 8;
-            this.labelEmpresa.Text = "EMPRESA";
-            this.labelEmpresa.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // labelCheckOut
             // 
@@ -118,24 +139,24 @@
             // 
             this.labelIdentificacao.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.labelIdentificacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelIdentificacao.Location = new System.Drawing.Point(208, 6);
+            this.labelIdentificacao.Location = new System.Drawing.Point(203, 6);
             this.labelIdentificacao.Name = "labelIdentificacao";
             this.labelIdentificacao.Size = new System.Drawing.Size(94, 46);
             this.labelIdentificacao.TabIndex = 7;
             this.labelIdentificacao.Text = "3333";
-            this.labelIdentificacao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.labelIdentificacao.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.labelIdentificacao.Visible = false;
             // 
             // labelNome
             // 
             this.labelNome.AutoSize = true;
             this.labelNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNome.Location = new System.Drawing.Point(35, 68);
+            this.labelNome.Location = new System.Drawing.Point(35, 64);
             this.labelNome.Name = "labelNome";
             this.labelNome.Size = new System.Drawing.Size(251, 20);
             this.labelNome.TabIndex = 2;
             this.labelNome.Text = "Nome nome nome nome nome";
-            this.labelNome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelNome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelCheckIn
             // 
@@ -161,11 +182,12 @@
             // 
             this.labelEmbarcacao.AutoSize = true;
             this.labelEmbarcacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEmbarcacao.Location = new System.Drawing.Point(42, 88);
+            this.labelEmbarcacao.Location = new System.Drawing.Point(35, 84);
             this.labelEmbarcacao.Name = "labelEmbarcacao";
             this.labelEmbarcacao.Size = new System.Drawing.Size(133, 20);
             this.labelEmbarcacao.TabIndex = 4;
             this.labelEmbarcacao.Text = "SKANDI RECIFE";
+            this.labelEmbarcacao.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel10
             // 
@@ -177,48 +199,62 @@
             this.panel10.Size = new System.Drawing.Size(74, 46);
             this.panel10.TabIndex = 3;
             // 
-            // label2
+            // excludeImageButton
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(177, 131);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 16);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Casa de Máquinas";
+            this.excludeImageButton.BorderRadius = 15;
+            this.excludeImageButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.excludeImageButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.excludeImageButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.excludeImageButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.excludeImageButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
+            this.excludeImageButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.excludeImageButton.ForeColor = System.Drawing.Color.White;
+            this.excludeImageButton.Location = new System.Drawing.Point(320, 5);
+            this.excludeImageButton.Name = "excludeImageButton";
+            this.excludeImageButton.Size = new System.Drawing.Size(28, 28);
+            this.excludeImageButton.TabIndex = 82;
+            this.excludeImageButton.Text = "x";
+            this.excludeImageButton.TextOffset = new System.Drawing.Point(1, -2);
+            this.excludeImageButton.Click += new System.EventHandler(this.excludeImageButton_Click);
             // 
-            // label3
+            // labelImprimir
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(165, 111);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 16);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Acesso:";
+            this.labelImprimir.AutoSize = true;
+            this.labelImprimir.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelImprimir.ForeColor = System.Drawing.Color.White;
+            this.labelImprimir.Location = new System.Drawing.Point(9, 10);
+            this.labelImprimir.Name = "labelImprimir";
+            this.labelImprimir.Size = new System.Drawing.Size(234, 23);
+            this.labelImprimir.TabIndex = 83;
+            this.labelImprimir.Text = "Impressão da etiqueta...";
             // 
-            // label4
+            // labelEmpresa
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(236, 155);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 29);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "AB+";
+            this.labelEmpresa.AutoSize = true;
+            this.labelEmpresa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEmpresa.Location = new System.Drawing.Point(35, 187);
+            this.labelEmpresa.Name = "labelEmpresa";
+            this.labelEmpresa.Size = new System.Drawing.Size(154, 20);
+            this.labelEmpresa.TabIndex = 14;
+            this.labelEmpresa.Text = "Empresa empresa";
+            this.labelEmpresa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // UC_Etiqueta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.Controls.Add(this.labelImprimir);
+            this.Controls.Add(this.excludeImageButton);
             this.Controls.Add(this.panelFundo);
             this.Name = "UC_Etiqueta";
-            this.Size = new System.Drawing.Size(308, 216);
+            this.Size = new System.Drawing.Size(353, 288);
             this.Load += new System.EventHandler(this.UC_Etiqueta_Load);
             this.panelFundo.ResumeLayout(false);
             this.panelFundo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -226,7 +262,6 @@
 
         private System.Windows.Forms.Panel panelFundo;
         private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.TextBox labelEmpresa;
         private System.Windows.Forms.Label labelCheckOut;
         private System.Windows.Forms.TextBox labelIdentificacao;
         private System.Windows.Forms.Label labelNome;
@@ -238,5 +273,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private Guna.UI2.WinForms.Guna2Button excludeImageButton;
+        private System.Windows.Forms.Label labelImprimir;
+        private System.Windows.Forms.Label labelEmpresa;
     }
 }
