@@ -67,9 +67,12 @@ namespace DockCheckWindows.UserControls
             listViewBloqueados.FullRowSelect = true;
             listViewBloqueados.Columns.Add("Nome", 100);
             listViewBloqueados.Columns.Add("Número", 100);
-
-            listViewBloqueados.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            SetEqualColumnWidths(listViewBloqueados, 2);
+            //just do the resize if item is not disposed
+            if (!listViewBloqueados.IsDisposed)
+            {
+                listViewBloqueados.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                SetEqualColumnWidths(listViewBloqueados, 2);
+            }
 
             foreach (var id in blockedUserIds)
             {

@@ -33,24 +33,28 @@
             this.labelTotalABordo = new System.Windows.Forms.Label();
             this.labelPortalo = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.statusAcao1 = new System.Windows.Forms.Label();
             this.portaloData1 = new System.Windows.Forms.Label();
             this.labelProaUltimaAtualizacao = new System.Windows.Forms.Label();
             this.labelProaRfid1 = new System.Windows.Forms.Label();
             this.labelPortaloTitulo1 = new System.Windows.Forms.Label();
             this.statusPortalo1 = new Guna.UI2.WinForms.Guna2Shapes();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.statusAcao2 = new System.Windows.Forms.Label();
             this.portaloData2 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.labelPortaloTitulo2 = new System.Windows.Forms.Label();
             this.statusPortalo2 = new Guna.UI2.WinForms.Guna2Shapes();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.statusAcao3 = new System.Windows.Forms.Label();
             this.portaloData3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.labelPortaloTitulo3 = new System.Windows.Forms.Label();
             this.statusPortalo3 = new Guna.UI2.WinForms.Guna2Shapes();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.statusAcao4 = new System.Windows.Forms.Label();
             this.portaloData4 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -63,10 +67,6 @@
             this.labelTotalBloqueados = new System.Windows.Forms.Label();
             this.listViewEventos = new System.Windows.Forms.ListView();
             this.labelEventos = new System.Windows.Forms.Label();
-            this.statusAcao1 = new System.Windows.Forms.Label();
-            this.statusAcao2 = new System.Windows.Forms.Label();
-            this.statusAcao3 = new System.Windows.Forms.Label();
-            this.statusAcao4 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -119,6 +119,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1337, 62);
             this.panel2.TabIndex = 4;
+            // 
+            // statusAcao1
+            // 
+            this.statusAcao1.AutoSize = true;
+            this.statusAcao1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.statusAcao1.Location = new System.Drawing.Point(191, 20);
+            this.statusAcao1.Name = "statusAcao1";
+            this.statusAcao1.Size = new System.Drawing.Size(341, 23);
+            this.statusAcao1.TabIndex = 8;
+            this.statusAcao1.Text = "Recebendo informações do Portal 1";
             // 
             // portaloData1
             // 
@@ -188,6 +198,16 @@
             this.panel3.Size = new System.Drawing.Size(1337, 62);
             this.panel3.TabIndex = 4;
             // 
+            // statusAcao2
+            // 
+            this.statusAcao2.AutoSize = true;
+            this.statusAcao2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.statusAcao2.Location = new System.Drawing.Point(191, 20);
+            this.statusAcao2.Name = "statusAcao2";
+            this.statusAcao2.Size = new System.Drawing.Size(18, 23);
+            this.statusAcao2.TabIndex = 9;
+            this.statusAcao2.Text = "-";
+            // 
             // portaloData2
             // 
             this.portaloData2.AutoSize = true;
@@ -256,6 +276,16 @@
             this.panel4.Size = new System.Drawing.Size(1337, 62);
             this.panel4.TabIndex = 4;
             // 
+            // statusAcao3
+            // 
+            this.statusAcao3.AutoSize = true;
+            this.statusAcao3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.statusAcao3.Location = new System.Drawing.Point(191, 20);
+            this.statusAcao3.Name = "statusAcao3";
+            this.statusAcao3.Size = new System.Drawing.Size(18, 23);
+            this.statusAcao3.TabIndex = 10;
+            this.statusAcao3.Text = "-";
+            // 
             // portaloData3
             // 
             this.portaloData3.AutoSize = true;
@@ -323,6 +353,16 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1337, 62);
             this.panel5.TabIndex = 4;
+            // 
+            // statusAcao4
+            // 
+            this.statusAcao4.AutoSize = true;
+            this.statusAcao4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.statusAcao4.Location = new System.Drawing.Point(191, 20);
+            this.statusAcao4.Name = "statusAcao4";
+            this.statusAcao4.Size = new System.Drawing.Size(18, 23);
+            this.statusAcao4.TabIndex = 11;
+            this.statusAcao4.Text = "-";
             // 
             // portaloData4
             // 
@@ -469,46 +509,6 @@
             this.labelEventos.Size = new System.Drawing.Size(321, 38);
             this.labelEventos.TabIndex = 11;
             this.labelEventos.Text = "EVENTOS RECENTES:";
-            // 
-            // statusAcao1
-            // 
-            this.statusAcao1.AutoSize = true;
-            this.statusAcao1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.statusAcao1.Location = new System.Drawing.Point(191, 20);
-            this.statusAcao1.Name = "statusAcao1";
-            this.statusAcao1.Size = new System.Drawing.Size(18, 23);
-            this.statusAcao1.TabIndex = 8;
-            this.statusAcao1.Text = "-";
-            // 
-            // statusAcao2
-            // 
-            this.statusAcao2.AutoSize = true;
-            this.statusAcao2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.statusAcao2.Location = new System.Drawing.Point(191, 20);
-            this.statusAcao2.Name = "statusAcao2";
-            this.statusAcao2.Size = new System.Drawing.Size(18, 23);
-            this.statusAcao2.TabIndex = 9;
-            this.statusAcao2.Text = "-";
-            // 
-            // statusAcao3
-            // 
-            this.statusAcao3.AutoSize = true;
-            this.statusAcao3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.statusAcao3.Location = new System.Drawing.Point(191, 20);
-            this.statusAcao3.Name = "statusAcao3";
-            this.statusAcao3.Size = new System.Drawing.Size(18, 23);
-            this.statusAcao3.TabIndex = 10;
-            this.statusAcao3.Text = "-";
-            // 
-            // statusAcao4
-            // 
-            this.statusAcao4.AutoSize = true;
-            this.statusAcao4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.statusAcao4.Location = new System.Drawing.Point(191, 20);
-            this.statusAcao4.Name = "statusAcao4";
-            this.statusAcao4.Size = new System.Drawing.Size(18, 23);
-            this.statusAcao4.TabIndex = 11;
-            this.statusAcao4.Text = "-";
             // 
             // UC_Home
             // 
