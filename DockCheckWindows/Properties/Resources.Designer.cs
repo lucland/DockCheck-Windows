@@ -133,7 +133,7 @@ namespace DockCheckWindows.Properties {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Cadastrar e Gerar RFID.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Cadastrar e Gerar iTag.
         /// </summary>
         internal static string CadstrarRegistrarRfid {
             get {

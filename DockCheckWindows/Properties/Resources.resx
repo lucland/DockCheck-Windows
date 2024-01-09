@@ -150,7 +150,7 @@
     <comment>Form1</comment>
   </data>
   <data name="CadstrarRegistrarRfid" xml:space="preserve">
-    <value>Cadastrar e Gerar RFID</value>
+    <value>Cadastrar e Gerar iTag</value>
     <comment>Cadastrar</comment>
   </data>
   <data name="Cameras" xml:space="preserve">
