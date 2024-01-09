@@ -86,14 +86,14 @@ namespace DockCheckWindows
 
         private void StartBlinking()
         {
-            InitializeBlinkTimer();
+           // InitializeBlinkTimer();
             signalPictureBox.Visible = true;
-            blinkTimer.Start();
+           // blinkTimer.Start();
         }
 
         private void StopBlinking()
         {
-            blinkTimer.Stop();
+            //blinkTimer.Stop();
         }
 
         //retieve user object from user_id with UserRepository
@@ -188,6 +188,7 @@ namespace DockCheckWindows
             if (message.Contains("P"))
             {
                 StartBlinking();
+                signalLabel.Text = message;
             }
             else if (message.Contains("Receiving") || message.Contains("Sending"))
             {
@@ -196,7 +197,8 @@ namespace DockCheckWindows
             else if (message.Contains("Data processing completed"))
             {
                 // Reset or update the label when data processing is completed
-                signalLabel.Text = "----------------";
+               // signalLabel.Text = "----------------";
+                signalLabel.Text = message;
                 StopBlinking();
             }
         }
