@@ -234,6 +234,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\ActionEnum.cs" />
+    <Compile Include="GlobalConfig.cs" />
     <Compile Include="Models\Beacon.cs" />
     <Compile Include="Models\Pic.cs" />
     <Compile Include="Models\Receptor.cs" />
