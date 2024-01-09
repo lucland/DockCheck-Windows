@@ -83,7 +83,9 @@
             this.panel13 = new System.Windows.Forms.Panel();
             this.textBoxNome = new System.Windows.Forms.TextBox();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.sangueComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.escolherNR35Button = new Guna.UI2.WinForms.Guna2Button();
@@ -120,8 +122,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.loadingBar = new System.Windows.Forms.ProgressBar();
             this.printButton = new Guna.UI2.WinForms.Guna2Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.sangueComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.leriTagButton = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
             this.senhaPanel.SuspendLayout();
             this.usuarioPanel.SuspendLayout();
@@ -187,7 +188,6 @@
             this.labelSangue.Size = new System.Drawing.Size(221, 37);
             this.labelSangue.TabIndex = 0;
             this.labelSangue.Text = "Tipo Sangíneo";
-            this.labelSangue.Click += new System.EventHandler(this.labelIdentidade_Click);
             // 
             // labelEmpresa
             // 
@@ -968,6 +968,18 @@
             this.panel12.Size = new System.Drawing.Size(429, 38);
             this.panel12.TabIndex = 1;
             // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox1.Location = new System.Drawing.Point(6, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(5);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(417, 30);
+            this.textBox1.TabIndex = 1;
+            // 
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.Color.White;
@@ -976,6 +988,34 @@
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(429, 38);
             this.panel11.TabIndex = 2;
+            // 
+            // sangueComboBox
+            // 
+            this.sangueComboBox.BackColor = System.Drawing.Color.Transparent;
+            this.sangueComboBox.BorderThickness = 0;
+            this.sangueComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.sangueComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sangueComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.sangueComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.sangueComboBox.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sangueComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.sangueComboBox.ItemHeight = 30;
+            this.sangueComboBox.Items.AddRange(new object[] {
+            "",
+            "A-",
+            "A+",
+            "B-",
+            "B+",
+            "AB-",
+            "AB+",
+            "O-",
+            "O+"});
+            this.sangueComboBox.ItemsAppearance.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sangueComboBox.ItemsAppearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
+            this.sangueComboBox.Location = new System.Drawing.Point(0, 1);
+            this.sangueComboBox.Name = "sangueComboBox";
+            this.sangueComboBox.Size = new System.Drawing.Size(429, 36);
+            this.sangueComboBox.TabIndex = 0;
             // 
             // panel10
             // 
@@ -1360,7 +1400,7 @@
             this.buttonRegistrar.Name = "buttonRegistrar";
             this.buttonRegistrar.Size = new System.Drawing.Size(418, 63);
             this.buttonRegistrar.TabIndex = 2;
-            this.buttonRegistrar.Text = "Cadastrar e Registrar RFID";
+            this.buttonRegistrar.Text = "Cadastrar e Registrar iTag";
             this.buttonRegistrar.Click += new System.EventHandler(this.buttonRegistrar_Click);
             // 
             // panel2
@@ -1397,7 +1437,7 @@
             this.labelRFID.Name = "labelRFID";
             this.labelRFID.Size = new System.Drawing.Size(77, 37);
             this.labelRFID.TabIndex = 5;
-            this.labelRFID.Text = "RFID";
+            this.labelRFID.Text = "iTag";
             // 
             // labelAvisoRFID
             // 
@@ -1409,8 +1449,8 @@
             this.labelAvisoRFID.Name = "labelAvisoRFID";
             this.labelAvisoRFID.Size = new System.Drawing.Size(418, 60);
             this.labelAvisoRFID.TabIndex = 7;
-            this.labelAvisoRFID.Text = "ATENÇÃO! Não digitar no campo abaixo, apenas clique no campo\r\ne leia o RFID com o" +
-    " leitor convectado. \r\nAssim que o código for incluso, não alterá-lo.";
+            this.labelAvisoRFID.Text = "ATENÇÃO! Não digitar no campo abaixo, apenas clique no campo\r\ne leia a iTag com o" +
+    " leitor conectado. \r\nAssim que o código for incluso, não alterá-lo.";
             // 
             // label4
             // 
@@ -1448,52 +1488,34 @@
             this.printButton.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.printButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
             this.printButton.ImageSize = new System.Drawing.Size(30, 30);
-            this.printButton.Location = new System.Drawing.Point(1062, 858);
+            this.printButton.Location = new System.Drawing.Point(1062, 863);
             this.printButton.Name = "printButton";
             this.printButton.Size = new System.Drawing.Size(418, 63);
             this.printButton.TabIndex = 41;
             this.printButton.Text = "Imprimir";
             this.printButton.Click += new System.EventHandler(this.printButton_Click);
             // 
-            // textBox1
+            // leriTagButton
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBox1.Location = new System.Drawing.Point(6, 4);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(417, 30);
-            this.textBox1.TabIndex = 1;
-            // 
-            // sangueComboBox
-            // 
-            this.sangueComboBox.BackColor = System.Drawing.Color.Transparent;
-            this.sangueComboBox.BorderThickness = 0;
-            this.sangueComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.sangueComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.sangueComboBox.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.sangueComboBox.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.sangueComboBox.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sangueComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.sangueComboBox.ItemHeight = 30;
-            this.sangueComboBox.Items.AddRange(new object[] {
-            "",
-            "A-",
-            "A+",
-            "B-",
-            "B+",
-            "AB-",
-            "AB+",
-            "O-",
-            "O+"});
-            this.sangueComboBox.ItemsAppearance.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sangueComboBox.ItemsAppearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(70)))));
-            this.sangueComboBox.Location = new System.Drawing.Point(0, 1);
-            this.sangueComboBox.Name = "sangueComboBox";
-            this.sangueComboBox.Size = new System.Drawing.Size(429, 36);
-            this.sangueComboBox.TabIndex = 0;
+            this.leriTagButton.BackColor = System.Drawing.Color.Transparent;
+            this.leriTagButton.BorderRadius = 3;
+            this.leriTagButton.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.leriTagButton.CustomBorderThickness = new System.Windows.Forms.Padding(5);
+            this.leriTagButton.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.leriTagButton.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.leriTagButton.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.leriTagButton.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.leriTagButton.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.leriTagButton.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leriTagButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.leriTagButton.Image = ((System.Drawing.Image)(resources.GetObject("leriTagButton.Image")));
+            this.leriTagButton.ImageOffset = new System.Drawing.Point(0, 1);
+            this.leriTagButton.ImageSize = new System.Drawing.Size(30, 30);
+            this.leriTagButton.Location = new System.Drawing.Point(537, 860);
+            this.leriTagButton.Name = "leriTagButton";
+            this.leriTagButton.Size = new System.Drawing.Size(44, 38);
+            this.leriTagButton.TabIndex = 2;
+            this.leriTagButton.Click += new System.EventHandler(this.lerTagButton_Click);
             // 
             // UC_Cadastrar
             // 
@@ -1509,6 +1531,7 @@
             this.Controls.Add(this.buttonCadastrar);
             this.Controls.Add(this.labelNumero);
             this.Controls.Add(this.labelCheckout);
+            this.Controls.Add(this.leriTagButton);
             this.Controls.Add(this.buttonRegistrar);
             this.Controls.Add(this.labelCheckIn);
             this.Controls.Add(this.labelArea);
@@ -1654,5 +1677,6 @@
         private Guna.UI2.WinForms.Guna2Button printButton;
         private System.Windows.Forms.TextBox textBox1;
         private Guna.UI2.WinForms.Guna2ComboBox sangueComboBox;
+        private Guna.UI2.WinForms.Guna2Button leriTagButton;
     }
 }

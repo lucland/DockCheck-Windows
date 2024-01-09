@@ -899,6 +899,66 @@ namespace DockCheckWindows.UserControls
             ValidateFields();
         }
 
+        //button leriTagButton click
+        private void lerTagButton_Click(object sender, EventArgs e)
+        {
+            //open the serial port
+            using (_serialPort = new SerialPort("COM5", 115200))
+            {
+                _serialPort.Open();
+                //send the command to read the tag
+                _serialPort.WriteLine("L1");
+                //wait for the response
+                Task.Delay(3000);
+                //read the response
+                _serialPort.WriteLine("L1");
+                string rfid = _serialPort.ReadLine();
+                //close the serial port
+                _serialPort.Close();
+                //display the rfid on the textbox
+                textBoxRFID.Text = rfid;
+               // leriTagButton.Enabled = false;
+
+                ValidateFields();
+
+
+                /*try
+            {
+                using (_serialPort = new SerialPort("COM5", 115200))
+                {
+                    _serialPort.Open();
+                    _serialPort.WriteLine("L1");
+                    MessageBox.Show("L1");
+                    string rfid = _serialPort.ReadLine();
+                    MessageBox.Show(rfid);
+                    textBoxRFID.Text = rfid;
+                    _serialPort.Close();
+
+                    if (!string.IsNullOrEmpty(rfid) && rfid.Length == 24)
+                    {
+                        textBoxRFID.ReadOnly = true;
+                        ValidateFields();
+
+                    }
+                    if (textBoxRFID.Text == "issupervisor")
+                    {
+                        supervisorToggleSwitch.Visible = true;
+                        supervisorLabel.Visible = true;
+                    }
+                    else
+                    {
+                        supervisorToggleSwitch.Visible = false;
+                        supervisorLabel.Visible = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }*/
+            }
+        }
+
         private async void buttonRegistrar_Click(object sender, EventArgs e)
         {
             if (_isEditMode)
@@ -1131,23 +1191,7 @@ namespace DockCheckWindows.UserControls
 
         private void textBoxRFID_TextChanged(object sender, EventArgs e)
         {
-            string rfid = textBoxRFID.Text;
-            if (!string.IsNullOrEmpty(rfid) && rfid.Length == 24)
-            {
-                textBoxRFID.ReadOnly = true;
-                ValidateFields();
-
-            }
-            if (textBoxRFID.Text == "issupervisor")
-            {
-                supervisorToggleSwitch.Visible = true;
-                supervisorLabel.Visible = true;
-            }
-            else
-            {
-                supervisorToggleSwitch.Visible = false;
-                supervisorLabel.Visible = false;
-            }
+            
         }
 
         private void textBoxRFID_MouseClick(object sender, MouseEventArgs e)
@@ -1185,16 +1229,18 @@ namespace DockCheckWindows.UserControls
 
         private void DisplayEtiquetaControl()
         {
+            //TODO: get vessel name from user authorization
+            string vesselName = Properties.Settings.Default.Vessel.ToString();
             var ucEtiqueta = new UC_Etiqueta(
                 name: textBoxNome.Text,
                 identificacao: labelNumero.Text,
-                embarcacao: textBoxFuncao.Text,
+                embarcacao: vesselName,
                 empresa: textBoxEmpresa.Text,
                 checkin: dateTimePickerCheckout.Value.ToString("dd/MM/yyyy"),
                 checkout: dateTimePickerCheckin.Value.ToString("dd/MM/yyyy")
                 );
-            ucEtiqueta.Location = new Point(600, 200);
-            ucEtiqueta.Size = new Size(308, 216);
+            ucEtiqueta.Location = new Point(800, 300);
+            ucEtiqueta.Size = new Size(353, 288);
             Controls.Add(ucEtiqueta);
             ucEtiqueta.BringToFront();
             ucEtiqueta.Show();
@@ -1203,11 +1249,6 @@ namespace DockCheckWindows.UserControls
         private void printButton_Click(object sender, EventArgs e)
         {
             DisplayEtiquetaControl();
-        }
-
-        private void labelIdentidade_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
