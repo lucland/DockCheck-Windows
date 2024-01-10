@@ -89,7 +89,7 @@ namespace DockCheckWindows.Repositories
             return blockedUserIds;
         }
 
-        public async Task<string> GetAllApprovedUsersAsync(int page = 1, int pageSize = 10)
+        public async Task<string> GetAllApprovedUsersAsync(int page = 1, int pageSize = 99)
         {
             string url = $"{BaseUrl}/all/approved?page={page}&pageSize={pageSize}";
             return await GetAsync(url);
