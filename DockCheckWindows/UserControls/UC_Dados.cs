@@ -249,6 +249,9 @@ namespace DockCheckWindows.UserControls
 
         private void tableSwitchDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Reset the sorting and filtering
+            comboBoxOrdenar.SelectedIndex = 0;
+            textBoxFiltrar.Text = "";
             if (tableSwitchDropdown.SelectedItem.ToString() == "Eventos")
             {
                 LoadEvents();
