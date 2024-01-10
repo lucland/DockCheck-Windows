@@ -28,8 +28,8 @@ namespace DockCheckWindows
         [JsonProperty("number")]
         public int Number { get; set; }
 
-        [JsonProperty("identidade")]
-        public string Identidade { get; set; }
+        [JsonProperty("blood_type")]
+        public string BloodType { get; set; }
 
         [JsonProperty("cpf")]
         public string CPF { get; set; }
@@ -91,8 +91,11 @@ namespace DockCheckWindows
         [JsonProperty("is_visitor")]
         public bool IsVisitor { get; set; }
 
-        [JsonProperty("is_guardian")]
-        public bool IsGuardian { get; set; }
+        [JsonProperty("is_crew")]
+        public bool IsCrew { get; set; }
+
+        [JsonProperty("is_portalo")]
+        public bool IsPortalo { get; set; }
 
         [JsonProperty("is_blocked")]
         public bool IsBlocked { get; set; }
@@ -103,20 +106,8 @@ namespace DockCheckWindows
         [JsonProperty("block_reason")]
         public string BlockReason { get; set; }
 
-        [JsonProperty("rfid")]
-        public string RFID { get; set; }
-
         [JsonProperty("picture")]
         public string Picture { get; set; }
-
-        [JsonProperty("created_at")]
-        public DateTime CreatedAt { get; set; }
-
-        [JsonProperty("updated_at")]
-        public DateTime UpdatedAt { get; set; }
-
-        [JsonProperty("events")]
-        public string[] Events { get; set; }
 
         [JsonProperty("type_job")]
         public string TypeJob { get; set; }
@@ -139,10 +130,9 @@ namespace DockCheckWindows
         [JsonProperty("status")]
         public string Status { get; set; }
 
-        /*
-        [JsonProperty("beacon_id")]
-        public string BeaconId { get; set; }
-        */
+        [JsonProperty("itag")]
+        public string ITag { get; set; }
+
         public static User FromJson(string jsonData)
         {
             return JsonConvert.DeserializeObject<User>(jsonData);
