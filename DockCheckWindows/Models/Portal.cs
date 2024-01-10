@@ -14,24 +14,14 @@ namespace DockCheckWindows.Models
         [JsonProperty("vessel_id")]
         public string VesselId { get; set; }
 
-        [JsonProperty("camera_status")]
-        public int CameraStatus { get; set; }
+        [JsonProperty("user_id")]
+        public string UserId { get; set; }
 
-        [JsonProperty("camera_ip")]
-        public string CameraIp { get; set; }
+        [JsonProperty("onboard_count")]
+        public string OnboardCount { get; set; }
 
-        [JsonProperty("rfid_status")]
-        public int RfidStatus { get; set; }
-
-        [JsonProperty("rfid_ip")]
-        public string RfidIp { get; set; }
-
-        [JsonProperty("created_at")]
-        public DateTime CreatedAt { get; set; } // Non-nullable, assuming this is always provided
-
-
-        [JsonProperty("updated_at")]
-        public DateTime UpdatedAt { get; set; } // Non-nullable, assuming this is always provided
+        [JsonProperty("last_event")]
+        public DateTime LastEvent { get; set; }
 
         [JsonProperty("status")]
         public string Status { get; set; }
