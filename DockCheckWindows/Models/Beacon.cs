@@ -5,17 +5,14 @@ namespace DockCheckWindows.Models
 {
     public class Beacon
     {
-        [JsonProperty("rssi")]
-        public string RSSI { get; set; }
+        [JsonProperty("itag")]
+        public string Itag { get; set; }
 
-        [JsonProperty("found")]
-        public DateTime found { get; set; }
+        [JsonProperty("is_valid")]
+        public bool IsValid { get; set; }
 
         [JsonProperty("user_id")]
         public string UserId { get; set; }
-
-        [JsonProperty("updated_at")]
-        public DateTime UpdatedAt { get; set; }
 
         [JsonProperty("id")]
         public string Id { get; set; }
