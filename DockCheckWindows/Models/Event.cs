@@ -17,26 +17,20 @@ namespace DockCheckWindows.Models
         [JsonProperty("timestamp")]
         public DateTime Timestamp { get; set; } // Assuming this is required and should not be nullable
 
-        [JsonProperty("direction")]
-        public int Direction { get; set; }
-
-        [JsonProperty("picture")]
-        public string Picture { get; set; }
-
         [JsonProperty("vessel_id")]
         public string VesselId { get; set; }
 
         [JsonProperty("action")]
         public int Action { get; set; }
 
-        [JsonProperty("manual")]
-        public bool Manual { get; set; } // Boolean value, non-nullable
-
         [JsonProperty("justification")]
         public string Justification { get; set; }
 
         [JsonProperty("status")]
         public string Status { get; set; }
+
+        [JsonProperty("beacon_id")]
+        public string BeaconId { get; set; }
 
         public static Event FromJson(string jsonData)
         {
