@@ -55,7 +55,7 @@ namespace DockCheckWindows.UserControls
             textBoxNome.Text = user.Name;
             textBoxFuncao.Text = user.Role;
             textBoxEmpresa.Text = user.Company;
-            sangueComboBox.Text = user.Identidade;
+            sangueComboBox.Text = user.BloodType;
             maskedTextBoxCpf.Text = user.CPF;
             maskedTextBoxAso.Text = user.ASO != DateTime.MinValue ? user.ASO.ToString("dd/MM/yyyy") : "";
             maskedTextBoxNr34.Text = user.NR34 != DateTime.MinValue ? user.NR34.ToString("dd/MM/yyyy") : "";
@@ -65,11 +65,11 @@ namespace DockCheckWindows.UserControls
             dateTimePickerCheckin.Value = user.StartJob;
             dateTimePickerCheckout.Value = user.EndJob;
             adminToggleSwitch.Checked = user.IsAdmin;
-            guardiaoToggleSwitch.Checked = user.IsGuardian;
+            guardiaoToggleSwitch.Checked = user.IsPortalo;
             usuarioTextBox.Text = user.Username;
             senhaTextBox.Text = user.Hash;
             textBoxEmail.Text = user.Email;
-            textBoxRFID.Text = user.RFID;
+            textBoxRFID.Text = user.ITag;
             pictureBoxFoto.Image = pic.Picture != "" ? ConvertBase64ToImage(pic.Picture) : null;
             excludeImageButton.Visible = user.Picture != "" && pic.Picture != "";
             visitanteToggleSwitch.Checked = user.IsVisitor;
@@ -462,9 +462,7 @@ namespace DockCheckWindows.UserControls
                 Timestamp = DateTime.Now,
                 UserId = newUser.Identificacao,
                 VesselId = Properties.Settings.Default.VesselId.Split(',')[0],
-                Direction = 0,
-                Manual = false,
-                Picture = "",
+                BeaconId = "",
                 Status = "sync_pending",
                 Justification = "",
             };
@@ -515,8 +513,7 @@ namespace DockCheckWindows.UserControls
                 Name = textBoxNome.Text,
                 Role = textBoxFuncao.Text,
                 Company = textBoxEmpresa.Text,
-                Identidade = sangueComboBox.Text.Trim(),
-                Events = new string[] { },
+                BloodType = sangueComboBox.Text.Trim(),
                 CPF = maskedTextBoxCpf.Text.Replace(" ", ""),
                 ASO = IsAsoDateValid() ? DateTime.ParseExact(maskedTextBoxAso.Text, "dd/MM/yyyy", null) : DateTime.MinValue,
                 NR34 = IsNr34DateValid() ? DateTime.ParseExact(maskedTextBoxNr34.Text, "dd/MM/yyyy", null) : DateTime.MinValue,
@@ -534,15 +531,13 @@ namespace DockCheckWindows.UserControls
                 NR33Document = escolherNR33Button.Text ?? "",
                 NR10Document = escolherNR10Button.Text ?? "",
                 IsAdmin = adminToggleSwitch.Checked,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-                IsGuardian = guardiaoToggleSwitch.Checked,
+                IsPortalo = guardiaoToggleSwitch.Checked,
                 Username = adminToggleSwitch.Checked == true ? usuarioTextBox.Text : "",
                 StartJob = dateTimePickerCheckin.Value,
                 EndJob = dateTimePickerCheckout.Value,
                 Email = textBoxEmail.Text ?? "",
                 Picture = "",
-                RFID = textBoxRFID.Text ?? "",
+                ITag = textBoxRFID.Text ?? "",
                 Project = "",
                 IsVisitor = visitanteToggleSwitch.Checked,
                 Salt = "",
@@ -723,7 +718,7 @@ namespace DockCheckWindows.UserControls
             user.Name = textBoxNome.Text;
             user.Role = textBoxFuncao.Text;
             user.Company = textBoxEmpresa.Text;
-            user.Identidade = sangueComboBox.Text.Trim();
+            user.BloodType = sangueComboBox.Text.Trim();
             user.CPF = maskedTextBoxCpf.Text.Replace(" ", "");
             user.ASO = IsAsoDateValid() ? DateTime.ParseExact(maskedTextBoxAso.Text, "dd/MM/yyyy", null) : DateTime.MinValue;
             user.NR34 = IsNr34DateValid() ? DateTime.ParseExact(maskedTextBoxNr34.Text, "dd/MM/yyyy", null) : DateTime.MinValue;
@@ -741,14 +736,13 @@ namespace DockCheckWindows.UserControls
             user.NR33Document = escolherNR33Button.Text ?? "";
             user.NR10Document = escolherNR10Button.Text ?? "";
             user.IsAdmin = adminToggleSwitch.Checked;
-            user.UpdatedAt = DateTime.Now;
-            user.IsGuardian = guardiaoToggleSwitch.Checked;
+            user.IsPortalo = guardiaoToggleSwitch.Checked;
             user.Username = adminToggleSwitch.Checked == true ? usuarioTextBox.Text : "";
             user.StartJob = dateTimePickerCheckin.Value;
             user.EndJob = dateTimePickerCheckout.Value;
             user.Email = textBoxEmail.Text ?? "";
             user.Picture = pictureBoxFoto.Image != null ? ConvertImageToBase64(pictureBoxFoto) : "";
-            user.RFID = textBoxRFID.Text ?? "";
+            user.ITag = textBoxRFID.Text ?? "";
             user.Project = "";
             user.IsVisitor = visitanteToggleSwitch.Checked;
             user.TypeJob = "";
