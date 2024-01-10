@@ -69,16 +69,6 @@ namespace DockCheckWindows.UserControls
                     }
                 }
 
-                // Process RFID
-                if (!string.IsNullOrEmpty(user.RFID))
-                {
-                    if (!dailyRfidCount.ContainsKey(user.CreatedAt.Date))
-                    {
-                        dailyRfidCount[user.CreatedAt.Date] = 0;
-                    }
-                    dailyRfidCount[user.CreatedAt.Date]++;
-                }
-
                 // Process Company
                 if (!string.IsNullOrEmpty(user.Company))
                 {
@@ -201,6 +191,7 @@ namespace DockCheckWindows.UserControls
         //populate chartValidades with 3 areas series, blocked users, no blocked users and total users per day
         private void PopulateValidadesChart(Chart chart, List<User> users)
         {
+            /*
             // Filtrar usuários para os últimos 5 dias
             var startDate = DateTime.Now.Date.AddDays(-4);
             var filteredUsers = users.Where(u => u.CreatedAt.Date >= startDate).ToList();
@@ -236,6 +227,7 @@ namespace DockCheckWindows.UserControls
 
             // Customize the chart appearance
             CustomizeChartAppearance(chart);
+            */
         }
 
         private void CustomizeChartAppearance(Chart chart)
