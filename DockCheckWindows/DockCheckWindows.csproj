@@ -7,7 +7,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E91BFF65-99FD-4244-B02C-27F7431374EF}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>DockCheckWindows</RootNamespace>
     <AssemblyName>DockCheckWindows</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -16,6 +16,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -28,7 +29,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -235,6 +235,7 @@
   <ItemGroup>
     <Compile Include="Enums\ActionEnum.cs" />
     <Compile Include="GlobalConfig.cs" />
+    <Compile Include="Models\ApprovedUserResponse.cs" />
     <Compile Include="Models\Beacon.cs" />
     <Compile Include="Models\Pic.cs" />
     <Compile Include="Models\Receptor.cs" />
@@ -251,12 +252,6 @@
     <Compile Include="Models\Portal.cs" />
     <Compile Include="Models\Supervisor.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="EdicaoUsuario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EdicaoUsuario.Designer.cs">
-      <DependentUpon>EdicaoUsuario.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -347,9 +342,6 @@
     <Compile Include="WebcamForm.Designer.cs">
       <DependentUpon>WebcamForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="EdicaoUsuario.resx">
-      <DependentUpon>EdicaoUsuario.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
