@@ -3,6 +3,20 @@
 ## Overview
 DockCheck-Windows is a sophisticated maritime software solution designed to streamline and enhance the efficiency of maritime operations. This application, developed using .NET and Windows Forms, offers a range of features to facilitate vessel management, docking operations, and crew handling.
 
+## Synchronization and Communication
+DockCheck-Windows excels in synchronizing data and communication between a central Master system and multiple Slave devices. This advanced feature ensures seamless, real-time data flow and command execution, vital for maritime operations where timing and accuracy are crucial.
+
+### Asynchronous Communication: 
+DockCheck-Windows utilizes asynchronous communication to manage operations without disruption. This approach guarantees continuous operational flow, avoiding downtimes due to timeouts or exceptions.
+### Robust Error Handling: 
+The system is designed to handle communication errors gracefully. If a Slave device fails to respond, DockCheck-Windows initiates a retry mechanism, ensuring data integrity and continuous operation.
+### Cycle Management: 
+The software implements a sophisticated cycle management protocol. It intelligently manages the flow of commands and data between Master and Slaves, ensuring that operations are carried out in a sequential and organized manner, adapting dynamically to the number of connected Slaves.
+### Real-time Status Updates: 
+The user interface is updated in real-time with the current status of operations, providing users with immediate insights into the system's activity and performance.
+### Daily Synchronization: 
+Each day, the Master fetches approved IDs from the backend and distributes them to the Slaves. This daily synchronization ensures all devices are up-to-date, enhancing security and operational efficiency.
+
 ## Features
 
 ### User Authentication and Authorization
