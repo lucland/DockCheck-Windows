@@ -1,74 +1,63 @@
-# DockCheck-Windows
+# DockCheck System Documentation
 
 ![Screenshot 2024-01-13 at 17 58 22](https://github.com/lucland/DockCheck-Windows/assets/17681714/24fd4e66-05e7-4f4e-b859-017608c700db)
 
 ## Overview
-  DockCheck-Windows is a cutting-edge maritime software solution crafted to streamline and enhance the efficiency of maritime operations. Built with .NET and Windows Forms, it boasts an array of features to facilitate vessel management, docking operations, and crew handling, standing out for its capability to autonomously track every worker on a vessel during docking.
 
-### Synchronization and Communication
-  DockCheck-Windows excels in data synchronization and communication between a central Master system and multiple Slave devices, ensuring real-time data flow and command execution, vital for maritime operations where timing and accuracy are paramount.
+DockCheck is an integrated maritime software ecosystem designed for operational efficiency, safety, and compliance. Utilizing cutting-edge .NET, Flutter, and Node.js technologies, DockCheck delivers real-time vessel and personnel tracking and management across various platforms.
 
-#### Asynchronous Communication:
-  DockCheck-Windows employs asynchronous communication to manage operations without interruption, ensuring a continuous operational flow and avoiding downtime due to timeouts or exceptions.
+## System Architecture Diagram
 
-#### Robust Error Handling:
-  The system is elegantly designed to handle communication errors. If a Slave device fails to respond, DockCheck-Windows initiates a retry mechanism, safeguarding data integrity and operation continuity.
-
-#### Cycle Management:
-  The software implements an intricate cycle management protocol, smartly managing the flow of commands and data between Master and Slaves, ensuring operations are conducted sequentially and in an organized manner, dynamically adapting to the number of connected devices.
-
-#### Real-time Status Updates:
-  The user interface provides real-time updates on the current status of operations, offering users immediate insights into the system's activity and performance.
-
-#### Daily Synchronization:
-  Each day, the Master retrieves approved IDs from the backend and distributes them to the Slaves. This daily sync ensures all devices are up-to-date, enhancing security and operational efficiency.
+![dockcheck_architecture_system](https://github.com/lucland/DockCheck-Windows/assets/17681714/ec2b3bba-0f6d-40d5-942a-e05aa9f30d56)
 
 ## Features
 
-### User Authentication and Authorization
-  #### Secure Login System: 
-  Ensures that only authorized users can access the application.
-  #### Role-Based Access Control: 
-  Different access levels based on user roles to ensure operational integrity.
+- **Asynchronous Communication**: Ensures continuous operation flow across all devices.
+- **Error Handling**: Implements robust mechanisms to maintain data integrity and avoid downtime.
+- **Real-Time Data Synchronization**: Facilitates immediate data updates and command execution.
+- **Safety Monitoring**: Advanced tracking and alert systems for incident response.
+- **Compliance Support**: Maintains adherence to maritime regulations.
+- **Multilingual Support**: Accommodates a global user base with multiple language options.
 
-### Vessel Management
-  #### Vessel Registration and Tracking: 
-  Enables users and commanders to register and track crew onboard and the vessel, providing essential information such as ID, name, company, and each employee's responsibility while      providing general data about the vessel.
-  #### Docking Management: 
-  Facilitates the management of docking operations, including start and end dates, and personnel count onboard, and records hours worked by each person at specific dock locations.
+### Master-Field Sensor Synchronization
 
-### Event Monitoring
-  #### Real-Time Event Tracking: 
-  Monitors events related to vessels and crew, including timestamps, user IDs, and action details.
-  #### Camera and BLE Integration: 
-  Tracks vessel and crew movements using camera and BLE technologies for precise triangulation.
+- **Master Device**: Orchestrates the communication with multiple field sensors.
+- **Field Sensors**: Perform data collection and execute received commands.
+- **Backend Communication**: Ensures data integrity and consistency across the system.
 
-### Data Management
-  #### User and Supervisor Management: 
-  Manages user profiles and supervisor roles, including authentication details and access permissions within the vessel.
-  #### Company Profiles: 
-  Handles information related to third-party companies, including employees, contracted work, start and end of activity, and associated vessels.
+### Innovations in Maritime Operations
 
-### Localization and Internationalization
-  #### Multi-Language Support: 
-  The application supports multiple languages, improving usability for a global user base.
-  #### Foreign Document Registration Support:
-  The application deals with the registration and checking of international work permissions and identification documents.
+DockCheck is at the forefront of maritime technology, introducing groundbreaking innovations to the naval market:
 
-### Security Alert and Incident Monitoring Features
-  DockCheck-Windows introduces advanced security alert functionalities and real-time incident monitoring, ensuring the safety of maritime operations:
-  - **Precise Personnel Counting**: Counts and monitors the exact number of people in each specific location of the vessel and docking area, knowing who is present and their three-         dimensional geographic position, including the height at which they are located on the ship.
-  - **Incident Response**: In case of incidents, it identifies who is yet to evacuate from the affected area, and instantaneously alerts companies, authorities, and crew, providing         precise data about the incident to assist in the most efficient manner possible.
+#### Advanced Security Alert and Incident Monitoring
+- **Precise Personnel Counting**: Utilizing BLE technology, DockCheck delivers an accurate personnel counting system that not only quantifies individuals on board but also pinpoints their exact location in three-dimensional space, including their elevation on the vessel.
+- **Proactive Incident Response**: In emergencies, DockCheck swiftly identifies non-evacuated individuals, enabling prompt notifications to companies, authorities, and crew members. This rapid response system provides detailed data to facilitate effective incident management.
 
-### Project Technologies
-  .NET, NodeJS, PostgreSQL, Flutter, Python, and AWS
+#### Data and Tracking Capabilities
+- **Handling High-Volume Data**: Designed to process large volumes of operational data, DockCheck guarantees efficient and resilient information analysis, crucial for the dynamic maritime setting.
+- **Autonomous Tracking System**: DockCheck's autonomous sensor mesh network offers unparalleled operational insights and oversight, marking a significant technological advancement in maritime operations.
+- **Worker Safety Emphasis**: Safety is paramount, and DockCheck's technology elevates maritime worker protection, promoting a secure and efficient working environment.
+- **Maritime Industry 4.0**: DockCheck propels the naval sector towards Industry 4.0, harnessing data analysis and processing to modernize maritime operations.
 
-### Overcoming Challenges
-  #### High Volume of Data: 
-  The system is engineered to handle substantial volumes of data, ensuring efficiency and robustness in information analysis and processing.
-  #### Autonomous Tracking: 
-  Implementation of a 100% autonomous tracking system using sensors in a communication mesh, providing unprecedented insights into the naval industry.
-  #### Worker Safety: 
-  Prioritizing worker safety, promoting a safer and more efficient work environment.
-  #### Industry 4.0: 
-  sAdvancing the naval industry's transition to the era of Industry 4.0, leveraging the analysis and processing of large volumes of data.
+DockCheck's innovative solutions are not merely enhancements but transformative forces shaping the naval industry's future.
+
+## Technical Stack
+
+- **Windows Application**: Built with .NET and Windows Forms.
+- **Mobile Application**: Developed using Flutter for a seamless cross-platform experience.
+- **Backend**: Engineered with Node.js and robust database solutions like PostgreSQL and Firebase.
+
+<p float="left">
+  <img src="https://github.com/lucland/DockCheck-Windows/assets/17681714/4c0820d3-e64e-434c-967b-3b947c16dbe0" width="32%" />
+  <img src="https://github.com/lucland/DockCheck-Windows/assets/17681714/2c0746c7-6b53-429a-a034-972befc59abf" width="32%" /> 
+  <img src="https://github.com/lucland/DockCheck-Windows/assets/17681714/b6f3e066-6fae-4fa1-8e09-1682e0f1c713" width="32%" />
+</p>
+
+## Contact Information
+
+- **LinkedIn**: [Lucas Valente](https://www.linkedin.com/in/lucasvalentedev/)
+- **Email**: lucas.vsc@gmail.com
+
+## License
+
+DockCheck is released under [LICENSE TYPE]. See the LICENSE file for more details.
