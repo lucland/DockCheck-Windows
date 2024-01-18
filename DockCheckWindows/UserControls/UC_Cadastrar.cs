@@ -27,9 +27,11 @@ namespace DockCheckWindows.UserControls
         private User _currentUser;
         private bool _isEditMode;
         private string _area = "Convés";
+        private SerialDataProcessor _serialDataProcessor;
 
         public UC_Cadastrar(UserRepository userRepository,
-                            AuthorizationRepository authorizationRepository, UC_Dados ucDados)
+                            AuthorizationRepository authorizationRepository, UC_Dados ucDados,
+                        SerialDataProcessor serialDataProcessor)
         {
             InitializeComponent();
 
@@ -39,6 +41,7 @@ namespace DockCheckWindows.UserControls
             InitializeButtonStates();
             InitializeRepositories(userRepository, authorizationRepository);
             InitializeRegistrationProcess();
+            _serialDataProcessor = serialDataProcessor;
         }
 
         public async void PopulateFields(User user)
@@ -176,10 +179,12 @@ namespace DockCheckWindows.UserControls
 
         private void ValidateFields()
         {
-            bool areFieldsFilled = AreBasicFieldsFilled() &&
-                                   AreDocumentDatesValid() &&
-                                   IsPhotoUploaded() &&
-                                   IsAdminOrSupervisorFieldsValid();
+            bool areFieldsFilled = AreBasicFieldsFilled();
+                // &&
+
+                              //     AreDocumentDatesValid() &&
+                               //    IsPhotoUploaded() &&
+                                 //  IsAdminOrSupervisorFieldsValid();
 
             buttonCadastrar.Enabled = areFieldsFilled;
             if (!_isEditMode)
@@ -453,6 +458,16 @@ namespace DockCheckWindows.UserControls
             }
 
             UpdateLoadingBar(80);
+            try
+            {
+                await _serialDataProcessor.SendApprovedIdAsync("P1", newUser.ITag); // Replace "SlavePC" with the actual PC identifier
+                UpdateLoadingBar(95);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error sending RFID to slaves: {ex.Message}");
+                // Handle error (you might want to stop the process or just log the error)
+            }
 
             var ev = new Event
             {
@@ -893,65 +908,54 @@ namespace DockCheckWindows.UserControls
             ValidateFields();
         }
 
-        //button leriTagButton click
-        private void lerTagButton_Click(object sender, EventArgs e)
+        private async void lerTagButton_Click(object sender, EventArgs e)
         {
-            //open the serial port
-            using (_serialPort = new SerialPort("COM5", 115200))
+            try
             {
-                _serialPort.Open();
-                //send the command to read the tag
-                _serialPort.WriteLine("L1");
-                //wait for the response
-                Task.Delay(3000);
-                //read the response
-                _serialPort.WriteLine("L1");
-                string rfid = _serialPort.ReadLine();
-                //close the serial port
-                _serialPort.Close();
-                //display the rfid on the textbox
-                textBoxRFID.Text = rfid;
-               // leriTagButton.Enabled = false;
+                _serialDataProcessor.PauseProcessing();
 
-                ValidateFields();
+                // Ensure port is fully released before attempting to open
+                await Task.Delay(1000);
 
+                if (_serialPort == null)
+                {
+                    _serialPort = new SerialPort("COM5", 115200)
+                    {
+                        ReadTimeout = 5000,
+                        WriteTimeout = 500
+                    };
+                }
 
-                /*try
-            {
-                using (_serialPort = new SerialPort("COM5", 115200))
+                if (!_serialPort.IsOpen)
                 {
                     _serialPort.Open();
-                    _serialPort.WriteLine("L1");
-                    MessageBox.Show("L1");
+                }
+
+                _serialPort.WriteLine("L1"); // Command to read RFID tag
+
+                await Task.Delay(2000); // Wait for response
+
+                if (_serialPort.IsOpen && _serialPort.BytesToRead > 0)
+                {
                     string rfid = _serialPort.ReadLine();
-                    MessageBox.Show(rfid);
                     textBoxRFID.Text = rfid;
-                    _serialPort.Close();
-
-                    if (!string.IsNullOrEmpty(rfid) && rfid.Length == 24)
-                    {
-                        textBoxRFID.ReadOnly = true;
-                        ValidateFields();
-
-                    }
-                    if (textBoxRFID.Text == "issupervisor")
-                    {
-                        supervisorToggleSwitch.Visible = true;
-                        supervisorLabel.Visible = true;
-                    }
-                    else
-                    {
-                        supervisorToggleSwitch.Visible = false;
-                        supervisorLabel.Visible = false;
-                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
-            }*/
+            //    MessageBox.Show($"Error: {ex.Message}");
+            }
+            finally
+            {
+                if (_serialPort.IsOpen)
+                {
+                    _serialPort.Close();
+                }
+                await _serialDataProcessor.ResumeProcessingAsync();
             }
         }
+
+
 
         private async void buttonRegistrar_Click(object sender, EventArgs e)
         {
