@@ -293,6 +293,7 @@
     </Compile>
     <Compile Include="Services\BackgroundTaskManager.cs" />
     <Compile Include="Services\LiteDbService.cs" />
+    <Compile Include="Services\SerialPortService.cs" />
     <Compile Include="UploadFirebase.cs" />
     <Compile Include="UserControls\UC_Cadastrar.cs">
       <SubType>UserControl</SubType>
