@@ -29,7 +29,7 @@ public class SerialDataProcessor
         _cancellationTokenSource = new CancellationTokenSource();
         _currentSlaveIndex = 0;
        // _slavePcs = new List<string>(); // List to store slave PCs
-        _slavePcs = new List<string> { "P1", "P2" };
+        _slavePcs = new List<string> { "P1", "P2", "P3" };
         _lastApprovedIdsSentDate = DateTime.MinValue;
     }
 
@@ -40,13 +40,20 @@ public class SerialDataProcessor
         if (_serialPort.IsOpen)
         {
             _serialPort.Close();
+            _serialPort.Dispose(); // Ensure complete closure
         }
+        _updateStatusAction("Serial processing paused");
+        Task.Delay(1000).Wait(); // Wait a bit longer for complete release
     }
 
     public async Task ResumeProcessingAsync()
     {
         _updateStatusAction("Resuming serial processing");
         _cancellationTokenSource = new CancellationTokenSource();
+
+        // Recreate the serial port
+        _serialPort = new SerialPort("COM5", 115200);
+
         await StartProcessingAsync();
     }
 
@@ -63,45 +70,58 @@ public class SerialDataProcessor
             if (DateTime.Now.Date < _lastApprovedIdsSentDate)
             {
                 await SendApprovedIdsToAllSlavesAsync();
+
                 _lastApprovedIdsSentDate = DateTime.Now.Date;
             }
 
-            _currentSlaveIndex = 0;
             while (!_cancellationTokenSource.IsCancellationRequested)
             {
-                await ProcessCurrentSlaveAsync();
-                _currentSlaveIndex = (_currentSlaveIndex + 1) % _slavePcs.Count;
+                for (_currentSlaveIndex = 0; _currentSlaveIndex < _slavePcs.Count; _currentSlaveIndex++)
+                {
+                    await ProcessCurrentSlaveAsync();
+                }
             }
         }
         catch (Exception ex)
         {
             _updateStatusAction($"Error in StartProcessingAsync: {ex.Message}");
-            MessageBox.Show($"Error: {ex.Message}", "Error");
+            //MessageBox.Show($"Error: {ex.Message}", "Error");
         }
     }
+
 
     private async Task SendApprovedIdsToAllSlavesAsync()
     {
-        string approvedUsersJson = await _userRepository.GetAllApprovedUsersAsync();
-        var response = JsonConvert.DeserializeObject<ApprovedUsersResponse>(approvedUsersJson);
-        Console.WriteLine(approvedUsersJson);
-        Console.WriteLine(response);
-        string approvedIds = FormatUsersData(response.Ids);
-
-        foreach (var slavePc in _slavePcs)
+        try
         {
-            bool success = await AttemptSendingApprovedIds(slavePc, approvedIds);
-            if (!success)
+            string approvedUsersJson = await _userRepository.GetAllApprovedUsersAsync();
+            var response = JsonConvert.DeserializeObject<ApprovedUsersResponse>(approvedUsersJson);
+            Console.WriteLine(approvedUsersJson);
+            Console.WriteLine(response);
+            string approvedIds = FormatUsersData(response.Ids);
+
+            foreach (var slavePc in _slavePcs)
             {
-                _updateStatusAction($"Failed to receive A OK from {slavePc}, retrying...");
-                success = await AttemptSendingApprovedIds(slavePc, approvedIds);
+                bool success = await AttemptSendingApprovedIds(slavePc, approvedIds);
                 if (!success)
                 {
-                    _updateStatusAction($"Failed to send approved IDs to {slavePc} after retrying, moving to next slave.");
+                    _updateStatusAction($"Failed to receive A OK from {slavePc}, retrying...");
+                    success = await AttemptSendingApprovedIds(slavePc, approvedIds);
+                    if (!success)
+                    {
+                        _updateStatusAction($"Failed to send approved IDs to {slavePc} after retrying, moving to next slave.");
+                    }
                 }
             }
         }
+        catch (Exception ex)
+        {
+            // General exception handling
+            _updateStatusAction($"Error in SendApprovedIdsToAllSlavesAsync: {ex.Message}");
+           // MessageBox.Show($"Error: {ex.Message}", "Error in Approval Sync");
+        }
     }
+
 
     private string FormatUsersData(List<string> ids)
     {
@@ -155,22 +175,15 @@ public class SerialDataProcessor
             }
             else
             {
-                _updateStatusAction($"{currentPc} did not respond with 'Yes', moving to the next slave.");
-                MoveToNextSlave();
+                _updateStatusAction($"{currentPc} did not respond with 'Yes'.");
             }
         }
         catch (Exception ex)
         {
             _updateStatusAction($"Error in ProcessCurrentSlaveAsync for {currentPc}: {ex.Message}");
-            MessageBox.Show($"Error processing {currentPc}: {ex.Message}", "Error");
-            MoveToNextSlave(); // Continue with the next slave in case of exception
+          //  MessageBox.Show($"Error processing {currentPc}: {ex.Message}", "Error");
         }
-    }
-
-    private void MoveToNextSlave()
-    {
-        _currentSlaveIndex = (_currentSlaveIndex + 1) % _slavePcs.Count;
-        _updateStatusAction($"Moving to the next slave: P{_currentSlaveIndex + 1}");
+        // The method exits after processing one slave, allowing the next iteration for the next slave.
     }
 
     private async Task<bool> WaitForResponseAsync(string expectedResponse, int timeoutInSeconds)
@@ -197,62 +210,84 @@ public class SerialDataProcessor
         }
 
         _updateStatusAction($"Failed to receive '{expectedResponse}' after {maxAttempts} attempts.");
-        return false; // Ensures that false is returned after max attempts
+        return false;
     }
 
     private async Task SendCommandAsync(string command)
     {
         try
         {
+            if (_serialPort.IsOpen) { 
             _updateStatusAction($"Sending command: {command}");
             await Task.Run(() => _serialPort.WriteLine(command));
+        } else
+            {
+            _updateStatusAction($"Serial port is not open, attempting to open.");
+            _serialPort.Open();
+            _updateStatusAction($"Sending command: {command}");
+            await Task.Run(() => _serialPort.WriteLine(command));
+            }
         }
         catch (Exception ex)
         {
             _updateStatusAction($"Error sending command {command}: {ex.Message}");
-            MessageBox.Show($"Error sending command {command}: {ex.Message}", "Error");
+            //MessageBox.Show($"Error sending command {command}: {ex.Message}", "Error");
         }
     }
 
     private async Task<bool> ProcessDataAsync(string pc)
     {
         bool dataReceived = false;
-        //print pc in console
-        Console.WriteLine(pc);
+        bool startDataFlag = false;
+        bool endDataFlag = false;
+
+        _updateStatusAction($"Waiting for data from {pc}");
         try
         {
             string line;
-            Console.WriteLine("Waiting for data from {pc}");
-            while ((line = await ReadLineAsync(10000)) != null) // 10 seconds timeout for each line
+            while ((line = await ReadLineAsync(10000)) != null)
             {
                 Console.WriteLine(line);
-                if (line.StartsWith("}")) {
-                    await SendCommandAsync($"{pc} CLDATA");
-                    Console.WriteLine("Dados recebidos com sucesso");
-                    break; // Se receber '}', dados recebidos com sucesso
-                }; // End of data
+                if (line.StartsWith($"{{{pc}"))
+                {
+                    startDataFlag = true;
+                    continue;
+                }
 
-                if (!line.StartsWith("{"+pc) && !string.IsNullOrWhiteSpace(line))
+                if (line.StartsWith("}") && startDataFlag)
+                {
+                    endDataFlag = true;
+                    break;
+                }
+
+                if (startDataFlag && !string.IsNullOrWhiteSpace(line))
                 {
                     dataReceived = true;
                     Event evt = ParseEventFromLine(line, pc);
                     if (evt != null)
                     {
-                        //print line and evt in console
-                        Console.WriteLine(line);
                         await _eventRepository.CreateEventAsync(evt);
                     }
                 }
             }
+
+            if (endDataFlag && dataReceived)
+            {
+                // Send CLDATA only if data was actually received
+                await SendCommandAsync($"{pc} CLDATA");
+                _updateStatusAction("CLDATA command sent.");
+            }
+
             return dataReceived;
         }
         catch (Exception ex)
         {
             _updateStatusAction($"Error processing data for {pc}: {ex.Message}");
-            MessageBox.Show($"Error processing data for {pc}: {ex.Message}", "Error");
+          //  MessageBox.Show($"Error processing data for {pc}: {ex.Message}", "Error");
             return false;
         }
     }
+
 
     private async Task<string> ReadLineAsync(int timeout)
     {
@@ -293,7 +328,7 @@ public class SerialDataProcessor
         catch (Exception ex)
         {
             _updateStatusAction($"Error in ReadLineAsync: {ex.Message}");
-            MessageBox.Show($"Error in ReadLineAsync: {ex.Message}", "Read Error");
+          //  MessageBox.Show($"Error in ReadLineAsync: {ex.Message}", "Read Error");
             return null;
         }
 
@@ -323,9 +358,19 @@ public class SerialDataProcessor
 
             string[] dataParts = dataPart.Split(',');
             if (dataParts.Length < 2) return null;
-
+            string rssi = "0";
+            string actionCode = "8";
             string beaconId = dataParts[0].Trim();
-            string actionCode = dataParts[1].Trim();
+            if (dataParts.Length > 2)
+            {
+                rssi = dataParts[1].Trim();
+                actionCode = dataParts[2].Trim();
+            }
+
+            if (dataParts.Length == 2)
+            {
+                actionCode = dataParts[1].Trim();
+            }
 
             return new Event
             {
@@ -336,7 +381,7 @@ public class SerialDataProcessor
                 VesselId = "vesselid",
                 Action = GetActionFromCode(actionCode) >= 0 ? GetActionFromCode(actionCode) : 0,
                 BeaconId = beaconId,
-                Justification = "",
+                Justification = "RSSI: -" + rssi,
                 Status = "sent"
             };
         }
