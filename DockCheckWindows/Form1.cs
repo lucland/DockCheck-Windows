@@ -31,6 +31,8 @@ namespace DockCheckWindows
 
         private AuthorizationRepository authorizationRepository = new AuthorizationRepository(apiService: new ApiService());
 
+        private SerialDataProcessor serialDataProcessor;
+
         public Form1()
         {
             CultureInfo newCulture = new CultureInfo("en");
@@ -53,14 +55,15 @@ namespace DockCheckWindows
                 return; // Add this to prevent further execution if not authenticated
             }
 
-            SerialDataProcessor backgroundTaskManager = new SerialDataProcessor(eventRepository, UpdateStatus);
-            backgroundTaskManager.StartProcessing();
+            serialDataProcessor = new SerialDataProcessor(eventRepository, userRepository, UpdateStatus);
 
             UC_Home home = new UC_Home();
             uc_Cadastrar = new UC_Cadastrar(
                 userRepository: new UserRepository(apiService: new ApiService()),
                 authorizationRepository: new AuthorizationRepository(apiService: new ApiService()),
-                ucDados: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService())));
+                ucDados: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService())),
+                serialDataProcessor: serialDataProcessor
+                );
 
             uc_Dados = new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService()));
 
@@ -133,7 +136,8 @@ namespace DockCheckWindows
             UC_Cadastrar cadastrar = new UC_Cadastrar(
                 userRepository: new UserRepository(apiService: new ApiService()),
                 authorizationRepository: new AuthorizationRepository(apiService: new ApiService()),
-                ucDados: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService()))
+                ucDados: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService())),
+                serialDataProcessor: serialDataProcessor
                 );
             cadastrar.SwitchToDados += () =>
             {
@@ -183,7 +187,8 @@ namespace DockCheckWindows
                 Invoke(new Action(() => UpdateStatus(message)));
                 return;
             }
-
+            signalLabel.Text = message;
+            /*
             // Update the UI based on the message
             if (message.Contains("P"))
             {
@@ -201,6 +206,7 @@ namespace DockCheckWindows
                 signalLabel.Text = message;
                 StopBlinking();
             }
+            */
         }
 
         private async void Form1_Load(object sender, EventArgs e)
@@ -241,6 +247,8 @@ namespace DockCheckWindows
                     Properties.Settings.Default.Vessel = string.Join(",", vesselNames);
                     Properties.Settings.Default.VesselId = string.Join(",", vesselIds);
                     Properties.Settings.Default.Save();
+
+                    await serialDataProcessor.StartProcessingAsync();
                 }
             }
         }
@@ -251,5 +259,9 @@ namespace DockCheckWindows
             blinkTimer?.Dispose();
         }
 
+        private void signalLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
