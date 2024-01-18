@@ -8,6 +8,7 @@
     EntradaManual = 5,
     SaidaManual = 6,
     Perdido = 7,
+    Indefinido = 8,
 }
 
 public static class ActionEnumExtensions
@@ -32,6 +33,8 @@ public static class ActionEnumExtensions
                 return "Saída manual";
             case ActionEnum.Perdido:
                 return "Perdido";
+            case ActionEnum.Indefinido:
+                return "Indefinido";
             default:
                 return "Unknown";
         }
