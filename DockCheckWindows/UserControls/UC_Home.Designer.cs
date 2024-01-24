@@ -65,8 +65,8 @@
             this.listViewBloqueados = new System.Windows.Forms.ListView();
             this.labelBloqueados = new System.Windows.Forms.Label();
             this.labelTotalBloqueados = new System.Windows.Forms.Label();
-            this.listViewEventos = new System.Windows.Forms.ListView();
-            this.labelEventos = new System.Windows.Forms.Label();
+            this.listViewEmpresa = new System.Windows.Forms.ListView();
+            this.labelEmpresa = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -88,19 +88,19 @@
             // 
             this.labelTotalABordo.AutoSize = true;
             this.labelTotalABordo.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalABordo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelTotalABordo.Location = new System.Drawing.Point(311, 355);
+            this.labelTotalABordo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.labelTotalABordo.Location = new System.Drawing.Point(226, 29);
             this.labelTotalABordo.Name = "labelTotalABordo";
-            this.labelTotalABordo.Size = new System.Drawing.Size(180, 38);
+            this.labelTotalABordo.Size = new System.Drawing.Size(35, 38);
             this.labelTotalABordo.TabIndex = 4;
-            this.labelTotalABordo.Text = "TOTAL: 341";
+            this.labelTotalABordo.Text = "0";
             // 
             // labelPortalo
             // 
             this.labelPortalo.AutoSize = true;
             this.labelPortalo.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPortalo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelPortalo.Location = new System.Drawing.Point(544, 29);
+            this.labelPortalo.Location = new System.Drawing.Point(799, 29);
             this.labelPortalo.Name = "labelPortalo";
             this.labelPortalo.Size = new System.Drawing.Size(192, 38);
             this.labelPortalo.TabIndex = 5;
@@ -115,9 +115,9 @@
             this.panel2.Controls.Add(this.labelProaRfid1);
             this.panel2.Controls.Add(this.labelPortaloTitulo1);
             this.panel2.Controls.Add(this.statusPortalo1);
-            this.panel2.Location = new System.Drawing.Point(551, 86);
+            this.panel2.Location = new System.Drawing.Point(802, 86);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1337, 62);
+            this.panel2.Size = new System.Drawing.Size(1086, 62);
             this.panel2.TabIndex = 4;
             // 
             // statusAcao1
@@ -126,24 +126,24 @@
             this.statusAcao1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.statusAcao1.Location = new System.Drawing.Point(191, 20);
             this.statusAcao1.Name = "statusAcao1";
-            this.statusAcao1.Size = new System.Drawing.Size(341, 23);
+            this.statusAcao1.Size = new System.Drawing.Size(146, 23);
             this.statusAcao1.TabIndex = 8;
-            this.statusAcao1.Text = "Recebendo informações do Portal 1";
+            this.statusAcao1.Text = "Desconectado";
             // 
             // portaloData1
             // 
             this.portaloData1.AutoSize = true;
             this.portaloData1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portaloData1.Location = new System.Drawing.Point(1065, 21);
+            this.portaloData1.Location = new System.Drawing.Point(844, 20);
             this.portaloData1.Name = "portaloData1";
-            this.portaloData1.Size = new System.Drawing.Size(228, 22);
+            this.portaloData1.Size = new System.Drawing.Size(16, 22);
             this.portaloData1.TabIndex = 7;
-            this.portaloData1.Text = "08/05/2006 03:05:15 PM";
+            this.portaloData1.Text = "-";
             // 
             // labelProaUltimaAtualizacao
             // 
             this.labelProaUltimaAtualizacao.AutoSize = true;
-            this.labelProaUltimaAtualizacao.Location = new System.Drawing.Point(854, 21);
+            this.labelProaUltimaAtualizacao.Location = new System.Drawing.Point(633, 20);
             this.labelProaUltimaAtualizacao.Name = "labelProaUltimaAtualizacao";
             this.labelProaUltimaAtualizacao.Size = new System.Drawing.Size(192, 23);
             this.labelProaUltimaAtualizacao.TabIndex = 6;
@@ -155,9 +155,9 @@
             this.labelProaRfid1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.labelProaRfid1.Location = new System.Drawing.Point(119, 20);
             this.labelProaRfid1.Name = "labelProaRfid1";
-            this.labelProaRfid1.Size = new System.Drawing.Size(66, 23);
+            this.labelProaRfid1.Size = new System.Drawing.Size(69, 23);
             this.labelProaRfid1.TabIndex = 2;
-            this.labelProaRfid1.Text = "Ação:";
+            this.labelProaRfid1.Text = "Status:";
             // 
             // labelPortaloTitulo1
             // 
@@ -166,14 +166,14 @@
             this.labelPortaloTitulo1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.labelPortaloTitulo1.Location = new System.Drawing.Point(34, 13);
             this.labelPortaloTitulo1.Name = "labelPortaloTitulo1";
-            this.labelPortaloTitulo1.Size = new System.Drawing.Size(29, 32);
+            this.labelPortaloTitulo1.Size = new System.Drawing.Size(44, 32);
             this.labelPortaloTitulo1.TabIndex = 1;
-            this.labelPortaloTitulo1.Text = "1";
+            this.labelPortaloTitulo1.Text = "P1";
             // 
             // statusPortalo1
             // 
-            this.statusPortalo1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.statusPortalo1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.statusPortalo1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.statusPortalo1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.statusPortalo1.Location = new System.Drawing.Point(4, 4);
             this.statusPortalo1.Name = "statusPortalo1";
             this.statusPortalo1.PolygonSkip = 1;
@@ -193,9 +193,9 @@
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.labelPortaloTitulo2);
             this.panel3.Controls.Add(this.statusPortalo2);
-            this.panel3.Location = new System.Drawing.Point(551, 154);
+            this.panel3.Location = new System.Drawing.Point(802, 154);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1337, 62);
+            this.panel3.Size = new System.Drawing.Size(1086, 62);
             this.panel3.TabIndex = 4;
             // 
             // statusAcao2
@@ -204,15 +204,15 @@
             this.statusAcao2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.statusAcao2.Location = new System.Drawing.Point(191, 20);
             this.statusAcao2.Name = "statusAcao2";
-            this.statusAcao2.Size = new System.Drawing.Size(18, 23);
+            this.statusAcao2.Size = new System.Drawing.Size(146, 23);
             this.statusAcao2.TabIndex = 9;
-            this.statusAcao2.Text = "-";
+            this.statusAcao2.Text = "Desconectado";
             // 
             // portaloData2
             // 
             this.portaloData2.AutoSize = true;
             this.portaloData2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portaloData2.Location = new System.Drawing.Point(1065, 21);
+            this.portaloData2.Location = new System.Drawing.Point(844, 20);
             this.portaloData2.Name = "portaloData2";
             this.portaloData2.Size = new System.Drawing.Size(16, 22);
             this.portaloData2.TabIndex = 7;
@@ -221,7 +221,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(854, 21);
+            this.label2.Location = new System.Drawing.Point(633, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(192, 23);
             this.label2.TabIndex = 6;
@@ -233,9 +233,9 @@
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label5.Location = new System.Drawing.Point(119, 20);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 23);
+            this.label5.Size = new System.Drawing.Size(69, 23);
             this.label5.TabIndex = 2;
-            this.label5.Text = "Ação:";
+            this.label5.Text = "Status:";
             // 
             // labelPortaloTitulo2
             // 
@@ -244,14 +244,14 @@
             this.labelPortaloTitulo2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.labelPortaloTitulo2.Location = new System.Drawing.Point(34, 13);
             this.labelPortaloTitulo2.Name = "labelPortaloTitulo2";
-            this.labelPortaloTitulo2.Size = new System.Drawing.Size(29, 32);
+            this.labelPortaloTitulo2.Size = new System.Drawing.Size(44, 32);
             this.labelPortaloTitulo2.TabIndex = 1;
-            this.labelPortaloTitulo2.Text = "2";
+            this.labelPortaloTitulo2.Text = "P2";
             // 
             // statusPortalo2
             // 
-            this.statusPortalo2.BorderColor = System.Drawing.Color.Yellow;
-            this.statusPortalo2.FillColor = System.Drawing.Color.Yellow;
+            this.statusPortalo2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.statusPortalo2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.statusPortalo2.Location = new System.Drawing.Point(4, 4);
             this.statusPortalo2.Name = "statusPortalo2";
             this.statusPortalo2.PolygonSkip = 1;
@@ -271,9 +271,9 @@
             this.panel4.Controls.Add(this.label11);
             this.panel4.Controls.Add(this.labelPortaloTitulo3);
             this.panel4.Controls.Add(this.statusPortalo3);
-            this.panel4.Location = new System.Drawing.Point(551, 222);
+            this.panel4.Location = new System.Drawing.Point(802, 222);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1337, 62);
+            this.panel4.Size = new System.Drawing.Size(1086, 62);
             this.panel4.TabIndex = 4;
             // 
             // statusAcao3
@@ -282,15 +282,15 @@
             this.statusAcao3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.statusAcao3.Location = new System.Drawing.Point(191, 20);
             this.statusAcao3.Name = "statusAcao3";
-            this.statusAcao3.Size = new System.Drawing.Size(18, 23);
+            this.statusAcao3.Size = new System.Drawing.Size(146, 23);
             this.statusAcao3.TabIndex = 10;
-            this.statusAcao3.Text = "-";
+            this.statusAcao3.Text = "Desconectado";
             // 
             // portaloData3
             // 
             this.portaloData3.AutoSize = true;
             this.portaloData3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portaloData3.Location = new System.Drawing.Point(1065, 21);
+            this.portaloData3.Location = new System.Drawing.Point(844, 20);
             this.portaloData3.Name = "portaloData3";
             this.portaloData3.Size = new System.Drawing.Size(16, 22);
             this.portaloData3.TabIndex = 7;
@@ -299,7 +299,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(854, 21);
+            this.label8.Location = new System.Drawing.Point(633, 20);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(192, 23);
             this.label8.TabIndex = 6;
@@ -311,9 +311,9 @@
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label11.Location = new System.Drawing.Point(119, 20);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(66, 23);
+            this.label11.Size = new System.Drawing.Size(69, 23);
             this.label11.TabIndex = 2;
-            this.label11.Text = "Ação:";
+            this.label11.Text = "Status:";
             // 
             // labelPortaloTitulo3
             // 
@@ -322,14 +322,14 @@
             this.labelPortaloTitulo3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.labelPortaloTitulo3.Location = new System.Drawing.Point(34, 13);
             this.labelPortaloTitulo3.Name = "labelPortaloTitulo3";
-            this.labelPortaloTitulo3.Size = new System.Drawing.Size(29, 32);
+            this.labelPortaloTitulo3.Size = new System.Drawing.Size(44, 32);
             this.labelPortaloTitulo3.TabIndex = 1;
-            this.labelPortaloTitulo3.Text = "3";
+            this.labelPortaloTitulo3.Text = "P3";
             // 
             // statusPortalo3
             // 
-            this.statusPortalo3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
-            this.statusPortalo3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(0)))), ((int)(((byte)(57)))));
+            this.statusPortalo3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.statusPortalo3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.statusPortalo3.Location = new System.Drawing.Point(4, 4);
             this.statusPortalo3.Name = "statusPortalo3";
             this.statusPortalo3.PolygonSkip = 1;
@@ -349,9 +349,9 @@
             this.panel5.Controls.Add(this.label17);
             this.panel5.Controls.Add(this.labelPortaloTitulo4);
             this.panel5.Controls.Add(this.statusPortalo4);
-            this.panel5.Location = new System.Drawing.Point(551, 290);
+            this.panel5.Location = new System.Drawing.Point(802, 290);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1337, 62);
+            this.panel5.Size = new System.Drawing.Size(1086, 62);
             this.panel5.TabIndex = 4;
             // 
             // statusAcao4
@@ -360,15 +360,15 @@
             this.statusAcao4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.statusAcao4.Location = new System.Drawing.Point(191, 20);
             this.statusAcao4.Name = "statusAcao4";
-            this.statusAcao4.Size = new System.Drawing.Size(18, 23);
+            this.statusAcao4.Size = new System.Drawing.Size(146, 23);
             this.statusAcao4.TabIndex = 11;
-            this.statusAcao4.Text = "-";
+            this.statusAcao4.Text = "Desconectado";
             // 
             // portaloData4
             // 
             this.portaloData4.AutoSize = true;
             this.portaloData4.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portaloData4.Location = new System.Drawing.Point(1065, 21);
+            this.portaloData4.Location = new System.Drawing.Point(844, 20);
             this.portaloData4.Name = "portaloData4";
             this.portaloData4.Size = new System.Drawing.Size(16, 22);
             this.portaloData4.TabIndex = 7;
@@ -377,7 +377,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(854, 21);
+            this.label14.Location = new System.Drawing.Point(633, 20);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(192, 23);
             this.label14.TabIndex = 6;
@@ -389,9 +389,9 @@
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label17.Location = new System.Drawing.Point(119, 20);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(66, 23);
+            this.label17.Size = new System.Drawing.Size(69, 23);
             this.label17.TabIndex = 2;
-            this.label17.Text = "Ação:";
+            this.label17.Text = "Status:";
             // 
             // labelPortaloTitulo4
             // 
@@ -400,9 +400,9 @@
             this.labelPortaloTitulo4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.labelPortaloTitulo4.Location = new System.Drawing.Point(34, 13);
             this.labelPortaloTitulo4.Name = "labelPortaloTitulo4";
-            this.labelPortaloTitulo4.Size = new System.Drawing.Size(29, 32);
+            this.labelPortaloTitulo4.Size = new System.Drawing.Size(44, 32);
             this.labelPortaloTitulo4.TabIndex = 1;
-            this.labelPortaloTitulo4.Text = "4";
+            this.labelPortaloTitulo4.Text = "P4";
             // 
             // statusPortalo4
             // 
@@ -446,7 +446,8 @@
             this.listViewABordo.LabelWrap = false;
             this.listViewABordo.Location = new System.Drawing.Point(54, 70);
             this.listViewABordo.Name = "listViewABordo";
-            this.listViewABordo.Size = new System.Drawing.Size(424, 282);
+            this.listViewABordo.ShowItemToolTips = true;
+            this.listViewABordo.Size = new System.Drawing.Size(735, 759);
             this.listViewABordo.TabIndex = 7;
             this.listViewABordo.UseCompatibleStateImageBehavior = false;
             this.listViewABordo.View = System.Windows.Forms.View.List;
@@ -456,7 +457,7 @@
             this.listViewBloqueados.FullRowSelect = true;
             this.listViewBloqueados.HideSelection = false;
             this.listViewBloqueados.LabelWrap = false;
-            this.listViewBloqueados.Location = new System.Drawing.Point(54, 440);
+            this.listViewBloqueados.Location = new System.Drawing.Point(802, 440);
             this.listViewBloqueados.Name = "listViewBloqueados";
             this.listViewBloqueados.Size = new System.Drawing.Size(424, 389);
             this.listViewBloqueados.TabIndex = 9;
@@ -468,7 +469,7 @@
             this.labelBloqueados.AutoSize = true;
             this.labelBloqueados.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelBloqueados.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelBloqueados.Location = new System.Drawing.Point(47, 399);
+            this.labelBloqueados.Location = new System.Drawing.Point(795, 390);
             this.labelBloqueados.Name = "labelBloqueados";
             this.labelBloqueados.Size = new System.Drawing.Size(240, 38);
             this.labelBloqueados.TabIndex = 8;
@@ -478,45 +479,45 @@
             // 
             this.labelTotalBloqueados.AutoSize = true;
             this.labelTotalBloqueados.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalBloqueados.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelTotalBloqueados.Location = new System.Drawing.Point(298, 852);
+            this.labelTotalBloqueados.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.labelTotalBloqueados.Location = new System.Drawing.Point(1041, 390);
             this.labelTotalBloqueados.Name = "labelTotalBloqueados";
-            this.labelTotalBloqueados.Size = new System.Drawing.Size(180, 38);
+            this.labelTotalBloqueados.Size = new System.Drawing.Size(35, 38);
             this.labelTotalBloqueados.TabIndex = 10;
-            this.labelTotalBloqueados.Text = "TOTAL: 341";
+            this.labelTotalBloqueados.Text = "0";
             // 
-            // listViewEventos
+            // listViewEmpresa
             // 
-            this.listViewEventos.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.listViewEventos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listViewEventos.FullRowSelect = true;
-            this.listViewEventos.HideSelection = false;
-            this.listViewEventos.LabelWrap = false;
-            this.listViewEventos.Location = new System.Drawing.Point(551, 440);
-            this.listViewEventos.Name = "listViewEventos";
-            this.listViewEventos.Size = new System.Drawing.Size(1337, 389);
-            this.listViewEventos.TabIndex = 12;
-            this.listViewEventos.UseCompatibleStateImageBehavior = false;
-            this.listViewEventos.View = System.Windows.Forms.View.List;
+            this.listViewEmpresa.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.listViewEmpresa.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewEmpresa.FullRowSelect = true;
+            this.listViewEmpresa.HideSelection = false;
+            this.listViewEmpresa.LabelWrap = false;
+            this.listViewEmpresa.Location = new System.Drawing.Point(1246, 440);
+            this.listViewEmpresa.Name = "listViewEmpresa";
+            this.listViewEmpresa.Size = new System.Drawing.Size(642, 389);
+            this.listViewEmpresa.TabIndex = 12;
+            this.listViewEmpresa.UseCompatibleStateImageBehavior = false;
+            this.listViewEmpresa.View = System.Windows.Forms.View.List;
             // 
-            // labelEventos
+            // labelEmpresa
             // 
-            this.labelEventos.AutoSize = true;
-            this.labelEventos.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEventos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelEventos.Location = new System.Drawing.Point(544, 399);
-            this.labelEventos.Name = "labelEventos";
-            this.labelEventos.Size = new System.Drawing.Size(321, 38);
-            this.labelEventos.TabIndex = 11;
-            this.labelEventos.Text = "EVENTOS RECENTES:";
+            this.labelEmpresa.AutoSize = true;
+            this.labelEmpresa.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEmpresa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelEmpresa.Location = new System.Drawing.Point(1239, 399);
+            this.labelEmpresa.Name = "labelEmpresa";
+            this.labelEmpresa.Size = new System.Drawing.Size(340, 38);
+            this.labelEmpresa.TabIndex = 11;
+            this.labelEmpresa.Text = "EMPRESAS A BORDO:";
             // 
             // UC_Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.listViewEventos);
-            this.Controls.Add(this.labelEventos);
+            this.Controls.Add(this.listViewEmpresa);
+            this.Controls.Add(this.labelEmpresa);
             this.Controls.Add(this.labelTotalBloqueados);
             this.Controls.Add(this.listViewBloqueados);
             this.Controls.Add(this.labelBloqueados);
@@ -533,7 +534,6 @@
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "UC_Home";
             this.Size = new System.Drawing.Size(1904, 906);
-            this.Load += new System.EventHandler(this.UC_Home_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -580,8 +580,8 @@
         private System.Windows.Forms.ListView listViewBloqueados;
         private System.Windows.Forms.Label labelBloqueados;
         private System.Windows.Forms.Label labelTotalBloqueados;
-        private System.Windows.Forms.ListView listViewEventos;
-        private System.Windows.Forms.Label labelEventos;
+        private System.Windows.Forms.ListView listViewEmpresa;
+        private System.Windows.Forms.Label labelEmpresa;
         private System.Windows.Forms.Label statusAcao1;
         private System.Windows.Forms.Label statusAcao2;
         private System.Windows.Forms.Label statusAcao3;
