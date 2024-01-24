@@ -2,77 +2,108 @@
 using DockCheckWindows.Repositories;
 using DockCheckWindows.Services;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DockCheckWindows.UserControls
 {
     public partial class UC_Home : UserControl
     {
+        private readonly ApiService apiService;
+        private readonly VesselRepository vesselRepository;
+        private readonly UserRepository userRepository;
+
+        private List<string> onboardedCompanies;
+        private List<DateTime> companiesStart;
+        private List<int> companiesCount;
 
         public UC_Home()
         {
             InitializeComponent();
+            apiService = new ApiService();
+            vesselRepository = new VesselRepository(apiService);
+            userRepository = new UserRepository(apiService);
+            InitializeListViewColumns();
+            InitializeCompanyLists();
             CarregarDados();
-
         }
 
-        private async void PopulateListViewWithVessels()
+        private void InitializeCompanyLists()
         {
+            onboardedCompanies = new List<string>();
+            companiesStart = new List<DateTime>();
+            companiesCount = new List<int>();
+        }
 
-            VesselRepository vesselRepository = new VesselRepository(apiService: new ApiService());
+        private void InitializeListViewColumns()
+        {
+            InitializeListViewColumn(listViewABordo, new string[] { "Numero", "Nome", "Empresa", "Função" });
+            InitializeListViewColumn(listViewBloqueados, new string[] { "Nome", "Número" });
+            InitializeListViewColumn(listViewEmpresa, new string[] { "Empresa", "Inicio", "Contagem" });
 
-            // Check for null or provide a default empty string
-            var vesselIds = (Properties.Settings.Default.VesselId ?? "").Split(',');
+            SetEqualColumnWidths(listViewEmpresa);
+            SetEqualColumnWidths(listViewABordo);
+            SetEqualColumnWidths(listViewBloqueados);
+        }
 
-            //make list view scroll to bottom and show items organized in vertical order
-            listViewABordo.View = View.Details;
-            listViewABordo.Scrollable = true;
-            listViewABordo.FullRowSelect = true;
-            listViewABordo.Columns.Add("Embarcação", 100);
-            listViewABordo.Columns.Add("A Bordo", 100);
+        private void InitializeListViewColumn(ListView listView, string[] columnNames)
+        {
+            listView.View = View.Details;
+            listView.Scrollable = true;
+            listView.FullRowSelect = true;
 
-            //make each column autosize to fit the content
-            listViewABordo.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            SetEqualColumnWidths(listViewABordo, 2);
+            foreach (var columnName in columnNames)
+            {
+                listView.Columns.Add(columnName, -2);
+            }
+        }
+
+        private async void CarregarDados()
+        {
+            await Task.WhenAll(PopulateListViewWithVessels(), PopulateBlockedList(), PopulateEventsList(), PopulateStatusAcao());
+        }
+
+        private async Task PopulateListViewWithVessels()
+        {
+            listViewABordo.Items.Clear();
 
             var total = 0;
 
+            var vesselIds = (Properties.Settings.Default.VesselId ?? "").Split(',');
             foreach (var id in vesselIds)
             {
-                if (!string.IsNullOrEmpty(id)) // Ensure id is not empty
+                if (!string.IsNullOrEmpty(id))
                 {
                     Vessel vessel = await vesselRepository.GetVesselByIdAsync(id);
                     if (vessel != null)
                     {
-                        total = total + vessel.OnboardedCount;
-                        listViewABordo.Items.Add(new ListViewItem(new[] { vessel.Name, vessel.OnboardedCount.ToString() }));
+                        var onboarded = await vesselRepository.GetOnboardedByVesselIdAsync(id);
+                        foreach (var user in onboarded)
+                        {
+                            if (!string.IsNullOrEmpty(user))
+                            {
+                                User userObj = await userRepository.GetUserByIdAsync(user);
+                                if (userObj != null)
+                                {
+                                    total++;
+                                    listViewABordo.Items.Add(new ListViewItem(new[] { userObj.Number.ToString(), userObj.Name, userObj.Company, userObj.Role }));
+                                }
+                            }
+                        }
                     }
                 }
             }
 
-            labelTotalABordo.Text = "Total: " + total.ToString();
+            labelTotalABordo.Text = total.ToString();
         }
 
 
-        private async void PopulateBlockedList()
+        private async Task PopulateBlockedList()
         {
             listViewBloqueados.Items.Clear();
-
-            UserRepository userRepository = new UserRepository(apiService: new ApiService());
-
             var blockedUserIds = await userRepository.GetAllBlockedUsersAsync();
-
-            listViewBloqueados.View = View.Details;
-            listViewBloqueados.Scrollable = true;
-            listViewBloqueados.FullRowSelect = true;
-            listViewBloqueados.Columns.Add("Nome", 100);
-            listViewBloqueados.Columns.Add("Número", 100);
-            //just do the resize if item is not disposed
-            if (!listViewBloqueados.IsDisposed)
-            {
-                listViewBloqueados.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                SetEqualColumnWidths(listViewBloqueados, 2);
-            }
 
             foreach (var id in blockedUserIds)
             {
@@ -86,54 +117,98 @@ namespace DockCheckWindows.UserControls
                 }
             }
 
-            labelTotalBloqueados.Text = "Total: " + listViewBloqueados.Items.Count.ToString();
+            labelTotalBloqueados.Text = listViewBloqueados.Items.Count.ToString();
         }
 
 
-        private async void PopulateEventsList()
+        private async Task PopulateEventsList()
         {
-            //empty list view
-            listViewEventos.Items.Clear();
+            listViewEmpresa.Items.Clear();
+            
+        try
+            {
+                // Assuming onboardedCompanies, companiesStart, companiesCount are updated elsewhere
+                for (int i = 0; i < onboardedCompanies.Count; i++)
+                {
+                    string companyName = onboardedCompanies[i];
+                    string startDate = companiesStart[i].ToString("g");
+                    string userCount = companiesCount[i].ToString();
 
-            VesselRepository vesselRepository = new VesselRepository(apiService: new ApiService());
+                    listViewEmpresa.Items.Add(new ListViewItem(new[] { companyName, startDate, userCount }));
+                }
+            }
+            catch
+            {
+                // Handle exception
+            }
+           
+        }
 
-            // Check for null or provide a default empty string
+
+
+        private async Task PopulateStatusAcao()
+        {
             var vesselIds = (Properties.Settings.Default.VesselId ?? "").Split(',');
-
-            //make list view scroll to bottom and show items organized in vertical order
-            listViewEventos.View = View.Details;
-            listViewEventos.Scrollable = true;
-            listViewEventos.FullRowSelect = true;
-            listViewEventos.Columns.Add("Ação", 100);
-            listViewEventos.Columns.Add("Portal", 100);
-            listViewEventos.Columns.Add("Usuário", 100);
-            listViewEventos.Columns.Add("Data", 100);
-
-            //make each column autosize to fit the content
-           // listViewEventos.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-
-            //show full text of every text in the list view
-            listViewEventos.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-
-            SetEqualColumnWidths(listViewEventos, 4);
-
 
             foreach (var id in vesselIds)
             {
-                if (!string.IsNullOrEmpty(id)) // Ensure id is not empty
+                if (!string.IsNullOrEmpty(id))
                 {
                     var events = await vesselRepository.GetEventsByVesselIdAsync(id);
                     foreach (var ev in events)
                     {
                         var action = (ActionEnum)ev.Action;
-                        listViewEventos.Items.Add(new ListViewItem(new[] { action.ToFriendlyString(), ev.PortalId, ev.UserId, ev.Timestamp.ToString() }));
+                        UpdateStatusAction(ev.PortalId, ev.Timestamp);
                     }
                 }
-            }            
+            }
         }
 
-        private void SetEqualColumnWidths(ListView listView, int columnCount)
+        private void UpdateStatusAction(string portalId, DateTime timestamp)
         {
+            PortalEnum portal = (PortalEnum)Enum.Parse(typeof(PortalEnum), portalId);
+
+            switch (portal)
+            {
+                case PortalEnum.P1:
+                    var text1 = "Conectado";
+                    statusPortalo1.FillColor = System.Drawing.Color.FromArgb(0, 192, 0);
+                    statusPortalo1.BorderColor = System.Drawing.Color.FromArgb(0, 192, 0);
+                    statusAcao1.Text = text1;
+                    portaloData1.Text = timestamp.ToString("g");
+                    break;
+                case PortalEnum.P2:
+                    var text2 = "Conectado";
+                    statusAcao2.Text = text2;
+                    portaloData2.Text = timestamp.ToString("g");
+
+                    statusPortalo2.FillColor = System.Drawing.Color.FromArgb(0, 192, 0);
+                    statusPortalo2.BorderColor = System.Drawing.Color.FromArgb(0, 192, 0);
+                    break;
+                case PortalEnum.P3:
+                    var text3 = "Conectado";
+                    statusAcao3.Text = text3;
+                    portaloData3.Text = timestamp.ToString("g");
+
+                    statusPortalo3.FillColor = System.Drawing.Color.FromArgb(0, 192, 0);
+                    statusPortalo3.BorderColor = System.Drawing.Color.FromArgb(0, 192, 0);
+                    break;
+                case PortalEnum.P4:
+                    var text4 = "Conectado";
+                    statusAcao4.Text = text4;
+                    portaloData4.Text = timestamp.ToString("g");
+
+                    statusPortalo4.FillColor = System.Drawing.Color.FromArgb(0, 192, 0);
+                    statusPortalo4.BorderColor = System.Drawing.Color.FromArgb(0, 192, 0);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void SetEqualColumnWidths(ListView listView)
+        {
+            int columnCount = listView.Columns.Count;
             if (columnCount <= 0) return;
 
             int width = listView.Width / columnCount;
@@ -141,20 +216,6 @@ namespace DockCheckWindows.UserControls
             {
                 column.Width = width;
             }
-        }
-
-        private void CarregarDados()
-        {
-            listViewABordo.Clear();
-            listViewBloqueados.Clear();
-            listViewEventos.Clear();
-            PopulateEventsList();
-            PopulateListViewWithVessels();
-            PopulateBlockedList();
-        }
-                
-        private void UC_Home_Load(object sender, EventArgs e)
-        {
         }
 
         private void buttonSincronizar_Click(object sender, EventArgs e)
