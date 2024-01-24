@@ -33,6 +33,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.serialOnOffButton = new System.Windows.Forms.Button();
             this.signalLabel = new System.Windows.Forms.Label();
             this.signalPictureBox = new System.Windows.Forms.PictureBox();
             this.vesselLabel = new System.Windows.Forms.Label();
@@ -88,12 +90,40 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.panel5.Controls.Add(this.button1);
+            this.panel5.Controls.Add(this.serialOnOffButton);
             this.panel5.Controls.Add(this.signalLabel);
             this.panel5.Controls.Add(this.signalPictureBox);
             this.panel5.Location = new System.Drawing.Point(238, 0);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(859, 70);
             this.panel5.TabIndex = 5;
+            // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(709, 10);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(64, 45);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "PLAY";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // serialOnOffButton
+            // 
+            this.serialOnOffButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.serialOnOffButton.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.serialOnOffButton.ForeColor = System.Drawing.Color.White;
+            this.serialOnOffButton.Location = new System.Drawing.Point(792, 10);
+            this.serialOnOffButton.Name = "serialOnOffButton";
+            this.serialOnOffButton.Size = new System.Drawing.Size(64, 45);
+            this.serialOnOffButton.TabIndex = 2;
+            this.serialOnOffButton.Text = "PAUSE";
+            this.serialOnOffButton.UseVisualStyleBackColor = true;
+            this.serialOnOffButton.Click += new System.EventHandler(this.serialOnOffButton_Click);
             // 
             // signalLabel
             // 
@@ -106,7 +136,6 @@
             this.signalLabel.Size = new System.Drawing.Size(78, 25);
             this.signalLabel.TabIndex = 1;
             this.signalLabel.Text = "admin";
-            this.signalLabel.Click += new System.EventHandler(this.signalLabel_Click);
             // 
             // signalPictureBox
             // 
@@ -418,6 +447,8 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label signalLabel;
         private System.Windows.Forms.PictureBox signalPictureBox;
+        private System.Windows.Forms.Button serialOnOffButton;
+        private System.Windows.Forms.Button button1;
     }
 }
 
