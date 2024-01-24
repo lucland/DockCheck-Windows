@@ -186,10 +186,12 @@ namespace DockCheckWindows.UserControls
                                //    IsPhotoUploaded() &&
                                  //  IsAdminOrSupervisorFieldsValid();
 
-            buttonCadastrar.Enabled = areFieldsFilled;
+           // buttonCadastrar.Enabled = areFieldsFilled;
+            buttonCadastrar.Enabled = true;
+            buttonRegistrar.Enabled = true;
             if (!_isEditMode)
             {
-                buttonRegistrar.Enabled = areFieldsFilled && IsRfidValid();
+                //buttonRegistrar.Enabled = areFieldsFilled && IsRfidValid();
             }
         }
 
@@ -460,15 +462,24 @@ namespace DockCheckWindows.UserControls
             UpdateLoadingBar(80);
             try
             {
-                await _serialDataProcessor.SendApprovedIdAsync("P1", newUser.ITag); // Replace "SlavePC" with the actual PC identifier
+                await _serialDataProcessor.SendApprovedIdAsync("P0", newUser.ITag); // Replace "SlavePC" with the actual PC identifier
                 UpdateLoadingBar(95);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error sending RFID to slaves: {ex.Message}");
+                MessageBox.Show($"Error sending iTag to slaves: {ex.Message}");
                 // Handle error (you might want to stop the process or just log the error)
             }
-
+            try
+            {
+                if (newUser.ITag != "")
+                {
+                    await _serialDataProcessor.SendApprovedIdAsync("P0", newUser.ITag); // Replace "SlavePC" with the actual PC identifier
+                }
+            } catch (Exception ex)
+            {
+                MessageBox.Show($"Error sending iTag to slaves: {ex.Message}");
+            }
             var ev = new Event
             {
                 Id = Guid.NewGuid().ToString(),
@@ -912,10 +923,14 @@ namespace DockCheckWindows.UserControls
         {
             try
             {
-                _serialDataProcessor.PauseProcessing();
+                // _serialDataProcessor.PauseProcessing();
 
                 // Ensure port is fully released before attempting to open
-                await Task.Delay(1000);
+                // await Task.Delay(1000);
+                _serialDataProcessor.PauseProcessing();
+                _serialDataProcessor.PauseProcessing();
+                _serialDataProcessor.PauseProcessing();
+                _serialDataProcessor.PauseProcessing();
 
                 if (_serialPort == null)
                 {
@@ -933,9 +948,9 @@ namespace DockCheckWindows.UserControls
 
                 _serialPort.WriteLine("L1"); // Command to read RFID tag
 
-                await Task.Delay(2000); // Wait for response
+                await Task.Delay(1000); // Wait for response
 
-                if (_serialPort.IsOpen && _serialPort.BytesToRead > 0)
+                while (_serialPort.IsOpen && _serialPort.BytesToRead > 0)
                 {
                     string rfid = _serialPort.ReadLine();
                     textBoxRFID.Text = rfid;
@@ -943,7 +958,7 @@ namespace DockCheckWindows.UserControls
             }
             catch (Exception ex)
             {
-            //    MessageBox.Show($"Error: {ex.Message}");
+                MessageBox.Show($"Error: {ex.Message}");
             }
             finally
             {
@@ -951,7 +966,7 @@ namespace DockCheckWindows.UserControls
                 {
                     _serialPort.Close();
                 }
-                await _serialDataProcessor.ResumeProcessingAsync();
+             //   await _serialDataProcessor.ResumeProcessingAsync();
             }
         }
 
