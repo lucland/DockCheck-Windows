@@ -20,6 +20,15 @@ public class SerialDataProcessor
     private List<string> _slavePcs;
     private DateTime _lastApprovedIdsSentDate;
 
+    // Flag to indicate if the closest beacon ID should be captured
+    public bool CaptureClosestBeaconId { get; set; } = false;
+
+    // Property to store the closest beacon ID
+    public string ClosestBeaconId { get; private set; } = string.Empty;
+
+    public bool IsProcessingActive { get; private set; } = false;
+
+
     public SerialDataProcessor(EventRepository eventRepository, UserRepository userRepository, Action<string> updateStatusAction)
     {
         _eventRepository = eventRepository;
@@ -44,6 +53,7 @@ public class SerialDataProcessor
         }
         _updateStatusAction("Serial processing paused");
         Task.Delay(1000).Wait(); // Wait a bit longer for complete release
+        IsProcessingActive = false; // Set to false when processing is paused
     }
 
     public async Task ResumeProcessingAsync()
@@ -87,6 +97,8 @@ public class SerialDataProcessor
             _updateStatusAction($"Error in StartProcessingAsync: {ex.Message}");
             //MessageBox.Show($"Error: {ex.Message}", "Error");
         }
+
+        IsProcessingActive = true; // Set to true when processing starts
     }
 
 
@@ -169,8 +181,9 @@ public class SerialDataProcessor
                 if (await ProcessDataAsync(currentPc))
                 {
                     await SendCommandAsync($"{currentPc} CLDATA");
-                    await Task.Delay(10000); // 10 seconds timeout
                     _updateStatusAction("Dados recebidos com sucesso");
+
+                    await Task.Delay(1000); // 10 seconds timeout
                 }
             }
             else
@@ -283,10 +296,33 @@ public class SerialDataProcessor
         catch (Exception ex)
         {
             _updateStatusAction($"Error processing data for {pc}: {ex.Message}");
-          //  MessageBox.Show($"Error processing data for {pc}: {ex.Message}", "Error");
             return false;
         }
     }
+
+    private string ExtractBeaconIdFromLine()
+    {
+        try
+        {
+            // Send the command to get the nearest beacon ID
+            _serialPort.WriteLine("L1");
+
+            // Wait for the response with a specified timeout
+            _serialPort.ReadTimeout = 5000; // Timeout in milliseconds, adjust as needed
+            return _serialPort.ReadLine(); // Read the nearest beacon ID
+        }
+        catch (TimeoutException)
+        {
+            _updateStatusAction("Timeout occurred while reading the nearest beacon ID.");
+            return null; // Return null on timeout
+        }
+        catch (Exception ex)
+        {
+            _updateStatusAction($"Error while reading the nearest beacon ID: {ex.Message}");
+            return null; // Return null on error
+        }
+    }
+
 
 
     private async Task<string> ReadLineAsync(int timeout)
@@ -428,8 +464,14 @@ public class SerialDataProcessor
 //CLALL = LIMPA TODOS OS DADOS
 //CL,xx:xx:xx:xx:xx:xx = LIMPA UM DADO ESPECIFICO
 //A = APROVADO
-//RRSI,-10 = RSSI MINIMO, APEMAS NUMEROS NEGATIVOS
+//RSSI,-10 = RSSI MINIMO, APEMAS NUMEROS NEGATIVOS
 //SL = RETORNA LISTA COMPLETA DE CADASTRADOS
+//PX ST,2023-12-18 13:52:44
+//CLP xx:xx:xx:xx:xx:xx = apaga beacon do portalo
+//PX CLALLPLID = apaga todos os beacons do portalo
+//PX SPLID = mostra os beacons do portalo
+//PX PLID,xx:xx:xx:xx:xx:xx = adiciona beacon ao portalo
+//PX MAXRSSI,-100 = seta o rssi minimo para o portalo
 
 //Example of the data sent by the slave after a PN SDATA command:
 /*
@@ -458,6 +500,7 @@ What it must do:
  - It should work 100% asyncronously, and it should never stop with an exception or timeout, it will follow a certain cycle and if for some reason the cycle gets broken, it should not interfeer with the rest of the software and restart the cycle again, never stopping the cycle.
  - It should display in the UI with the _updateStatusAction function the current step of the cycle and the current PN of the cycle.
 - If it returns any exception, for example if we do not receive any awnser of the Slave, we should show a MessageBox to the User and try again the action, never stopping for any reason.
+
 
 The cycle rules:
  1 - We open the Serial port (if not opened) and retrieve the number of slaves it should cycle through.
