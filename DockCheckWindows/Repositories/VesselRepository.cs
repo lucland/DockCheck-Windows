@@ -40,5 +40,12 @@ namespace DockCheckWindows.Repositories
             var json = await GetAsync(url);
             return JsonConvert.DeserializeObject<List<Event>>(json);
         }
+        //onboarded/:id
+        public async Task<List<string>> GetOnboardedByVesselIdAsync(string vesselId)
+        {
+            string url = $"{BaseUrl}/onboarded/{vesselId}";
+            var json = await GetAsync(url);
+            return JsonConvert.DeserializeObject<List<string>>(json);
+        }
     }
 }
