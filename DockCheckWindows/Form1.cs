@@ -44,6 +44,8 @@ namespace DockCheckWindows
 
             InitializeComponent();
 
+            serialOnOffButton.Click += new EventHandler(serialOnOffButton_Click);
+
             Login loginForm = new Login(
                 authenticationRepository: _authenticationRepository
             );
@@ -259,9 +261,14 @@ namespace DockCheckWindows
             blinkTimer?.Dispose();
         }
 
-        private void signalLabel_Click(object sender, EventArgs e)
+        private void serialOnOffButton_Click(object sender, EventArgs e)
         {
+            serialDataProcessor.PauseProcessing();
+        }
 
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            await serialDataProcessor.ResumeProcessingAsync();
         }
     }
 }
