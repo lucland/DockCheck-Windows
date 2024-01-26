@@ -16,7 +16,6 @@ namespace DockCheckWindows.UserControls
         private readonly UserRepository userRepository;
 
         private List<string> onboardedCompanies;
-        private List<DateTime> companiesStart;
         private List<int> companiesCount;
 
         public UC_Home()
@@ -33,15 +32,14 @@ namespace DockCheckWindows.UserControls
         private void InitializeCompanyLists()
         {
             onboardedCompanies = new List<string>();
-            companiesStart = new List<DateTime>();
             companiesCount = new List<int>();
         }
 
         private void InitializeListViewColumns()
         {
-            InitializeListViewColumn(listViewABordo, new string[] { "Numero", "Nome", "Empresa", "Função" });
+            InitializeListViewColumn(listViewABordo, new string[] { "Nome", "Numero", "Empresa", "Função" });
             InitializeListViewColumn(listViewBloqueados, new string[] { "Nome", "Número" });
-            InitializeListViewColumn(listViewEmpresa, new string[] { "Empresa", "Inicio", "Contagem" });
+            InitializeListViewColumn(listViewEmpresa, new string[] { "Contagem", "Empresa"});
 
             SetEqualColumnWidths(listViewEmpresa);
             SetEqualColumnWidths(listViewABordo);
@@ -62,7 +60,14 @@ namespace DockCheckWindows.UserControls
 
         private async void CarregarDados()
         {
-            await Task.WhenAll(PopulateListViewWithVessels(), PopulateBlockedList(), PopulateEventsList(), PopulateStatusAcao());
+            try
+            {
+                await Task.WhenAll(PopulateListViewWithVessels(), PopulateBlockedList(), PopulateCompaniesCountList(), PopulateStatusAcao());
+            }
+            catch (Exception ex)
+            {
+                // Handle or log the exception
+            }
         }
 
         private async Task PopulateListViewWithVessels()
@@ -87,8 +92,21 @@ namespace DockCheckWindows.UserControls
                                 User userObj = await userRepository.GetUserByIdAsync(user);
                                 if (userObj != null)
                                 {
+                                   if (!onboardedCompanies.Contains(userObj.Company))
+                                    {
+                                        onboardedCompanies.Add(userObj.Company);
+                                        companiesCount.Add(1);
+                                    }
+                                    else
+                                    {
+                                        var index = onboardedCompanies.IndexOf(userObj.Company);
+                                        companiesCount[index]++;
+                                    }
+
+
                                     total++;
-                                    listViewABordo.Items.Add(new ListViewItem(new[] { userObj.Number.ToString(), userObj.Name, userObj.Company, userObj.Role }));
+                                    listViewABordo.Items.Add(new ListViewItem(new[] {  userObj.Name, userObj.Number.ToString(), userObj.Company, userObj.Role }));
+                                    await PopulateCompaniesCountList();
                                 }
                             }
                         }
@@ -96,7 +114,13 @@ namespace DockCheckWindows.UserControls
                 }
             }
 
-            labelTotalABordo.Text = total.ToString();
+            Invoke(new Action(() =>
+            {
+                labelTotalABordo.Text = total.ToString();
+            }));
+
+            listViewABordo.Sorting = SortOrder.Ascending;
+            listViewABordo.Sort();
         }
 
 
@@ -117,34 +141,31 @@ namespace DockCheckWindows.UserControls
                 }
             }
 
-            labelTotalBloqueados.Text = listViewBloqueados.Items.Count.ToString();
+            Invoke(new Action(() =>
+            {
+                labelTotalBloqueados.Text = listViewBloqueados.Items.Count.ToString();
+            }));
         }
 
 
-        private async Task PopulateEventsList()
+        private async Task PopulateCompaniesCountList()
         {
             listViewEmpresa.Items.Clear();
-            
-        try
-            {
-                // Assuming onboardedCompanies, companiesStart, companiesCount are updated elsewhere
-                for (int i = 0; i < onboardedCompanies.Count; i++)
+
+
+            // Assuming onboardedCompanies, companiesStart, companiesCount are updated elsewhere
+            for (int i = 0; i < onboardedCompanies.Count; i++)
                 {
                     string companyName = onboardedCompanies[i];
-                    string startDate = companiesStart[i].ToString("g");
                     string userCount = companiesCount[i].ToString();
 
-                    listViewEmpresa.Items.Add(new ListViewItem(new[] { companyName, startDate, userCount }));
+                listViewEmpresa.Items.Add(new ListViewItem(new[] { userCount, companyName }));
                 }
-            }
-            catch
-            {
-                // Handle exception
-            }
-           
+
+
+            listViewEmpresa.Sorting = SortOrder.Descending;
+            listViewEmpresa.Sort();
         }
-
-
 
         private async Task PopulateStatusAcao()
         {
@@ -175,12 +196,12 @@ namespace DockCheckWindows.UserControls
                     statusPortalo1.FillColor = System.Drawing.Color.FromArgb(0, 192, 0);
                     statusPortalo1.BorderColor = System.Drawing.Color.FromArgb(0, 192, 0);
                     statusAcao1.Text = text1;
-                    portaloData1.Text = timestamp.ToString("g");
+                    Invoke(new Action(() => { portaloData1.Text = timestamp.ToString(); }));
                     break;
                 case PortalEnum.P2:
                     var text2 = "Conectado";
                     statusAcao2.Text = text2;
-                    portaloData2.Text = timestamp.ToString("g");
+                    Invoke(new Action(() => { portaloData2.Text = timestamp.ToString(); }));
 
                     statusPortalo2.FillColor = System.Drawing.Color.FromArgb(0, 192, 0);
                     statusPortalo2.BorderColor = System.Drawing.Color.FromArgb(0, 192, 0);
@@ -188,7 +209,7 @@ namespace DockCheckWindows.UserControls
                 case PortalEnum.P3:
                     var text3 = "Conectado";
                     statusAcao3.Text = text3;
-                    portaloData3.Text = timestamp.ToString("g");
+                    Invoke(new Action(() => { portaloData3.Text = timestamp.ToString(); }));
 
                     statusPortalo3.FillColor = System.Drawing.Color.FromArgb(0, 192, 0);
                     statusPortalo3.BorderColor = System.Drawing.Color.FromArgb(0, 192, 0);
@@ -196,7 +217,7 @@ namespace DockCheckWindows.UserControls
                 case PortalEnum.P4:
                     var text4 = "Conectado";
                     statusAcao4.Text = text4;
-                    portaloData4.Text = timestamp.ToString("g");
+                    Invoke(new Action(() => { portaloData4.Text = timestamp.ToString(); }));
 
                     statusPortalo4.FillColor = System.Drawing.Color.FromArgb(0, 192, 0);
                     statusPortalo4.BorderColor = System.Drawing.Color.FromArgb(0, 192, 0);
