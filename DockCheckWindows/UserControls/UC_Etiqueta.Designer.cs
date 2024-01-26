@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Etiqueta));
             this.panelFundo = new System.Windows.Forms.Panel();
+            this.labelEmpresa = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,7 +45,6 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.excludeImageButton = new Guna.UI2.WinForms.Guna2Button();
             this.labelImprimir = new System.Windows.Forms.Label();
-            this.labelEmpresa = new System.Windows.Forms.Label();
             this.panelFundo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.SuspendLayout();
@@ -72,6 +72,17 @@
             this.panelFundo.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.panelFundo.Size = new System.Drawing.Size(308, 216);
             this.panelFundo.TabIndex = 81;
+            // 
+            // labelEmpresa
+            // 
+            this.labelEmpresa.AutoSize = true;
+            this.labelEmpresa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEmpresa.Location = new System.Drawing.Point(35, 187);
+            this.labelEmpresa.Name = "labelEmpresa";
+            this.labelEmpresa.Size = new System.Drawing.Size(154, 20);
+            this.labelEmpresa.TabIndex = 14;
+            this.labelEmpresa.Text = "Empresa empresa";
+            this.labelEmpresa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
@@ -146,6 +157,7 @@
             this.labelIdentificacao.Text = "3333";
             this.labelIdentificacao.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.labelIdentificacao.Visible = false;
+            this.labelIdentificacao.TextChanged += new System.EventHandler(this.labelIdentificacao_TextChanged);
             // 
             // labelNome
             // 
@@ -227,17 +239,6 @@
             this.labelImprimir.Size = new System.Drawing.Size(234, 23);
             this.labelImprimir.TabIndex = 83;
             this.labelImprimir.Text = "Impressão da etiqueta...";
-            // 
-            // labelEmpresa
-            // 
-            this.labelEmpresa.AutoSize = true;
-            this.labelEmpresa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEmpresa.Location = new System.Drawing.Point(35, 187);
-            this.labelEmpresa.Name = "labelEmpresa";
-            this.labelEmpresa.Size = new System.Drawing.Size(154, 20);
-            this.labelEmpresa.TabIndex = 14;
-            this.labelEmpresa.Text = "Empresa empresa";
-            this.labelEmpresa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // UC_Etiqueta
             // 
