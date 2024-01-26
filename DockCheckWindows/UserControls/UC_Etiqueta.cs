@@ -29,7 +29,7 @@ namespace DockCheckWindows.UserControls
         private void UC_Etiqueta_Load(object sender, EventArgs e)
         {
             labelNome.Text = name;
-            labelIdentificacao.Text = identificacao;
+            labelIdentificacao.Text = "33";
             labelEmpresa.Text = empresa;
             labelCheckIn.Text = "De: " + checkin;
             labelCheckOut.Text = "Até: " + checkout;
@@ -110,6 +110,11 @@ namespace DockCheckWindows.UserControls
         private void excludeImageButton_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void labelIdentificacao_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
