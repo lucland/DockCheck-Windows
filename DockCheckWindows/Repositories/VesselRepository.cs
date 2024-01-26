@@ -34,7 +34,7 @@ namespace DockCheckWindows.Repositories
             return JsonConvert.DeserializeObject<Vessel>(response);
         }
 
-        public async Task<List<Event>> GetEventsByVesselIdAsync(string vesselId, int limit = 50, int offset = 0)
+        public async Task<List<Event>> GetEventsByVesselIdAsync(string vesselId, int limit = 3, int offset = 0)
         {
             string url = $"{BaseUrl}/events/{vesselId}?limit={limit}&offset={offset}";
             var json = await GetAsync(url);
