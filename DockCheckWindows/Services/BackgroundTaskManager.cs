@@ -38,7 +38,7 @@ public class SerialDataProcessor
         _cancellationTokenSource = new CancellationTokenSource();
         _currentSlaveIndex = 0;
        // _slavePcs = new List<string>(); // List to store slave PCs
-        _slavePcs = new List<string> { "P1", "P2", "P3" };
+        _slavePcs = new List<string> { "P1", "P2", "P3", "P4" };
         _lastApprovedIdsSentDate = DateTime.MinValue;
     }
 
