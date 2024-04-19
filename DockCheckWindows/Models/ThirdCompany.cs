@@ -2,7 +2,7 @@
 
 namespace DockCheckWindows.Models
 {
-    public class Company
+    public class ThirdCompany
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -13,7 +13,7 @@ namespace DockCheckWindows.Models
         [JsonProperty("logo")]
         public string Logo { get; set; }
 
-        [JsonProperty("razao_social")] // Assuming razaoSocial in Dart translates to razao_social in C#
+        [JsonProperty("razao_social")]
         public string RazaoSocial { get; set; }
 
         [JsonProperty("cnpj")]
@@ -21,6 +21,9 @@ namespace DockCheckWindows.Models
 
         [JsonProperty("address")]
         public string Address { get; set; }
+
+        [JsonProperty("is_vessel_company")]
+        public bool IsVesselCompany { get; set; }
 
         [JsonProperty("telephone")]
         public string Telephone { get; set; }
@@ -32,7 +35,7 @@ namespace DockCheckWindows.Models
         public string Status { get; set; }
 
         // Constructor
-        public Company(string id, string name, string logo, string razaoSocial, string cnpj, string address, string telephone, string email, string status)
+        public ThirdCompany(string id, string name, string logo, string razaoSocial, string cnpj, string address, bool isVesselCompany, string telephone, string email, string status)
         {
             Id = id;
             Name = name;
@@ -40,36 +43,38 @@ namespace DockCheckWindows.Models
             RazaoSocial = razaoSocial;
             Cnpj = cnpj;
             Address = address;
+            IsVesselCompany = isVesselCompany;
             Telephone = telephone;
             Email = email;
             Status = status;
         }
 
         // Default constructor for JSON deserialization
-        public Company() { }
+        public ThirdCompany() { }
 
-        // Method to deserialize JSON string to Company object
-        public static Company FromJson(string jsonData)
+        // Method to deserialize JSON string to ThirdCompany object
+        public static ThirdCompany FromJson(string jsonData)
         {
-            return JsonConvert.DeserializeObject<Company>(jsonData);
+            return JsonConvert.DeserializeObject<ThirdCompany>(jsonData);
         }
 
-        // Method to serialize Company object to JSON string
+        // Method to serialize ThirdCompany object to JSON string
         public string ToJson()
         {
             return JsonConvert.SerializeObject(this);
         }
 
-        // Method to create a new Company object with updated properties
-        public Company CopyWith(string id = null, string name = null, string logo = null, string razaoSocial = null, string cnpj = null, string address = null, string telephone = null, string email = null, string status = null)
+        // Method to create a new ThirdCompany object with updated properties
+        public ThirdCompany CopyWith(string id = null, string name = null, string logo = null, string razaoSocial = null, string cnpj = null, string address = null, bool? isVesselCompany = null, string telephone = null, string email = null, string status = null)
         {
-            return new Company(
+            return new ThirdCompany(
                 id ?? Id,
                 name ?? Name,
                 logo ?? Logo,
                 razaoSocial ?? RazaoSocial,
                 cnpj ?? Cnpj,
                 address ?? Address,
+                isVesselCompany ?? IsVesselCompany,
                 telephone ?? Telephone,
                 email ?? Email,
                 status ?? Status

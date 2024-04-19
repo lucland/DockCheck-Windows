@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DockCheckWindows.Models
 {
-    public class ApprovedUsersResponse
+    public class ApprovedEmployeesResponse
     {
         public List<string> Ids { get; set; }
         public int CurrentPage { get; set; }
