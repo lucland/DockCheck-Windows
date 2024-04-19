@@ -24,78 +24,71 @@ namespace DockCheckWindows.UserControls
         private AuthorizationRepository _authorizationRepository;
         private PicRepository _picRepository = new PicRepository(new ApiService());
         private EventRepository _eventRepository = new EventRepository(new ApiService());
-        private User _currentUser;
+        private DocumentRepository _documentRepository = new DocumentRepository(new ApiService());
+        private EmployeeRepository _employeeRepository = new EmployeeRepository(new ApiService());
+        private Employee _currentEmployee;
         private bool _isEditMode;
         private string _area = "Convés";
         private SerialDataProcessor _serialDataProcessor;
 
         public UC_Cadastrar(UserRepository userRepository,
                             AuthorizationRepository authorizationRepository, UC_Dados ucDados,
+                            DocumentRepository documentRepository, EventRepository eventRepository,
                         SerialDataProcessor serialDataProcessor)
         {
             InitializeComponent();
 
             _ucDados = ucDados;
+            _userRepository = userRepository;
+            _authorizationRepository = authorizationRepository;
+            _documentRepository = documentRepository;
+            _eventRepository = eventRepository;
             AttachEventHandlers();
-            InitializeDateTimePickers();
             InitializeButtonStates();
             InitializeRepositories(userRepository, authorizationRepository);
             InitializeRegistrationProcess();
             _serialDataProcessor = serialDataProcessor;
         }
 
-        public async void PopulateFields(User user)
+        public async void PopulateFields(Employee employee)
         {
-            var pic = await _picRepository.GetPictureAsync(user.Identificacao);
+          //  var pic = await _picRepository.GetPictureAsync(employee.Identificacao);
 
             _isEditMode = true;
-            _currentUser = user;
+            _currentEmployee = employee;
 
             buttonRegistrar.Enabled = true;
             buttonRegistrar.Image = null;
 
-            labelNumero.Text = user.Number.ToString();
-            textBoxNome.Text = user.Name;
-            textBoxFuncao.Text = user.Role;
-            textBoxEmpresa.Text = user.Company;
-            sangueComboBox.Text = user.BloodType;
-            maskedTextBoxCpf.Text = user.CPF;
-            maskedTextBoxAso.Text = user.ASO != DateTime.MinValue ? user.ASO.ToString("dd/MM/yyyy") : "";
-            maskedTextBoxNr34.Text = user.NR34 != DateTime.MinValue ? user.NR34.ToString("dd/MM/yyyy") : "";
-            maskedTextBoxNr10.Text = user.NR10 != DateTime.MinValue ? user.NR10.ToString("dd/MM/yyyy") : "";
-            maskedTextBoxNr33.Text = user.NR33 != DateTime.MinValue ? user.NR33.ToString("dd/MM/yyyy") : "";
-            maskedTextBoxNr35.Text = user.NR35 != DateTime.MinValue ? user.NR35.ToString("dd/MM/yyyy") : "";
-            dateTimePickerCheckin.Value = user.StartJob;
-            dateTimePickerCheckout.Value = user.EndJob;
-            adminToggleSwitch.Checked = user.IsAdmin;
-            guardiaoToggleSwitch.Checked = user.IsPortalo;
-            usuarioTextBox.Text = user.Username;
-            senhaTextBox.Text = user.Hash;
-            textBoxEmail.Text = user.Email;
-            textBoxRFID.Text = user.ITag;
-            pictureBoxFoto.Image = pic.Picture != "" ? ConvertBase64ToImage(pic.Picture) : null;
-            excludeImageButton.Visible = user.Picture != "" && pic.Picture != "";
-            visitanteToggleSwitch.Checked = user.IsVisitor;
+            labelNumero.Text = employee.Number.ToString();
+            textBoxNome.Text = employee.Name;
+            textBoxFuncao.Text = employee.Role;
+            textBoxEmpresa.Text = employee.ThirdCompanyId;
+            sangueComboBox.Text = employee.BloodType;
+            maskedTextBoxCpf.Text = employee.Cpf.ToString();
+            textBoxEmail.Text = employee.Email;
+            textBoxRFID.Text = employee.LastAreaFound;
+            excludeImageButton.Visible = false;
 
-            if (user.Area == "Convés")
+            if (employee.Area == "Convés")
             {
-                buttonConves.Checked = true;
-                buttonCasaDeMaquinas.Checked = false;
-                buttonCasario.Checked = false;
+                buttonEmbarcacao.Checked = true;
+                buttonDiqueSeco.Checked = false;
+                buttonAmbas.Checked = false;
                 _area = "Convés";
             }
-            else if (user.Area == "Casa de Máquinas")
+            else if (employee.Area == "Casa de Máquinas")
             {
-                buttonConves.Checked = false;
-                buttonCasaDeMaquinas.Checked = true;
-                buttonCasario.Checked = false;
+                buttonEmbarcacao.Checked = false;
+                buttonDiqueSeco.Checked = true;
+                buttonAmbas.Checked = false;
                 _area = "Casa de Máquinas";
             }
-            else if (user.Area == "Casario")
+            else if (employee.Area == "Casario")
             {
-                buttonConves.Checked = false;
-                buttonCasaDeMaquinas.Checked = false;
-                buttonCasario.Checked = true;
+                buttonEmbarcacao.Checked = false;
+                buttonDiqueSeco.Checked = false;
+                buttonAmbas.Checked = true;
                 _area = "Casario";
             }
 
@@ -121,24 +114,8 @@ namespace DockCheckWindows.UserControls
 
             sangueComboBox.SelectedIndexChanged += (sender, e) => ValidateFields();
 
-            Guna2DateTimePicker[] dateTimePickers = { dateTimePickerCheckin, dateTimePickerCheckout };
-            foreach (var dateTimePicker in dateTimePickers)
-            {
-                dateTimePicker.ValueChanged += (sender, e) => ValidateFields();
-            }
-
             visitanteToggleSwitch.CheckedChanged += (sender, e) => ValidateFields();
-            adminToggleSwitch.CheckedChanged += (sender, e) => ValidateFields();
-            guardiaoToggleSwitch.CheckedChanged += (sender, e) => ValidateFields();
-            supervisorToggleSwitch.CheckedChanged += (sender, e) => ValidateFields();
-            usuarioTextBox.TextChanged += (sender, e) => ValidateFields();
-            senhaTextBox.TextChanged += (sender, e) => ValidateFields();
             textBoxRFID.TextChanged += (sender, e) => ValidateFields();
-        }
-
-        private void InitializeDateTimePickers()
-        {
-            dateTimePickerCheckin.Value = dateTimePickerCheckout.Value = DateTime.Today;
         }
 
         private void InitializeButtonStates()
@@ -206,10 +183,7 @@ namespace DockCheckWindows.UserControls
         private bool AreDocumentDatesValid()
         {
             return (visitanteToggleSwitch.Checked || IsAsoDateValid()) &&
-                   (visitanteToggleSwitch.Checked || IsNr34DateValid()) &&
-                   dateTimePickerCheckin.Value.Date >= DateTime.Today &&
-                   dateTimePickerCheckout.Value.Date >= DateTime.Today &&
-                   dateTimePickerCheckin.Value.Date <= dateTimePickerCheckout.Value.Date;
+                   (visitanteToggleSwitch.Checked || IsNr34DateValid());
         }
 
         private bool IsAsoDateValid()
@@ -227,10 +201,6 @@ namespace DockCheckWindows.UserControls
             return pictureBoxFoto.Image != null;
         }
 
-        private bool IsAdminOrSupervisorFieldsValid()
-        {
-            return !adminToggleSwitch.Checked || (!string.IsNullOrEmpty(usuarioTextBox.Text) && !string.IsNullOrEmpty(senhaTextBox.Text));
-        }
 
         private bool IsRfidValid()
         {
@@ -287,7 +257,6 @@ namespace DockCheckWindows.UserControls
         {
             try
             {
-                var result = await _userRepository.BlockUserAsync(userId: userId, blockReason: blockReason);
             }
             catch (Exception ex)
             {
@@ -299,8 +268,10 @@ namespace DockCheckWindows.UserControls
         {
             try
             {
-                string lastNumber = await _userRepository.GetLastNumberAsync();
-                labelNumero.Text = lastNumber.Trim('\"');
+                int lastNumber = await _employeeRepository.GetLastNumberAsync();
+                string lastNumberString = lastNumber.ToString();
+   
+                labelNumero.Text = lastNumberString.Trim('\"');
             }
             catch (Exception ex)
             {
@@ -308,25 +279,11 @@ namespace DockCheckWindows.UserControls
             }
         }
 
-        private async Task<List<string>> GetUsersRfidsByVesselAsync(string vesselId)
-        {
-            try
-            {
-                var rfidsArray = await _userRepository.GetUsersRfidsByVesselAsync(vesselId);
-                return rfidsArray.ToList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error fetching RFIDs: {ex.Message}");
-                return new List<string>();
-            }
-        }
-
         private async Task SendRfidsOverSerialAsync(List<string> rfids)
         {
             try
             {
-                using (_serialPort = new SerialPort("COM3", 9600))
+                using (_serialPort = new SerialPort("COM5", 115200))
                 {
                     _serialPort.Open();
                     foreach (var rfid in rfids)
@@ -353,25 +310,25 @@ namespace DockCheckWindows.UserControls
         // Button click handlers
         private void buttonConves_Click(object sender, EventArgs e)
         {
-            ToggleButtonState(buttonConves, true);
-            ToggleButtonState(buttonCasaDeMaquinas, false);
-            ToggleButtonState(buttonCasario, false);
+            ToggleButtonState(buttonEmbarcacao, true);
+            ToggleButtonState(buttonDiqueSeco, false);
+            ToggleButtonState(buttonAmbas, false);
             _area = "Convés";
         }
 
         private void buttonCasaDeMaquinas_Click(object sender, EventArgs e)
         {
-            ToggleButtonState(buttonConves, false);
-            ToggleButtonState(buttonCasaDeMaquinas, true);
-            ToggleButtonState(buttonCasario, false);
+            ToggleButtonState(buttonEmbarcacao, false);
+            ToggleButtonState(buttonDiqueSeco, true);
+            ToggleButtonState(buttonAmbas, false);
             _area = "Casa de Máquinas";
         }
 
         private void buttonCasario_Click(object sender, EventArgs e)
         {
-            ToggleButtonState(buttonConves, false);
-            ToggleButtonState(buttonCasaDeMaquinas, false);
-            ToggleButtonState(buttonCasario, true);
+            ToggleButtonState(buttonEmbarcacao, false);
+            ToggleButtonState(buttonDiqueSeco, false);
+            ToggleButtonState(buttonAmbas, true);
             _area = "Casario";
         }
 
@@ -384,7 +341,7 @@ namespace DockCheckWindows.UserControls
         {
             if (_isEditMode)
             {
-                UpdateUser(_currentUser);
+                UpdateUser(_currentEmployee);
             }
             else
             {
@@ -419,15 +376,13 @@ namespace DockCheckWindows.UserControls
                 throw new InvalidOperationException("Invalid user input.");
             }
 
-            User newUser = CreateUserObject();
-            Authorization newAuthorization = CreateAuthorizationObject(newUser);
-
+            Employee newUser = CreateEmployeeObject();
             UpdateLoadingBar(20);
 
             Pic newPic = new Pic
             {
                 Id = Guid.NewGuid().ToString(),
-                UserId = newUser.Identificacao,
+                UserId = newUser.Id,
                 Picture = ConvertImageToBase64(pictureBoxFoto),
             };
 
@@ -450,19 +405,84 @@ namespace DockCheckWindows.UserControls
             }
 
             UpdateLoadingBar(60);
-
-            bool isAuthorizationCreated = await SaveAuthorizationAsync(newAuthorization);
-            if (!isAuthorizationCreated)
+            //create Documents objects from ASO, NR-34 and if any additional documents are added based on the comboBox index beign zero or greater, then add them to the list of documents as well
+            List<Document> documents = new List<Document>
             {
-                MessageBox.Show("Failed to create authorization.");
-                Console.WriteLine("Failed to create authorization.");
-                throw new InvalidOperationException("Failed to create authorization.");
+                new Document
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    EmployeeId = newUser.Id,
+                    Type = "ASO",
+                    ExpirationDate = DateTime.ParseExact(maskedTextBoxAso.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    Status = "sync_pending",
+                },
+                new Document
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    EmployeeId = newUser.Id,
+                    Type = "NR-34",
+                    ExpirationDate = DateTime.ParseExact(maskedTextBoxNr34.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    Status = "sync_pending",
+                }
+            };
+            if (documentoAddComboBox1.SelectedIndex > 0)
+            {
+                documents.Add(new Document
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    EmployeeId = newUser.Id,
+                    Type = documentoAddComboBox1.Text,
+                    ExpirationDate = DateTime.ParseExact(maskedTextBoxAso.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    Status = "sync_pending",
+                });
             }
-
+            if (documentoAddComboBox2.SelectedIndex > 0)
+            {
+                documents.Add(new Document
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    EmployeeId = newUser.Id,
+                    Type = documentoAddComboBox2.Text,
+                    ExpirationDate = DateTime.ParseExact(maskedTextBoxAso.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    Status = "sync_pending",
+                });
+            }
+            if (documentoAddComboBox3.SelectedIndex > 0)
+            {
+                documents.Add(new Document
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    EmployeeId = newUser.Id,
+                    Type = documentoAddComboBox3.Text,
+                    ExpirationDate = DateTime.ParseExact(maskedTextBoxAso.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    Status = "sync_pending",
+                });
+            }
+            if (documentoAddComboBox4.SelectedIndex > 0)
+            {
+                documents.Add(new Document
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    EmployeeId = newUser.Id,
+                    Type = documentoAddComboBox4.Text,
+                    ExpirationDate = DateTime.ParseExact(maskedTextBoxAso.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    Status = "sync_pending",
+                });
+            }
+            //send documents to the API using the DocumentRepository
+            foreach (var document in documents)
+            {
+                bool isDocumentCreated = await _documentRepository.CreateDocumentAsync(document);
+                if (!isDocumentCreated)
+                {
+                    MessageBox.Show("Failed to create document.");
+                    Console.WriteLine("Failed to create document.");
+                }
+            }
             UpdateLoadingBar(80);
             try
             {
-                await _serialDataProcessor.SendApprovedIdAsync("P0", newUser.ITag); // Replace "SlavePC" with the actual PC identifier
+                await _serialDataProcessor.SendApprovedIdAsync("P0", newUser.Area); // Replace "SlavePC" with the actual PC identifier
                 UpdateLoadingBar(95);
             }
             catch (Exception ex)
@@ -472,9 +492,9 @@ namespace DockCheckWindows.UserControls
             }
             try
             {
-                if (newUser.ITag != "")
+                if (newUser.Area != "")
                 {
-                    await _serialDataProcessor.SendApprovedIdAsync("P0", newUser.ITag); // Replace "SlavePC" with the actual PC identifier
+                    await _serialDataProcessor.SendApprovedIdAsync("P0", newUser.Area); // Replace "SlavePC" with the actual PC identifier
                 }
             } catch (Exception ex)
             {
@@ -484,13 +504,12 @@ namespace DockCheckWindows.UserControls
             {
                 Id = Guid.NewGuid().ToString(),
                 Action = 0,
-                PortalId = "0",
+                SensorId = "0",
                 Timestamp = DateTime.Now,
-                UserId = newUser.Identificacao,
-                VesselId = Properties.Settings.Default.VesselId.Split(',')[0],
+                EmployeeId = newUser.Id,
+                ProjectId = Properties.Settings.Default.VesselId.Split(',')[0],
                 BeaconId = "",
                 Status = "sync_pending",
-                Justification = "",
             };
 
             bool isEventCreated = await SaveEventAsync(ev);
@@ -516,84 +535,34 @@ namespace DockCheckWindows.UserControls
                    maskedTextBoxCpf.Text.Length == 11 &&
                    (visitanteToggleSwitch.Checked || IsAsoDateValid()) &&
                    (visitanteToggleSwitch.Checked || IsNr34DateValid()) &&
-                   dateTimePickerCheckin.Value.Date >= DateTime.Today &&
-                   dateTimePickerCheckout.Value.Date >= DateTime.Today &&
-                   dateTimePickerCheckin.Value.Date <= dateTimePickerCheckout.Value.Date &&
-                   IsAdminOrSupervisorFieldsValid() &&
                    IsRfidValid();
         }
 
-        private User CreateUserObject()
+        private Employee CreateEmployeeObject()
         {
-            DateTime nr10Date;
-            bool nr10DateParsed = DateTime.TryParseExact(maskedTextBoxNr10.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out nr10Date);
-
-            DateTime nr33Date;
-            bool nr33DateParsed = DateTime.TryParseExact(maskedTextBoxNr33.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out nr33Date);
-
-            DateTime nr35Date;
-            bool nr35DateParsed = DateTime.TryParseExact(maskedTextBoxNr35.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out nr35Date);
-
-            return new User
+            return new Employee
             {
                 Name = textBoxNome.Text,
                 Role = textBoxFuncao.Text,
-                Company = textBoxEmpresa.Text,
+                ThirdCompanyId = textBoxEmpresa.Text,
                 BloodType = sangueComboBox.Text.Trim(),
-                CPF = maskedTextBoxCpf.Text.Replace(" ", ""),
-                ASO = IsAsoDateValid() ? DateTime.ParseExact(maskedTextBoxAso.Text, "dd/MM/yyyy", null) : DateTime.MinValue,
-                NR34 = IsNr34DateValid() ? DateTime.ParseExact(maskedTextBoxNr34.Text, "dd/MM/yyyy", null) : DateTime.MinValue,
+                Cpf = maskedTextBoxCpf.Text.Replace(" ", ""),
                 Number = int.Parse(labelNumero.Text),
-                HasNR10 = maskedTextBoxNr10.Text != "",
-                NR10 = nr10DateParsed ? nr10Date : DateTime.MinValue,
-                HasNR33 = maskedTextBoxNr33.Text != "",
-                NR33 = nr33DateParsed ? nr33Date : DateTime.MinValue,
-                HasNR35 = maskedTextBoxNr35.Text != "",
-                NR35 = nr35DateParsed ? nr35Date : DateTime.MinValue,
-                HasASO = maskedTextBoxAso.Text != "",
-                ASODocument = escolherASOButton.Text ?? "",
-                NR34Document = escolherNR34Button.Text ?? "",
-                NR35Document = escolherNR35Button.Text ?? "",
-                NR33Document = escolherNR33Button.Text ?? "",
-                NR10Document = escolherNR10Button.Text ?? "",
-                IsAdmin = adminToggleSwitch.Checked,
-                IsPortalo = guardiaoToggleSwitch.Checked,
-                Username = adminToggleSwitch.Checked == true ? usuarioTextBox.Text : "",
-                StartJob = dateTimePickerCheckin.Value,
-                EndJob = dateTimePickerCheckout.Value,
                 Email = textBoxEmail.Text ?? "",
-                Picture = "",
-                ITag = textBoxRFID.Text ?? "",
-                Project = "",
-                IsVisitor = visitanteToggleSwitch.Checked,
-                Salt = "",
-                Hash = adminToggleSwitch.Checked ? senhaTextBox.Text : "",
+                Area = textBoxRFID.Text ?? "",
                 Status = "sync_pending",
-                Identificacao = Guid.NewGuid().ToString(),
+                Id = Guid.NewGuid().ToString(),
                 BlockReason = "",
                 IsBlocked = false,
-                Area = _area,
-                TypeJob = "",
+                Telephone = textBoxTelefone.Text ?? "",
             };
         }
 
-        private Authorization CreateAuthorizationObject(User user)
-        {
-            return new Authorization
-            {
-                UserId = user.Identificacao,
-                ExpirationDate = dateTimePickerCheckout.Value,
-                VesselId = Properties.Settings.Default.VesselId.Split(',')[0],
-                Status = "sync_pending",
-                Id = Guid.NewGuid(),
-            };
-        }
-
-        private async Task<bool> SaveUserAsync(User user)
+        private async Task<bool> SaveUserAsync(Employee employee)
         {
             try
             {
-                return await _userRepository.CreateUserAsync(user);
+                return await _employeeRepository.CreateEmployeeAsync(employee);
             }
             catch (Exception ex)
             {
@@ -728,54 +697,30 @@ namespace DockCheckWindows.UserControls
             }
         }
 
-        private async void UpdateUser(User user)
+        private async void UpdateUser(Employee employee)
         {
-            DateTime nr10Date;
-            bool nr10DateParsed = DateTime.TryParseExact(maskedTextBoxNr10.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out nr10Date);
-
-            DateTime nr33Date;
-            bool nr33DateParsed = DateTime.TryParseExact(maskedTextBoxNr33.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out nr33Date);
-
-            DateTime nr35Date;
-            bool nr35DateParsed = DateTime.TryParseExact(maskedTextBoxNr35.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out nr35Date);
-
 
             // Update user with the new data from fields
-            user.Name = textBoxNome.Text;
-            user.Role = textBoxFuncao.Text;
-            user.Company = textBoxEmpresa.Text;
-            user.BloodType = sangueComboBox.Text.Trim();
-            user.CPF = maskedTextBoxCpf.Text.Replace(" ", "");
-            user.ASO = IsAsoDateValid() ? DateTime.ParseExact(maskedTextBoxAso.Text, "dd/MM/yyyy", null) : DateTime.MinValue;
-            user.NR34 = IsNr34DateValid() ? DateTime.ParseExact(maskedTextBoxNr34.Text, "dd/MM/yyyy", null) : DateTime.MinValue;
-            user.Number = int.Parse(labelNumero.Text);
-            user.HasNR10 = maskedTextBoxNr10.Text != "";
-            user.NR10 = nr10DateParsed ? nr10Date : DateTime.MinValue;
-            user.HasNR33 = maskedTextBoxNr33.Text != "";
-            user.NR33 = nr33DateParsed ? nr33Date : DateTime.MinValue;
-            user.HasNR35 = maskedTextBoxNr35.Text != "";
-            user.NR35 = nr35DateParsed ? nr35Date : DateTime.MinValue;
-            user.HasASO = maskedTextBoxAso.Text != "";
-            user.ASODocument = escolherASOButton.Text ?? "";
-            user.NR34Document = escolherNR34Button.Text ?? "";
-            user.NR35Document = escolherNR35Button.Text ?? "";
-            user.NR33Document = escolherNR33Button.Text ?? "";
-            user.NR10Document = escolherNR10Button.Text ?? "";
-            user.IsAdmin = adminToggleSwitch.Checked;
-            user.IsPortalo = guardiaoToggleSwitch.Checked;
-            user.Username = adminToggleSwitch.Checked == true ? usuarioTextBox.Text : "";
-            user.StartJob = dateTimePickerCheckin.Value;
-            user.EndJob = dateTimePickerCheckout.Value;
-            user.Email = textBoxEmail.Text ?? "";
-            user.Picture = pictureBoxFoto.Image != null ? ConvertImageToBase64(pictureBoxFoto) : "";
-            user.ITag = textBoxRFID.Text ?? "";
-            user.Project = "";
-            user.IsVisitor = visitanteToggleSwitch.Checked;
-            user.TypeJob = "";
-            user.Area = _area;
+            employee.Name = textBoxNome.Text;
+            employee.Role = textBoxFuncao.Text;
+            employee.ThirdCompanyId = textBoxEmpresa.Text;
+            employee.BloodType = sangueComboBox.Text.Trim();
+            employee.VisitorCompany = "";
+            employee.AuthorizationsId = new List<string>();
+            employee.UserId = Properties.Settings.Default.UserId;
+            employee.Cpf = maskedTextBoxCpf.Text.Replace(" ", "");
+            employee.Number = int.Parse(labelNumero.Text);
+            employee.Email = textBoxEmail.Text;
+            employee.Area = textBoxRFID.Text;
+            employee.Status = "updated windows";
+            employee.BlockReason = "";
+            employee.IsBlocked = false;
+            employee.LastAreaFound = textBoxRFID.Text;
+            employee.LastTimeFound = DateTime.Now;
+            employee.DocumentsOk = true;
 
             // Save changes to the database
-            await _userRepository.UpdateUserAsync(user);
+            await _employeeRepository.UpdateEmployeeAsync(employee.Id, textBoxRFID.Text);
 
             //close the edit form
             SwitchToDados?.Invoke();
@@ -797,26 +742,16 @@ namespace DockCheckWindows.UserControls
             maskedTextBoxCpf.Enabled = false;
             maskedTextBoxAso.Enabled = false;
             maskedTextBoxNr34.Enabled = false;
-            dateTimePickerCheckin.Enabled = false;
-            dateTimePickerCheckout.Enabled = false;
             buttonCadastrar.Enabled = false;
             buttonRegistrar.Enabled = false;
-            buttonConves.Enabled = false;
-            buttonCasaDeMaquinas.Enabled = false;
-            buttonCasario.Enabled = false;
+            buttonEmbarcacao.Enabled = false;
+            buttonDiqueSeco.Enabled = false;
+            buttonAmbas.Enabled = false;
             uploadButton.Enabled = false;
             capturaButton.Enabled = false;
             escolherASOButton.Enabled = false;
             escolherNR34Button.Enabled = false;
-            escolherNR10Button.Enabled = false;
-            escolherNR33Button.Enabled = false;
-            escolherNR35Button.Enabled = false;
             visitanteToggleSwitch.Enabled = false;
-            adminToggleSwitch.Enabled = false;
-            guardiaoToggleSwitch.Enabled = false;
-            supervisorToggleSwitch.Enabled = false;
-            usuarioTextBox.Enabled = false;
-            senhaTextBox.Enabled = false;
             textBoxEmail.Enabled = false;
             textBoxRFID.Enabled = false;
             pictureBoxFoto.Enabled = false;
@@ -833,26 +768,16 @@ namespace DockCheckWindows.UserControls
             maskedTextBoxCpf.Enabled = true;
             maskedTextBoxAso.Enabled = true;
             maskedTextBoxNr34.Enabled = true;
-            dateTimePickerCheckin.Enabled = true;
-            dateTimePickerCheckout.Enabled = true;
             buttonCadastrar.Enabled = true;
             buttonRegistrar.Enabled = true;
-            buttonConves.Enabled = true;
-            buttonCasaDeMaquinas.Enabled = true;
-            buttonCasario.Enabled = true;
+            buttonEmbarcacao.Enabled = true;
+            buttonDiqueSeco.Enabled = true;
+            buttonAmbas.Enabled = true;
             uploadButton.Enabled = true;
             capturaButton.Enabled = true;
             escolherASOButton.Enabled = true;
             escolherNR34Button.Enabled = true;
-            escolherNR10Button.Enabled = true;
-            escolherNR33Button.Enabled = true;
-            escolherNR35Button.Enabled = true;
             visitanteToggleSwitch.Enabled = true;
-            adminToggleSwitch.Enabled = true;
-            guardiaoToggleSwitch.Enabled = true;
-            supervisorToggleSwitch.Enabled = true;
-            usuarioTextBox.Enabled = true;
-            senhaTextBox.Enabled = true;
             textBoxEmail.Enabled = true;
             textBoxRFID.Enabled = true;
             pictureBoxFoto.Enabled = true;
@@ -1083,124 +1008,6 @@ namespace DockCheckWindows.UserControls
             ValidateFields();
         }
 
-        private void escolherNR10Button_Click(object sender, EventArgs e)
-        {
-            //choose file and display the name of it on label4
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "PDF files (*.pdf) | *.pdf";
-            openFileDialog.FilterIndex = 0;
-            openFileDialog.RestoreDirectory = true;
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                //show only the file name instead of the whole path of it
-                if (string.IsNullOrEmpty(escolherNR10Button.Text))
-                {
-                    escolherNR10Button.Text = openFileDialog.SafeFileName;
-                }
-                else
-                {
-                    escolherNR10Button.Text += "\n" + openFileDialog.SafeFileName;
-                }
-            }
-
-            ValidateFields();
-        }
-
-        private void escolherNR33Button_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "PDF files (*.pdf) | *.pdf";
-            openFileDialog.FilterIndex = 0;
-            openFileDialog.RestoreDirectory = true;
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                if (string.IsNullOrEmpty(escolherNR33Button.Text))
-                {
-                    escolherNR33Button.Text = openFileDialog.SafeFileName;
-                }
-                else
-                {
-                    escolherNR33Button.Text += "\n" + openFileDialog.SafeFileName;
-                }
-            }
-
-            ValidateFields();
-        }
-
-        private void escolherNR35Button_Click(object sender, EventArgs e)
-        {
-            //choose file and display the name of it on label4
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "PDF files (*.pdf) | *.pdf";
-            openFileDialog.FilterIndex = 0;
-            openFileDialog.RestoreDirectory = true;
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                //show only the file name instead of the whole path of it
-                if (string.IsNullOrEmpty(escolherNR35Button.Text))
-                {
-                    escolherNR35Button.Text = openFileDialog.SafeFileName;
-                }
-                else
-                {
-                    escolherNR35Button.Text += "\n" + openFileDialog.SafeFileName;
-                }
-            }
-
-            ValidateFields();
-        }
-
-        private void adminToggleSwitch_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdateUserAndPasswordFieldsVisibility(adminToggleSwitch.Checked || guardiaoToggleSwitch.Checked);
-            UpdateToggleSwitchesState();
-            ValidateFields();
-        }
-
-        private void guardiaoToggleSwitch_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdateUserAndPasswordFieldsVisibility(guardiaoToggleSwitch.Checked);
-            UpdateToggleSwitchesState();
-            ValidateFields();
-        }
-
-        private void supervisorToggleSwitch_CheckedChanged(object sender, EventArgs e)
-        {
-            if (supervisorToggleSwitch.Checked)
-            {
-                adminToggleSwitch.Checked = true;
-            }
-            UpdateUserAndPasswordFieldsVisibility(adminToggleSwitch.Checked);
-            UpdateToggleSwitchesState();
-            ValidateFields();
-        }
-
-        private void UpdateUserAndPasswordFieldsVisibility(bool isVisible)
-        {
-            usuarioLabel.Visible = isVisible;
-            usuarioPanel.Visible = isVisible;
-            usuarioReqLabel.Visible = isVisible;
-            usuarioTextBox.Visible = isVisible;
-
-            senhaLabel.Visible = isVisible;
-            senhaPanel.Visible = isVisible;
-            senhaReqLabel.Visible = isVisible;
-            senhaTextBox.Visible = isVisible;
-        }
-
-        private void UpdateToggleSwitchesState()
-        {
-            if (!adminToggleSwitch.Checked && !guardiaoToggleSwitch.Checked)
-            {
-                visitanteToggleSwitch.Enabled = true;
-            }
-            else
-            {
-                visitanteToggleSwitch.Checked = false;
-                visitanteToggleSwitch.Enabled = false;
-            }
-        }
-
 
         private void textBoxRFID_TextChanged(object sender, EventArgs e)
         {
@@ -1223,7 +1030,7 @@ namespace DockCheckWindows.UserControls
             }
             else
             {
-                await BlockUser(motivoTextBox.Text, _currentUser.Identificacao);
+                await BlockUser(motivoTextBox.Text, _currentEmployee.Id);
                 SwitchToDados?.Invoke();
             }
         }
@@ -1243,14 +1050,14 @@ namespace DockCheckWindows.UserControls
         private void DisplayEtiquetaControl()
         {
             //TODO: get vessel name from user authorization
-            string vesselName = Properties.Settings.Default.Vessel.ToString();
+            string vesselName = "Skandi Salvador";
             var ucEtiqueta = new UC_Etiqueta(
                 name: textBoxNome.Text,
                 identificacao: labelNumero.Text,
                 embarcacao: vesselName,
                 empresa: textBoxEmpresa.Text,
-                checkin: dateTimePickerCheckout.Value.ToString("dd/MM/yyyy"),
-                checkout: dateTimePickerCheckin.Value.ToString("dd/MM/yyyy")
+                checkin: DateTime.Now.ToString("dd/MM/yyyy"),
+                checkout: "-"
                 );
             ucEtiqueta.Location = new Point(800, 300);
             ucEtiqueta.Size = new Size(353, 288);
@@ -1262,6 +1069,173 @@ namespace DockCheckWindows.UserControls
         private void printButton_Click(object sender, EventArgs e)
         {
             DisplayEtiquetaControl();
+        }
+
+        private void labelNumero_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void documentoAddComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if index is positive or zero, enable the button
+            if (documentoAddComboBox1.SelectedIndex >= 0)
+            {
+                escolherDocButton1.Enabled = true;
+            }
+            else
+            {
+                escolherDocButton1.Enabled = false;
+            }
+        }
+
+        private void documentoAddComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if index is positive or zero, enable the button
+            if (documentoAddComboBox2.SelectedIndex >= 0)
+            {
+                escolherDocButton2.Enabled = true;
+            }
+            else
+            {
+                escolherDocButton2.Enabled = false;
+            }
+
+        }
+
+        private void documentoAddComboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if index is positive or zero, enable the button
+            if (documentoAddComboBox3.SelectedIndex >= 0)
+            {
+                escolherDocButton3.Enabled = true;
+            }
+            else
+            {
+                escolherDocButton3.Enabled = false;
+            }
+
+        }
+
+        private void documentoAddComboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if index is positive or zero, enable the button
+            if (documentoAddComboBox4.SelectedIndex >= 0)
+            {
+                escolherDocButton4.Enabled = true;
+            }
+            else
+            {
+                escolherDocButton4.Enabled = false;
+            }
+
+        }
+
+        private void maskedTextBoxNr34_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void escolherDocButton1_Click(object sender, EventArgs e)
+        {
+            //choose file and display the name of it on label4
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "PDF files (*.pdf) | *.pdf";
+            openFileDialog.FilterIndex = 0;
+            openFileDialog.RestoreDirectory = true;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //show only the file name instead of the whole path of it
+                if (string.IsNullOrEmpty(escolherDocButton1.Text))
+                {
+                    escolherDocButton1.Text = openFileDialog.SafeFileName;
+                }
+                else
+                {
+                    escolherDocButton1.Text += "\n" + openFileDialog.SafeFileName;
+                }
+            }
+
+            ValidateFields();
+        }
+
+        private void escolherDocButton2_Click(object sender, EventArgs e)
+        {
+            //choose file and display the name of it on label4
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "PDF files (*.pdf) | *.pdf";
+            openFileDialog.FilterIndex = 0;
+            openFileDialog.RestoreDirectory = true;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //show only the file name instead of the whole path of it
+                if (string.IsNullOrEmpty(escolherDocButton2.Text))
+                {
+                    escolherDocButton2.Text = openFileDialog.SafeFileName;
+                }
+                else
+                {
+                    escolherDocButton2.Text += "\n" + openFileDialog.SafeFileName;
+                }
+            }
+
+            ValidateFields();
+        }
+
+        private void escolherDocButton3_Click(object sender, EventArgs e)
+        {
+            //choose file and display the name of it on label4
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "PDF files (*.pdf) | *.pdf";
+            openFileDialog.FilterIndex = 0;
+            openFileDialog.RestoreDirectory = true;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //show only the file name instead of the whole path of it
+                if (string.IsNullOrEmpty(escolherDocButton3.Text))
+                {
+                    escolherDocButton3.Text = openFileDialog.SafeFileName;
+                }
+                else
+                {
+                    escolherDocButton3.Text += "\n" + openFileDialog.SafeFileName;
+                }
+            }
+
+            ValidateFields();
+        }
+
+        private void escolherDocButton4_Click(object sender, EventArgs e)
+        {
+            //choose file and display the name of it on label4
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "PDF files (*.pdf) | *.pdf";
+            openFileDialog.FilterIndex = 0;
+            openFileDialog.RestoreDirectory = true;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //show only the file name instead of the whole path of it
+                if (string.IsNullOrEmpty(escolherDocButton4.Text))
+                {
+                    escolherDocButton4.Text = openFileDialog.SafeFileName;
+                }
+                else
+                {
+                    escolherDocButton4.Text += "\n" + openFileDialog.SafeFileName;
+                }
+            }
+
+            ValidateFields();
+        }
+
+        private void labelVisitante_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

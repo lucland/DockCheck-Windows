@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Drawing.Printing;
+using System.IO;
 using System.IO.Ports;
 using System.Windows.Forms;
 
@@ -44,19 +46,46 @@ namespace DockCheckWindows.UserControls
             {
                 Bitmap bm = GenerateBitmapFromPanel();
 
-                // Convert bitmap to a format suitable for the printer
-                byte[] printerCommands = ConvertImageToPrinterCommands(bm);
+                // Save bitmap as PNG file
+                string filePath = @"C:\compartilhamento\data_picture\qr\Qrcode10.png";
+                bm.Save(filePath, ImageFormat.Png);
 
-                // Send data to printer
-                SendDataToPrinter("COM11", printerCommands);
-
-                this.Hide();
-                panelFundo.Hide();
+                // Automatically print the PNG file
+                PrintImage(filePath);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Printing failed: {ex.Message}");
             }
+        }
+
+        private void PrintImage(string filePath)
+        {
+            if (File.Exists(filePath))
+            {
+                using (PrintDocument pd = CreatePrintDocument(filePath))
+                {
+                    pd.Print();
+                }
+            }
+            else
+            {
+                MessageBox.Show("File not found.");
+            }
+        }
+
+        private PrintDocument CreatePrintDocument(string filePath)
+        {
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += (sender, args) =>
+            {
+                using (Image img = Image.FromFile(filePath))
+                {
+                    Rectangle m = args.PageBounds;
+                    args.Graphics.DrawImage(img, 20, 5, 296, 216);
+                }
+            };
+            return pd;
         }
 
         private byte[] ConvertImageToPrinterCommands(Bitmap bitmap)

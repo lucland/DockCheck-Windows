@@ -14,9 +14,18 @@ namespace DockCheckWindows.UserControls
         private readonly ApiService apiService;
         private readonly VesselRepository vesselRepository;
         private readonly UserRepository userRepository;
+        private readonly EmployeeRepository employeeRepository;
+        private readonly SensorRepository sensorRepository;
 
         private List<string> onboardedCompanies;
         private List<int> companiesCount;
+
+        private Sensor sensorConves;
+        private Sensor sensorPassadiço;
+        private Sensor sensorPraça;
+        private Sensor sensorPortalo;
+        private Sensor sensorAcessoExterno;
+        private Sensor sensorAcessoInterno;
 
         public UC_Home()
         {
@@ -24,7 +33,9 @@ namespace DockCheckWindows.UserControls
             apiService = new ApiService();
             vesselRepository = new VesselRepository(apiService);
             userRepository = new UserRepository(apiService);
-            InitializeListViewColumns();
+            employeeRepository = new EmployeeRepository(apiService);
+            sensorRepository = new SensorRepository(apiService);
+
             InitializeCompanyLists();
             CarregarDados();
         }
@@ -35,16 +46,7 @@ namespace DockCheckWindows.UserControls
             companiesCount = new List<int>();
         }
 
-        private void InitializeListViewColumns()
-        {
-            InitializeListViewColumn(listViewABordo, new string[] { "Nome", "Numero", "Empresa", "Função" });
-            InitializeListViewColumn(listViewBloqueados, new string[] { "Nome", "Número" });
-            InitializeListViewColumn(listViewEmpresa, new string[] { "Contagem", "Empresa"});
-
-            SetEqualColumnWidths(listViewEmpresa);
-            SetEqualColumnWidths(listViewABordo);
-            SetEqualColumnWidths(listViewBloqueados);
-        }
+    
 
         private void InitializeListViewColumn(ListView listView, string[] columnNames)
         {
@@ -62,7 +64,7 @@ namespace DockCheckWindows.UserControls
         {
             try
             {
-                await Task.WhenAll(PopulateListViewWithVessels(), PopulateBlockedList(), PopulateCompaniesCountList(), PopulateStatusAcao());
+                await Task.WhenAll(PopulateListViewWithVessels(), PopulateStatusAcao());
             }
             catch (Exception ex)
             {
@@ -72,100 +74,54 @@ namespace DockCheckWindows.UserControls
 
         private async Task PopulateListViewWithVessels()
         {
-            listViewABordo.Items.Clear();
-
             var total = 0;
 
-            var vesselIds = (Properties.Settings.Default.VesselId ?? "").Split(',');
-            foreach (var id in vesselIds)
+            var vessel = await vesselRepository.GetVesselByIdAsync("SKANDI SALVADOR");
+
+            if (vessel == null)
             {
-                if (!string.IsNullOrEmpty(id))
-                {
-                    Vessel vessel = await vesselRepository.GetVesselByIdAsync(id);
-                    if (vessel != null)
-                    {
-                        var onboarded = await vesselRepository.GetOnboardedByVesselIdAsync(id);
-                        foreach (var user in onboarded)
-                        {
-                            if (!string.IsNullOrEmpty(user))
-                            {
-                                User userObj = await userRepository.GetUserByIdAsync(user);
-                                if (userObj != null)
-                                {
-                                   if (!onboardedCompanies.Contains(userObj.Company))
-                                    {
-                                        onboardedCompanies.Add(userObj.Company);
-                                        companiesCount.Add(1);
-                                    }
-                                    else
-                                    {
-                                        var index = onboardedCompanies.IndexOf(userObj.Company);
-                                        companiesCount[index]++;
-                                    }
-
-
-                                    total++;
-                                    listViewABordo.Items.Add(new ListViewItem(new[] {  userObj.Name, userObj.Number.ToString(), userObj.Company, userObj.Role }));
-                                    await PopulateCompaniesCountList();
-                                }
-                            }
-                        }
-                    }
-                }
+                return;
             }
 
-            Invoke(new Action(() =>
+            labelTotalABordo.Text = vessel.OnboardedCount.ToString();
+
+            var sensors = await sensorRepository.GetAllSensorsAsync();
+
+            if (sensors == null || sensors.Count == 0)
             {
-                labelTotalABordo.Text = total.ToString();
-            }));
-
-            listViewABordo.Sorting = SortOrder.Ascending;
-            listViewABordo.Sort();
-        }
-
-
-        private async Task PopulateBlockedList()
-        {
-            listViewBloqueados.Items.Clear();
-            var blockedUserIds = await userRepository.GetAllBlockedUsersAsync();
-
-            foreach (var id in blockedUserIds)
-            {
-                if (!string.IsNullOrEmpty(id))
-                {
-                    User user = await userRepository.GetUserByIdAsync(id);
-                    if (user != null)
-                    {
-                        listViewBloqueados.Items.Add(new ListViewItem(new[] { user.Name, user.Number.ToString() }));
-                    }
-                }
+                return;
             }
 
-            Invoke(new Action(() =>
-            {
-                labelTotalBloqueados.Text = listViewBloqueados.Items.Count.ToString();
-            }));
+            sensorConves = sensors.FirstOrDefault(s => s.AreaId == "Convés");
+
+            Console.WriteLine(sensorConves.BeaconsFound.Count);
+
+            labelTotalConves.Text = sensorConves.BeaconsFound.Count.ToString();
+
+            sensorPassadiço = sensors.FirstOrDefault(s => s.AreaId == "Passadiço");
+
+            labelTotalPassadiço.Text = sensorPassadiço.BeaconsFound.Count.ToString();
+
+            sensorPraça = sensors.FirstOrDefault(s => s.AreaId == "CCM");
+
+            labelTotalPraça.Text = sensorPraça.BeaconsFound.Count.ToString();
+
+            sensorPortalo = sensors.FirstOrDefault(s => s.AreaId == "Portaló");
+
+            labelTotalPortalo.Text = sensorPortalo.BeaconsFound.Count.ToString();
+
+            sensorAcessoExterno = sensors.FirstOrDefault(s => s.AreaId == "Acesso Externo");
+
+            labelTotalAcessoExterno.Text = sensorAcessoExterno.BeaconsFound.Count.ToString();
+
+            sensorAcessoInterno = sensors.FirstOrDefault(s => s.AreaId == "Acesso Interno");
+
+            labelTotalAcessoInterno.Text = sensorAcessoInterno.BeaconsFound.Count.ToString();
+        
+
         }
 
 
-        private async Task PopulateCompaniesCountList()
-        {
-            listViewEmpresa.Items.Clear();
-
-
-            // Assuming onboardedCompanies, companiesStart, companiesCount are updated elsewhere
-            for (int i = 0; i < onboardedCompanies.Count; i++)
-                {
-                    string companyName = onboardedCompanies[i];
-                    string userCount = companiesCount[i].ToString();
-
-                listViewEmpresa.Items.Add(new ListViewItem(new[] { userCount, companyName }));
-                }
-
-
-            listViewEmpresa.Sorting = SortOrder.Descending;
-            listViewEmpresa.Sort();
-        }
 
         private async Task PopulateStatusAcao()
         {
@@ -179,7 +135,7 @@ namespace DockCheckWindows.UserControls
                     foreach (var ev in events)
                     {
                         var action = (ActionEnum)ev.Action;
-                        UpdateStatusAction(ev.PortalId, ev.Timestamp);
+                        UpdateStatusAction(ev.SensorId, ev.Timestamp);
                     }
                 }
             }
@@ -242,6 +198,11 @@ namespace DockCheckWindows.UserControls
         private void buttonSincronizar_Click(object sender, EventArgs e)
         {
             CarregarDados();
+        }
+
+        private void labelPortalo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

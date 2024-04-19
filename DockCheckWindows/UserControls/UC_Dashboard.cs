@@ -9,6 +9,7 @@ using DockCheckWindows.Repositories;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.IO;
+using DockCheckWindows.Models;
 
 namespace DockCheckWindows.UserControls
 {
@@ -22,13 +23,13 @@ namespace DockCheckWindows.UserControls
             InitializeComponent();
             _userRepository = new UserRepository(new ApiService());
             _dbService = LiteDbService.Instance;
-            PopulateCharts();
+           // PopulateCharts();
         }
-
+        /*
         private async void PopulateCharts()
         {
             // Try to fetch data from API
-            var users = await FetchDataFromApi();
+           // var users = await FetchDataFromApi();
             if (users == null)
             {
                 // If API fails, fetch data from LiteDB
@@ -41,6 +42,7 @@ namespace DockCheckWindows.UserControls
 
         private void ProcessAndDisplayData(List<User> users)
         {
+            
             int[] hourlyCountsToday = new int[24];
             Dictionary<DateTime, int> dailyCountsAll = new Dictionary<DateTime, int>();
             Dictionary<DateTime, int> dailyRfidCount = new Dictionary<DateTime, int>();
@@ -49,35 +51,9 @@ namespace DockCheckWindows.UserControls
 
             foreach (var user in users)
             {
-                // Process StartJob and EndJob
-                if (user.StartJob != DateTime.MinValue && user.EndJob != DateTime.MinValue)
-                {
-                    for (DateTime time = user.StartJob; time < user.EndJob; time = time.AddHours(1))
-                    {
-                        int hour = time.Hour;
+               
 
-                        if (time.Date == specificDate)
-                        {
-                            hourlyCountsToday[hour]++;
-                        }
-
-                        if (!dailyCountsAll.ContainsKey(time.Date))
-                        {
-                            dailyCountsAll[time.Date] = 0;
-                        }
-                        dailyCountsAll[time.Date]++;
-                    }
-                }
-
-                // Process Company
-                if (!string.IsNullOrEmpty(user.Company))
-                {
-                    if (!companyCounts.ContainsKey(user.Company))
-                    {
-                        companyCounts[user.Company] = 0;
-                    }
-                    companyCounts[user.Company]++;
-                }
+               
             }
 
             // Populate the charts
@@ -88,11 +64,11 @@ namespace DockCheckWindows.UserControls
             PopulateValidadesChart(chartValidades, users);
         }
 
-        private async Task<List<User>> FetchDataFromApi()
+       /* private async Task<List<User>> FetchDataFromApi()
         {
             try
             {
-                string jsonResponse = await _userRepository.GetAllUsersAsync();
+                  string jsonResponse = await _userRepository.GetAllUsersAsync();
                 var users = JsonConvert.DeserializeObject<List<User>>(jsonResponse);
 
                 // Sync with LiteDB
@@ -191,7 +167,7 @@ namespace DockCheckWindows.UserControls
         //populate chartValidades with 3 areas series, blocked users, no blocked users and total users per day
         private void PopulateValidadesChart(Chart chart, List<User> users)
         {
-            /*
+            
             // Filtrar usuários para os últimos 5 dias
             var startDate = DateTime.Now.Date.AddDays(-4);
             var filteredUsers = users.Where(u => u.CreatedAt.Date >= startDate).ToList();
@@ -227,7 +203,7 @@ namespace DockCheckWindows.UserControls
 
             // Customize the chart appearance
             CustomizeChartAppearance(chart);
-            */
+            
         }
 
         private void CustomizeChartAppearance(Chart chart)
@@ -348,7 +324,7 @@ namespace DockCheckWindows.UserControls
             string fullPath = Path.Combine(path, fileName);
             if (File.Exists(fullPath))
             {
-                   File.Delete(fullPath);
+                File.Delete(fullPath);
             }
             //convert the charts to Bitmap images and insert all charts in the pdf file
             using (FileStream stream = new FileStream(fullPath, FileMode.Create))
@@ -356,7 +332,7 @@ namespace DockCheckWindows.UserControls
                 iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 10f, 10f, 10f, 0f);
                 iTextSharp.text.pdf.PdfWriter.GetInstance(pdfDoc, stream);
                 pdfDoc.Open();
-                var charts = new List<Chart> { chartPieEmpresas, chartCompanyRange, chartRfid, chartValidades};
+                var charts = new List<Chart> { chartPieEmpresas, chartCompanyRange, chartRfid, chartValidades };
                 foreach (var chart in charts)
                 {
                     using (MemoryStream ms = new MemoryStream())
@@ -373,6 +349,7 @@ namespace DockCheckWindows.UserControls
                 }
                 pdfDoc.Close();
             }
-        }
+        }*/
+
     }
 }

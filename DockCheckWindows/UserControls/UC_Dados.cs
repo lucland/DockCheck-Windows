@@ -16,19 +16,19 @@ namespace DockCheckWindows.UserControls
     {
         LiteDbService db;
         private UC_Cadastrar uc_Cadastrar;
-        private readonly UserRepository _userRepository;
+        private readonly EmployeeRepository _employeeRepository;
         private readonly EventRepository _eventRepository;
         private bool isDataLoaded = false;
-        private List<User> _users;
+        private List<Employee> _users;
         private List<Event> _events;
 
         public Action SwitchToCadastro { get; set; }
 
-        public UC_Dados(UC_Cadastrar uc_CadastrarInstance, UserRepository userRepository, EventRepository eventRepository)
+        public UC_Dados(UC_Cadastrar uc_CadastrarInstance, EmployeeRepository employeeRepository, EventRepository eventRepository)
         {
             InitializeComponent();
             this.uc_Cadastrar = uc_CadastrarInstance;
-            _userRepository = userRepository;
+            _employeeRepository = employeeRepository;
             _eventRepository = eventRepository;
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             db = LiteDbService.Instance;
@@ -65,34 +65,26 @@ namespace DockCheckWindows.UserControls
 
             try
             {
-                string apiResponse = await _userRepository.GetAllUsersAsync(limit: 99, offset: 0);
-                if (!string.IsNullOrEmpty(apiResponse))
-                {
-                    var usersFromApi = JsonConvert.DeserializeObject<List<User>>(apiResponse, new JsonSerializerSettings
-                    {
-                        NullValueHandling = NullValueHandling.Ignore,
-                        MissingMemberHandling = MissingMemberHandling.Ignore
-                    });
-
+                List<Employee> apiResponse = await _employeeRepository.GetAllEmployeeAsync(limit: 99, offset: 0);
                     // Upsert each user into the local database
-                    foreach (var user in usersFromApi)
+                    foreach (var employee in apiResponse)
                     {
-                        db.UpsertUser(user);
+                        db.UpsertUser(employee);
                     }
 
                     // Reload the updated user list from the local database
-                    _users = db.GetAll<User>("User");
+                    _users = db.GetAll<Employee>("Employee");
 
                     isDataLoaded = true;
                     // UpdateSortedAndFilteredUserDataSource();
                     cadastrosDataGrid.DataSource = new BindingSource(_users, null);
-                }
+                
             }
             catch (Exception ex)
             {
                 Console.WriteLine("API call exception: " + ex.Message);
                 MessageBox.Show("API call failed. Fetching data from LiteDB.");
-                _users = db.GetAll<User>("User");
+                _users = db.GetAll<Employee>("Employee");
 
                 isDataLoaded = true;
                 UpdateSortedAndFilteredUserDataSource();
@@ -152,17 +144,17 @@ namespace DockCheckWindows.UserControls
         private void UpdateSortedAndFilteredUserDataSource()
         {
             if (_users == null) return;
-            var distinctUsers = _users.GroupBy(user => user.Identificacao).Select(group => group.First()).ToList();
+            var distinctUsers = _users.GroupBy(user => user.Id).Select(group => group.First()).ToList();
             var sortedUsers = SortUsers(distinctUsers);
             var filteredUsers = FilterUsers(sortedUsers, textBoxFiltrar.Text);
             cadastrosDataGrid.DataSource = new BindingSource(filteredUsers, null);
         }
 
-        private List<User> SortUsers(List<User> users)
+        private List<Employee> SortUsers(List<Employee> users)
         {
             if (comboBoxOrdenar.SelectedItem == null) return users;
 
-            var selectedProperty = typeof(User).GetProperty(comboBoxOrdenar.SelectedItem.ToString());
+            var selectedProperty = typeof(Employee).GetProperty(comboBoxOrdenar.SelectedItem.ToString());
             bool isAscending = crescenteDecrescente.SelectedItem.ToString() == "CRESCENTE";
 
             return isAscending
@@ -170,11 +162,11 @@ namespace DockCheckWindows.UserControls
                 : users.OrderByDescending(x => selectedProperty.GetValue(x, null)).ToList();
         }
 
-        private List<User> FilterUsers(List<User> users, string filterText)
+        private List<Employee> FilterUsers(List<Employee> users, string filterText)
         {
             if (string.IsNullOrWhiteSpace(filterText)) return users;
 
-            var selectedProperty = typeof(User).GetProperty(comboBoxOrdenar.SelectedItem?.ToString());
+            var selectedProperty = typeof(Employee).GetProperty(comboBoxOrdenar.SelectedItem?.ToString());
             if (selectedProperty == null) return users;
 
             return users.Where(user =>
@@ -210,7 +202,7 @@ namespace DockCheckWindows.UserControls
         {
             if (e.RowIndex >= 0)
             {
-                var user = cadastrosDataGrid.Rows[e.RowIndex].DataBoundItem as User;
+                var user = cadastrosDataGrid.Rows[e.RowIndex].DataBoundItem as Employee;
                 if (user != null)
                 {
                     uc_Cadastrar.PopulateFields(user);
@@ -301,6 +293,11 @@ namespace DockCheckWindows.UserControls
 
                 pck.SaveAs(new FileInfo(path));
             }
+        }
+
+        private void cadastrosDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

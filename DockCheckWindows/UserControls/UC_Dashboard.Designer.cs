@@ -184,7 +184,6 @@
             this.buttonBaixar.Size = new System.Drawing.Size(418, 63);
             this.buttonBaixar.TabIndex = 7;
             this.buttonBaixar.Text = "Baixar PDF";
-            this.buttonBaixar.Click += new System.EventHandler(this.buttonBaixar_Click);
             // 
             // buttonSincronizar
             // 
@@ -204,7 +203,6 @@
             this.buttonSincronizar.Size = new System.Drawing.Size(418, 63);
             this.buttonSincronizar.TabIndex = 8;
             this.buttonSincronizar.Text = "Sincronizar";
-            this.buttonSincronizar.Click += new System.EventHandler(this.buttonSincronizar_Click);
             // 
             // chartRfid
             // 
