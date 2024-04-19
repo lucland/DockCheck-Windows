@@ -9,8 +9,6 @@ namespace DockCheckWindows.Repositories
     public class AuthenticationRepository
     {
         private readonly ApiService _apiService;
-        //private const string LoginUrl = "http://localhost:3000/api/v1/login";
-        //private const string LogoutUrl = "http://localhost:3000/api/v1/login/logout";
         private string LoginUrl = GlobalConfig.BaseApiUrl + "/login";
         private string LogoutUrl = GlobalConfig.BaseApiUrl + "/login/logout";
 
@@ -30,6 +28,7 @@ namespace DockCheckWindows.Repositories
             };
             var json = JsonConvert.SerializeObject(loginData);
             var response = await _apiService.PostDataAsync(LoginUrl, json);
+            Console.WriteLine(response);
             return response;
         }
 

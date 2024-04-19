@@ -1,6 +1,7 @@
 ﻿using DockCheckWindows.Models;
 using DockCheckWindows.Services;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -31,8 +32,9 @@ namespace DockCheckWindows.Repositories
 
         public async Task<Event> CreateEventAsync(Event eventItem)
         {
+            Console.WriteLine("Creating event...");
             var json = JsonConvert.SerializeObject(eventItem);
-            var response = await PostAsync($"{BaseUrl}/create", json, "Event");
+            var response = await PostAsync("https://gmarineinnovation.com/api/v1/events", json, "Event");
             return JsonConvert.DeserializeObject<Event>(response);
         }
 
