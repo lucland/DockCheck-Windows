@@ -15,6 +15,7 @@ public class SerialDataProcessor
     private CancellationTokenSource _cancellationTokenSource;
     private EventRepository _eventRepository;
     private UserRepository _userRepository;
+    private EmployeeRepository _employeeRepository;
     private Action<string> _updateStatusAction;
     private int _currentSlaveIndex;
     private List<string> _slavePcs;
@@ -29,16 +30,17 @@ public class SerialDataProcessor
     public bool IsProcessingActive { get; private set; } = false;
 
 
-    public SerialDataProcessor(EventRepository eventRepository, UserRepository userRepository, Action<string> updateStatusAction)
+    public SerialDataProcessor(EventRepository eventRepository, UserRepository userRepository, Action<string> updateStatusAction, EmployeeRepository employeeRepository)
     {
         _eventRepository = eventRepository;
         _userRepository = userRepository;
+        _employeeRepository = employeeRepository;
         _updateStatusAction = updateStatusAction;
         _serialPort = new SerialPort("COM5", 115200);
         _cancellationTokenSource = new CancellationTokenSource();
         _currentSlaveIndex = 0;
        // _slavePcs = new List<string>(); // List to store slave PCs
-        _slavePcs = new List<string> { "P1", "P2", "P3", "P4" };
+        _slavePcs = new List<string> { "P1", "P1B", "P2", "P3", "P4", "P5", "P6" };
         _lastApprovedIdsSentDate = DateTime.MinValue;
     }
 
@@ -88,7 +90,7 @@ public class SerialDataProcessor
             {
                 for (_currentSlaveIndex = 0; _currentSlaveIndex < _slavePcs.Count; _currentSlaveIndex++)
                 {
-                    await ProcessCurrentSlaveAsync();
+                    await ProcessCurrentSlaveAsync(_slavePcs[_currentSlaveIndex]);
                 }
             }
         }
@@ -106,10 +108,7 @@ public class SerialDataProcessor
     {
         try
         {
-            string approvedUsersJson = await _userRepository.GetAllApprovedUsersAsync();
-            var response = JsonConvert.DeserializeObject<ApprovedUsersResponse>(approvedUsersJson);
-            Console.WriteLine(approvedUsersJson);
-            Console.WriteLine(response);
+            ApprovedEmployeesResponse response = await _employeeRepository.GetAllApprovedEmployeesAsync();
             string approvedIds = FormatUsersData(response.Ids);
 
             foreach (var slavePc in _slavePcs)
@@ -130,9 +129,10 @@ public class SerialDataProcessor
         {
             // General exception handling
             _updateStatusAction($"Error in SendApprovedIdsToAllSlavesAsync: {ex.Message}");
-           // MessageBox.Show($"Error: {ex.Message}", "Error in Approval Sync");
+            // MessageBox.Show($"Error: {ex.Message}", "Error in Approval Sync");
         }
     }
+
 
 
     private string FormatUsersData(List<string> ids)
@@ -167,9 +167,8 @@ public class SerialDataProcessor
         }
     }
 
-    private async Task ProcessCurrentSlaveAsync()
+    private async Task ProcessCurrentSlaveAsync(string currentPc)
     {
-        string currentPc = $"P{_currentSlaveIndex + 1}";
         _updateStatusAction($"Processing {currentPc}");
 
         try
@@ -177,7 +176,7 @@ public class SerialDataProcessor
             await SendCommandAsync($"{currentPc} OK");
             if (await WaitForResponseAsync($"{currentPc} Yes", 3))
             {
-                await SendCommandAsync($"{currentPc} SDATA");
+                await SendCommandAsync($"{currentPc} SDATAFULL");
                 if (await ProcessDataAsync(currentPc))
                 {
                     await SendCommandAsync($"{currentPc} CLDATA");
@@ -228,6 +227,7 @@ public class SerialDataProcessor
 
     private async Task SendCommandAsync(string command)
     {
+        Console.WriteLine("Send Cmomand Async");
         try
         {
             if (_serialPort.IsOpen) { 
@@ -255,6 +255,7 @@ public class SerialDataProcessor
         bool endDataFlag = false;
 
         _updateStatusAction($"Waiting for data from {pc}");
+        Console.WriteLine("Process Data");
         try
         {
             string line;
@@ -327,6 +328,7 @@ public class SerialDataProcessor
 
     private async Task<string> ReadLineAsync(int timeout)
     {
+        Console.WriteLine("Read Line Async");
         try
         {
             if (!_serialPort.IsOpen)
@@ -376,6 +378,7 @@ public class SerialDataProcessor
 
     private Event ParseEventFromLine(string line, string pCode)
     {
+        Console.WriteLine("Parse event");
         // Assuming the line format: "{PN 2024-01-11 14:24:42 ff:ff:10:e2:34:06,L1"
         try
         {
@@ -407,17 +410,16 @@ public class SerialDataProcessor
             {
                 actionCode = dataParts[1].Trim();
             }
-
+            Console.WriteLine($"Beacon ID: {beaconId}, RSSI: {rssi}, Action Code: {actionCode}");
             return new Event
             {
                 Id = Guid.NewGuid().ToString(),
-                PortalId = pCode,
-                UserId = "-",
+                SensorId = pCode,
+                EmployeeId = "-",
                 Timestamp = timestamp,
-                VesselId = "vesselid",
+                ProjectId = "4f24ac1f-6fd3-4a11-9613-c6a564f2bd86",
                 Action = GetActionFromCode(actionCode) >= 0 ? GetActionFromCode(actionCode) : 0,
                 BeaconId = beaconId,
-                Justification = "RSSI: -" + rssi,
                 Status = "sent"
             };
         }
@@ -459,6 +461,8 @@ public class SerialDataProcessor
 //L0 = LOST NAO CADASTRADO
 //L1 = LOST CADASTRADO
 
+//P0 manda para todos
+
 //SDATA = SOLICITA DADOS
 //CLDATA = LIMPA DADOS
 //CLALL = LIMPA TODOS OS DADOS
@@ -472,6 +476,9 @@ public class SerialDataProcessor
 //PX SPLID = mostra os beacons do portalo
 //PX PLID,xx:xx:xx:xx:xx:xx = adiciona beacon ao portalo
 //PX MAXRSSI,-100 = seta o rssi minimo para o portalo
+
+//P1 BTV
+//P2 BATERRY VOLTAGE: 14.19
 
 //Example of the data sent by the slave after a PN SDATA command:
 /*

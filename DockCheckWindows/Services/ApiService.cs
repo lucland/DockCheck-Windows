@@ -69,6 +69,20 @@ namespace DockCheckWindows.Services
             }
         }
 
+        public async Task<string> GetWithoutTokenAsync(string url)
+        {
+            HttpResponseMessage response = await _httpClient.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                // Handle errors
+                return null;
+            }
+        }
+
         public async Task<string> DeleteDataAsync(string url)
         {
             HttpResponseMessage response = await _httpClient.DeleteAsync(url);

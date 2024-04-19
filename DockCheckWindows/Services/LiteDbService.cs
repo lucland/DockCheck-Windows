@@ -1,4 +1,5 @@
-﻿using LiteDB;
+﻿using DockCheckWindows.Models;
+using LiteDB;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,7 +14,7 @@ namespace DockCheckWindows.Services
         {
             _liteDb = new LiteDatabase(connectionString);
             //delete all users from LiteDB
-            DeleteAll<User>("User");
+            DeleteAll<User>("Employee");
         }
 
         public static LiteDbService Instance
@@ -32,14 +33,14 @@ namespace DockCheckWindows.Services
         public T GetByIdentificacao<T>(string identificacao) where T : new()
         {
             var collection = _liteDb.GetCollection<T>();
-            return collection.FindOne(Query.EQ("Identificacao", identificacao));
+            return collection.FindOne(Query.EQ("Id", identificacao));
 
         }
 
 
-        public List<User> GetAll<User>(string collectionName) where User : new()
+        public List<Employee> GetAll<Employee>(string collectionName) where Employee : new()
         {
-            var collection = _liteDb.GetCollection<User>("User");
+            var collection = _liteDb.GetCollection<Employee>("Employee");
             return collection.FindAll().ToList();
         }
 
@@ -76,14 +77,14 @@ namespace DockCheckWindows.Services
 
         public bool UserExists(string userId)
         {
-            var collection = _liteDb.GetCollection<User>("User");
+            var collection = _liteDb.GetCollection<Employee>("Employee");
             return collection.Exists(Query.EQ("_id", new BsonValue(userId)));
         }
 
-        public void UpsertUser(User user)
+        public void UpsertUser(Employee user)
         {
-            var collection = _liteDb.GetCollection<User>("User");
-            if (UserExists(user.Identificacao))
+            var collection = _liteDb.GetCollection<Employee>("Employee");
+            if (UserExists(user.Id))
             {
                 collection.Update(user);
             }
