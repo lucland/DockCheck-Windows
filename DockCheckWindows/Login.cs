@@ -33,6 +33,7 @@ namespace DockCheckWindows
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 MessageBox.Show($"An error occurred: {ex.Message}");
             }
         }
@@ -55,8 +56,6 @@ namespace DockCheckWindows
         private void UpdatePropertiesSettings(dynamic jsonResult)
         {
             Properties.Settings.Default.Token = Token;
-            var authorizations = jsonResult.authorizations_id.ToObject<List<string>>();
-            Properties.Settings.Default.Authorization = string.Join(",", authorizations);
             Properties.Settings.Default.UserId = jsonResult.user_id.ToString();
             Properties.Settings.Default.Save();
         }

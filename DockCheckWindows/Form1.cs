@@ -1,4 +1,5 @@
-﻿using DockCheckWindows.Repositories;
+﻿using DockCheckWindows.Models;
+using DockCheckWindows.Repositories;
 using DockCheckWindows.Services;
 using DockCheckWindows.UserControls;
 using System;
@@ -18,6 +19,10 @@ namespace DockCheckWindows
 
         private SerialPort serialPort;
 
+        private UC_Blueprint uc_Blueprint;
+
+        private SensorRepository sensorRepository = new SensorRepository(apiService: new ApiService());
+
         private AuthenticationRepository _authenticationRepository = new AuthenticationRepository(
                                    apiService: new ApiService()
                                                       );
@@ -26,6 +31,8 @@ namespace DockCheckWindows
         private UserRepository userRepository = new UserRepository(apiService: new ApiService());
 
         private VesselRepository vesselRepository = new VesselRepository(apiService: new ApiService());
+        private DocumentRepository documentRepository = new DocumentRepository(apiService: new ApiService());
+        private EmployeeRepository employeeRepository = new EmployeeRepository(apiService: new ApiService());
 
         private EventRepository eventRepository = new EventRepository(apiService: new ApiService());
 
@@ -57,18 +64,20 @@ namespace DockCheckWindows
                 return; // Add this to prevent further execution if not authenticated
             }
 
-            serialDataProcessor = new SerialDataProcessor(eventRepository, userRepository, UpdateStatus);
+            serialDataProcessor = new SerialDataProcessor(eventRepository, userRepository, UpdateStatus, employeeRepository);
 
             UC_Home home = new UC_Home();
             uc_Cadastrar = new UC_Cadastrar(
                 userRepository: new UserRepository(apiService: new ApiService()),
                 authorizationRepository: new AuthorizationRepository(apiService: new ApiService()),
-                ucDados: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService())),
+                documentRepository: new DocumentRepository(apiService: new ApiService()),
+                eventRepository: new EventRepository(apiService: new ApiService()),
+                ucDados: new UC_Dados(uc_Cadastrar, employeeRepository: new EmployeeRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService())),
                 serialDataProcessor: serialDataProcessor
                 );
 
-            uc_Dados = new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService()));
-
+            uc_Dados = new UC_Dados(uc_Cadastrar, employeeRepository: new EmployeeRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService()));
+            UC_Blueprint uc_Blueprint = new UC_Blueprint(sensorRepository: new SensorRepository(apiService: new ApiService()));
             loggedUserName(Properties.Settings.Default.UserId);
             addUserControl(home);
             cadastroButton.Text = Properties.Resources.Cadastrar;
@@ -104,7 +113,7 @@ namespace DockCheckWindows
         //retieve user object from user_id with UserRepository
         private async void loggedUserName(String userId)
         {
-            var user = await userRepository.GetUserByIdAsync(userId);
+            var user = await userRepository.GetUserAsync(userId);
             Console.WriteLine("User: " + user.ToJson());
 
             labelUser.Text = user.Name;
@@ -138,7 +147,9 @@ namespace DockCheckWindows
             UC_Cadastrar cadastrar = new UC_Cadastrar(
                 userRepository: new UserRepository(apiService: new ApiService()),
                 authorizationRepository: new AuthorizationRepository(apiService: new ApiService()),
-                ucDados: new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService())),
+                documentRepository: new DocumentRepository(apiService: new ApiService()),
+                eventRepository: new EventRepository(apiService: new ApiService()),
+                ucDados: new UC_Dados(uc_Cadastrar, employeeRepository: new EmployeeRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService())),
                 serialDataProcessor: serialDataProcessor
                 );
             cadastrar.SwitchToDados += () =>
@@ -156,7 +167,7 @@ namespace DockCheckWindows
 
         private void bancoButton_Click(object sender, EventArgs e)
         {
-            UC_Dados dados = new UC_Dados(uc_Cadastrar, userRepository: new UserRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService()));  // Pass the instance field
+            UC_Dados dados = new UC_Dados(uc_Cadastrar, employeeRepository: new EmployeeRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService()));  // Pass the instance field
             dados.SwitchToCadastro += () =>
             {
                 addUserControl(uc_Cadastrar);
@@ -164,10 +175,10 @@ namespace DockCheckWindows
             addUserControl(dados);
         }
 
-        private void cameraButton_Click(object sender, EventArgs e)
+        private void mapaButton_Click(object sender, EventArgs e)
         {
-            UC_Cameras cameras = new UC_Cameras();
-            addUserControl(cameras);
+            UC_Blueprint blueprint = new UC_Blueprint(sensorRepository: new SensorRepository(apiService: new ApiService()));
+            addUserControl(blueprint);
         }
 
         private async void fecharButton_Click(object sender, EventArgs e)
@@ -231,28 +242,18 @@ namespace DockCheckWindows
             List<string> vesselNames = new List<string>();
             List<string> vesselIds = new List<string>();
 
-            foreach (var authId in authorizationIds)
-            {
-                var authorizationComplete = await authorizationRepository.GetAuthorizationByIdAsync(authId);
-                if (authorizationComplete != null)
-                {
-                    string vesselId = authorizationComplete.VesselId;
-                    var vessel = await vesselRepository.GetVesselByIdAsync(vesselId);
-                    if (vessel != null)
-                    {
-                        // Save the Vessel Name, Vessel IDs into our settings
-                        vesselNames.Add(vessel.Name);
-                        vesselIds.Add(vessel.Id);
-                        vesselLabel.Text = vessel.Name;
-                    }
+          
+               
+                    vesselNames.Add("Skandi Salvador");
+                    vesselIds.Add("vesselId");
 
                     Properties.Settings.Default.Vessel = string.Join(",", vesselNames);
                     Properties.Settings.Default.VesselId = string.Join(",", vesselIds);
                     Properties.Settings.Default.Save();
 
                     await serialDataProcessor.StartProcessingAsync();
-                }
-            }
+                
+            
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -272,6 +273,11 @@ namespace DockCheckWindows
         }
 
         private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void labelUser_Click(object sender, EventArgs e)
         {
 
         }

@@ -237,13 +237,29 @@
     <Compile Include="Enums\PortalEnum.cs" />
     <Compile Include="GlobalConfig.cs" />
     <Compile Include="Models\ApprovedUserResponse.cs" />
+    <Compile Include="Models\Area.cs" />
     <Compile Include="Models\Beacon.cs" />
+    <Compile Include="Models\CompanyAdmin.cs" />
+    <Compile Include="Models\CompanyProject.cs" />
+    <Compile Include="Models\Document.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Invite.cs" />
     <Compile Include="Models\Pic.cs" />
+    <Compile Include="Models\Picture.cs" />
+    <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\ProjectAdmin.cs" />
     <Compile Include="Models\Receptor.cs" />
+    <Compile Include="Models\Sensor.cs" />
+    <Compile Include="Models\ThirdCompany.cs" />
+    <Compile Include="Models\ThirdCompanyAdmin.cs" />
+    <Compile Include="Models\ThirdProject.cs" />
     <Compile Include="Repositories\AuthorizationRepository.cs" />
     <Compile Include="Repositories\BeaconRepository.cs" />
+    <Compile Include="Repositories\DocumentRepository.cs" />
+    <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\PicRepository.cs" />
     <Compile Include="Repositories\ReceptorRepository.cs" />
+    <Compile Include="Repositories\SensorRepository.cs" />
     <Compile Include="Services\ApiService.cs" />
     <Compile Include="Models\Authorization.cs" />
     <Compile Include="Models\Company.cs" />
@@ -296,6 +312,12 @@
     <Compile Include="Services\LiteDbService.cs" />
     <Compile Include="Services\SerialPortService.cs" />
     <Compile Include="UploadFirebase.cs" />
+    <Compile Include="UserControls\UC_Blueprint.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_Blueprint.Designer.cs">
+      <DependentUpon>UC_Blueprint.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UC_Cadastrar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -319,6 +341,12 @@
     </Compile>
     <Compile Include="UserControls\UC_Dashboard.Designer.cs">
       <DependentUpon>UC_Dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_Employee.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_Employee.Designer.cs">
+      <DependentUpon>UC_Employee.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UC_Error.cs">
       <SubType>UserControl</SubType>
@@ -372,6 +400,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>pt-BR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_Blueprint.resx">
+      <DependentUpon>UC_Blueprint.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_Cadastrar.resx">
       <DependentUpon>UC_Cadastrar.cs</DependentUpon>
     </EmbeddedResource>
@@ -383,6 +414,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_Dashboard.resx">
       <DependentUpon>UC_Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_Employee.resx">
+      <DependentUpon>UC_Employee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UC_Error.resx">
       <DependentUpon>UC_Error.cs</DependentUpon>
@@ -423,8 +457,15 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <None Include="Resources\topViewVesselMap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\side_view_vessel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\top_view_vessel.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Grpc.Core.2.46.5\build\net45\Grpc.Core.targets" Condition="Exists('..\packages\Grpc.Core.2.46.5\build\net45\Grpc.Core.targets')" />
