@@ -430,6 +430,16 @@ namespace DockCheckWindows.Properties {
         }
         
         /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap side_view_vessel {
+            get {
+                object obj = ResourceManager.GetObject("side_view_vessel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a SIncronizar.
         /// </summary>
         internal static string Sincronizar {
@@ -444,6 +454,26 @@ namespace DockCheckWindows.Properties {
         internal static string SomenteCadastrar {
             get {
                 return ResourceManager.GetString("SomenteCadastrar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap top_view_vessel {
+            get {
+                object obj = ResourceManager.GetObject("top_view_vessel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap topViewVesselMap {
+            get {
+                object obj = ResourceManager.GetObject("side_view_vessel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
