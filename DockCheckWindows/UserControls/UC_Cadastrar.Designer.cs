@@ -95,7 +95,10 @@
             this.label7 = new System.Windows.Forms.Label();
             this.escolherDocButton1 = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelTelefone = new System.Windows.Forms.Label();
             this.escolherDocButton4 = new Guna.UI2.WinForms.Guna2Button();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.textBoxTelefone = new System.Windows.Forms.TextBox();
             this.escolherDocButton3 = new Guna.UI2.WinForms.Guna2Button();
             this.escolherDocButton2 = new Guna.UI2.WinForms.Guna2Button();
             this.maskedTextBoxDoc4 = new System.Windows.Forms.MaskedTextBox();
@@ -108,9 +111,8 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.labelTelefone = new System.Windows.Forms.Label();
-            this.textBoxTelefone = new System.Windows.Forms.TextBox();
-            this.panel15 = new System.Windows.Forms.Panel();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxNumber = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -231,6 +233,7 @@
             this.labelNumero.Text = "0001";
             this.labelNumero.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.labelNumero.UseMnemonic = false;
+            this.labelNumero.Visible = false;
             this.labelNumero.Click += new System.EventHandler(this.labelNumero_Click);
             // 
             // buttonCadastrar
@@ -845,6 +848,7 @@
             // panel13
             // 
             this.panel13.BackColor = System.Drawing.Color.White;
+            this.panel13.Controls.Add(this.textBox2);
             this.panel13.Controls.Add(this.textBoxNome);
             this.panel13.Location = new System.Drawing.Point(49, 210);
             this.panel13.Margin = new System.Windows.Forms.Padding(4);
@@ -1193,6 +1197,19 @@
             this.panel1.Size = new System.Drawing.Size(2941, 857);
             this.panel1.TabIndex = 0;
             // 
+            // labelTelefone
+            // 
+            this.labelTelefone.AutoSize = true;
+            this.labelTelefone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.labelTelefone.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTelefone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelTelefone.Location = new System.Drawing.Point(1378, 159);
+            this.labelTelefone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTelefone.Name = "labelTelefone";
+            this.labelTelefone.Size = new System.Drawing.Size(172, 44);
+            this.labelTelefone.TabIndex = 11;
+            this.labelTelefone.Text = "Telefone";
+            // 
             // escolherDocButton4
             // 
             this.escolherDocButton4.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -1209,6 +1226,28 @@
             this.escolherDocButton4.TabIndex = 30;
             this.escolherDocButton4.Text = "Anexar doc.";
             this.escolherDocButton4.Click += new System.EventHandler(this.escolherDocButton4_Click);
+            // 
+            // panel15
+            // 
+            this.panel15.BackColor = System.Drawing.Color.White;
+            this.panel15.Controls.Add(this.textBoxTelefone);
+            this.panel15.Location = new System.Drawing.Point(1382, 214);
+            this.panel15.Margin = new System.Windows.Forms.Padding(4);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(699, 47);
+            this.panel15.TabIndex = 12;
+            // 
+            // textBoxTelefone
+            // 
+            this.textBoxTelefone.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxTelefone.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxTelefone.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxTelefone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxTelefone.Location = new System.Drawing.Point(7, 6);
+            this.textBoxTelefone.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.textBoxTelefone.Name = "textBoxTelefone";
+            this.textBoxTelefone.Size = new System.Drawing.Size(680, 37);
+            this.textBoxTelefone.TabIndex = 0;
             // 
             // escolherDocButton3
             // 
@@ -1403,46 +1442,36 @@
             this.panel5.Size = new System.Drawing.Size(572, 53);
             this.panel5.TabIndex = 29;
             // 
-            // labelTelefone
+            // textBox2
             // 
-            this.labelTelefone.AutoSize = true;
-            this.labelTelefone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.labelTelefone.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTelefone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelTelefone.Location = new System.Drawing.Point(1378, 159);
-            this.labelTelefone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelTelefone.Name = "labelTelefone";
-            this.labelTelefone.Size = new System.Drawing.Size(172, 44);
-            this.labelTelefone.TabIndex = 11;
-            this.labelTelefone.Text = "Telefone";
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBox2.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox2.Location = new System.Drawing.Point(7, 5);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(559, 37);
+            this.textBox2.TabIndex = 1;
             // 
-            // textBoxTelefone
+            // textBoxNumber
             // 
-            this.textBoxTelefone.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxTelefone.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBoxTelefone.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTelefone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxTelefone.Location = new System.Drawing.Point(7, 6);
-            this.textBoxTelefone.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.textBoxTelefone.Name = "textBoxTelefone";
-            this.textBoxTelefone.Size = new System.Drawing.Size(680, 37);
-            this.textBoxTelefone.TabIndex = 0;
-            // 
-            // panel15
-            // 
-            this.panel15.BackColor = System.Drawing.Color.White;
-            this.panel15.Controls.Add(this.textBoxTelefone);
-            this.panel15.Location = new System.Drawing.Point(1382, 214);
-            this.panel15.Margin = new System.Windows.Forms.Padding(4);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(699, 47);
-            this.panel15.TabIndex = 12;
+            this.textBoxNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxNumber.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBoxNumber.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxNumber.Location = new System.Drawing.Point(123, 43);
+            this.textBoxNumber.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.textBoxNumber.Name = "textBoxNumber";
+            this.textBoxNumber.Size = new System.Drawing.Size(368, 44);
+            this.textBoxNumber.TabIndex = 2;
             // 
             // UC_Cadastrar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.textBoxNumber);
             this.Controls.Add(this.printButton);
             this.Controls.Add(this.loadingBar);
             this.Controls.Add(this.label4);
@@ -1575,5 +1604,7 @@
         private System.Windows.Forms.Label labelTelefone;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.TextBox textBoxTelefone;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxNumber;
     }
 }

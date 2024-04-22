@@ -20,7 +20,7 @@ namespace DockCheckWindows.Repositories
 
         public async Task<Employee> GetUserAsync(string id)
         {
-            string url = $"{BaseUrl}/{id}";
+            string url = $"{BaseUrl}/byid/{id}";
             string jsonResponse = await GetAsync(url);
             return JsonConvert.DeserializeObject<Employee>(jsonResponse);
         }
@@ -73,7 +73,7 @@ namespace DockCheckWindows.Repositories
 
         public async Task<List<Employee>> GetAllEmployeeAsync(int limit = 1000, int offset = 0)
         {
-            string url = $"{BaseUrl}?limit={limit}&offset={offset}";
+            string url = $"{BaseUrl}/all/?limit={limit}&offset={offset}";
             string jsonResponse = await GetAsync(url);
             return JsonConvert.DeserializeObject<List<Employee>>(jsonResponse);
         }
@@ -99,5 +99,13 @@ namespace DockCheckWindows.Repositories
             string jsonResponse = await GetAsync(url);
             return int.Parse(jsonResponse);
         }
+        //create a call get /areas that return a list of string
+        public async Task<List<string>> GetAreasAsync()
+        {
+            string url = $"{BaseUrl}/areas";
+            string jsonResponse = await GetAsync(url);
+            return JsonConvert.DeserializeObject<List<string>>(jsonResponse);
+        }
+        
     }
 }

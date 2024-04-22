@@ -108,8 +108,9 @@ public class SerialDataProcessor
     {
         try
         {
-            ApprovedEmployeesResponse response = await _employeeRepository.GetAllApprovedEmployeesAsync();
-            string approvedIds = FormatUsersData(response.Ids);
+            List<string> response = await _employeeRepository.GetAreasAsync();
+            //approvedIds = a single string with all the response separated by comma
+            string approvedIds = FormatUsersData(response);
 
             foreach (var slavePc in _slavePcs)
             {
@@ -527,9 +528,7 @@ The cycle process:
 5 - After sending the "PN CLDATA" we start the cycle again with the next PN (or with the same one if it is the only one).
 
 Another functionality it should have:
- - Everyday ONCE PER DAY the Master should fetch the approved IDs from the Backend with the GetAllApprovedUsersAsync() method and send it to each Slave with the "PN A," command, with each ID separated by comma after the "A," without any space after the "A,".
- - If the Slave returns "PN A OK" we are done for this day and just send this again to the Slave at the next day.
- - If the Slave do not returns "PN A OK" we jump to the next slave (if there are any) or we try again (if there are just one slave)
+ - At the beggining of every CYCLE the Master should fetch the approved IDs from the Backend with the GetAllApprovedUsersAsync() method and send it to all Slaves with the "P0 A," command, with each ID separated by comma after the "A," without any space after the "A,".
 
 Plus:
  - The class should have a public pause and resume function, so other parts of the code can use the PORT COM5 without any problem

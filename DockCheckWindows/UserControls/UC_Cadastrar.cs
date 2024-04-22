@@ -870,6 +870,8 @@ namespace DockCheckWindows.UserControls
                 {
                     _serialPort.Open();
                 }
+                _serialPort.WriteLine("L2");
+                await Task.Delay(1000);
 
                 _serialPort.WriteLine("L1"); // Command to read RFID tag
 
@@ -879,6 +881,7 @@ namespace DockCheckWindows.UserControls
                 {
                     string rfid = _serialPort.ReadLine();
                     textBoxRFID.Text = rfid;
+                    _serialPort.WriteLine("L2");
                 }
             }
             catch (Exception ex)
@@ -1052,11 +1055,12 @@ namespace DockCheckWindows.UserControls
             //TODO: get vessel name from user authorization
             string vesselName = "Skandi Salvador";
             var ucEtiqueta = new UC_Etiqueta(
-                name: textBoxNome.Text,
-                identificacao: labelNumero.Text,
+                name: textBox2.Text,
+                identificacao: textBoxNumber.Text,
                 embarcacao: vesselName,
                 empresa: textBoxEmpresa.Text,
                 checkin: DateTime.Now.ToString("dd/MM/yyyy"),
+                role: textBox1.Text,
                 checkout: "-"
                 );
             ucEtiqueta.Location = new Point(800, 300);

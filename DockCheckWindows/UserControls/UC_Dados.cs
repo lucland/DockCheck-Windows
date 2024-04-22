@@ -9,6 +9,8 @@ using OfficeOpenXml;
 using System.IO;
 using DockCheckWindows.Repositories;
 using DockCheckWindows.Models;
+using System.Web.UI.WebControls;
+using System.Drawing;
 
 namespace DockCheckWindows.UserControls
 {
@@ -205,8 +207,24 @@ namespace DockCheckWindows.UserControls
                 var user = cadastrosDataGrid.Rows[e.RowIndex].DataBoundItem as Employee;
                 if (user != null)
                 {
-                    uc_Cadastrar.PopulateFields(user);
-                    SwitchToCadastro?.Invoke();
+                    // uc_Cadastrar.PopulateFields(user);
+                    var ucEmployee = new UC_Employee(
+                name: user.Name,
+                identificacao: user.Number.ToString(),
+                embarcacao: "Skandi Salvador",
+                empresa: user.ThirdCompanyId,
+                checkin: DateTime.Now.ToString("dd/MM/yyyy"),
+                role: user.Role,
+                checkout: "-",
+                employeeRepository: _employeeRepository
+                );
+                    // SwitchToCadastro?.Invoke();
+
+                    ucEmployee.Location = new Point(400, 200);
+                    ucEmployee.Size = new Size(835, 406);
+                    Controls.Add(ucEmployee);
+                    ucEmployee.BringToFront();
+                    ucEmployee.Show();
                 }
             }
         }

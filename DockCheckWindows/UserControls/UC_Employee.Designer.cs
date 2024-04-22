@@ -97,6 +97,7 @@
             this.leriTagButton.Name = "leriTagButton";
             this.leriTagButton.Size = new System.Drawing.Size(59, 47);
             this.leriTagButton.TabIndex = 41;
+            this.leriTagButton.Click += new System.EventHandler(this.leriTagButton_Click);
             // 
             // label4
             // 
@@ -145,6 +146,7 @@
             this.printButton.Size = new System.Drawing.Size(742, 81);
             this.printButton.TabIndex = 45;
             this.printButton.Text = "Imprimir etiqueta";
+            this.printButton.Click += new System.EventHandler(this.printButton_Click);
             // 
             // guna2ButtonCancelar
             // 
@@ -166,6 +168,7 @@
             this.guna2ButtonCancelar.Size = new System.Drawing.Size(742, 81);
             this.guna2ButtonCancelar.TabIndex = 46;
             this.guna2ButtonCancelar.Text = "Cancelar";
+            this.guna2ButtonCancelar.Click += new System.EventHandler(this.guna2ButtonCancelar_Click);
             // 
             // UC_Employee
             // 

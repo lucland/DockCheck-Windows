@@ -83,7 +83,7 @@ namespace DockCheckWindows.UserControls
                 return;
             }
 
-            labelTotalABordo.Text = vessel.OnboardedCount.ToString();
+            
 
             var sensors = await sensorRepository.GetAllSensorsAsync();
 
@@ -91,6 +91,9 @@ namespace DockCheckWindows.UserControls
             {
                 return;
             }
+
+            //labelTotalABordo.Text = the sum of all beacons found in all sensors that has inVessel = true
+            labelTotalABordo.Text = sensors.Where(s => s.InVessel).Sum(s => s.BeaconsFound.Count).ToString();
 
             sensorConves = sensors.FirstOrDefault(s => s.AreaId == "Convés");
 

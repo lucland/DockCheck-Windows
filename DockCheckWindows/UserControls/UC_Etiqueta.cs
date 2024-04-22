@@ -15,9 +15,10 @@ namespace DockCheckWindows.UserControls
         readonly string empresa;
         readonly string checkin;
         readonly string checkout;
+        readonly string role;
         readonly string embarcacao;
 
-        public UC_Etiqueta(string name, string identificacao, string empresa, string checkin, string checkout, string embarcacao)
+        public UC_Etiqueta(string name, string identificacao, string empresa, string checkin, string checkout, string embarcacao, string role)
         {
             InitializeComponent();
             this.name = name;
@@ -26,16 +27,16 @@ namespace DockCheckWindows.UserControls
             this.checkin = checkin;
             this.checkout = checkout;
             this.embarcacao = embarcacao;
+            this.role = role;
         }
 
         private void UC_Etiqueta_Load(object sender, EventArgs e)
         {
             labelNome.Text = name;
-            labelIdentificacao.Text = "33";
-            labelEmpresa.Text = empresa;
-            labelCheckIn.Text = "De: " + checkin;
-            labelCheckOut.Text = "Até: " + checkout;
+            labelIdentificacao.Text = identificacao;
+            labelEmpresa.Text = role;
             labelEmbarcacao.Text = embarcacao;
+            label4.Text = empresa;
 
             PrintSticker();
         }
