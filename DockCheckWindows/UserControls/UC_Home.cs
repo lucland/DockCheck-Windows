@@ -105,18 +105,6 @@ namespace DockCheckWindows.UserControls
 
             labelTotalPassadiço.Text = sensorPassadiço.BeaconsFound.Count.ToString();
 
-            sensorPraça = sensors.FirstOrDefault(s => s.AreaId == "CCM");
-
-            labelTotalPraça.Text = sensorPraça.BeaconsFound.Count.ToString();
-
-            sensorPortalo = sensors.FirstOrDefault(s => s.AreaId == "Portaló");
-
-            labelTotalPortalo.Text = sensorPortalo.BeaconsFound.Count.ToString();
-
-            sensorAcessoExterno = sensors.FirstOrDefault(s => s.AreaId == "Acesso Externo");
-
-            labelTotalAcessoExterno.Text = sensorAcessoExterno.BeaconsFound.Count.ToString();
-
             sensorAcessoInterno = sensors.FirstOrDefault(s => s.AreaId == "Acesso Interno");
 
             labelTotalAcessoInterno.Text = sensorAcessoInterno.BeaconsFound.Count.ToString();
@@ -204,6 +192,16 @@ namespace DockCheckWindows.UserControls
         }
 
         private void labelPortalo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label15_Click(object sender, EventArgs e)
         {
 
         }
