@@ -212,6 +212,7 @@ namespace DockCheckWindows.UserControls
                 name: user.Name,
                 identificacao: user.Number.ToString(),
                 embarcacao: "Skandi Salvador",
+                id: user.Id,
                 empresa: user.ThirdCompanyId,
                 checkin: DateTime.Now.ToString("dd/MM/yyyy"),
                 role: user.Role,

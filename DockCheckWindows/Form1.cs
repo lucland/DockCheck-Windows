@@ -64,7 +64,7 @@ namespace DockCheckWindows
                 return; // Add this to prevent further execution if not authenticated
             }
 
-            serialDataProcessor = new SerialDataProcessor(eventRepository, userRepository, UpdateStatus, employeeRepository);
+            serialDataProcessor = new SerialDataProcessor(eventRepository, UpdateStatus);
 
             UC_Home home = new UC_Home();
             uc_Cadastrar = new UC_Cadastrar(
@@ -251,7 +251,7 @@ namespace DockCheckWindows
                     Properties.Settings.Default.VesselId = string.Join(",", vesselIds);
                     Properties.Settings.Default.Save();
 
-                    await serialDataProcessor.StartProcessingAsync();
+                    await serialDataProcessor.StartProcessingAsync(new CancellationToken());
                 
             
         }

@@ -21,6 +21,7 @@ namespace DockCheckWindows.UserControls
         readonly string checkin;
         readonly string checkout;
         readonly string embarcacao;
+        readonly string id;
         readonly string role;
 
         //Employee Repository
@@ -33,7 +34,7 @@ namespace DockCheckWindows.UserControls
             InitializeComponent();
         }
 
-        public UC_Employee(string name, string identificacao, string empresa, string checkin, string checkout, string embarcacao, EmployeeRepository employeeRepository, string role)
+        public UC_Employee(string name, string identificacao, string empresa, string checkin, string checkout, string embarcacao, EmployeeRepository employeeRepository, string role, string id)
         {
             InitializeComponent();
             this.name = name;
@@ -44,9 +45,10 @@ namespace DockCheckWindows.UserControls
             this.embarcacao = embarcacao;
             this.role = role;
             _employeeRepository = employeeRepository;
+            this.id = id;
         }
 
-        private void printButton_Click(object sender, EventArgs e)
+        private async void printButton_Click(object sender, EventArgs e)
         {
             //check if textBoxRFID is empty
             if (string.IsNullOrEmpty(textBoxRFID.Text))
@@ -55,6 +57,8 @@ namespace DockCheckWindows.UserControls
             }
             else
             {
+               
+               await  _employeeRepository.UpdateAreaAsync(id, textBoxRFID.Text);
                 //TODO: get vessel name from user authorization
                 string vesselName = "Skandi Salvador";
                 var ucEtiqueta = new UC_Etiqueta(

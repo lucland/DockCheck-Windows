@@ -482,7 +482,7 @@ namespace DockCheckWindows.UserControls
             UpdateLoadingBar(80);
             try
             {
-                await _serialDataProcessor.SendApprovedIdAsync("P0", newUser.Area); // Replace "SlavePC" with the actual PC identifier
+               // await _serialDataProcessor.SendApprovedIdAsync("P0", newUser.Area); // Replace "SlavePC" with the actual PC identifier
                 UpdateLoadingBar(95);
             }
             catch (Exception ex)
@@ -492,10 +492,10 @@ namespace DockCheckWindows.UserControls
             }
             try
             {
-                if (newUser.Area != "")
+             /*   if (newUser.Area != "")
                 {
                     await _serialDataProcessor.SendApprovedIdAsync("P0", newUser.Area); // Replace "SlavePC" with the actual PC identifier
-                }
+                }*/
             } catch (Exception ex)
             {
                 MessageBox.Show($"Error sending iTag to slaves: {ex.Message}");
