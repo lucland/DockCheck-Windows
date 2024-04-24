@@ -106,6 +106,14 @@ namespace DockCheckWindows.Repositories
             string jsonResponse = await GetAsync(url);
             return JsonConvert.DeserializeObject<List<string>>(jsonResponse);
         }
-        
+
+        //update area by employee id passing body as area:value to '/area/:id'
+        public async Task UpdateAreaAsync(string id, string area)
+        {
+            string url = $"{BaseUrl}/area/{id}";
+            string data = JsonConvert.SerializeObject(new { area });
+            await PutAsyncNoDB(url, data);
+        }
+
     }
 }

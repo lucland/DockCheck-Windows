@@ -55,6 +55,12 @@ namespace DockCheckWindows.Repositories
             }
         }
 
+        //put method without LiteDB
+        protected async Task<string> PutAsyncNoDB(string url, string data)
+        {
+            return await _apiService.PutDataAsync(url, data);
+        }
+
         protected async Task<string> PostAsync(string url, string data, string collectionName)
         {
             try
