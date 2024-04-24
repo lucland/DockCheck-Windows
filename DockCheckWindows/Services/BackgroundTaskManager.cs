@@ -26,7 +26,7 @@ public class SerialDataProcessor
     public SerialDataProcessor(EventRepository eventRepository, Action<string> updateStatusAction)
     {
         InitializeSerialPort();
-        _slavePcs = new List<string> { "P1", "P1B", "P2", "P3", "P4", "P5", "P6" };
+        _slavePcs = new List<string> { "P2", "P3", "P4", "P5", "P6", "P8", "P9" };
         _lastApprovedIdsSentDate = DateTime.MinValue;
         _eventRepository = eventRepository;
         _updateStatusAction = updateStatusAction;
