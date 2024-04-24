@@ -94,12 +94,8 @@ namespace DockCheckWindows.UserControls
 
             //labelTotalABordo.Text = the sum of all beacons found in all sensors that has inVessel = true
             labelTotalABordo.Text = sensors.Where(s => s.InVessel).Sum(s => s.BeaconsFound.Count).ToString();
-
-            sensorConves = sensors.FirstOrDefault(s => s.AreaId == "Convés");
-
-            Console.WriteLine(sensorConves.BeaconsFound.Count);
-
-            labelTotalConves.Text = sensorConves.BeaconsFound.Count.ToString();
+            //count the total of beacons found in all 4 sensors that has id == "P4", "P6", "P8" and "P9" and assign to labelTotalConves
+            labelTotalConves.Text = sensors.Where(s => s.AreaId == "Convés").Sum(s => s.BeaconsFound.Count).ToString();
 
             sensorPassadiço = sensors.FirstOrDefault(s => s.AreaId == "Passadiço");
 
