@@ -309,6 +309,7 @@ public class SerialDataProcessor
             _updateStatusAction($"Data received from {slaveId}. Processing...");
             await ProcessDataAsync(dataBuilder.ToString(), slaveId);
             _serialPort.WriteLine($"{slaveId} CLDATA");
+            _serialPort.WriteLine($"{slaveId} CLDATA2");
             _updateStatusAction($"Data cleared on {slaveId}.");
         }
         else if (!timeoutOccurred)
