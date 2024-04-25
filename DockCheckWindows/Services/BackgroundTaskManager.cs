@@ -282,14 +282,16 @@ public class SerialDataProcessor
         _serialPort.WriteLine($"{slaveId} SDATAFULL");
         StringBuilder dataBuilder = new StringBuilder();
         bool endOfDataBlockDetected = false;
+        bool timeoutOccurred = false;
 
-        while (!endOfDataBlockDetected)
+        while (!endOfDataBlockDetected && !timeoutOccurred)
         {
             var line = await ReadLineAsync(TimeSpan.FromSeconds(10));
             if (line == null) // Handle null which may be a timeout or empty response
             {
-                _updateStatusAction("Timeout or no more data received, skipping to next line.");
-                continue; // Continue to next iteration instead of breaking
+                _updateStatusAction("Timeout occurred, no more data received. Moving to next slave.");
+                timeoutOccurred = true; // Set flag to exit loop and skip to next slave
+                continue;
             }
             if (line.Contains("}")) // Check if the line contains a closing bracket
             {
@@ -302,19 +304,20 @@ public class SerialDataProcessor
             }
         }
 
-        if (dataBuilder.Length > 0)
+        if (!timeoutOccurred && dataBuilder.Length > 0)
         {
             _updateStatusAction($"Data received from {slaveId}. Processing...");
             await ProcessDataAsync(dataBuilder.ToString(), slaveId);
             _serialPort.WriteLine($"{slaveId} CLDATA");
             _updateStatusAction($"Data cleared on {slaveId}.");
         }
-        else
+        else if (!timeoutOccurred)
         {
             _updateStatusAction($"No data received from {slaveId}.");
         }
-        return true;
+        return !timeoutOccurred; // Return false if timeout occurred to indicate process did not complete normally
     }
+
 
     private Event ParseEventFromLine(string line, string pCode)
     {
