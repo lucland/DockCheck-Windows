@@ -26,7 +26,7 @@ public class SerialDataProcessor
     public SerialDataProcessor(EventRepository eventRepository, Action<string> updateStatusAction)
     {
         InitializeSerialPort();
-        _slavePcs = new List<string> { "P2", "P3", "P4", "P5", "P6", "P8", "P9" };
+        _slavePcs = new List<string> { "P1", "P2", "P3", "P4", "P5", "P6", "P8", "P9" };
         _lastApprovedIdsSentDate = DateTime.MinValue;
         _eventRepository = eventRepository;
         _updateStatusAction = updateStatusAction;
@@ -189,6 +189,8 @@ public class SerialDataProcessor
             timer.Stop();
             taskCompletionSource.TrySetResult(null); // Set null result on timeout
             Console.WriteLine("Timeout occurred.");
+            //ignore it
+            return;
         };
         timer.Start();
 
@@ -218,6 +220,8 @@ public class SerialDataProcessor
         {
             timer.Stop();
             taskCompletionSource.SetException(ex);
+                Console.WriteLine($"Error reading line: {ex.Message}");
+            return null;
         }
         return await taskCompletionSource.Task;
     }
