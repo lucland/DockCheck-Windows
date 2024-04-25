@@ -184,14 +184,14 @@ public class SerialDataProcessor
         Console.WriteLine("Read Line Async");
         var taskCompletionSource = new TaskCompletionSource<string>();
         var timer = new System.Timers.Timer(timeout.TotalMilliseconds) { AutoReset = false };
+
         timer.Elapsed += (sender, e) =>
         {
             timer.Stop();
-            taskCompletionSource.TrySetResult(null); // Set null result on timeout
+            taskCompletionSource.TrySetResult(null); // Set result to null on timeout
             Console.WriteLine("Timeout occurred.");
-            //ignore it
-            return;
         };
+
         timer.Start();
 
         StringBuilder result = new StringBuilder();
@@ -206,25 +206,25 @@ public class SerialDataProcessor
                     if (readChar == '\n')
                     {
                         timer.Stop();
-                        taskCompletionSource.SetResult(result.ToString().Trim());
+                        taskCompletionSource.SetResult(result.ToString().Trim()); // Complete the task with the line read
                         break;
                     }
                 }
                 else
                 {
-                    await Task.Delay(10); // Delay to prevent tight loop
+                    await Task.Delay(10); // Brief delay to avoid tight loop
                 }
             }
         }
         catch (Exception ex)
         {
             timer.Stop();
-            taskCompletionSource.SetException(ex);
-                Console.WriteLine($"Error reading line: {ex.Message}");
-            return null;
+            taskCompletionSource.SetException(ex); // Propagate exception to the caller
         }
-        return await taskCompletionSource.Task;
+
+        return await taskCompletionSource.Task; // Return the line read or null if timeout occurred
     }
+
 
 
     private async Task FetchAndSendApprovedIDs()
@@ -288,8 +288,8 @@ public class SerialDataProcessor
             var line = await ReadLineAsync(TimeSpan.FromSeconds(10));
             if (line == null) // Handle null which may be a timeout or empty response
             {
-                _updateStatusAction("Timeout or no more data received.");
-                break;
+                _updateStatusAction("Timeout or no more data received, skipping to next line.");
+                continue; // Continue to next iteration instead of breaking
             }
             if (line.Contains("}")) // Check if the line contains a closing bracket
             {
@@ -306,9 +306,6 @@ public class SerialDataProcessor
         {
             _updateStatusAction($"Data received from {slaveId}. Processing...");
             await ProcessDataAsync(dataBuilder.ToString(), slaveId);
-            _serialPort.WriteLine($"{slaveId} CLDATA2");
-            _serialPort.WriteLine($"{slaveId} CLDATA");
-            _serialPort.WriteLine($"{slaveId} CLDATA2");
             _serialPort.WriteLine($"{slaveId} CLDATA");
             _updateStatusAction($"Data cleared on {slaveId}.");
         }
