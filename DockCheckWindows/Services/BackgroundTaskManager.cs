@@ -125,9 +125,9 @@ public class SerialDataProcessor
     {
         try
         {
-            if (line.StartsWith("{") || line.StartsWith("}"))
+            if (line.StartsWith("{") || line.StartsWith("}") || line.Contains("Yes"))
             {
-                Console.WriteLine($"Ignored control line: {line}");
+                Console.WriteLine($"Ignored control or confirmation line: {line}");
                 return;
             }
 
@@ -147,7 +147,6 @@ public class SerialDataProcessor
             _updateStatusAction($"Error parsing line: {ex.Message}");
         }
     }
-
 
 
 
