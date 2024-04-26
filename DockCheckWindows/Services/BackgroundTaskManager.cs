@@ -181,64 +181,61 @@ public class SerialDataProcessor
 
     private async Task ProcessCycleAsync()
     {
-        if (!_serialPort.IsOpen)
+        while (true)  // Keep the cycle running indefinitely
         {
             try
             {
-                _serialPort.Open();
-                _updateStatusAction("Serial port opened.");
-            }
-            catch (Exception ex)
-            {
-                _updateStatusAction($"Failed to open serial port: {ex.Message}");
-                return;  // Early exit if we cannot open the serial port
-            }
-        }
-
-        while (true)  // Add an infinite loop to continuously process sensors
-        {
-            _lastSuccessfulOperation = DateTime.Now;  // Update at the start of the processing cycle
-
-            foreach (var slave in _slavePcs)
-            {
-                _currentPCode = slave;
-                _updateStatusAction($"Processing slave {_currentPCode}.");
-                try
+                if (!_serialPort.IsOpen)
                 {
+                    _serialPort.Open();
+                    _updateStatusAction("Serial port opened.");
+                }
+
+                foreach (var slave in _slavePcs)
+                {
+                    _currentPCode = slave;
+                    _updateStatusAction($"Processing slave {_currentPCode}.");
                     _responseReceived.Reset();  // Reset the event at the beginning of each cycle
                     if (await SendAndWaitForConfirmation(slave))
                     {
-                        await RequestAndProcessData(slave);
+                        if (!await RequestAndProcessData(slave))
+                        {
+                            _updateStatusAction($"Failed to process data for {slave}, skipping.");
+                        }
                     }
                     else
                     {
-                        _updateStatusAction($"Failed to receive confirmation from {slave}. Skipping to next slave.");
+                        _updateStatusAction($"Failed to receive confirmation from {slave}, skipping.");
                     }
                 }
-                catch (Exception ex)
-                {
-                    _updateStatusAction($"Error while processing {slave}: {ex.Message}. Moving to next slave.");
-                }
             }
-
-            _lastSuccessfulOperation = DateTime.Now;  // Update after the cycle completes successfully
+            catch (Exception ex)
+            {
+                _updateStatusAction($"Error during cycle: {ex.Message}. Attempting to restart cycle...");
+                await Task.Delay(5000); // Wait for 5 seconds before restarting the cycle
+                continue; // Continue the while loop, restarting the cycle
+            }
+            finally
+            {
+                _lastSuccessfulOperation = DateTime.Now;
+            }
         }
     }
 
 
     private async Task<bool> SendAndWaitForConfirmation(string slaveId)
     {
-        Console.WriteLine("Send and Wait For Confirmation");
+       // Console.WriteLine("Send and Wait For Confirmation");
         _updateStatusAction($"Sending 'OK' command to {slaveId}.");
         for (int i = 0; i < 2; i++)
         {
             _serialPort.WriteLine($"{slaveId} OK");
-            Console.WriteLine(slaveId);
+          //  Console.WriteLine(slaveId);
             await Task.Delay(1000);  // Ensure this delay is awaited
 
             if (await WaitForResponseAsync($"{slaveId} Yes", TimeSpan.FromSeconds(3)))
             {
-                Console.WriteLine(slaveId);
+              //  Console.WriteLine(slaveId);
                 _updateStatusAction($"{slaveId} confirmed with 'Yes'.");
                 return true;
             }
@@ -252,7 +249,7 @@ public class SerialDataProcessor
 
     private async Task<bool> WaitForResponseAsync(string expectedResponse, TimeSpan timeout)
     {
-        Console.WriteLine("Wait for response async");
+       // Console.WriteLine("Wait for response async");
         _responseReceived.Reset(); // Ensure the event is ready for new signals
 
         _serialPort.WriteLine($"{_currentPCode} OK");  // Ensure we're sending the correct command
@@ -338,13 +335,13 @@ public class SerialDataProcessor
 
     private async Task ProcessDataAsync(string data, string pCode)
     {
-        Console.WriteLine($"{pCode}, processDataAsync");
+       // Console.WriteLine($"{pCode}, processDataAsync");
         string[] lines = data.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
         foreach (var line in lines)
         {
             if (!string.IsNullOrWhiteSpace(line))
             {
-                Console.WriteLine($"{line}");
+               // Console.WriteLine($"{line}");
                 Event evt = ParseEventFromLine(line, pCode);
                 if (evt != null)
                 {
@@ -362,7 +359,7 @@ public class SerialDataProcessor
         }
     }
 
-    private async Task RequestAndProcessData(string slaveId)
+    private async Task<bool> RequestAndProcessData(string slaveId)
     {
         _updateStatusAction($"Requesting data from {slaveId}.");
         _serialPort.WriteLine($"{slaveId} SDATAFULL");
@@ -375,12 +372,13 @@ public class SerialDataProcessor
             var line = await ReadLineAsync(TimeSpan.FromSeconds(10));
             if (line == null) // Timeout occurred, no data received
             {
-                _updateStatusAction($"Timeout occurred or no more data received from {slaveId}. Moving to next slave.");
-                return; // Exit the method to handle the next slave
+                _updateStatusAction($"Timeout occurred or no more data received from {slaveId}.");
+                return false; // Significa que houve uma falha ao receber os dados
             }
+
             if (line.Contains("}")) // Check if the line contains the closing bracket for data block
             {
-                endOfDataBlockDetected = true; // End of data block detected
+                endOfDataBlockDetected = true;
             }
             else if (!string.IsNullOrWhiteSpace(line))
             {
@@ -396,23 +394,25 @@ public class SerialDataProcessor
         _serialPort.WriteLine($"{slaveId} CLDATA"); // Send command to clear data on slave
         _serialPort.WriteLine($"{slaveId} CLDATA2");
         _updateStatusAction($"Data processing completed and cleared for {slaveId}.");
+        return true;
     }
+
 
 
     private Event ParseEventFromLine(string line, string pCode)
     {
-        Console.WriteLine($"Attempting to parse line: {line}");
+       // Console.WriteLine($"Attempting to parse line: {line}");
         string[] parts = line.Trim().Split(new[] { ' ' }, 3);
         if (parts.Length != 3 || !DateTime.TryParse(parts[1], out DateTime timestamp))
         {
-            Console.WriteLine($"Invalid line format or timestamp: {line}");
+       //     Console.WriteLine($"Invalid line format or timestamp: {line}");
             return null; // Reject lines that do not meet the format requirements
         }
 
         string[] dataParts = parts[2].Split(',');
         if (dataParts.Length < 2)
         {
-            Console.WriteLine($"Insufficient data in line: {line}");
+     //       Console.WriteLine($"Insufficient data in line: {line}");
             return null; // Ignore lines with insufficient data parts
         }
 
@@ -432,7 +432,7 @@ public class SerialDataProcessor
             Status = "sent"
         };
 
-        Console.WriteLine($"Parsed event: {JsonConvert.SerializeObject(evt)}");
+   //     Console.WriteLine($"Parsed event: {JsonConvert.SerializeObject(evt)}");
         return evt;
     }
 
@@ -440,24 +440,24 @@ public class SerialDataProcessor
 
     private async Task<bool> SendEventToBackendAsync(Event evt)
     {
-        Console.WriteLine($"Sending Event to Backend: {JsonConvert.SerializeObject(evt)}");
+    //    Console.WriteLine($"Sending Event to Backend: {JsonConvert.SerializeObject(evt)}");
         try
         {
             var response = await _eventRepository.CreateEventAsync(evt);
             if (response != null && response.Id != null)
             {
-                Console.WriteLine($"Event successfully sent to backend with ID: {response.Id}");
+           //     Console.WriteLine($"Event successfully sent to backend with ID: {response.Id}");
                 return true;
             }
             else
             {
-                Console.WriteLine("Failed to send event to backend or invalid response received.");
+           //     Console.WriteLine("Failed to send event to backend or invalid response received.");
                 return false;
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error sending event to backend: {ex.Message}");
+           // Console.WriteLine($"Error sending event to backend: {ex.Message}");
             return false;
         }
     }
