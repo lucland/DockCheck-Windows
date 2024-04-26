@@ -70,22 +70,50 @@ public class SerialDataProcessor
 
     private void OnDataReceived(object sender, SerialDataReceivedEventArgs e)
     {
-        string incomingData = _serialPort.ReadExisting();
-       // Console.WriteLine($"Received Raw Data: {incomingData}"); // Log raw incoming data for debugging
-        _dataBuffer.Append(incomingData);
-
-        // Process each complete line as it comes.
-        string bufferContent = _dataBuffer.ToString();
-        if (bufferContent.Contains("\n")) // Check for the newline which signals the end of a line
+        try
         {
-            _dataBuffer.Clear(); // Clear the buffer for the next data
-            string[] lines = bufferContent.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (var line in lines)
+            string incomingData = _serialPort.ReadExisting();
+            if (string.IsNullOrEmpty(incomingData))
             {
-                ProcessLine(line.Trim());
+                return;  // If no data or null string is read, safely return without processing.
             }
+
+            Console.WriteLine($"Received Raw Data: {incomingData}"); // Log raw incoming data for debugging.
+
+            _dataBuffer.Append(incomingData);
+
+            // Process each complete line as it comes.
+            ProcessBufferedData();
+        }
+        catch (Exception ex)
+        {
+            _updateStatusAction($"Error while receiving data: {ex.Message}");
+            // Handle or log the error gracefully.
+            
         }
     }
+
+    private void ProcessBufferedData()
+    {
+        string bufferContent = _dataBuffer.ToString();
+        int indexOfLastNewLine = bufferContent.LastIndexOf('\n');
+
+        if (indexOfLastNewLine == -1)
+        {
+            return; // No complete line(s) to process yet.
+        }
+
+        // Get complete lines that end with a newline character, safely handle the substring operation.
+        string completeData = bufferContent.Substring(0, indexOfLastNewLine + 1);
+        _dataBuffer.Remove(0, indexOfLastNewLine + 1);  // Safely remove processed data from buffer.
+
+        string[] lines = completeData.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        foreach (var line in lines)
+        {
+            ProcessLine(line.Trim());
+        }
+    }
+
 
 
     private void ProcessLine(string line)
