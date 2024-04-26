@@ -195,32 +195,36 @@ public class SerialDataProcessor
             }
         }
 
-        _lastSuccessfulOperation = DateTime.Now;  // Update at the start of the processing cycle
-
-        foreach (var slave in _slavePcs)
+        while (true)  // Add an infinite loop to continuously process sensors
         {
-            _currentPCode = slave;
-            _updateStatusAction($"Processing slave {_currentPCode}.");
-            try
-            {
-                _responseReceived.Reset();  // Reset the event at the beginning of each cycle
-                if (await SendAndWaitForConfirmation(slave))
-                {
-                    await RequestAndProcessData(slave);
-                }
-                else
-                {
-                    _updateStatusAction($"Failed to receive confirmation from {slave}. Skipping to next slave.");
-                }
-            }
-            catch (Exception ex)
-            {
-                _updateStatusAction($"Error while processing {slave}: {ex.Message}. Moving to next slave.");
-            }
-        }
+            _lastSuccessfulOperation = DateTime.Now;  // Update at the start of the processing cycle
 
-        _lastSuccessfulOperation = DateTime.Now;  // Update after the cycle completes successfully
+            foreach (var slave in _slavePcs)
+            {
+                _currentPCode = slave;
+                _updateStatusAction($"Processing slave {_currentPCode}.");
+                try
+                {
+                    _responseReceived.Reset();  // Reset the event at the beginning of each cycle
+                    if (await SendAndWaitForConfirmation(slave))
+                    {
+                        await RequestAndProcessData(slave);
+                    }
+                    else
+                    {
+                        _updateStatusAction($"Failed to receive confirmation from {slave}. Skipping to next slave.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _updateStatusAction($"Error while processing {slave}: {ex.Message}. Moving to next slave.");
+                }
+            }
+
+            _lastSuccessfulOperation = DateTime.Now;  // Update after the cycle completes successfully
+        }
     }
+
 
     private async Task<bool> SendAndWaitForConfirmation(string slaveId)
     {
