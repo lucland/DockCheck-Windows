@@ -47,29 +47,23 @@ public class SerialDataProcessor
 
     private void CheckForStall(object sender, System.Timers.ElapsedEventArgs e)
     {
-        if ((DateTime.Now - _lastSuccessfulOperation).TotalMinutes > 5) // Use a more generous timeout
+        if ((DateTime.Now - _lastSuccessfulOperation).TotalMinutes > 5)
         {
             Console.WriteLine("System appears to be stalled. Attempting to restart processing...");
-            _watchdogTimer.Stop();  // Stop the timer to prevent multiple restart attempts
-            if (_serialPort.IsOpen)
-            {
-                _serialPort.Close();
-            }
-            StartProcessingAsync();
+            RestartProcessing();
         }
     }
-
 
     private void RestartProcessing()
     {
-        if (_cancellationTokenSource != null)
+        _watchdogTimer.Stop();
+        if (_serialPort.IsOpen)
         {
-            _cancellationTokenSource.Cancel();  // Ensure to cancel the current processing task
+            _serialPort.Close();
         }
-
-        _updateStatusAction("Restarting the serial processing cycle.");
-        Task.Run(() => StartProcessingAsync());  // Restart processing on a new task to avoid blocking
+        StartProcessingAsync().ConfigureAwait(false);
     }
+
 
 
     private void OnDataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -77,25 +71,19 @@ public class SerialDataProcessor
         try
         {
             string incomingData = _serialPort.ReadExisting();
-            if (string.IsNullOrEmpty(incomingData))
+            if (!string.IsNullOrEmpty(incomingData))
             {
-                return;  // If no data or null string is read, safely return without processing.
+                _dataBuffer.Append(incomingData);
+                ProcessBufferedData();
             }
-
-            Console.WriteLine($"Received Raw Data: {incomingData}"); // Log raw incoming data for debugging.
-
-            _dataBuffer.Append(incomingData);
-
-            // Process each complete line as it comes.
-            ProcessBufferedData();
         }
         catch (Exception ex)
         {
             _updateStatusAction($"Error while receiving data: {ex.Message}");
-            // Handle or log the error gracefully.
-            
+            // Consider resetting the buffer or other recovery mechanisms here
         }
     }
+
 
     private void ProcessBufferedData()
     {
