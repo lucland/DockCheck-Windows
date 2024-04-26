@@ -47,14 +47,18 @@ public class SerialDataProcessor
 
     private void CheckForStall(object sender, System.Timers.ElapsedEventArgs e)
     {
-        // Check if the last operation was too long ago to consider it a stall and restart processing
-        if ((DateTime.Now - _lastSuccessfulOperation).TotalMinutes > 1)  // Check if no activity for over a minute
+        if ((DateTime.Now - _lastSuccessfulOperation).TotalMinutes > 5) // Use a more generous timeout
         {
             Console.WriteLine("System appears to be stalled. Attempting to restart processing...");
             _watchdogTimer.Stop();  // Stop the timer to prevent multiple restart attempts
-            RestartProcessing();
+            if (_serialPort.IsOpen)
+            {
+                _serialPort.Close();
+            }
+            StartProcessingAsync();
         }
     }
+
 
     private void RestartProcessing()
     {
@@ -118,20 +122,27 @@ public class SerialDataProcessor
 
     private void ProcessLine(string line)
     {
-      //  Console.WriteLine($"Processing Line: {line}"); // Log each line
-        if (!string.IsNullOrWhiteSpace(line))
+        // Ignore control lines
+        if (line.StartsWith("{") || line.StartsWith("}"))
         {
-            if (line.Contains("Yes"))
+            Console.WriteLine($"Ignored control line: {line}");
+            return;
+        }
+
+        if (line.Contains("Yes"))
+        {
+            _responseReceived.Set();  // Signal that a response was received
+            _lastSuccessfulOperation = DateTime.Now; // Update operation timestamp on successful communication
+            Console.WriteLine("Received confirmation response.");
+        }
+        else
+        {
+            try
             {
-                _responseReceived.Set(); // Signal that a response was received
-            }
-            else
-            {
-                // Attempt to parse the line into an event
                 Event evt = ParseEventFromLine(line, _currentPCode);
                 if (evt != null)
                 {
-               //     Console.WriteLine($"Event Parsed: {JsonConvert.SerializeObject(evt)}");
+                    Console.WriteLine($"Parsed event: {JsonConvert.SerializeObject(evt)}");
                     Task.Run(() => SendEventToBackendAsync(evt)); // Asynchronously send the event to the backend
                 }
                 else
@@ -139,8 +150,13 @@ public class SerialDataProcessor
                     Console.WriteLine("Failed to parse line into an event.");
                 }
             }
+            catch (Exception ex)
+            {
+                _updateStatusAction($"Error parsing line: {ex.Message}");
+            }
         }
     }
+
 
 
 
@@ -151,24 +167,28 @@ public class SerialDataProcessor
 
     public async Task StartProcessingAsync()
     {
-        _cancellationTokenSource = new CancellationTokenSource();
-        _isProcessingActive = true;
-        _lastSuccessfulOperation = DateTime.Now; // Update on start
-
-        while (!_cancellationTokenSource.IsCancellationRequested)
+        if (_cancellationTokenSource != null)
         {
-            try
-            {
-                await ProcessCycleAsync();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error in processing cycle: {ex.Message}. Restarting cycle...");
-                _lastSuccessfulOperation = DateTime.Now; // Update last successful timestamp to avoid false positives
-            }
+            _cancellationTokenSource.Cancel();
         }
-    
-}
+        _cancellationTokenSource = new CancellationTokenSource();
+
+        try
+        {
+            if (!_serialPort.IsOpen)
+            {
+                _serialPort.Open();
+                _updateStatusAction("Serial port opened.");
+            }
+            await ProcessCycleAsync();
+        }
+        catch (Exception ex)
+        {
+            _updateStatusAction($"Error during processing: {ex.Message}");
+            Console.WriteLine($"Restarting due to error: {ex.Message}");
+            await StartProcessingAsync();  // Recursive restart on error
+        }
+    }
 
 
     private async Task ProcessCycleAsync()
