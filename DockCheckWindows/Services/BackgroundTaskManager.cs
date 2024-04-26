@@ -47,13 +47,26 @@ public class SerialDataProcessor
 
     private void CheckForStall(object sender, System.Timers.ElapsedEventArgs e)
     {
-        // If the last operation was too long ago, consider it a stall and restart processing
-        if ((DateTime.Now - _lastSuccessfulOperation).TotalMinutes > 1) // Check if no activity for over a minute
+        // Check if the last operation was too long ago to consider it a stall and restart processing
+        if ((DateTime.Now - _lastSuccessfulOperation).TotalMinutes > 1)  // Check if no activity for over a minute
         {
-            _watchdogTimer.Stop(); // Stop the timer to prevent multiple restart attempts
-            RestartProcessing(); // Implement a method to safely restart processing
+            Console.WriteLine("System appears to be stalled. Attempting to restart processing...");
+            _watchdogTimer.Stop();  // Stop the timer to prevent multiple restart attempts
+            RestartProcessing();
         }
     }
+
+    private void RestartProcessing()
+    {
+        if (_cancellationTokenSource != null)
+        {
+            _cancellationTokenSource.Cancel();  // Ensure to cancel the current processing task
+        }
+
+        _updateStatusAction("Restarting the serial processing cycle.");
+        Task.Run(() => StartProcessingAsync());  // Restart processing on a new task to avoid blocking
+    }
+
 
     private void OnDataReceived(object sender, SerialDataReceivedEventArgs e)
     {
@@ -132,21 +145,45 @@ public class SerialDataProcessor
 
     private async Task ProcessCycleAsync()
     {
-        // Example of cycle processing logic
-        Console.WriteLine("Processing cycle started.");
-        _lastSuccessfulOperation = DateTime.Now; // Update on successful cycle start
-        // Your processing logic here
-        _lastSuccessfulOperation = DateTime.Now; // Update on successful cycle end
-    }
-
-    private void RestartProcessing()
-    {
-        Console.WriteLine("Attempting to restart processing due to inactivity...");
-        if (_serialPort.IsOpen)
+        if (!_serialPort.IsOpen)
         {
-            _serialPort.Close();
+            try
+            {
+                _serialPort.Open();
+                _updateStatusAction("Serial port opened.");
+            }
+            catch (Exception ex)
+            {
+                _updateStatusAction($"Failed to open serial port: {ex.Message}");
+                return;  // Early exit if we cannot open the serial port
+            }
         }
-        StartProcessingAsync();
+
+        // Ensuring that last operation timestamp is updated only once per complete cycle
+        _lastSuccessfulOperation = DateTime.Now;  // Update at the start of processing cycle
+
+        foreach (var slave in _slavePcs)
+        {
+            _currentPCode = slave;
+            _updateStatusAction($"Processing slave {_currentPCode}.");
+            try
+            {
+                if (await SendAndWaitForConfirmation(slave))
+                {
+                    await RequestAndProcessData(slave);
+                }
+                else
+                {
+                    _updateStatusAction($"Failed to receive confirmation from {slave}. Skipping to next slave.");
+                }
+            }
+            catch (Exception ex)
+            {
+                _updateStatusAction($"Error while processing {slave}: {ex.Message}. Moving to next slave.");
+            }
+        }
+
+        _lastSuccessfulOperation = DateTime.Now;  // Update after the cycle completes successfully
     }
 
 
