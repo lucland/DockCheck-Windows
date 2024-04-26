@@ -8,7 +8,6 @@ using DockCheckWindows.Models;
 using Newtonsoft.Json;
 using System.Net.Http;
 using DockCheckWindows.Repositories;
-using System.Linq;
 
 public class SerialDataProcessor
 {
@@ -123,30 +122,41 @@ public class SerialDataProcessor
 
     private void ProcessLine(string line)
     {
-        try
+        // Ignore control lines
+        if (line.StartsWith("{") || line.StartsWith("}"))
         {
-            if (line.StartsWith("{") || line.StartsWith("}") || line.Contains("Yes"))
-            {
-                Console.WriteLine($"Ignored control or confirmation line: {line}");
-                return;
-            }
-
-            Event evt = ParseEventFromLine(line, _currentPCode);
-            if (evt != null)
-            {
-                Console.WriteLine($"Parsed event: {JsonConvert.SerializeObject(evt)}");
-                Task.Run(async () => await SendEventToBackendAsync(evt)); // Ensure the task is awaited
-            }
-            else
-            {
-                Console.WriteLine("Failed to parse line into an event.");
-            }
+            Console.WriteLine($"Ignored control line: {line}");
+            return;
         }
-        catch (Exception ex)
+
+        if (line.Contains("Yes"))
         {
-            _updateStatusAction($"Error parsing line: {ex.Message}");
+            _responseReceived.Set();  // Signal that a response was received
+            _lastSuccessfulOperation = DateTime.Now; // Update operation timestamp on successful communication
+            Console.WriteLine("Received confirmation response.");
+        }
+        else
+        {
+            try
+            {
+                Event evt = ParseEventFromLine(line, _currentPCode);
+                if (evt != null)
+                {
+                    Console.WriteLine($"Parsed event: {JsonConvert.SerializeObject(evt)}");
+                    Task.Run(() => SendEventToBackendAsync(evt)); // Asynchronously send the event to the backend
+                }
+                else
+                {
+                    Console.WriteLine("Failed to parse line into an event.");
+                }
+            }
+            catch (Exception ex)
+            {
+                _updateStatusAction($"Error parsing line: {ex.Message}");
+            }
         }
     }
+
 
 
 
@@ -340,38 +350,31 @@ public class SerialDataProcessor
 
     private async Task ProcessDataAsync(string data, string pCode)
     {
+        Console.WriteLine($"{pCode}, processDataAsync");
         string[] lines = data.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-        List<Task> tasks = new List<Task>();
-
         foreach (var line in lines)
         {
             if (!string.IsNullOrWhiteSpace(line))
             {
+                Console.WriteLine($"{line}");
                 Event evt = ParseEventFromLine(line, pCode);
                 if (evt != null)
                 {
-                    tasks.Add(SendEventToBackendAsync(evt));  // Collect tasks for each event being sent
-                }
-                else
-                {
-                    Console.WriteLine($"Failed to parse line into an event: {line}");
+                    bool success = await SendEventToBackendAsync(evt);  // Ensure async operations are awaited
+                    if (!success)
+                    {
+                        _updateStatusAction($"Failed to send event data to backend for {line}.");
+                    }
+                    else
+                    {
+                        _updateStatusAction("Event data successfully sent to backend.");
+                    }
                 }
             }
         }
-
-        if (tasks.Any())
-        {
-            await Task.WhenAll(tasks);  // Wait for all events to be sent to the backend
-        }
-
-        // Send the clear data commands after all data has been processed and sent
-        _serialPort.WriteLine($"{pCode} CLDATA");
-        _serialPort.WriteLine($"{pCode} CLDATA2");
-        _updateStatusAction($"Data cleared on {pCode} after processing.");
     }
 
-
-    private async Task<bool> RequestAndProcessData(string slaveId)
+    private async Task RequestAndProcessData(string slaveId)
     {
         _updateStatusAction($"Requesting data from {slaveId}.");
         _serialPort.WriteLine($"{slaveId} SDATAFULL");
@@ -382,17 +385,16 @@ public class SerialDataProcessor
         while (!endOfDataBlockDetected)
         {
             var line = await ReadLineAsync(TimeSpan.FromSeconds(10));
-            if (line == null)
+            if (line == null) // Timeout occurred, no data received
             {
-                _updateStatusAction($"Timeout or no more data received from {slaveId}. Moving to next slave.");
-                return false;
+                _updateStatusAction($"Timeout occurred or no more data received from {slaveId}. Moving to next slave.");
+                return; // Exit the method to handle the next slave
             }
-
-            if (line.Contains("}"))
+            if (line.Contains("}")) // Check if the line contains the closing bracket for data block
             {
-                endOfDataBlockDetected = true;
+                endOfDataBlockDetected = true; // End of data block detected
             }
-            else
+            else if (!string.IsNullOrWhiteSpace(line))
             {
                 dataBuilder.AppendLine(line);
             }
@@ -400,9 +402,12 @@ public class SerialDataProcessor
 
         if (dataBuilder.Length > 0)
         {
+            _updateStatusAction($"Data received from {slaveId}. Processing...");
             await ProcessDataAsync(dataBuilder.ToString(), slaveId);
         }
-        return true;
+        _serialPort.WriteLine($"{slaveId} CLDATA"); // Send command to clear data on slave
+        _serialPort.WriteLine($"{slaveId} CLDATA2");
+        _updateStatusAction($"Data processing completed and cleared for {slaveId}.");
     }
 
 
@@ -444,25 +449,33 @@ public class SerialDataProcessor
     }
 
 
-    private async Task SendEventToBackendAsync(Event evt)
+
+    private async Task<bool> SendEventToBackendAsync(Event evt)
     {
+        Console.WriteLine($"Sending Event to Backend: {JsonConvert.SerializeObject(evt)}");
         try
         {
             var response = await _eventRepository.CreateEventAsync(evt);
             if (response != null && response.Id != null)
             {
                 Console.WriteLine($"Event successfully sent to backend with ID: {response.Id}");
+                return true;
             }
             else
             {
                 Console.WriteLine("Failed to send event to backend or invalid response received.");
+                return false;
             }
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error sending event to backend: {ex.Message}");
+            return false;
         }
     }
+
+
+
 
     public void PauseProcessing()
     {
