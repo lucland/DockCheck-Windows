@@ -195,8 +195,7 @@ public class SerialDataProcessor
             }
         }
 
-        // Ensuring that last operation timestamp is updated only once per complete cycle
-        _lastSuccessfulOperation = DateTime.Now;  // Update at the start of processing cycle
+        _lastSuccessfulOperation = DateTime.Now;  // Update at the start of the processing cycle
 
         foreach (var slave in _slavePcs)
         {
@@ -204,6 +203,7 @@ public class SerialDataProcessor
             _updateStatusAction($"Processing slave {_currentPCode}.");
             try
             {
+                _responseReceived.Reset();  // Reset the event at the beginning of each cycle
                 if (await SendAndWaitForConfirmation(slave))
                 {
                     await RequestAndProcessData(slave);
@@ -222,7 +222,6 @@ public class SerialDataProcessor
         _lastSuccessfulOperation = DateTime.Now;  // Update after the cycle completes successfully
     }
 
-
     private async Task<bool> SendAndWaitForConfirmation(string slaveId)
     {
         Console.WriteLine("Send and Wait For Confirmation");
@@ -231,12 +230,10 @@ public class SerialDataProcessor
         {
             _serialPort.WriteLine($"{slaveId} OK");
             Console.WriteLine(slaveId);
-            //wait two seconds
-            Task.Delay(1000);
+            await Task.Delay(1000);  // Ensure this delay is awaited
 
             if (await WaitForResponseAsync($"{slaveId} Yes", TimeSpan.FromSeconds(3)))
             {
-
                 Console.WriteLine(slaveId);
                 _updateStatusAction($"{slaveId} confirmed with 'Yes'.");
                 return true;
@@ -252,18 +249,17 @@ public class SerialDataProcessor
     private async Task<bool> WaitForResponseAsync(string expectedResponse, TimeSpan timeout)
     {
         Console.WriteLine("Wait for response async");
-        _responseReceived.Reset(); // Reset the event
+        _responseReceived.Reset(); // Ensure the event is ready for new signals
 
-        // Issue the command expecting a response
-        _serialPort.WriteLine($"{_currentPCode} OK");
+        _serialPort.WriteLine($"{_currentPCode} OK");  // Ensure we're sending the correct command
 
-        // Wait for the response or timeout
-        bool received = _responseReceived.WaitOne(timeout);
+        bool received = await Task.Run(() => _responseReceived.WaitOne(timeout));  // Use Task.Run to prevent blocking the main thread
         if (!received)
         {
             _updateStatusAction($"Timeout or wrong response after waiting for {expectedResponse}.");
             return false;
         }
+
         _updateStatusAction($"{expectedResponse} received.");
         return true;
     }
