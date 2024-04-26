@@ -21,6 +21,8 @@ public class SerialDataProcessor
     private string _currentPCode = string.Empty;
     private ManualResetEvent _responseReceived = new ManualResetEvent(false);
     private StringBuilder _dataBuffer = new StringBuilder();
+    private DateTime _lastSuccessfulOperation;
+    private System.Timers.Timer _watchdogTimer;
 
     // Constructor initializes the serial port and other components
     public SerialDataProcessor(EventRepository eventRepository, Action<string> updateStatusAction)
@@ -30,12 +32,27 @@ public class SerialDataProcessor
         _lastApprovedIdsSentDate = DateTime.MinValue;
         _eventRepository = eventRepository;
         _updateStatusAction = updateStatusAction;
+        _watchdogTimer = new System.Timers.Timer(30000); // Check every 30 seconds
+        _watchdogTimer.Elapsed += CheckForStall;
+        _watchdogTimer.AutoReset = true;
+        _watchdogTimer.Start();
     }
 
     private void InitializeSerialPort()
     {
         _serialPort = new SerialPort("COM5", 115200);
         _serialPort.DataReceived += OnDataReceived;
+        _serialPort.ErrorReceived += OnErrorReceived;
+    }
+
+    private void CheckForStall(object sender, System.Timers.ElapsedEventArgs e)
+    {
+        // If the last operation was too long ago, consider it a stall and restart processing
+        if ((DateTime.Now - _lastSuccessfulOperation).TotalMinutes > 1) // Check if no activity for over a minute
+        {
+            _watchdogTimer.Stop(); // Stop the timer to prevent multiple restart attempts
+            RestartProcessing(); // Implement a method to safely restart processing
+        }
     }
 
     private void OnDataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -91,10 +108,13 @@ public class SerialDataProcessor
         _updateStatusAction("Serial port error received.");
     }
 
-    public async Task StartProcessingAsync(CancellationToken cancellationToken)
+    public async Task StartProcessingAsync()
     {
-        _updateStatusAction("Starting serial data processing.");
-        while (!cancellationToken.IsCancellationRequested)
+        _cancellationTokenSource = new CancellationTokenSource();
+        _isProcessingActive = true;
+        _lastSuccessfulOperation = DateTime.Now; // Update on start
+
+        while (!_cancellationTokenSource.IsCancellationRequested)
         {
             try
             {
@@ -102,35 +122,31 @@ public class SerialDataProcessor
             }
             catch (Exception ex)
             {
-                _updateStatusAction($"Error in processing cycle: {ex.Message}. Restarting cycle...");
+                Console.WriteLine($"Error in processing cycle: {ex.Message}. Restarting cycle...");
+                _lastSuccessfulOperation = DateTime.Now; // Update last successful timestamp to avoid false positives
             }
         }
-    }
+    
+}
+
 
     private async Task ProcessCycleAsync()
     {
-        Console.WriteLine("Process Cycle Async");
-        if (!_serialPort.IsOpen)
-        {
-            _serialPort.Open();
-            _updateStatusAction("Serial port opened.");
-        }
+        // Example of cycle processing logic
+        Console.WriteLine("Processing cycle started.");
+        _lastSuccessfulOperation = DateTime.Now; // Update on successful cycle start
+        // Your processing logic here
+        _lastSuccessfulOperation = DateTime.Now; // Update on successful cycle end
+    }
 
-        await FetchAndSendApprovedIDs();
-
-        foreach (var slave in _slavePcs)
+    private void RestartProcessing()
+    {
+        Console.WriteLine("Attempting to restart processing due to inactivity...");
+        if (_serialPort.IsOpen)
         {
-            _currentPCode = slave;  // Set the current PCode before processing
-            _updateStatusAction($"Processing slave {_currentPCode}.");
-            if (await SendAndWaitForConfirmation(slave))
-            {
-                await RequestAndProcessData(slave);
-            }
-            else
-            {
-                _updateStatusAction($"Failed to receive confirmation from {slave}. Skipping to next slave.");
-            }
+            _serialPort.Close();
         }
+        StartProcessingAsync();
     }
 
 
@@ -181,15 +197,13 @@ public class SerialDataProcessor
 
     private async Task<string> ReadLineAsync(TimeSpan timeout)
     {
-        Console.WriteLine("Read Line Async");
         var taskCompletionSource = new TaskCompletionSource<string>();
         var timer = new System.Timers.Timer(timeout.TotalMilliseconds) { AutoReset = false };
-
         timer.Elapsed += (sender, e) =>
         {
             timer.Stop();
-            taskCompletionSource.TrySetResult(null); // Set result to null on timeout
-            Console.WriteLine("Timeout occurred.");
+            taskCompletionSource.TrySetResult(null); // Null indicates timeout
+            _updateStatusAction("Timeout occurred while reading line.");
         };
 
         timer.Start();
@@ -206,7 +220,7 @@ public class SerialDataProcessor
                     if (readChar == '\n')
                     {
                         timer.Stop();
-                        taskCompletionSource.SetResult(result.ToString().Trim()); // Complete the task with the line read
+                        taskCompletionSource.SetResult(result.ToString().Trim());
                         break;
                     }
                 }
@@ -219,13 +233,12 @@ public class SerialDataProcessor
         catch (Exception ex)
         {
             timer.Stop();
-            taskCompletionSource.SetException(ex); // Propagate exception to the caller
+            taskCompletionSource.SetException(ex);
+            _updateStatusAction($"Error while reading line: {ex.Message}");
         }
 
-        return await taskCompletionSource.Task; // Return the line read or null if timeout occurred
+        return await taskCompletionSource.Task;
     }
-
-
 
     private async Task FetchAndSendApprovedIDs()
     {/*
@@ -275,28 +288,26 @@ public class SerialDataProcessor
             }
         }
     }
-    private async Task<bool> RequestAndProcessData(string slaveId)
+
+    private async Task RequestAndProcessData(string slaveId)
     {
-        Console.WriteLine("Request And Process Data");
         _updateStatusAction($"Requesting data from {slaveId}.");
         _serialPort.WriteLine($"{slaveId} SDATAFULL");
+
         StringBuilder dataBuilder = new StringBuilder();
         bool endOfDataBlockDetected = false;
-        bool timeoutOccurred = false;
 
-        while (!endOfDataBlockDetected && !timeoutOccurred)
+        while (!endOfDataBlockDetected)
         {
             var line = await ReadLineAsync(TimeSpan.FromSeconds(10));
-            if (line == null) // Handle null which may be a timeout or empty response
+            if (line == null) // Timeout occurred, no data received
             {
-                _updateStatusAction("Timeout occurred, no more data received. Moving to next slave.");
-                timeoutOccurred = true; // Set flag to exit loop and skip to next slave
-                continue;
+                _updateStatusAction($"Timeout occurred or no more data received from {slaveId}. Moving to next slave.");
+                return; // Exit the method to handle the next slave
             }
-            if (line.Contains("}")) // Check if the line contains a closing bracket
+            if (line.Contains("}")) // Check if the line contains the closing bracket for data block
             {
-                _updateStatusAction("End of data block detected.");
-                endOfDataBlockDetected = true; // Set flag to exit loop
+                endOfDataBlockDetected = true; // End of data block detected
             }
             else if (!string.IsNullOrWhiteSpace(line))
             {
@@ -304,19 +315,14 @@ public class SerialDataProcessor
             }
         }
 
-        if (!timeoutOccurred && dataBuilder.Length > 0)
+        if (dataBuilder.Length > 0)
         {
             _updateStatusAction($"Data received from {slaveId}. Processing...");
             await ProcessDataAsync(dataBuilder.ToString(), slaveId);
-            _serialPort.WriteLine($"{slaveId} CLDATA");
-            _serialPort.WriteLine($"{slaveId} CLDATA2");
-            _updateStatusAction($"Data cleared on {slaveId}.");
         }
-        else if (!timeoutOccurred)
-        {
-            _updateStatusAction($"No data received from {slaveId}.");
-        }
-        return !timeoutOccurred; // Return false if timeout occurred to indicate process did not complete normally
+        _serialPort.WriteLine($"{slaveId} CLDATA"); // Send command to clear data on slave
+        _serialPort.WriteLine($"{slaveId} CLDATA2");
+        _updateStatusAction($"Data processing completed and cleared for {slaveId}.");
     }
 
 
@@ -399,7 +405,7 @@ public class SerialDataProcessor
             _serialPort.Open();
             _updateStatusAction("Serial processing resumed.");
         }
-        await StartProcessingAsync(new CancellationToken());  // Assumes non-cancelled token for simplicity 
+        await StartProcessingAsync();  // Assumes non-cancelled token for simplicity 
     }
 
 

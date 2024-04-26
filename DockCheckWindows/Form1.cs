@@ -251,7 +251,7 @@ namespace DockCheckWindows
                     Properties.Settings.Default.VesselId = string.Join(",", vesselIds);
                     Properties.Settings.Default.Save();
 
-                    await serialDataProcessor.StartProcessingAsync(new CancellationToken());
+                    await serialDataProcessor.StartProcessingAsync();
                 
             
         }
