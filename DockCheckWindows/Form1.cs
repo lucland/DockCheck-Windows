@@ -38,7 +38,7 @@ namespace DockCheckWindows
 
         private AuthorizationRepository authorizationRepository = new AuthorizationRepository(apiService: new ApiService());
 
-        private SerialDataProcessor serialDataProcessor;
+      //  private SerialDataProcessor serialDataProcessor;
 
         public Form1()
         {
@@ -64,7 +64,7 @@ namespace DockCheckWindows
                 return; // Add this to prevent further execution if not authenticated
             }
 
-            serialDataProcessor = new SerialDataProcessor(eventRepository, UpdateStatus);
+         //   serialDataProcessor = new SerialDataProcessor(eventRepository, UpdateStatus);
 
             UC_Home home = new UC_Home();
             uc_Cadastrar = new UC_Cadastrar(
@@ -72,8 +72,8 @@ namespace DockCheckWindows
                 authorizationRepository: new AuthorizationRepository(apiService: new ApiService()),
                 documentRepository: new DocumentRepository(apiService: new ApiService()),
                 eventRepository: new EventRepository(apiService: new ApiService()),
-                ucDados: new UC_Dados(uc_Cadastrar, employeeRepository: new EmployeeRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService())),
-                serialDataProcessor: serialDataProcessor
+                ucDados: new UC_Dados(uc_Cadastrar, employeeRepository: new EmployeeRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService()))
+            //    serialDataProcessor: serialDataProcessor
                 );
 
             uc_Dados = new UC_Dados(uc_Cadastrar, employeeRepository: new EmployeeRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService()));
@@ -149,8 +149,8 @@ namespace DockCheckWindows
                 authorizationRepository: new AuthorizationRepository(apiService: new ApiService()),
                 documentRepository: new DocumentRepository(apiService: new ApiService()),
                 eventRepository: new EventRepository(apiService: new ApiService()),
-                ucDados: new UC_Dados(uc_Cadastrar, employeeRepository: new EmployeeRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService())),
-                serialDataProcessor: serialDataProcessor
+                ucDados: new UC_Dados(uc_Cadastrar, employeeRepository: new EmployeeRepository(apiService: new ApiService()), eventRepository: new EventRepository(apiService: new ApiService()))
+          //      serialDataProcessor: serialDataProcessor
                 );
             cadastrar.SwitchToDados += () =>
             {
@@ -251,7 +251,7 @@ namespace DockCheckWindows
                     Properties.Settings.Default.VesselId = string.Join(",", vesselIds);
                     Properties.Settings.Default.Save();
 
-                    await serialDataProcessor.StartProcessingAsync();
+               //     await serialDataProcessor.StartProcessingAsync();
                 
             
         }
@@ -264,12 +264,12 @@ namespace DockCheckWindows
 
         private void serialOnOffButton_Click(object sender, EventArgs e)
         {
-            serialDataProcessor.PauseProcessing();
+         //   serialDataProcessor.PauseProcessing();
         }
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            await serialDataProcessor.ResumeProcessingAsync();
+         //   await serialDataProcessor.ResumeProcessingAsync();
         }
 
         private void panel5_Paint(object sender, PaintEventArgs e)

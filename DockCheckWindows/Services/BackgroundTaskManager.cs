@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.IO.Ports;
 using System.Threading;
 using System.Threading.Tasks;
@@ -225,17 +225,17 @@ public class SerialDataProcessor
 
     private async Task<bool> SendAndWaitForConfirmation(string slaveId)
     {
-       // Console.WriteLine("Send and Wait For Confirmation");
+        Console.WriteLine("Send and Wait For Confirmation");
         _updateStatusAction($"Sending 'OK' command to {slaveId}.");
         for (int i = 0; i < 2; i++)
         {
             _serialPort.WriteLine($"{slaveId} OK");
-          //  Console.WriteLine(slaveId);
+            Console.WriteLine(slaveId);
             await Task.Delay(1000);  // Ensure this delay is awaited
 
             if (await WaitForResponseAsync($"{slaveId} Yes", TimeSpan.FromSeconds(3)))
             {
-              //  Console.WriteLine(slaveId);
+                Console.WriteLine(slaveId);
                 _updateStatusAction($"{slaveId} confirmed with 'Yes'.");
                 return true;
             }
@@ -249,7 +249,7 @@ public class SerialDataProcessor
 
     private async Task<bool> WaitForResponseAsync(string expectedResponse, TimeSpan timeout)
     {
-       // Console.WriteLine("Wait for response async");
+        Console.WriteLine("Wait for response async");
         _responseReceived.Reset(); // Ensure the event is ready for new signals
 
         _serialPort.WriteLine($"{_currentPCode} OK");  // Ensure we're sending the correct command
@@ -329,19 +329,19 @@ public class SerialDataProcessor
         catch (Exception ex)
         {
             Console.WriteLine($"Error fetching or sending approved IDs: {ex.Message}");
-        }*/
+        }
     }
 
 
     private async Task ProcessDataAsync(string data, string pCode)
     {
-       // Console.WriteLine($"{pCode}, processDataAsync");
+        Console.WriteLine($"{pCode}, processDataAsync");
         string[] lines = data.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
         foreach (var line in lines)
         {
             if (!string.IsNullOrWhiteSpace(line))
             {
-               // Console.WriteLine($"{line}");
+                Console.WriteLine($"{line}");
                 Event evt = ParseEventFromLine(line, pCode);
                 if (evt != null)
                 {
@@ -401,18 +401,18 @@ public class SerialDataProcessor
 
     private Event ParseEventFromLine(string line, string pCode)
     {
-       // Console.WriteLine($"Attempting to parse line: {line}");
+        Console.WriteLine($"Attempting to parse line: {line}");
         string[] parts = line.Trim().Split(new[] { ' ' }, 3);
         if (parts.Length != 3 || !DateTime.TryParse(parts[1], out DateTime timestamp))
         {
-       //     Console.WriteLine($"Invalid line format or timestamp: {line}");
+            Console.WriteLine($"Invalid line format or timestamp: {line}");
             return null; // Reject lines that do not meet the format requirements
         }
 
         string[] dataParts = parts[2].Split(',');
         if (dataParts.Length < 2)
         {
-     //       Console.WriteLine($"Insufficient data in line: {line}");
+            Console.WriteLine($"Insufficient data in line: {line}");
             return null; // Ignore lines with insufficient data parts
         }
 
@@ -432,7 +432,7 @@ public class SerialDataProcessor
             Status = "sent"
         };
 
-   //     Console.WriteLine($"Parsed event: {JsonConvert.SerializeObject(evt)}");
+        Console.WriteLine($"Parsed event: {JsonConvert.SerializeObject(evt)}");
         return evt;
     }
 
@@ -440,24 +440,24 @@ public class SerialDataProcessor
 
     private async Task<bool> SendEventToBackendAsync(Event evt)
     {
-    //    Console.WriteLine($"Sending Event to Backend: {JsonConvert.SerializeObject(evt)}");
+        Console.WriteLine($"Sending Event to Backend: {JsonConvert.SerializeObject(evt)}");
         try
         {
             var response = await _eventRepository.CreateEventAsync(evt);
             if (response != null && response.Id != null)
             {
-           //     Console.WriteLine($"Event successfully sent to backend with ID: {response.Id}");
+                Console.WriteLine($"Event successfully sent to backend with ID: {response.Id}");
                 return true;
             }
             else
             {
-           //     Console.WriteLine("Failed to send event to backend or invalid response received.");
+                Console.WriteLine("Failed to send event to backend or invalid response received.");
                 return false;
             }
         }
         catch (Exception ex)
         {
-           // Console.WriteLine($"Error sending event to backend: {ex.Message}");
+            Console.WriteLine($"Error sending event to backend: {ex.Message}");
             return false;
         }
     }
@@ -537,6 +537,7 @@ public class SerialDataProcessor
 
 
 }
+*/
 
 //STL = PROXIMO E LIBERADO
 //STB = PROXIMO E BLOQUEADO
@@ -564,18 +565,18 @@ public class SerialDataProcessor
 //P1 BTV
 //P2 BATERRY VOLTAGE: 14.19
 
-//Example of the data sent by the slave after a PN SDATA command:
+//Example of the data sent by the slave after a PN SDATAFULL command:
 /*
 {PN
 2024-01-11 14:24:42 ff:ff:10:e2:34:06,L1
 2024-01-11 14:25:08 ff:ff:10:e2:34:06,F1
-2024-01-11 14:25:37 ff:ff:10:e2:34:06,F1 STL
-2024-01-11 14:25:39 ff:ff:10:e2:34:06,F1 STL
+2024-01-11 14:25:37 ff:ff:10:e2:34:06,F1
+2024-01-11 14:25:39 ff:ff:10:e2:34:06,F1
 2024-01-11 14:45:37 ff:ff:10:e2:34:06,F1
-2024-01-11 14:45:57 ff:ff:10:e2:33:64,F0 STB
-2024-01-11 14:45:59 ff:ff:10:e2:33:64,F0 STB
-2024-01-11 14:46:07 ff:ff:10:e2:33:64,F0 STB
-2024-01-11 14:46:43 ff:ff:10:e2:33:64,F0 STB
+2024-01-11 14:45:57 ff:ff:10:e2:33:64,F0
+2024-01-11 14:45:59 ff:ff:10:e2:33:64,F0
+2024-01-11 14:46:07 ff:ff:10:e2:33:64,F0
+2024-01-11 14:46:43 ff:ff:10:e2:33:64,F0
 2024-01-11 14:48:11 ff:ff:10:e2:34:06,F1
 2024-01-11 14:50:58 ff:ff:10:e2:34:06,L1
 }
@@ -603,12 +604,12 @@ The cycle process:
 2 - After sending the OK command, it will keep checking if it receives the "PN Yes" awnser. 
 2.1 - If it does not receive any "PN Yes" after 3 seconds, it should send "PN OK" again and wait again for the "PN Yes"
 2.2 - If it send the "PN OK" two times and it still didnt receive an awnser,  it should jump to the next slave cycle.
-3 - When receiving "PN Yes" successfully, it should send the command "PN SDATA" to request the data load of the slave.
+3 - When receiving "PN Yes" successfully, it should send the command "PN SDATAFULL" to request the data load of the slave.
 3.1 - The slave will always start the awnser with a "{PN" line
 3.2 - The slave will always finish the awnser with a "}" line
 3.3 - While we do not receive the "}" awnser, we should retrieve each line, turn each line into a Event object and send this object to the API.
-4 - After successfully receiving the "}" and successfully sending all of the received data to the Backend, we should send the command "PN CLDATA", so it clears the fetched data, we will not receive any awwnser for this command
-5 - After sending the "PN CLDATA" we start the cycle again with the next PN (or with the same one if it is the only one).
+4 - After successfully receiving the "}" and successfully sending all of the received data to the Backend, we should send the command "PN CLDATA" and "CLDATA2", so it clears the fetched data, we will not receive any awwnser for this command
+5 - After sending the "PN CLDATA" and the "PN CLDATA2" commands we start the cycle again with the next PN (or with the same one if it is the only one).
 
 Another functionality it should have:
  - At the beggining of every CYCLE the Master should fetch the approved IDs from the Backend with the GetAllApprovedUsersAsync() method and send it to all Slaves with the "P0 A," command, with each ID separated by comma after the "A," without any space after the "A,".

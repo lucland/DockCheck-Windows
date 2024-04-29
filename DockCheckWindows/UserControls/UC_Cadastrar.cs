@@ -29,12 +29,11 @@ namespace DockCheckWindows.UserControls
         private Employee _currentEmployee;
         private bool _isEditMode;
         private string _area = "Convés";
-        private SerialDataProcessor _serialDataProcessor;
+       // private SerialDataProcessor _serialDataProcessor;
 
         public UC_Cadastrar(UserRepository userRepository,
                             AuthorizationRepository authorizationRepository, UC_Dados ucDados,
-                            DocumentRepository documentRepository, EventRepository eventRepository,
-                        SerialDataProcessor serialDataProcessor)
+                            DocumentRepository documentRepository, EventRepository eventRepository)
         {
             InitializeComponent();
 
@@ -47,7 +46,7 @@ namespace DockCheckWindows.UserControls
             InitializeButtonStates();
             InitializeRepositories(userRepository, authorizationRepository);
             InitializeRegistrationProcess();
-            _serialDataProcessor = serialDataProcessor;
+          //  _serialDataProcessor = serialDataProcessor;
         }
 
         public async void PopulateFields(Employee employee)
@@ -846,7 +845,7 @@ namespace DockCheckWindows.UserControls
 
         private async void lerTagButton_Click(object sender, EventArgs e)
         {
-            try
+         /*   try
             {
                 // _serialDataProcessor.PauseProcessing();
 
@@ -895,7 +894,7 @@ namespace DockCheckWindows.UserControls
                     _serialPort.Close();
                 }
              //   await _serialDataProcessor.ResumeProcessingAsync();
-            }
+            }*/
         }
 
 
