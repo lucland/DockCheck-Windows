@@ -845,56 +845,80 @@ namespace DockCheckWindows.UserControls
 
         private async void lerTagButton_Click(object sender, EventArgs e)
         {
-         /*   try
+            /*   try
+               {
+                   // _serialDataProcessor.PauseProcessing();
+
+                   // Ensure port is fully released before attempting to open
+                   // await Task.Delay(1000);
+                   _serialDataProcessor.PauseProcessing();
+                   _serialDataProcessor.PauseProcessing();
+                   _serialDataProcessor.PauseProcessing();
+                   _serialDataProcessor.PauseProcessing();
+
+                   if (_serialPort == null)
+                   {
+                       _serialPort = new SerialPort("COM5", 115200)
+                       {
+                           ReadTimeout = 5000,
+                           WriteTimeout = 500
+                       };
+                   }
+
+                   if (!_serialPort.IsOpen)
+                   {
+                       _serialPort.Open();
+                   }
+                   _serialPort.WriteLine("L2");
+                   await Task.Delay(1000);
+
+                   _serialPort.WriteLine("L1"); // Command to read RFID tag
+
+                   await Task.Delay(1000); // Wait for response
+
+                   while (_serialPort.IsOpen && _serialPort.BytesToRead > 0)
+                   {
+                       string rfid = _serialPort.ReadLine();
+                       textBoxRFID.Text = rfid;
+                       _serialPort.WriteLine("L2");
+                   }
+               }
+               catch (Exception ex)
+               {
+                   MessageBox.Show($"Error: {ex.Message}");
+               }
+               finally
+               {
+                   if (_serialPort.IsOpen)
+                   {
+                       _serialPort.Close();
+                   }
+                //   await _serialDataProcessor.ResumeProcessingAsync();
+               }*/
+            try
             {
-                // _serialDataProcessor.PauseProcessing();
 
-                // Ensure port is fully released before attempting to open
-                // await Task.Delay(1000);
-                _serialDataProcessor.PauseProcessing();
-                _serialDataProcessor.PauseProcessing();
-                _serialDataProcessor.PauseProcessing();
-                _serialDataProcessor.PauseProcessing();
+                //open serial port COM3 with 115200 band
+                SerialPort serialPort = new SerialPort("COM3", 115200);
 
-                if (_serialPort == null)
+                //send command "L1" to the serial port and read the response
+                if (!serialPort.IsOpen)
                 {
-                    _serialPort = new SerialPort("COM5", 115200)
-                    {
-                        ReadTimeout = 5000,
-                        WriteTimeout = 500
-                    };
+                    serialPort.Open();
                 }
-
-                if (!_serialPort.IsOpen)
+            serialPort.WriteLine("L1");
+            string rfid = serialPort.ReadLine();
+            textBoxRFID.Text = rfid;
+            serialPort.WriteLine("L2");
+                if (serialPort.IsOpen)
                 {
-                    _serialPort.Open();
-                }
-                _serialPort.WriteLine("L2");
-                await Task.Delay(1000);
-
-                _serialPort.WriteLine("L1"); // Command to read RFID tag
-
-                await Task.Delay(1000); // Wait for response
-
-                while (_serialPort.IsOpen && _serialPort.BytesToRead > 0)
-                {
-                    string rfid = _serialPort.ReadLine();
-                    textBoxRFID.Text = rfid;
-                    _serialPort.WriteLine("L2");
+                    serialPort.Close();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}");
             }
-            finally
-            {
-                if (_serialPort.IsOpen)
-                {
-                    _serialPort.Close();
-                }
-             //   await _serialDataProcessor.ResumeProcessingAsync();
-            }*/
         }
 
 

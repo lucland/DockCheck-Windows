@@ -81,48 +81,32 @@ namespace DockCheckWindows.UserControls
 
         private async void leriTagButton_Click(object sender, EventArgs e)
         {
-                try
+
+            try
+            {
+
+                //open serial port COM3 with 115200 band
+                SerialPort serialPort = new SerialPort("COM3", 115200);
+
+                //send command "L1" to the serial port and read the response
+                if (!serialPort.IsOpen)
                 {
-
-                    if (_serialPort == null)
-                    {
-                        _serialPort = new SerialPort("COM5", 115200)
-                        {
-                            ReadTimeout = 5000,
-                            WriteTimeout = 500
-                        };
-                    }
-
-                    if (!_serialPort.IsOpen)
-                    {
-                        _serialPort.Open();
-                    }
-                    _serialPort.WriteLine("L2");
-                    await Task.Delay(1000);
-
-                    _serialPort.WriteLine("L1"); // Command to read RFID tag
-
-                    await Task.Delay(1000); // Wait for response
-
-                    while (_serialPort.IsOpen && _serialPort.BytesToRead > 0)
-                    {
-                        string rfid = _serialPort.ReadLine();
-                        textBoxRFID.Text = rfid;
-                        _serialPort.WriteLine("L2");
-                    }
+                    serialPort.Open();
                 }
-                catch (Exception ex)
+                serialPort.WriteLine("L1");
+                string rfid = serialPort.ReadLine();
+                textBoxRFID.Text = rfid;
+                serialPort.WriteLine("L2");
+                if (serialPort.IsOpen)
                 {
-                    MessageBox.Show($"Error: {ex.Message}");
+                    serialPort.Close();
                 }
-                finally
-                {
-                    if (_serialPort.IsOpen)
-                    {
-                        _serialPort.Close();
-                    }
-                    //   await _serialDataProcessor.ResumeProcessingAsync();
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+           
             
         }
 
