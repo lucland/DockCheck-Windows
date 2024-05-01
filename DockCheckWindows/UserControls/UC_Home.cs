@@ -76,35 +76,44 @@ namespace DockCheckWindows.UserControls
         {
             var total = 0;
 
-            var vessel = await vesselRepository.GetVesselByIdAsync("SKANDI SALVADOR");
+            //  var vessel = await vesselRepository.GetVesselByIdAsync("SKANDI SALVADOR");
+            /*
+              if (vessel == null)
+              {
+                  return;
+              }
 
-            if (vessel == null)
-            {
-                return;
-            }
 
-            
 
-            var sensors = await sensorRepository.GetAllSensorsAsync();
+              var sensors = await sensorRepository.GetAllSensorsAsync();
 
-            if (sensors == null || sensors.Count == 0)
-            {
-                return;
-            }
+              if (sensors == null || sensors.Count == 0)
+              {
+                  return;
+              }
 
-            //labelTotalABordo.Text = the sum of all beacons found in all sensors that has inVessel = true
-            labelTotalABordo.Text = sensors.Where(s => s.InVessel).Sum(s => s.BeaconsFound.Count).ToString();
-            //count the total of beacons found in all 4 sensors that has id == "P4", "P6", "P8" and "P9" and assign to labelTotalConves
-            labelTotalConves.Text = sensors.Where(s => s.AreaId == "Convés").Sum(s => s.BeaconsFound.Count).ToString();
+              //labelTotalABordo.Text = the sum of all beacons found in all sensors that has inVessel = true
+              labelTotalABordo.Text = sensors.Where(s => s.InVessel).Sum(s => s.BeaconsFound.Count).ToString();
+              //count the total of beacons found in all 4 sensors that has id == "P4", "P6", "P8" and "P9" and assign to labelTotalConves
+              labelTotalConves.Text = sensors.Where(s => s.AreaId == "Convés").Sum(s => s.BeaconsFound.Count).ToString();
 
-            sensorPassadiço = sensors.FirstOrDefault(s => s.AreaId == "Passadiço");
+              sensorPassadiço = sensors.FirstOrDefault(s => s.AreaId == "Passadiço");
 
-            labelTotalPassadiço.Text = sensorPassadiço.BeaconsFound.Count.ToString();
+              labelTotalPassadiço.Text = sensorPassadiço.BeaconsFound.Count.ToString();
 
-            sensorAcessoInterno = sensors.FirstOrDefault(s => s.AreaId == "Acesso Interno");
+              sensorAcessoInterno = sensors.FirstOrDefault(s => s.AreaId == "Acesso Interno");
 
-            labelTotalAcessoInterno.Text = sensorAcessoInterno.BeaconsFound.Count.ToString();
-        
+              labelTotalAcessoInterno.Text = sensorAcessoInterno.BeaconsFound.Count.ToString();
+          */
+
+           List<Employee> employees = await employeeRepository.GetAllEmployeeAsync();
+            //all employees has lastAreaFound string set to empty, "Convés", "Passadiço", "Acesso Interno" or "Acesso Externo", so we can count the number of employees in each area
+            labelTotalConves.Text = employees.Where(e => e.LastAreaFound == "Convés").Count().ToString();
+            labelTotalPassadiço.Text = employees.Where(e => e.LastAreaFound == "Passadiço").Count().ToString();
+            labelTotalAcessoInterno.Text = employees.Where(e => e.LastAreaFound == "Acesso Interno").Count().ToString();
+
+            //labelTotalABordo.Text = the sum of all employees that has lastAreaFound != ""
+            labelTotalABordo.Text = employees.Where(e => e.LastAreaFound != "").Count().ToString();
 
         }
 
@@ -112,7 +121,7 @@ namespace DockCheckWindows.UserControls
 
         private async Task PopulateStatusAcao()
         {
-            var vesselIds = (Properties.Settings.Default.VesselId ?? "").Split(',');
+        /*    var vesselIds = (Properties.Settings.Default.VesselId ?? "").Split(',');
 
             foreach (var id in vesselIds)
             {
@@ -125,7 +134,7 @@ namespace DockCheckWindows.UserControls
                         UpdateStatusAction(ev.SensorId, ev.Timestamp);
                     }
                 }
-            }
+            }*/
         }
 
         private void UpdateStatusAction(string portalId, DateTime timestamp)

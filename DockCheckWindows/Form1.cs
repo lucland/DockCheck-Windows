@@ -51,7 +51,6 @@ namespace DockCheckWindows
 
             InitializeComponent();
 
-            serialOnOffButton.Click += new EventHandler(serialOnOffButton_Click);
 
             Login loginForm = new Login(
                 authenticationRepository: _authenticationRepository
@@ -94,14 +93,11 @@ namespace DockCheckWindows
 
         private void BlinkTimer_Tick(object sender, EventArgs e)
         {
-            signalPictureBox.Visible = !signalPictureBox.Visible;
         }
 
 
         private void StartBlinking()
         {
-           // InitializeBlinkTimer();
-            signalPictureBox.Visible = true;
            // blinkTimer.Start();
         }
 
@@ -200,7 +196,6 @@ namespace DockCheckWindows
                 Invoke(new Action(() => UpdateStatus(message)));
                 return;
             }
-            signalLabel.Text = message;
             /*
             // Update the UI based on the message
             if (message.Contains("P"))
@@ -233,8 +228,6 @@ namespace DockCheckWindows
                 return; // Exit the method if there is no authorization data
             }
 
-            signalLabel.Text = "-------------------------------";
-            signalPictureBox.Visible = true;
 
             // Split the authorizations by comma
             var authorizationIds = authorization.Split(',');
@@ -278,6 +271,11 @@ namespace DockCheckWindows
         }
 
         private void labelUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

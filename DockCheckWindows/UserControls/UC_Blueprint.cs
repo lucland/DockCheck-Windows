@@ -42,6 +42,9 @@ namespace DockCheckWindows.UserControls
 
                 _topViewSensors = _topViewSensors.OrderBy(sensor => sensor.Code).ToList();
 
+                //remove "Acesso Externo" and "Portaló" from top view sensors
+                _topViewSensors.RemoveAll(sensor => sensor.AreaId == "Acesso Externo" || sensor.AreaId == "Portaló");
+
                 List<Sensor> _sideViewSensors = _topViewSensors.Where(sensor => sensor.InVessel == true).ToList();
 
                 _sideViewSensors.RemoveAll(sensor => sensor.AreaId == "Acesso Interno");
