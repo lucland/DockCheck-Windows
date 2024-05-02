@@ -24,9 +24,8 @@ namespace DockCheckWindows.Repositories
             }
             catch
             {
-                Console.WriteLine($"GET {url} failed. Fetching data from LiteDB.");
+                return "";
                 // Use the singleton instance of LiteDbService
-                return JsonConvert.SerializeObject(LiteDbService.Instance.GetAll<T>("User"));
             }
         }
 

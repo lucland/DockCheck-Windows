@@ -42,8 +42,13 @@ namespace DockCheckWindows.Models
         [JsonProperty("last_area_found")]
         public string LastAreaFound { get; set; }
 
+        private DateTime _lastTimeFound;
         [JsonProperty("last_time_found")]
-        public DateTime LastTimeFound { get; set; }
+        public DateTime LastTimeFound
+        {
+            get { return _lastTimeFound; }
+            set { _lastTimeFound = value == DateTime.MinValue ? DateTime.Now : value; }
+        }
 
         [JsonProperty("is_blocked")]
         public bool IsBlocked { get; set; }
@@ -96,7 +101,9 @@ namespace DockCheckWindows.Models
         }
 
         // Default constructor for JSON deserialization
-        public Employee() { }
+        public Employee() {
+            _lastTimeFound = DateTime.Now;
+        }
 
         // Method to deserialize JSON string to Employee object
         public static User FromJson(string jsonData)
