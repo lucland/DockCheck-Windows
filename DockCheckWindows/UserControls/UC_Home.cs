@@ -105,7 +105,7 @@ namespace DockCheckWindows.UserControls
 
               labelTotalAcessoInterno.Text = sensorAcessoInterno.BeaconsFound.Count.ToString();
           */
-
+/*
            List<Employee> employees = await employeeRepository.GetAllEmployeeAsync();
             //all employees has lastAreaFound string set to empty, "Convés", "Passadiço", "Acesso Interno" or "Acesso Externo", so we can count the number of employees in each area
             labelTotalConves.Text = employees.Where(e => e.LastAreaFound == "Convés").Count().ToString();
@@ -114,7 +114,7 @@ namespace DockCheckWindows.UserControls
 
             //labelTotalABordo.Text = the sum of all employees that has lastAreaFound != ""
             labelTotalABordo.Text = employees.Where(e => e.LastAreaFound != "").Count().ToString();
-
+*/
         }
 
 

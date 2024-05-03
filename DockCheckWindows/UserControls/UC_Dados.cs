@@ -11,6 +11,7 @@ using DockCheckWindows.Repositories;
 using DockCheckWindows.Models;
 using System.Web.UI.WebControls;
 using System.Drawing;
+using Guna.UI2.WinForms;
 
 namespace DockCheckWindows.UserControls
 {
@@ -34,6 +35,8 @@ namespace DockCheckWindows.UserControls
             _eventRepository = eventRepository;
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             db = LiteDbService.Instance;
+
+            guna2WinProgressIndicator1.Visible = true;
 
             InitializeDropdowns();
             CarregarDados();
@@ -67,17 +70,18 @@ namespace DockCheckWindows.UserControls
 
             try
             {
-                List<Employee> apiResponse = await _employeeRepository.GetAllEmployeeAsync(limit: 99, offset: 0);
-                    // Upsert each user into the local database
-                    foreach (var employee in apiResponse)
-                    {
-                        db.UpsertUser(employee);
-                    }
+                List<Employee> apiResponse = await _employeeRepository.GetAllEmployeeAsync(limit: 10000, offset: 0);
+                // Upsert each user into the local database
+                /* foreach (var employee in apiResponse)
+                 {
+                     db.UpsertUser(employee);
+                 }*/
 
-                    // Reload the updated user list from the local database
-                    _users = db.GetAll<Employee>("Employee");
+                // Reload the updated user list from the local database
+                _users = apiResponse;
 
                     isDataLoaded = true;
+                guna2WinProgressIndicator1.Visible = false;
                     // UpdateSortedAndFilteredUserDataSource();
                     cadastrosDataGrid.DataSource = new BindingSource(_users, null);
                 
@@ -86,10 +90,11 @@ namespace DockCheckWindows.UserControls
             {
                 Console.WriteLine("API call exception: " + ex.Message);
                 MessageBox.Show("API call failed. Fetching data from LiteDB.");
-                _users = db.GetAll<Employee>("Employee");
+               // _users = db.GetAll<Employee>("Employee");
 
                 isDataLoaded = true;
                 UpdateSortedAndFilteredUserDataSource();
+                guna2WinProgressIndicator1.Visible = false;
             }
             UpdateComboBoxOrdenarForUsers();
         }
@@ -111,6 +116,7 @@ namespace DockCheckWindows.UserControls
                         MissingMemberHandling = MissingMemberHandling.Ignore
                     });
                     isDataLoaded = true;
+                    guna2WinProgressIndicator1.Visible = false;
                     cadastrosDataGrid.DataSource = new BindingSource(events, null);
                 }
             }
