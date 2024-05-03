@@ -56,7 +56,7 @@ namespace DockCheckWindows.UserControls
                 MessageBox.Show("Por favor, insira um Beacon válido.");
             }
             else
-            
+            {
 
                 //remove any space or additional line \n \r if there is any from the textBoxRFID
                 textBoxRFID.Text = textBoxRFID.Text.Trim();
