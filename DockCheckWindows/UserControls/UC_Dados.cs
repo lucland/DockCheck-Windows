@@ -135,7 +135,7 @@ namespace DockCheckWindows.UserControls
         {
             comboBoxOrdenar.DataSource = null;
             comboBoxOrdenar.Items.Clear();
-            comboBoxOrdenar.Items.AddRange(typeof(User).GetProperties()
+            comboBoxOrdenar.Items.AddRange(typeof(Employee).GetProperties()
                 .Where(p => p.Name != "Salt" && p.Name != "Hash" && p.Name != "Username" && p.Name != "AuthorizationsId")
                 .Select(p => p.Name).ToArray());
             if (comboBoxOrdenar.Items.Count > 0) comboBoxOrdenar.SelectedIndex = 0;
