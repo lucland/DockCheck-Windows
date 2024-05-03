@@ -56,9 +56,12 @@ namespace DockCheckWindows.UserControls
                 MessageBox.Show("Por favor, insira um Beacon válido.");
             }
             else
-            {
+            
+
+                //remove any space or additional line \n \r if there is any from the textBoxRFID
+                textBoxRFID.Text = textBoxRFID.Text.Trim();
                
-               await  _employeeRepository.UpdateAreaAsync(id, textBoxRFID.Text);
+               await  _employeeRepository.UpdateAreaAsync(id,textBoxRFID.Text);
                 //TODO: get vessel name from user authorization
                 string vesselName = "Skandi Salvador";
                 var ucEtiqueta = new UC_Etiqueta(
