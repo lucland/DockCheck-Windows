@@ -324,5 +324,10 @@ namespace DockCheckWindows.UserControls
         {
 
         }
+
+        private void guna2WinProgressIndicator1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

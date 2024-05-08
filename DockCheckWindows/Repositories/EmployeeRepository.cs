@@ -78,6 +78,24 @@ namespace DockCheckWindows.Repositories
             return JsonConvert.DeserializeObject<List<Employee>>(jsonResponse);
         }
 
+        public async Task<List<Employee>> GetAllEmployeeOnboardedAsync(int limit = 1000, int offset = 0)
+        {
+            string url = $"{BaseUrl}/lastarea";
+            string jsonResponse = await GetAsync(url);
+            Console.WriteLine(jsonResponse);
+            Console.WriteLine(JsonConvert.DeserializeObject<List<Employee>>(jsonResponse));
+            return JsonConvert.DeserializeObject<List<Employee>>(jsonResponse);
+        }
+
+        public async Task<List<Daily>> GetAllEmployeeDailiesAsync()
+        {
+            string url = $"{GlobalConfig.BaseApiUrl}/dailies/";
+            string jsonResponse = await GetAsync(url);
+            Console.WriteLine(jsonResponse);
+            Console.WriteLine(JsonConvert.DeserializeObject<List<Employee>>(jsonResponse));
+            return JsonConvert.DeserializeObject<List<Daily>>(jsonResponse);
+        }
+
         public async Task<List<Authorization>> GetEmployeeAuthorizationsAsync(string userId)
         {
             string url = $"{BaseUrl}/{userId}/authorizations";

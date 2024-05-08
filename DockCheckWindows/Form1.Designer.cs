@@ -69,15 +69,15 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 70);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1455, 65);
+            this.panel2.Size = new System.Drawing.Size(1455, 47);
             this.panel2.TabIndex = 1;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
-            this.panel3.Location = new System.Drawing.Point(0, 52);
+            this.panel3.Location = new System.Drawing.Point(0, 39);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1920, 13);
+            this.panel3.Size = new System.Drawing.Size(1920, 8);
             this.panel3.TabIndex = 6;
             // 
             // fecharButton
@@ -99,7 +99,7 @@
             this.fecharButton.HoverState.ForeColor = System.Drawing.Color.White;
             this.fecharButton.Location = new System.Drawing.Point(1731, 0);
             this.fecharButton.Name = "fecharButton";
-            this.fecharButton.Size = new System.Drawing.Size(189, 54);
+            this.fecharButton.Size = new System.Drawing.Size(189, 40);
             this.fecharButton.TabIndex = 5;
             this.fecharButton.TabStop = false;
             this.fecharButton.Text = "FECHAR";
@@ -125,7 +125,7 @@
             this.mapaButton.HoverState.ForeColor = System.Drawing.Color.White;
             this.mapaButton.Location = new System.Drawing.Point(780, 0);
             this.mapaButton.Name = "mapaButton";
-            this.mapaButton.Size = new System.Drawing.Size(189, 54);
+            this.mapaButton.Size = new System.Drawing.Size(189, 40);
             this.mapaButton.TabIndex = 4;
             this.mapaButton.TabStop = false;
             this.mapaButton.Text = "Mapa";
@@ -151,7 +151,7 @@
             this.bancoButton.HoverState.ForeColor = System.Drawing.Color.White;
             this.bancoButton.Location = new System.Drawing.Point(585, 0);
             this.bancoButton.Name = "bancoButton";
-            this.bancoButton.Size = new System.Drawing.Size(189, 54);
+            this.bancoButton.Size = new System.Drawing.Size(189, 40);
             this.bancoButton.TabIndex = 3;
             this.bancoButton.TabStop = false;
             this.bancoButton.Text = "Dados";
@@ -177,7 +177,7 @@
             this.dashboardButton.HoverState.ForeColor = System.Drawing.Color.White;
             this.dashboardButton.Location = new System.Drawing.Point(390, 0);
             this.dashboardButton.Name = "dashboardButton";
-            this.dashboardButton.Size = new System.Drawing.Size(189, 54);
+            this.dashboardButton.Size = new System.Drawing.Size(189, 40);
             this.dashboardButton.TabIndex = 2;
             this.dashboardButton.TabStop = false;
             this.dashboardButton.Text = "Dashboard";
@@ -203,7 +203,7 @@
             this.cadastroButton.HoverState.ForeColor = System.Drawing.Color.White;
             this.cadastroButton.Location = new System.Drawing.Point(195, 0);
             this.cadastroButton.Name = "cadastroButton";
-            this.cadastroButton.Size = new System.Drawing.Size(189, 54);
+            this.cadastroButton.Size = new System.Drawing.Size(189, 40);
             this.cadastroButton.TabIndex = 1;
             this.cadastroButton.TabStop = false;
             this.cadastroButton.Text = "Cadastrar";
@@ -230,7 +230,7 @@
             this.homeButton.HoverState.ForeColor = System.Drawing.Color.White;
             this.homeButton.Location = new System.Drawing.Point(0, 0);
             this.homeButton.Name = "homeButton";
-            this.homeButton.Size = new System.Drawing.Size(189, 54);
+            this.homeButton.Size = new System.Drawing.Size(189, 40);
             this.homeButton.TabIndex = 0;
             this.homeButton.TabStop = false;
             this.homeButton.Text = "Home";
@@ -245,10 +245,11 @@
             // panelContainer
             // 
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContainer.Location = new System.Drawing.Point(0, 135);
+            this.panelContainer.Location = new System.Drawing.Point(0, 117);
             this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(1455, 759);
+            this.panelContainer.Size = new System.Drawing.Size(1455, 777);
             this.panelContainer.TabIndex = 2;
+            this.panelContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContainer_Paint);
             // 
             // pictureBox2
             // 

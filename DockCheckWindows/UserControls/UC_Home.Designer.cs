@@ -28,1155 +28,800 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            Guna.Charts.WinForms.ChartFont chartFont1 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.ChartFont chartFont2 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.ChartFont chartFont3 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.ChartFont chartFont4 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.Grid grid1 = new Guna.Charts.WinForms.Grid();
+            Guna.Charts.WinForms.Tick tick1 = new Guna.Charts.WinForms.Tick();
+            Guna.Charts.WinForms.ChartFont chartFont5 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.Grid grid2 = new Guna.Charts.WinForms.Grid();
+            Guna.Charts.WinForms.Tick tick2 = new Guna.Charts.WinForms.Tick();
+            Guna.Charts.WinForms.ChartFont chartFont6 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.Grid grid3 = new Guna.Charts.WinForms.Grid();
+            Guna.Charts.WinForms.PointLabel pointLabel1 = new Guna.Charts.WinForms.PointLabel();
+            Guna.Charts.WinForms.ChartFont chartFont7 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.Tick tick3 = new Guna.Charts.WinForms.Tick();
+            Guna.Charts.WinForms.ChartFont chartFont8 = new Guna.Charts.WinForms.ChartFont();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Home));
-            this.labelABordo = new System.Windows.Forms.Label();
-            this.labelTotalABordo = new System.Windows.Forms.Label();
-            this.labelPortalo = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.statusAcao1 = new System.Windows.Forms.Label();
-            this.portaloData1 = new System.Windows.Forms.Label();
-            this.labelProaUltimaAtualizacao = new System.Windows.Forms.Label();
-            this.labelProaRfid1 = new System.Windows.Forms.Label();
-            this.labelPortaloTitulo1 = new System.Windows.Forms.Label();
-            this.statusPortalo1 = new Guna.UI2.WinForms.Guna2Shapes();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.statusAcao2 = new System.Windows.Forms.Label();
-            this.portaloData2 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.labelPortaloTitulo2 = new System.Windows.Forms.Label();
-            this.statusPortalo2 = new Guna.UI2.WinForms.Guna2Shapes();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.statusAcao3 = new System.Windows.Forms.Label();
-            this.portaloData3 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.labelPortaloTitulo3 = new System.Windows.Forms.Label();
-            this.statusPortalo3 = new Guna.UI2.WinForms.Guna2Shapes();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.statusAcao4 = new System.Windows.Forms.Label();
-            this.portaloData4 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.labelPortaloTitulo4 = new System.Windows.Forms.Label();
-            this.statusPortalo4 = new Guna.UI2.WinForms.Guna2Shapes();
-            this.buttonSincronizar = new Guna.UI2.WinForms.Guna2Button();
-            this.labelTotalPassadiço = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.labelTotalConves = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.guna2Shapes1 = new Guna.UI2.WinForms.Guna2Shapes();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.guna2Shapes2 = new Guna.UI2.WinForms.Guna2Shapes();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.guna2Shapes3 = new Guna.UI2.WinForms.Guna2Shapes();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.labelTotalAcessoInterno = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.guna2Shapes4 = new Guna.UI2.WinForms.Guna2Shapes();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Shapes5 = new Guna.UI2.WinForms.Guna2Shapes();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
             this.guna2Shapes6 = new Guna.UI2.WinForms.Guna2Shapes();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel9.SuspendLayout();
-            this.panel10.SuspendLayout();
-            this.panel11.SuspendLayout();
+            this.labelTotalEmbarcacao = new System.Windows.Forms.Label();
+            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            this.listaPessoas = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.Número = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Empresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
+            this.chartMovimentacao = new Guna.Charts.WinForms.GunaChart();
+            this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2Shapes2 = new Guna.UI2.WinForms.Guna2Shapes();
+            this.guna2Shapes1 = new Guna.UI2.WinForms.Guna2Shapes();
+            this.labelUsuario = new System.Windows.Forms.Label();
+            this.guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.guna2Panel9 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2Shapes3 = new Guna.UI2.WinForms.Guna2Shapes();
+            this.guna2Shapes4 = new Guna.UI2.WinForms.Guna2Shapes();
+            this.label1 = new System.Windows.Forms.Label();
+            this.guna2Panel10 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2Shapes7 = new Guna.UI2.WinForms.Guna2Shapes();
+            this.guna2Shapes8 = new Guna.UI2.WinForms.Guna2Shapes();
+            this.labelTotalDique = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.buttonBaixar = new Guna.UI2.WinForms.Guna2Button();
+            this.gunaBarDataset1 = new Guna.Charts.WinForms.GunaBarDataset();
+            this.guna2Panel8 = new Guna.UI2.WinForms.Guna2Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.listaEmpresa = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.guna2Panel1.SuspendLayout();
+            this.guna2Panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listaPessoas)).BeginInit();
+            this.guna2Panel3.SuspendLayout();
+            this.guna2Panel4.SuspendLayout();
+            this.guna2Panel5.SuspendLayout();
+            this.guna2Panel6.SuspendLayout();
+            this.guna2Panel7.SuspendLayout();
+            this.guna2Panel9.SuspendLayout();
+            this.guna2Panel10.SuspendLayout();
+            this.guna2Panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listaEmpresa)).BeginInit();
             this.SuspendLayout();
             // 
-            // labelABordo
-            // 
-            this.labelABordo.AutoSize = true;
-            this.labelABordo.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelABordo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelABordo.Location = new System.Drawing.Point(47, 29);
-            this.labelABordo.Name = "labelABordo";
-            this.labelABordo.Size = new System.Drawing.Size(173, 38);
-            this.labelABordo.TabIndex = 1;
-            this.labelABordo.Text = "À BORDO:";
-            // 
-            // labelTotalABordo
-            // 
-            this.labelTotalABordo.AutoSize = true;
-            this.labelTotalABordo.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalABordo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelTotalABordo.Location = new System.Drawing.Point(373, 29);
-            this.labelTotalABordo.Name = "labelTotalABordo";
-            this.labelTotalABordo.Size = new System.Drawing.Size(35, 38);
-            this.labelTotalABordo.TabIndex = 4;
-            this.labelTotalABordo.Text = "0";
-            // 
-            // labelPortalo
-            // 
-            this.labelPortalo.AutoSize = true;
-            this.labelPortalo.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPortalo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelPortalo.Location = new System.Drawing.Point(799, 29);
-            this.labelPortalo.Name = "labelPortalo";
-            this.labelPortalo.Size = new System.Drawing.Size(160, 38);
-            this.labelPortalo.TabIndex = 5;
-            this.labelPortalo.Text = "Sensores:";
-            this.labelPortalo.Click += new System.EventHandler(this.labelPortalo_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel2.Controls.Add(this.statusAcao1);
-            this.panel2.Controls.Add(this.portaloData1);
-            this.panel2.Controls.Add(this.labelProaUltimaAtualizacao);
-            this.panel2.Controls.Add(this.labelProaRfid1);
-            this.panel2.Controls.Add(this.labelPortaloTitulo1);
-            this.panel2.Controls.Add(this.statusPortalo1);
-            this.panel2.Location = new System.Drawing.Point(802, 86);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1086, 62);
-            this.panel2.TabIndex = 4;
-            // 
-            // statusAcao1
-            // 
-            this.statusAcao1.AutoSize = true;
-            this.statusAcao1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusAcao1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.statusAcao1.Location = new System.Drawing.Point(191, 20);
-            this.statusAcao1.Name = "statusAcao1";
-            this.statusAcao1.Size = new System.Drawing.Size(41, 22);
-            this.statusAcao1.TabIndex = 8;
-            this.statusAcao1.Text = "ON";
-            // 
-            // portaloData1
-            // 
-            this.portaloData1.AutoSize = true;
-            this.portaloData1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portaloData1.Location = new System.Drawing.Point(778, 20);
-            this.portaloData1.Name = "portaloData1";
-            this.portaloData1.Size = new System.Drawing.Size(99, 22);
-            this.portaloData1.TabIndex = 7;
-            this.portaloData1.Text = "PORTALÓ";
-            // 
-            // labelProaUltimaAtualizacao
-            // 
-            this.labelProaUltimaAtualizacao.AutoSize = true;
-            this.labelProaUltimaAtualizacao.Location = new System.Drawing.Point(633, 20);
-            this.labelProaUltimaAtualizacao.Name = "labelProaUltimaAtualizacao";
-            this.labelProaUltimaAtualizacao.Size = new System.Drawing.Size(129, 23);
-            this.labelProaUltimaAtualizacao.TabIndex = 6;
-            this.labelProaUltimaAtualizacao.Text = "Localização:";
-            // 
-            // labelProaRfid1
-            // 
-            this.labelProaRfid1.AutoSize = true;
-            this.labelProaRfid1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelProaRfid1.Location = new System.Drawing.Point(119, 20);
-            this.labelProaRfid1.Name = "labelProaRfid1";
-            this.labelProaRfid1.Size = new System.Drawing.Size(69, 23);
-            this.labelProaRfid1.TabIndex = 2;
-            this.labelProaRfid1.Text = "Status:";
-            // 
-            // labelPortaloTitulo1
-            // 
-            this.labelPortaloTitulo1.AutoSize = true;
-            this.labelPortaloTitulo1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPortaloTitulo1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelPortaloTitulo1.Location = new System.Drawing.Point(34, 13);
-            this.labelPortaloTitulo1.Name = "labelPortaloTitulo1";
-            this.labelPortaloTitulo1.Size = new System.Drawing.Size(44, 32);
-            this.labelPortaloTitulo1.TabIndex = 1;
-            this.labelPortaloTitulo1.Text = "P1";
-            // 
-            // statusPortalo1
-            // 
-            this.statusPortalo1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(89)))));
-            this.statusPortalo1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(89)))));
-            this.statusPortalo1.Location = new System.Drawing.Point(4, 4);
-            this.statusPortalo1.Name = "statusPortalo1";
-            this.statusPortalo1.PolygonSkip = 1;
-            this.statusPortalo1.Rotate = 0F;
-            this.statusPortalo1.Shape = Guna.UI2.WinForms.Enums.ShapeType.Rectangle;
-            this.statusPortalo1.Size = new System.Drawing.Size(24, 55);
-            this.statusPortalo1.TabIndex = 0;
-            this.statusPortalo1.Text = "guna2Shapes1";
-            this.statusPortalo1.Zoom = 80;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel3.Controls.Add(this.statusAcao2);
-            this.panel3.Controls.Add(this.portaloData2);
-            this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.label5);
-            this.panel3.Controls.Add(this.labelPortaloTitulo2);
-            this.panel3.Controls.Add(this.statusPortalo2);
-            this.panel3.Location = new System.Drawing.Point(802, 154);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1086, 62);
-            this.panel3.TabIndex = 4;
-            // 
-            // statusAcao2
-            // 
-            this.statusAcao2.AutoSize = true;
-            this.statusAcao2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusAcao2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.statusAcao2.Location = new System.Drawing.Point(191, 20);
-            this.statusAcao2.Name = "statusAcao2";
-            this.statusAcao2.Size = new System.Drawing.Size(45, 22);
-            this.statusAcao2.TabIndex = 9;
-            this.statusAcao2.Text = "OFF";
-            // 
-            // portaloData2
-            // 
-            this.portaloData2.AutoSize = true;
-            this.portaloData2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portaloData2.Location = new System.Drawing.Point(778, 20);
-            this.portaloData2.Name = "portaloData2";
-            this.portaloData2.Size = new System.Drawing.Size(16, 22);
-            this.portaloData2.TabIndex = 7;
-            this.portaloData2.Text = "-";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(633, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(129, 23);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Localização:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(119, 20);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 23);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Status:";
-            // 
-            // labelPortaloTitulo2
-            // 
-            this.labelPortaloTitulo2.AutoSize = true;
-            this.labelPortaloTitulo2.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPortaloTitulo2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelPortaloTitulo2.Location = new System.Drawing.Point(34, 13);
-            this.labelPortaloTitulo2.Name = "labelPortaloTitulo2";
-            this.labelPortaloTitulo2.Size = new System.Drawing.Size(60, 32);
-            this.labelPortaloTitulo2.TabIndex = 1;
-            this.labelPortaloTitulo2.Text = "P1B";
-            // 
-            // statusPortalo2
-            // 
-            this.statusPortalo2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.statusPortalo2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.statusPortalo2.Location = new System.Drawing.Point(4, 4);
-            this.statusPortalo2.Name = "statusPortalo2";
-            this.statusPortalo2.PolygonSkip = 1;
-            this.statusPortalo2.Rotate = 0F;
-            this.statusPortalo2.Shape = Guna.UI2.WinForms.Enums.ShapeType.Rectangle;
-            this.statusPortalo2.Size = new System.Drawing.Size(24, 55);
-            this.statusPortalo2.TabIndex = 0;
-            this.statusPortalo2.Text = "guna2Shapes1";
-            this.statusPortalo2.Zoom = 80;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel4.Controls.Add(this.statusAcao3);
-            this.panel4.Controls.Add(this.portaloData3);
-            this.panel4.Controls.Add(this.label8);
-            this.panel4.Controls.Add(this.label11);
-            this.panel4.Controls.Add(this.labelPortaloTitulo3);
-            this.panel4.Controls.Add(this.statusPortalo3);
-            this.panel4.Location = new System.Drawing.Point(802, 222);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1086, 62);
-            this.panel4.TabIndex = 4;
-            // 
-            // statusAcao3
-            // 
-            this.statusAcao3.AutoSize = true;
-            this.statusAcao3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusAcao3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.statusAcao3.Location = new System.Drawing.Point(191, 20);
-            this.statusAcao3.Name = "statusAcao3";
-            this.statusAcao3.Size = new System.Drawing.Size(41, 22);
-            this.statusAcao3.TabIndex = 10;
-            this.statusAcao3.Text = "ON";
-            // 
-            // portaloData3
-            // 
-            this.portaloData3.AutoSize = true;
-            this.portaloData3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portaloData3.Location = new System.Drawing.Point(778, 21);
-            this.portaloData3.Name = "portaloData3";
-            this.portaloData3.Size = new System.Drawing.Size(173, 22);
-            this.portaloData3.TabIndex = 7;
-            this.portaloData3.Text = "ACESSO EXTERNO";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(633, 20);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(129, 23);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "Localização:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label11.Location = new System.Drawing.Point(119, 20);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(69, 23);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "Status:";
-            // 
-            // labelPortaloTitulo3
-            // 
-            this.labelPortaloTitulo3.AutoSize = true;
-            this.labelPortaloTitulo3.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPortaloTitulo3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelPortaloTitulo3.Location = new System.Drawing.Point(34, 13);
-            this.labelPortaloTitulo3.Name = "labelPortaloTitulo3";
-            this.labelPortaloTitulo3.Size = new System.Drawing.Size(44, 32);
-            this.labelPortaloTitulo3.TabIndex = 1;
-            this.labelPortaloTitulo3.Text = "P2";
-            // 
-            // statusPortalo3
-            // 
-            this.statusPortalo3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(89)))));
-            this.statusPortalo3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(89)))));
-            this.statusPortalo3.Location = new System.Drawing.Point(4, 4);
-            this.statusPortalo3.Name = "statusPortalo3";
-            this.statusPortalo3.PolygonSkip = 1;
-            this.statusPortalo3.Rotate = 0F;
-            this.statusPortalo3.Shape = Guna.UI2.WinForms.Enums.ShapeType.Rectangle;
-            this.statusPortalo3.Size = new System.Drawing.Size(24, 55);
-            this.statusPortalo3.TabIndex = 0;
-            this.statusPortalo3.Text = "guna2Shapes1";
-            this.statusPortalo3.Zoom = 80;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel5.Controls.Add(this.statusAcao4);
-            this.panel5.Controls.Add(this.portaloData4);
-            this.panel5.Controls.Add(this.label14);
-            this.panel5.Controls.Add(this.label17);
-            this.panel5.Controls.Add(this.labelPortaloTitulo4);
-            this.panel5.Controls.Add(this.statusPortalo4);
-            this.panel5.Location = new System.Drawing.Point(802, 290);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1086, 62);
-            this.panel5.TabIndex = 4;
-            // 
-            // statusAcao4
-            // 
-            this.statusAcao4.AutoSize = true;
-            this.statusAcao4.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusAcao4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.statusAcao4.Location = new System.Drawing.Point(191, 20);
-            this.statusAcao4.Name = "statusAcao4";
-            this.statusAcao4.Size = new System.Drawing.Size(41, 22);
-            this.statusAcao4.TabIndex = 11;
-            this.statusAcao4.Text = "ON";
-            // 
-            // portaloData4
-            // 
-            this.portaloData4.AutoSize = true;
-            this.portaloData4.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portaloData4.Location = new System.Drawing.Point(778, 21);
-            this.portaloData4.Name = "portaloData4";
-            this.portaloData4.Size = new System.Drawing.Size(170, 22);
-            this.portaloData4.TabIndex = 7;
-            this.portaloData4.Text = "ACESSO INTERNO";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(633, 20);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(129, 23);
-            this.label14.TabIndex = 6;
-            this.label14.Text = "Localização:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label17.Location = new System.Drawing.Point(119, 20);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(69, 23);
-            this.label17.TabIndex = 2;
-            this.label17.Text = "Status:";
-            // 
-            // labelPortaloTitulo4
-            // 
-            this.labelPortaloTitulo4.AutoSize = true;
-            this.labelPortaloTitulo4.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPortaloTitulo4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.labelPortaloTitulo4.Location = new System.Drawing.Point(34, 13);
-            this.labelPortaloTitulo4.Name = "labelPortaloTitulo4";
-            this.labelPortaloTitulo4.Size = new System.Drawing.Size(44, 32);
-            this.labelPortaloTitulo4.TabIndex = 1;
-            this.labelPortaloTitulo4.Text = "P3";
-            // 
-            // statusPortalo4
-            // 
-            this.statusPortalo4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(89)))));
-            this.statusPortalo4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(89)))));
-            this.statusPortalo4.Location = new System.Drawing.Point(4, 4);
-            this.statusPortalo4.Name = "statusPortalo4";
-            this.statusPortalo4.PolygonSkip = 1;
-            this.statusPortalo4.Rotate = 0F;
-            this.statusPortalo4.Shape = Guna.UI2.WinForms.Enums.ShapeType.Rectangle;
-            this.statusPortalo4.Size = new System.Drawing.Size(24, 55);
-            this.statusPortalo4.TabIndex = 0;
-            this.statusPortalo4.Text = "guna2Shapes1";
-            this.statusPortalo4.Zoom = 80;
-            // 
-            // buttonSincronizar
-            // 
-            this.buttonSincronizar.BorderRadius = 3;
-            this.buttonSincronizar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.buttonSincronizar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.buttonSincronizar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.buttonSincronizar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.buttonSincronizar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
-            this.buttonSincronizar.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSincronizar.ForeColor = System.Drawing.Color.White;
-            this.buttonSincronizar.Image = ((System.Drawing.Image)(resources.GetObject("buttonSincronizar.Image")));
-            this.buttonSincronizar.ImageSize = new System.Drawing.Size(30, 30);
-            this.buttonSincronizar.Location = new System.Drawing.Point(1584, 852);
-            this.buttonSincronizar.Name = "buttonSincronizar";
-            this.buttonSincronizar.Size = new System.Drawing.Size(304, 71);
-            this.buttonSincronizar.TabIndex = 6;
-            this.buttonSincronizar.Text = "Sincronizar";
-            this.buttonSincronizar.Click += new System.EventHandler(this.buttonSincronizar_Click);
-            // 
-            // labelTotalPassadiço
-            // 
-            this.labelTotalPassadiço.AutoSize = true;
-            this.labelTotalPassadiço.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalPassadiço.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelTotalPassadiço.Location = new System.Drawing.Point(374, 154);
-            this.labelTotalPassadiço.Name = "labelTotalPassadiço";
-            this.labelTotalPassadiço.Size = new System.Drawing.Size(29, 32);
-            this.labelTotalPassadiço.TabIndex = 16;
-            this.labelTotalPassadiço.Text = "0";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label6.Location = new System.Drawing.Point(44, 154);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(176, 32);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "PASSADIÇO:";
-            // 
-            // labelTotalConves
-            // 
-            this.labelTotalConves.AutoSize = true;
-            this.labelTotalConves.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalConves.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelTotalConves.Location = new System.Drawing.Point(374, 224);
-            this.labelTotalConves.Name = "labelTotalConves";
-            this.labelTotalConves.Size = new System.Drawing.Size(29, 32);
-            this.labelTotalConves.TabIndex = 18;
-            this.labelTotalConves.Text = "0";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(44, 224);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(133, 32);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "CONVÉS:";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.label16);
-            this.panel1.Controls.Add(this.label18);
-            this.panel1.Controls.Add(this.label19);
-            this.panel1.Controls.Add(this.guna2Shapes1);
-            this.panel1.Location = new System.Drawing.Point(802, 358);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1086, 62);
-            this.panel1.TabIndex = 12;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label13.Location = new System.Drawing.Point(191, 20);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(41, 22);
-            this.label13.TabIndex = 11;
-            this.label13.Text = "ON";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(778, 21);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(90, 22);
-            this.label15.TabIndex = 7;
-            this.label15.Text = "CONVÉS";
-            this.label15.Click += new System.EventHandler(this.label15_Click);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(633, 20);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(129, 23);
-            this.label16.TabIndex = 6;
-            this.label16.Text = "Localização:";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label18.Location = new System.Drawing.Point(119, 20);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(69, 23);
-            this.label18.TabIndex = 2;
-            this.label18.Text = "Status:";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label19.Location = new System.Drawing.Point(34, 13);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(44, 32);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "P4";
-            // 
-            // guna2Shapes1
-            // 
-            this.guna2Shapes1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(89)))));
-            this.guna2Shapes1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(89)))));
-            this.guna2Shapes1.Location = new System.Drawing.Point(4, 4);
-            this.guna2Shapes1.Name = "guna2Shapes1";
-            this.guna2Shapes1.PolygonSkip = 1;
-            this.guna2Shapes1.Rotate = 0F;
-            this.guna2Shapes1.Shape = Guna.UI2.WinForms.Enums.ShapeType.Rectangle;
-            this.guna2Shapes1.Size = new System.Drawing.Size(24, 55);
-            this.guna2Shapes1.TabIndex = 0;
-            this.guna2Shapes1.Text = "guna2Shapes1";
-            this.guna2Shapes1.Zoom = 80;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel6.Controls.Add(this.label20);
-            this.panel6.Controls.Add(this.label21);
-            this.panel6.Controls.Add(this.label22);
-            this.panel6.Controls.Add(this.label23);
-            this.panel6.Controls.Add(this.label24);
-            this.panel6.Controls.Add(this.guna2Shapes2);
-            this.panel6.Location = new System.Drawing.Point(802, 426);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1086, 62);
-            this.panel6.TabIndex = 12;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label20.Location = new System.Drawing.Point(191, 20);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(41, 22);
-            this.label20.TabIndex = 11;
-            this.label20.Text = "ON";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(778, 23);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(120, 22);
-            this.label21.TabIndex = 7;
-            this.label21.Text = "PASSADIÇO";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(633, 20);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(129, 23);
-            this.label22.TabIndex = 6;
-            this.label22.Text = "Localização:";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label23.Location = new System.Drawing.Point(119, 20);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(69, 23);
-            this.label23.TabIndex = 2;
-            this.label23.Text = "Status:";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label24.Location = new System.Drawing.Point(34, 13);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(44, 32);
-            this.label24.TabIndex = 1;
-            this.label24.Text = "P5";
-            // 
-            // guna2Shapes2
-            // 
-            this.guna2Shapes2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(89)))));
-            this.guna2Shapes2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(89)))));
-            this.guna2Shapes2.Location = new System.Drawing.Point(4, 4);
-            this.guna2Shapes2.Name = "guna2Shapes2";
-            this.guna2Shapes2.PolygonSkip = 1;
-            this.guna2Shapes2.Rotate = 0F;
-            this.guna2Shapes2.Shape = Guna.UI2.WinForms.Enums.ShapeType.Rectangle;
-            this.guna2Shapes2.Size = new System.Drawing.Size(24, 55);
-            this.guna2Shapes2.TabIndex = 0;
-            this.guna2Shapes2.Text = "guna2Shapes1";
-            this.guna2Shapes2.Zoom = 80;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel7.Controls.Add(this.label25);
-            this.panel7.Controls.Add(this.label26);
-            this.panel7.Controls.Add(this.label27);
-            this.panel7.Controls.Add(this.label28);
-            this.panel7.Controls.Add(this.label29);
-            this.panel7.Controls.Add(this.guna2Shapes3);
-            this.panel7.Location = new System.Drawing.Point(802, 494);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1086, 62);
-            this.panel7.TabIndex = 12;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label25.Location = new System.Drawing.Point(191, 20);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(41, 22);
-            this.label25.TabIndex = 11;
-            this.label25.Text = "ON";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(778, 23);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(90, 22);
-            this.label26.TabIndex = 7;
-            this.label26.Text = "CONVÉS";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(633, 20);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(129, 23);
-            this.label27.TabIndex = 6;
-            this.label27.Text = "Localização:";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label28.Location = new System.Drawing.Point(119, 20);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(69, 23);
-            this.label28.TabIndex = 2;
-            this.label28.Text = "Status:";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label29.Location = new System.Drawing.Point(34, 13);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(44, 32);
-            this.label29.TabIndex = 1;
-            this.label29.Text = "P6";
-            // 
-            // guna2Shapes3
-            // 
-            this.guna2Shapes3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(89)))));
-            this.guna2Shapes3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(89)))));
-            this.guna2Shapes3.Location = new System.Drawing.Point(4, 4);
-            this.guna2Shapes3.Name = "guna2Shapes3";
-            this.guna2Shapes3.PolygonSkip = 1;
-            this.guna2Shapes3.Rotate = 0F;
-            this.guna2Shapes3.Shape = Guna.UI2.WinForms.Enums.ShapeType.Rectangle;
-            this.guna2Shapes3.Size = new System.Drawing.Size(24, 55);
-            this.guna2Shapes3.TabIndex = 0;
-            this.guna2Shapes3.Text = "guna2Shapes1";
-            this.guna2Shapes3.Zoom = 80;
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.Black;
-            this.panel8.Location = new System.Drawing.Point(54, 106);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(681, 10);
-            this.panel8.TabIndex = 21;
-            // 
-            // labelTotalAcessoInterno
-            // 
-            this.labelTotalAcessoInterno.AutoSize = true;
-            this.labelTotalAcessoInterno.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalAcessoInterno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelTotalAcessoInterno.Location = new System.Drawing.Point(373, 290);
-            this.labelTotalAcessoInterno.Name = "labelTotalAcessoInterno";
-            this.labelTotalAcessoInterno.Size = new System.Drawing.Size(29, 32);
-            this.labelTotalAcessoInterno.TabIndex = 23;
-            this.labelTotalAcessoInterno.Text = "0";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label4.Location = new System.Drawing.Point(44, 290);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(248, 32);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "ACESSO INTERNO:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(191, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 22);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "OFF";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(778, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(16, 22);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "-";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(633, 20);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(129, 23);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Localização:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label10.Location = new System.Drawing.Point(119, 20);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(69, 23);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "Status:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label12.Location = new System.Drawing.Point(34, 13);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(44, 32);
-            this.label12.TabIndex = 1;
-            this.label12.Text = "P7";
-            // 
-            // guna2Shapes4
-            // 
-            this.guna2Shapes4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.guna2Shapes4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.guna2Shapes4.Location = new System.Drawing.Point(4, 4);
-            this.guna2Shapes4.Name = "guna2Shapes4";
-            this.guna2Shapes4.PolygonSkip = 1;
-            this.guna2Shapes4.Rotate = 0F;
-            this.guna2Shapes4.Shape = Guna.UI2.WinForms.Enums.ShapeType.Rectangle;
-            this.guna2Shapes4.Size = new System.Drawing.Size(24, 55);
-            this.guna2Shapes4.TabIndex = 0;
-            this.guna2Shapes4.Text = "guna2Shapes1";
-            this.guna2Shapes4.Zoom = 80;
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel9.Controls.Add(this.label1);
-            this.panel9.Controls.Add(this.label3);
-            this.panel9.Controls.Add(this.label7);
-            this.panel9.Controls.Add(this.label10);
-            this.panel9.Controls.Add(this.label12);
-            this.panel9.Controls.Add(this.guna2Shapes4);
-            this.panel9.Location = new System.Drawing.Point(802, 562);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1086, 62);
-            this.panel9.TabIndex = 13;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label30.Location = new System.Drawing.Point(191, 20);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(41, 22);
-            this.label30.TabIndex = 11;
-            this.label30.Text = "ON";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(778, 21);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(90, 22);
-            this.label31.TabIndex = 7;
-            this.label31.Text = "CONVÉS";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(633, 20);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(129, 23);
-            this.label32.TabIndex = 6;
-            this.label32.Text = "Localização:";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label33.Location = new System.Drawing.Point(119, 20);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(69, 23);
-            this.label33.TabIndex = 2;
-            this.label33.Text = "Status:";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label34.Location = new System.Drawing.Point(34, 13);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(44, 32);
-            this.label34.TabIndex = 1;
-            this.label34.Text = "P8";
+            // guna2Panel1
+            // 
+            this.guna2Panel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Panel1.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Panel1.BorderRadius = 20;
+            this.guna2Panel1.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.guna2Panel1.BorderThickness = 10;
+            this.guna2Panel1.Controls.Add(this.guna2Shapes5);
+            this.guna2Panel1.Controls.Add(this.guna2Shapes6);
+            this.guna2Panel1.Controls.Add(this.labelTotalEmbarcacao);
+            this.guna2Panel1.CustomBorderColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Panel1.CustomizableEdges.TopLeft = false;
+            this.guna2Panel1.CustomizableEdges.TopRight = false;
+            this.guna2Panel1.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Panel1.Location = new System.Drawing.Point(16, 120);
+            this.guna2Panel1.Name = "guna2Panel1";
+            this.guna2Panel1.Size = new System.Drawing.Size(452, 360);
+            this.guna2Panel1.TabIndex = 0;
+            this.guna2Panel1.UseTransparentBackground = true;
             // 
             // guna2Shapes5
             // 
-            this.guna2Shapes5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(89)))));
-            this.guna2Shapes5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(89)))));
-            this.guna2Shapes5.Location = new System.Drawing.Point(4, 4);
+            this.guna2Shapes5.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Shapes5.BorderColor = System.Drawing.Color.White;
+            this.guna2Shapes5.FillColor = System.Drawing.Color.White;
+            this.guna2Shapes5.Location = new System.Drawing.Point(-14, 22);
             this.guna2Shapes5.Name = "guna2Shapes5";
             this.guna2Shapes5.PolygonSkip = 1;
             this.guna2Shapes5.Rotate = 0F;
-            this.guna2Shapes5.Shape = Guna.UI2.WinForms.Enums.ShapeType.Rectangle;
-            this.guna2Shapes5.Size = new System.Drawing.Size(24, 55);
-            this.guna2Shapes5.TabIndex = 0;
-            this.guna2Shapes5.Text = "guna2Shapes1";
+            this.guna2Shapes5.Shape = Guna.UI2.WinForms.Enums.ShapeType.Ellipse;
+            this.guna2Shapes5.Size = new System.Drawing.Size(30, 30);
+            this.guna2Shapes5.TabIndex = 7;
+            this.guna2Shapes5.Text = "guna2Shapes5";
             this.guna2Shapes5.Zoom = 80;
-            // 
-            // panel10
-            // 
-            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel10.Controls.Add(this.label30);
-            this.panel10.Controls.Add(this.label31);
-            this.panel10.Controls.Add(this.label32);
-            this.panel10.Controls.Add(this.label33);
-            this.panel10.Controls.Add(this.label34);
-            this.panel10.Controls.Add(this.guna2Shapes5);
-            this.panel10.Location = new System.Drawing.Point(802, 630);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1086, 62);
-            this.panel10.TabIndex = 13;
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label35.Location = new System.Drawing.Point(191, 20);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(41, 22);
-            this.label35.TabIndex = 11;
-            this.label35.Text = "ON";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(778, 23);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(90, 22);
-            this.label36.TabIndex = 7;
-            this.label36.Text = "CONVÉS";
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(633, 20);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(129, 23);
-            this.label37.TabIndex = 6;
-            this.label37.Text = "Localização:";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label38.Location = new System.Drawing.Point(119, 20);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(69, 23);
-            this.label38.TabIndex = 2;
-            this.label38.Text = "Status:";
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label39.Location = new System.Drawing.Point(34, 13);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(44, 32);
-            this.label39.TabIndex = 1;
-            this.label39.Text = "P9";
             // 
             // guna2Shapes6
             // 
-            this.guna2Shapes6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(89)))));
-            this.guna2Shapes6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(89)))));
-            this.guna2Shapes6.Location = new System.Drawing.Point(4, 4);
+            this.guna2Shapes6.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Shapes6.BorderColor = System.Drawing.Color.White;
+            this.guna2Shapes6.FillColor = System.Drawing.Color.White;
+            this.guna2Shapes6.Location = new System.Drawing.Point(436, 21);
             this.guna2Shapes6.Name = "guna2Shapes6";
             this.guna2Shapes6.PolygonSkip = 1;
             this.guna2Shapes6.Rotate = 0F;
-            this.guna2Shapes6.Shape = Guna.UI2.WinForms.Enums.ShapeType.Rectangle;
-            this.guna2Shapes6.Size = new System.Drawing.Size(24, 55);
-            this.guna2Shapes6.TabIndex = 0;
-            this.guna2Shapes6.Text = "guna2Shapes1";
+            this.guna2Shapes6.Shape = Guna.UI2.WinForms.Enums.ShapeType.Ellipse;
+            this.guna2Shapes6.Size = new System.Drawing.Size(30, 30);
+            this.guna2Shapes6.TabIndex = 6;
+            this.guna2Shapes6.Text = "guna2Shapes6";
             this.guna2Shapes6.Zoom = 80;
             // 
-            // panel11
+            // labelTotalEmbarcacao
             // 
-            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel11.Controls.Add(this.label35);
-            this.panel11.Controls.Add(this.label36);
-            this.panel11.Controls.Add(this.label37);
-            this.panel11.Controls.Add(this.label38);
-            this.panel11.Controls.Add(this.label39);
-            this.panel11.Controls.Add(this.guna2Shapes6);
-            this.panel11.Location = new System.Drawing.Point(802, 698);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1086, 62);
-            this.panel11.TabIndex = 13;
+            this.labelTotalEmbarcacao.BackColor = System.Drawing.Color.Transparent;
+            this.labelTotalEmbarcacao.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelTotalEmbarcacao.Font = new System.Drawing.Font("Century Gothic", 120F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotalEmbarcacao.ForeColor = System.Drawing.Color.Black;
+            this.labelTotalEmbarcacao.Location = new System.Drawing.Point(0, 0);
+            this.labelTotalEmbarcacao.Name = "labelTotalEmbarcacao";
+            this.labelTotalEmbarcacao.Size = new System.Drawing.Size(452, 360);
+            this.labelTotalEmbarcacao.TabIndex = 7;
+            this.labelTotalEmbarcacao.Text = "0";
+            this.labelTotalEmbarcacao.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // guna2Panel2
+            // 
+            this.guna2Panel2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Panel2.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Panel2.BorderRadius = 20;
+            this.guna2Panel2.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.guna2Panel2.Controls.Add(this.listaPessoas);
+            this.guna2Panel2.CustomBorderColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Panel2.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Panel2.Location = new System.Drawing.Point(15, 540);
+            this.guna2Panel2.Name = "guna2Panel2";
+            this.guna2Panel2.Size = new System.Drawing.Size(928, 370);
+            this.guna2Panel2.TabIndex = 1;
+            this.guna2Panel2.UseTransparentBackground = true;
+            // 
+            // listaPessoas
+            // 
+            this.listaPessoas.AllowUserToAddRows = false;
+            this.listaPessoas.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.listaPessoas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.listaPessoas.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.listaPessoas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(89)))), ((int)(((byte)(58)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.listaPessoas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.listaPessoas.ColumnHeadersHeight = 25;
+            this.listaPessoas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.listaPessoas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Número,
+            this.Nome,
+            this.Empresa});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.listaPessoas.DefaultCellStyle = dataGridViewCellStyle3;
+            this.listaPessoas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listaPessoas.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.listaPessoas.Location = new System.Drawing.Point(0, 0);
+            this.listaPessoas.Name = "listaPessoas";
+            this.listaPessoas.ReadOnly = true;
+            this.listaPessoas.RowHeadersVisible = false;
+            this.listaPessoas.Size = new System.Drawing.Size(928, 370);
+            this.listaPessoas.TabIndex = 0;
+            this.listaPessoas.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.listaPessoas.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.listaPessoas.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.listaPessoas.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.listaPessoas.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.listaPessoas.ThemeStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listaPessoas.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.listaPessoas.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(87)))));
+            this.listaPessoas.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.listaPessoas.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listaPessoas.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.listaPessoas.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.listaPessoas.ThemeStyle.HeaderStyle.Height = 25;
+            this.listaPessoas.ThemeStyle.ReadOnly = true;
+            this.listaPessoas.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.listaPessoas.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.listaPessoas.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listaPessoas.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.listaPessoas.ThemeStyle.RowsStyle.Height = 22;
+            this.listaPessoas.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.listaPessoas.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            // 
+            // Número
+            // 
+            this.Número.FillWeight = 45.68528F;
+            this.Número.HeaderText = "Número";
+            this.Número.Name = "Número";
+            this.Número.ReadOnly = true;
+            // 
+            // Nome
+            // 
+            this.Nome.FillWeight = 127.1574F;
+            this.Nome.HeaderText = "Nome";
+            this.Nome.Name = "Nome";
+            this.Nome.ReadOnly = true;
+            // 
+            // Empresa
+            // 
+            this.Empresa.FillWeight = 127.1574F;
+            this.Empresa.HeaderText = "Empresa";
+            this.Empresa.Name = "Empresa";
+            this.Empresa.ReadOnly = true;
+            // 
+            // guna2Panel3
+            // 
+            this.guna2Panel3.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Panel3.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Panel3.BorderRadius = 20;
+            this.guna2Panel3.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.guna2Panel3.Controls.Add(this.chartMovimentacao);
+            this.guna2Panel3.CustomBorderColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Panel3.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Panel3.Location = new System.Drawing.Point(976, 520);
+            this.guna2Panel3.Name = "guna2Panel3";
+            this.guna2Panel3.Size = new System.Drawing.Size(928, 390);
+            this.guna2Panel3.TabIndex = 3;
+            this.guna2Panel3.UseTransparentBackground = true;
+            // 
+            // chartMovimentacao
+            // 
+            this.chartMovimentacao.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.chartMovimentacao.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartMovimentacao.Legend.Display = false;
+            chartFont1.FontName = "Century Gothic";
+            chartFont1.Size = 14;
+            chartFont1.Style = Guna.Charts.WinForms.ChartFontStyle.Bold;
+            this.chartMovimentacao.Legend.LabelFont = chartFont1;
+            this.chartMovimentacao.Location = new System.Drawing.Point(0, 0);
+            this.chartMovimentacao.Name = "chartMovimentacao";
+            this.chartMovimentacao.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
+            this.chartMovimentacao.Size = new System.Drawing.Size(928, 390);
+            this.chartMovimentacao.TabIndex = 0;
+            this.chartMovimentacao.Title.Display = false;
+            chartFont2.FontName = "Arial";
+            chartFont2.Size = 12;
+            chartFont2.Style = Guna.Charts.WinForms.ChartFontStyle.Bold;
+            this.chartMovimentacao.Title.Font = chartFont2;
+            chartFont3.FontName = "Arial";
+            this.chartMovimentacao.Tooltips.BodyFont = chartFont3;
+            chartFont4.FontName = "Arial";
+            chartFont4.Size = 9;
+            chartFont4.Style = Guna.Charts.WinForms.ChartFontStyle.Bold;
+            this.chartMovimentacao.Tooltips.TitleFont = chartFont4;
+            this.chartMovimentacao.XAxes.GridLines = grid1;
+            chartFont5.FontName = "Arial";
+            tick1.Font = chartFont5;
+            this.chartMovimentacao.XAxes.Ticks = tick1;
+            this.chartMovimentacao.YAxes.GridLines = grid2;
+            chartFont6.FontName = "Arial";
+            tick2.Font = chartFont6;
+            this.chartMovimentacao.YAxes.Ticks = tick2;
+            this.chartMovimentacao.ZAxes.GridLines = grid3;
+            chartFont7.FontName = "Arial";
+            pointLabel1.Font = chartFont7;
+            this.chartMovimentacao.ZAxes.PointLabels = pointLabel1;
+            chartFont8.FontName = "Arial";
+            tick3.Font = chartFont8;
+            this.chartMovimentacao.ZAxes.Ticks = tick3;
+            // 
+            // guna2Panel4
+            // 
+            this.guna2Panel4.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Panel4.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Panel4.BorderRadius = 20;
+            this.guna2Panel4.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.guna2Panel4.Controls.Add(this.listaEmpresa);
+            this.guna2Panel4.CustomBorderColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Panel4.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Panel4.Location = new System.Drawing.Point(976, 112);
+            this.guna2Panel4.Name = "guna2Panel4";
+            this.guna2Panel4.Size = new System.Drawing.Size(928, 368);
+            this.guna2Panel4.TabIndex = 2;
+            this.guna2Panel4.UseTransparentBackground = true;
+            // 
+            // guna2Panel5
+            // 
+            this.guna2Panel5.AutoRoundedCorners = true;
+            this.guna2Panel5.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.guna2Panel5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(46)))), ((int)(((byte)(53)))));
+            this.guna2Panel5.BorderRadius = 39;
+            this.guna2Panel5.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.guna2Panel5.BorderThickness = 10;
+            this.guna2Panel5.Controls.Add(this.guna2Shapes2);
+            this.guna2Panel5.Controls.Add(this.guna2Shapes1);
+            this.guna2Panel5.Controls.Add(this.labelUsuario);
+            this.guna2Panel5.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(46)))), ((int)(((byte)(53)))));
+            this.guna2Panel5.CustomizableEdges.BottomLeft = false;
+            this.guna2Panel5.CustomizableEdges.BottomRight = false;
+            this.guna2Panel5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(46)))), ((int)(((byte)(53)))));
+            this.guna2Panel5.Location = new System.Drawing.Point(16, 74);
+            this.guna2Panel5.Name = "guna2Panel5";
+            this.guna2Panel5.Size = new System.Drawing.Size(452, 80);
+            this.guna2Panel5.TabIndex = 0;
+            this.guna2Panel5.UseTransparentBackground = true;
+            // 
+            // guna2Shapes2
+            // 
+            this.guna2Shapes2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Shapes2.BorderColor = System.Drawing.Color.White;
+            this.guna2Shapes2.FillColor = System.Drawing.Color.White;
+            this.guna2Shapes2.Location = new System.Drawing.Point(-14, 66);
+            this.guna2Shapes2.Name = "guna2Shapes2";
+            this.guna2Shapes2.PolygonSkip = 1;
+            this.guna2Shapes2.Rotate = 0F;
+            this.guna2Shapes2.Shape = Guna.UI2.WinForms.Enums.ShapeType.Ellipse;
+            this.guna2Shapes2.Size = new System.Drawing.Size(30, 30);
+            this.guna2Shapes2.TabIndex = 5;
+            this.guna2Shapes2.Text = "guna2Shapes2";
+            this.guna2Shapes2.Zoom = 80;
+            // 
+            // guna2Shapes1
+            // 
+            this.guna2Shapes1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Shapes1.BorderColor = System.Drawing.Color.White;
+            this.guna2Shapes1.FillColor = System.Drawing.Color.White;
+            this.guna2Shapes1.Location = new System.Drawing.Point(436, 65);
+            this.guna2Shapes1.Name = "guna2Shapes1";
+            this.guna2Shapes1.PolygonSkip = 1;
+            this.guna2Shapes1.Rotate = 0F;
+            this.guna2Shapes1.Shape = Guna.UI2.WinForms.Enums.ShapeType.Ellipse;
+            this.guna2Shapes1.Size = new System.Drawing.Size(30, 30);
+            this.guna2Shapes1.TabIndex = 4;
+            this.guna2Shapes1.Text = "guna2Shapes1";
+            this.guna2Shapes1.Zoom = 80;
+            // 
+            // labelUsuario
+            // 
+            this.labelUsuario.BackColor = System.Drawing.Color.Transparent;
+            this.labelUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelUsuario.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUsuario.ForeColor = System.Drawing.Color.White;
+            this.labelUsuario.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.labelUsuario.Location = new System.Drawing.Point(0, 0);
+            this.labelUsuario.Name = "labelUsuario";
+            this.labelUsuario.Size = new System.Drawing.Size(452, 80);
+            this.labelUsuario.TabIndex = 6;
+            this.labelUsuario.Text = "Embarcação";
+            this.labelUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // guna2Panel6
+            // 
+            this.guna2Panel6.AutoRoundedCorners = true;
+            this.guna2Panel6.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.guna2Panel6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.guna2Panel6.BorderRadius = 19;
+            this.guna2Panel6.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.guna2Panel6.BorderThickness = 10;
+            this.guna2Panel6.Controls.Add(this.label5);
+            this.guna2Panel6.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.guna2Panel6.CustomizableEdges.BottomLeft = false;
+            this.guna2Panel6.CustomizableEdges.BottomRight = false;
+            this.guna2Panel6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.guna2Panel6.Location = new System.Drawing.Point(976, 74);
+            this.guna2Panel6.Name = "guna2Panel6";
+            this.guna2Panel6.Size = new System.Drawing.Size(929, 40);
+            this.guna2Panel6.TabIndex = 1;
+            this.guna2Panel6.UseTransparentBackground = true;
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(0, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(929, 40);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Empresas à bordo";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // guna2Panel7
+            // 
+            this.guna2Panel7.AutoRoundedCorners = true;
+            this.guna2Panel7.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.guna2Panel7.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.guna2Panel7.BorderRadius = 19;
+            this.guna2Panel7.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.guna2Panel7.BorderThickness = 10;
+            this.guna2Panel7.Controls.Add(this.label6);
+            this.guna2Panel7.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.guna2Panel7.CustomizableEdges.BottomLeft = false;
+            this.guna2Panel7.CustomizableEdges.BottomRight = false;
+            this.guna2Panel7.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.guna2Panel7.Location = new System.Drawing.Point(976, 501);
+            this.guna2Panel7.Name = "guna2Panel7";
+            this.guna2Panel7.Size = new System.Drawing.Size(928, 40);
+            this.guna2Panel7.TabIndex = 1;
+            this.guna2Panel7.UseTransparentBackground = true;
+            // 
+            // label6
+            // 
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(0, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(928, 40);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Movimentação";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // guna2Panel9
+            // 
+            this.guna2Panel9.AutoRoundedCorners = true;
+            this.guna2Panel9.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Panel9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.guna2Panel9.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(59)))));
+            this.guna2Panel9.BorderRadius = 39;
+            this.guna2Panel9.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.guna2Panel9.BorderThickness = 10;
+            this.guna2Panel9.Controls.Add(this.guna2Shapes3);
+            this.guna2Panel9.Controls.Add(this.guna2Shapes4);
+            this.guna2Panel9.Controls.Add(this.label1);
+            this.guna2Panel9.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(59)))));
+            this.guna2Panel9.CustomizableEdges.BottomLeft = false;
+            this.guna2Panel9.CustomizableEdges.BottomRight = false;
+            this.guna2Panel9.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(59)))));
+            this.guna2Panel9.Location = new System.Drawing.Point(492, 74);
+            this.guna2Panel9.Name = "guna2Panel9";
+            this.guna2Panel9.Size = new System.Drawing.Size(452, 80);
+            this.guna2Panel9.TabIndex = 1;
+            this.guna2Panel9.UseTransparentBackground = true;
+            // 
+            // guna2Shapes3
+            // 
+            this.guna2Shapes3.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Shapes3.BorderColor = System.Drawing.Color.White;
+            this.guna2Shapes3.FillColor = System.Drawing.Color.White;
+            this.guna2Shapes3.Location = new System.Drawing.Point(-14, 65);
+            this.guna2Shapes3.Name = "guna2Shapes3";
+            this.guna2Shapes3.PolygonSkip = 1;
+            this.guna2Shapes3.Rotate = 0F;
+            this.guna2Shapes3.Shape = Guna.UI2.WinForms.Enums.ShapeType.Ellipse;
+            this.guna2Shapes3.Size = new System.Drawing.Size(30, 30);
+            this.guna2Shapes3.TabIndex = 7;
+            this.guna2Shapes3.Text = "guna2Shapes3";
+            this.guna2Shapes3.Zoom = 80;
+            // 
+            // guna2Shapes4
+            // 
+            this.guna2Shapes4.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Shapes4.BorderColor = System.Drawing.Color.White;
+            this.guna2Shapes4.FillColor = System.Drawing.Color.White;
+            this.guna2Shapes4.Location = new System.Drawing.Point(436, 64);
+            this.guna2Shapes4.Name = "guna2Shapes4";
+            this.guna2Shapes4.PolygonSkip = 1;
+            this.guna2Shapes4.Rotate = 0F;
+            this.guna2Shapes4.Shape = Guna.UI2.WinForms.Enums.ShapeType.Ellipse;
+            this.guna2Shapes4.Size = new System.Drawing.Size(30, 30);
+            this.guna2Shapes4.TabIndex = 6;
+            this.guna2Shapes4.Text = "guna2Shapes4";
+            this.guna2Shapes4.Zoom = 80;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(452, 80);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Dique Seco";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // guna2Panel10
+            // 
+            this.guna2Panel10.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Panel10.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Panel10.BorderRadius = 20;
+            this.guna2Panel10.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.guna2Panel10.BorderThickness = 10;
+            this.guna2Panel10.Controls.Add(this.guna2Shapes7);
+            this.guna2Panel10.Controls.Add(this.guna2Shapes8);
+            this.guna2Panel10.Controls.Add(this.labelTotalDique);
+            this.guna2Panel10.CustomBorderColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Panel10.CustomizableEdges.TopLeft = false;
+            this.guna2Panel10.CustomizableEdges.TopRight = false;
+            this.guna2Panel10.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.guna2Panel10.Location = new System.Drawing.Point(492, 120);
+            this.guna2Panel10.Name = "guna2Panel10";
+            this.guna2Panel10.Size = new System.Drawing.Size(452, 360);
+            this.guna2Panel10.TabIndex = 2;
+            this.guna2Panel10.UseTransparentBackground = true;
+            // 
+            // guna2Shapes7
+            // 
+            this.guna2Shapes7.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Shapes7.BorderColor = System.Drawing.Color.White;
+            this.guna2Shapes7.FillColor = System.Drawing.Color.White;
+            this.guna2Shapes7.Location = new System.Drawing.Point(-14, 23);
+            this.guna2Shapes7.Name = "guna2Shapes7";
+            this.guna2Shapes7.PolygonSkip = 1;
+            this.guna2Shapes7.Rotate = 0F;
+            this.guna2Shapes7.Shape = Guna.UI2.WinForms.Enums.ShapeType.Ellipse;
+            this.guna2Shapes7.Size = new System.Drawing.Size(30, 30);
+            this.guna2Shapes7.TabIndex = 9;
+            this.guna2Shapes7.Text = "guna2Shapes7";
+            this.guna2Shapes7.Zoom = 80;
+            // 
+            // guna2Shapes8
+            // 
+            this.guna2Shapes8.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Shapes8.BorderColor = System.Drawing.Color.White;
+            this.guna2Shapes8.FillColor = System.Drawing.Color.White;
+            this.guna2Shapes8.Location = new System.Drawing.Point(436, 22);
+            this.guna2Shapes8.Name = "guna2Shapes8";
+            this.guna2Shapes8.PolygonSkip = 1;
+            this.guna2Shapes8.Rotate = 0F;
+            this.guna2Shapes8.Shape = Guna.UI2.WinForms.Enums.ShapeType.Ellipse;
+            this.guna2Shapes8.Size = new System.Drawing.Size(30, 30);
+            this.guna2Shapes8.TabIndex = 8;
+            this.guna2Shapes8.Text = "guna2Shapes8";
+            this.guna2Shapes8.Zoom = 80;
+            // 
+            // labelTotalDique
+            // 
+            this.labelTotalDique.BackColor = System.Drawing.Color.Transparent;
+            this.labelTotalDique.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelTotalDique.Font = new System.Drawing.Font("Century Gothic", 120F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotalDique.ForeColor = System.Drawing.Color.Black;
+            this.labelTotalDique.Location = new System.Drawing.Point(0, 0);
+            this.labelTotalDique.Name = "labelTotalDique";
+            this.labelTotalDique.Size = new System.Drawing.Size(452, 360);
+            this.labelTotalDique.TabIndex = 8;
+            this.labelTotalDique.Text = "0";
+            this.labelTotalDique.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(0, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(1904, 49);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Docagem - SKANDI SALVADOR";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // buttonBaixar
+            // 
+            this.buttonBaixar.BackColor = System.Drawing.Color.Transparent;
+            this.buttonBaixar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.buttonBaixar.BorderRadius = 6;
+            this.buttonBaixar.BorderThickness = 5;
+            this.buttonBaixar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.buttonBaixar.CustomBorderThickness = new System.Windows.Forms.Padding(5);
+            this.buttonBaixar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.buttonBaixar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.buttonBaixar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.buttonBaixar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.buttonBaixar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.buttonBaixar.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBaixar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.buttonBaixar.Image = ((System.Drawing.Image)(resources.GetObject("buttonBaixar.Image")));
+            this.buttonBaixar.ImageOffset = new System.Drawing.Point(0, 1);
+            this.buttonBaixar.ImageSize = new System.Drawing.Size(30, 30);
+            this.buttonBaixar.Location = new System.Drawing.Point(1637, 13);
+            this.buttonBaixar.Name = "buttonBaixar";
+            this.buttonBaixar.Size = new System.Drawing.Size(264, 48);
+            this.buttonBaixar.TabIndex = 10;
+            this.buttonBaixar.Text = "Atualizar";
+            // 
+            // gunaBarDataset1
+            // 
+            this.gunaBarDataset1.Label = "Bar1";
+            // 
+            // guna2Panel8
+            // 
+            this.guna2Panel8.AutoRoundedCorners = true;
+            this.guna2Panel8.BackColor = System.Drawing.Color.Transparent;
+            this.guna2Panel8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.guna2Panel8.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.guna2Panel8.BorderRadius = 19;
+            this.guna2Panel8.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.guna2Panel8.BorderThickness = 10;
+            this.guna2Panel8.Controls.Add(this.label4);
+            this.guna2Panel8.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.guna2Panel8.CustomizableEdges.BottomLeft = false;
+            this.guna2Panel8.CustomizableEdges.BottomRight = false;
+            this.guna2Panel8.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.guna2Panel8.Location = new System.Drawing.Point(15, 501);
+            this.guna2Panel8.Name = "guna2Panel8";
+            this.guna2Panel8.Size = new System.Drawing.Size(929, 41);
+            this.guna2Panel8.TabIndex = 1;
+            this.guna2Panel8.UseTransparentBackground = true;
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(929, 41);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Pessoas à bordo";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // listaEmpresa
+            // 
+            this.listaEmpresa.AllowUserToAddRows = false;
+            this.listaEmpresa.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.listaEmpresa.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.listaEmpresa.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.listaEmpresa.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(89)))), ((int)(((byte)(58)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.listaEmpresa.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.listaEmpresa.ColumnHeadersHeight = 25;
+            this.listaEmpresa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.listaEmpresa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.listaEmpresa.DefaultCellStyle = dataGridViewCellStyle6;
+            this.listaEmpresa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listaEmpresa.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.listaEmpresa.Location = new System.Drawing.Point(0, 0);
+            this.listaEmpresa.Name = "listaEmpresa";
+            this.listaEmpresa.ReadOnly = true;
+            this.listaEmpresa.RowHeadersVisible = false;
+            this.listaEmpresa.Size = new System.Drawing.Size(928, 368);
+            this.listaEmpresa.TabIndex = 1;
+            this.listaEmpresa.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.listaEmpresa.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.listaEmpresa.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.listaEmpresa.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.listaEmpresa.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.listaEmpresa.ThemeStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listaEmpresa.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.listaEmpresa.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(87)))));
+            this.listaEmpresa.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.listaEmpresa.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listaEmpresa.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.listaEmpresa.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.listaEmpresa.ThemeStyle.HeaderStyle.Height = 25;
+            this.listaEmpresa.ThemeStyle.ReadOnly = true;
+            this.listaEmpresa.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.listaEmpresa.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.listaEmpresa.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listaEmpresa.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.listaEmpresa.ThemeStyle.RowsStyle.Height = 22;
+            this.listaEmpresa.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.listaEmpresa.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.FillWeight = 45.68528F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Número";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.FillWeight = 127.1574F;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Nome";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.FillWeight = 127.1574F;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Empresa";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // UC_Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.panel11);
-            this.Controls.Add(this.panel10);
-            this.Controls.Add(this.panel9);
-            this.Controls.Add(this.labelTotalAcessoInterno);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.panel8);
-            this.Controls.Add(this.panel7);
-            this.Controls.Add(this.panel6);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.labelTotalConves);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.labelTotalPassadiço);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.buttonSincronizar);
-            this.Controls.Add(this.panel5);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.labelPortalo);
-            this.Controls.Add(this.labelTotalABordo);
-            this.Controls.Add(this.labelABordo);
+            this.Controls.Add(this.buttonBaixar);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.guna2Panel9);
+            this.Controls.Add(this.guna2Panel5);
+            this.Controls.Add(this.guna2Panel10);
+            this.Controls.Add(this.guna2Panel1);
+            this.Controls.Add(this.guna2Panel7);
+            this.Controls.Add(this.guna2Panel8);
+            this.Controls.Add(this.guna2Panel6);
+            this.Controls.Add(this.guna2Panel3);
+            this.Controls.Add(this.guna2Panel4);
+            this.Controls.Add(this.guna2Panel2);
             this.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "UC_Home";
             this.Size = new System.Drawing.Size(1904, 906);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
-            this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
+            this.guna2Panel1.ResumeLayout(false);
+            this.guna2Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listaPessoas)).EndInit();
+            this.guna2Panel3.ResumeLayout(false);
+            this.guna2Panel4.ResumeLayout(false);
+            this.guna2Panel5.ResumeLayout(false);
+            this.guna2Panel6.ResumeLayout(false);
+            this.guna2Panel7.ResumeLayout(false);
+            this.guna2Panel9.ResumeLayout(false);
+            this.guna2Panel10.ResumeLayout(false);
+            this.guna2Panel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listaEmpresa)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label labelABordo;
-        private System.Windows.Forms.Label labelTotalABordo;
-        private System.Windows.Forms.Label labelPortalo;
-        private System.Windows.Forms.Panel panel2;
-        private Guna.UI2.WinForms.Guna2Shapes statusPortalo1;
-        private System.Windows.Forms.Label labelProaRfid1;
-        private System.Windows.Forms.Label labelPortaloTitulo1;
-        private System.Windows.Forms.Label labelProaUltimaAtualizacao;
-        private System.Windows.Forms.Label portaloData1;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label portaloData2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label labelPortaloTitulo2;
-        private Guna.UI2.WinForms.Guna2Shapes statusPortalo2;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label portaloData3;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label labelPortaloTitulo3;
-        private Guna.UI2.WinForms.Guna2Shapes statusPortalo3;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label portaloData4;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label labelPortaloTitulo4;
-        private Guna.UI2.WinForms.Guna2Shapes statusPortalo4;
-        private Guna.UI2.WinForms.Guna2Button buttonSincronizar;
-        private System.Windows.Forms.Label statusAcao1;
-        private System.Windows.Forms.Label statusAcao2;
-        private System.Windows.Forms.Label statusAcao3;
-        private System.Windows.Forms.Label statusAcao4;
-        private System.Windows.Forms.Label labelTotalPassadiço;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label labelTotalConves;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label19;
+
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel7;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel6;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel9;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel10;
         private Guna.UI2.WinForms.Guna2Shapes guna2Shapes1;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label24;
         private Guna.UI2.WinForms.Guna2Shapes guna2Shapes2;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label29;
         private Guna.UI2.WinForms.Guna2Shapes guna2Shapes3;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Label labelTotalAcessoInterno;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label12;
         private Guna.UI2.WinForms.Guna2Shapes guna2Shapes4;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Label label34;
         private Guna.UI2.WinForms.Guna2Shapes guna2Shapes5;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Label label39;
         private Guna.UI2.WinForms.Guna2Shapes guna2Shapes6;
-        private System.Windows.Forms.Panel panel11;
+        private Guna.UI2.WinForms.Guna2Shapes guna2Shapes7;
+        private Guna.UI2.WinForms.Guna2Shapes guna2Shapes8;
+        private System.Windows.Forms.Label labelTotalEmbarcacao;
+        private System.Windows.Forms.Label labelUsuario;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelTotalDique;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private Guna.UI2.WinForms.Guna2Button buttonBaixar;
+        private Guna.Charts.WinForms.GunaChart chartMovimentacao;
+        private Guna.Charts.WinForms.GunaBarDataset gunaBarDataset1;
+        private Guna.UI2.WinForms.Guna2DataGridView listaPessoas;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel8;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Número;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Empresa;
+        private Guna.UI2.WinForms.Guna2DataGridView listaEmpresa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
     }
 }

@@ -279,5 +279,10 @@ namespace DockCheckWindows
         {
 
         }
+
+        private void panelContainer_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
