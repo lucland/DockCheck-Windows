@@ -13,9 +13,12 @@
         /// <param name="disposing">true se for necessário descartar os recursos gerenciados; caso contrário, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing)
             {
-                components.Dispose();
+                if (components != null)
+                {
+                    components.Dispose();
+                }
             }
             base.Dispose(disposing);
         }
@@ -46,10 +49,10 @@
             Guna.Charts.WinForms.ChartFont chartFont7 = new Guna.Charts.WinForms.ChartFont();
             Guna.Charts.WinForms.Tick tick3 = new Guna.Charts.WinForms.Tick();
             Guna.Charts.WinForms.ChartFont chartFont8 = new Guna.Charts.WinForms.ChartFont();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Home));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Home));
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Shapes5 = new Guna.UI2.WinForms.Guna2Shapes();
             this.guna2Shapes6 = new Guna.UI2.WinForms.Guna2Shapes();
@@ -62,6 +65,10 @@
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             this.chartMovimentacao = new Guna.Charts.WinForms.GunaChart();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
+            this.listaEmpresa = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Shapes2 = new Guna.UI2.WinForms.Guna2Shapes();
             this.guna2Shapes1 = new Guna.UI2.WinForms.Guna2Shapes();
@@ -80,25 +87,20 @@
             this.labelTotalDique = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.buttonBaixar = new Guna.UI2.WinForms.Guna2Button();
-            this.gunaBarDataset1 = new Guna.Charts.WinForms.GunaBarDataset();
             this.guna2Panel8 = new Guna.UI2.WinForms.Guna2Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.listaEmpresa = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2Panel1.SuspendLayout();
             this.guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listaPessoas)).BeginInit();
             this.guna2Panel3.SuspendLayout();
             this.guna2Panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listaEmpresa)).BeginInit();
             this.guna2Panel5.SuspendLayout();
             this.guna2Panel6.SuspendLayout();
             this.guna2Panel7.SuspendLayout();
             this.guna2Panel9.SuspendLayout();
             this.guna2Panel10.SuspendLayout();
             this.guna2Panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listaEmpresa)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2Panel1
@@ -115,9 +117,9 @@
             this.guna2Panel1.CustomizableEdges.TopLeft = false;
             this.guna2Panel1.CustomizableEdges.TopRight = false;
             this.guna2Panel1.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.guna2Panel1.Location = new System.Drawing.Point(16, 120);
+            this.guna2Panel1.Location = new System.Drawing.Point(16, 104);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(452, 360);
+            this.guna2Panel1.Size = new System.Drawing.Size(452, 368);
             this.guna2Panel1.TabIndex = 0;
             this.guna2Panel1.UseTransparentBackground = true;
             // 
@@ -159,7 +161,7 @@
             this.labelTotalEmbarcacao.ForeColor = System.Drawing.Color.Black;
             this.labelTotalEmbarcacao.Location = new System.Drawing.Point(0, 0);
             this.labelTotalEmbarcacao.Name = "labelTotalEmbarcacao";
-            this.labelTotalEmbarcacao.Size = new System.Drawing.Size(452, 360);
+            this.labelTotalEmbarcacao.Size = new System.Drawing.Size(452, 368);
             this.labelTotalEmbarcacao.TabIndex = 7;
             this.labelTotalEmbarcacao.Text = "0";
             this.labelTotalEmbarcacao.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -175,7 +177,7 @@
             this.guna2Panel2.FillColor = System.Drawing.Color.WhiteSmoke;
             this.guna2Panel2.Location = new System.Drawing.Point(15, 540);
             this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(928, 370);
+            this.guna2Panel2.Size = new System.Drawing.Size(928, 400);
             this.guna2Panel2.TabIndex = 1;
             this.guna2Panel2.UseTransparentBackground = true;
             // 
@@ -203,7 +205,7 @@
             this.Empresa});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightGray;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
@@ -215,7 +217,7 @@
             this.listaPessoas.Name = "listaPessoas";
             this.listaPessoas.ReadOnly = true;
             this.listaPessoas.RowHeadersVisible = false;
-            this.listaPessoas.Size = new System.Drawing.Size(928, 370);
+            this.listaPessoas.Size = new System.Drawing.Size(928, 400);
             this.listaPessoas.TabIndex = 0;
             this.listaPessoas.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.listaPessoas.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -269,9 +271,9 @@
             this.guna2Panel3.Controls.Add(this.chartMovimentacao);
             this.guna2Panel3.CustomBorderColor = System.Drawing.Color.WhiteSmoke;
             this.guna2Panel3.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.guna2Panel3.Location = new System.Drawing.Point(976, 520);
+            this.guna2Panel3.Location = new System.Drawing.Point(976, 538);
             this.guna2Panel3.Name = "guna2Panel3";
-            this.guna2Panel3.Size = new System.Drawing.Size(928, 390);
+            this.guna2Panel3.Size = new System.Drawing.Size(928, 400);
             this.guna2Panel3.TabIndex = 3;
             this.guna2Panel3.UseTransparentBackground = true;
             // 
@@ -287,7 +289,7 @@
             this.chartMovimentacao.Location = new System.Drawing.Point(0, 0);
             this.chartMovimentacao.Name = "chartMovimentacao";
             this.chartMovimentacao.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
-            this.chartMovimentacao.Size = new System.Drawing.Size(928, 390);
+            this.chartMovimentacao.Size = new System.Drawing.Size(928, 400);
             this.chartMovimentacao.TabIndex = 0;
             this.chartMovimentacao.Title.Display = false;
             chartFont2.FontName = "Arial";
@@ -315,6 +317,7 @@
             chartFont8.FontName = "Arial";
             tick3.Font = chartFont8;
             this.chartMovimentacao.ZAxes.Ticks = tick3;
+            this.chartMovimentacao.Load += new System.EventHandler(this.chartMovimentacao_Load);
             // 
             // guna2Panel4
             // 
@@ -325,11 +328,92 @@
             this.guna2Panel4.Controls.Add(this.listaEmpresa);
             this.guna2Panel4.CustomBorderColor = System.Drawing.Color.WhiteSmoke;
             this.guna2Panel4.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.guna2Panel4.Location = new System.Drawing.Point(976, 112);
+            this.guna2Panel4.Location = new System.Drawing.Point(976, 96);
             this.guna2Panel4.Name = "guna2Panel4";
-            this.guna2Panel4.Size = new System.Drawing.Size(928, 368);
+            this.guna2Panel4.Size = new System.Drawing.Size(928, 376);
             this.guna2Panel4.TabIndex = 2;
             this.guna2Panel4.UseTransparentBackground = true;
+            // 
+            // listaEmpresa
+            // 
+            this.listaEmpresa.AllowUserToAddRows = false;
+            this.listaEmpresa.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.listaEmpresa.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.listaEmpresa.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.listaEmpresa.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(89)))), ((int)(((byte)(58)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.listaEmpresa.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.listaEmpresa.ColumnHeadersHeight = 25;
+            this.listaEmpresa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.listaEmpresa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.listaEmpresa.DefaultCellStyle = dataGridViewCellStyle6;
+            this.listaEmpresa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listaEmpresa.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.listaEmpresa.Location = new System.Drawing.Point(0, 0);
+            this.listaEmpresa.Name = "listaEmpresa";
+            this.listaEmpresa.ReadOnly = true;
+            this.listaEmpresa.RowHeadersVisible = false;
+            this.listaEmpresa.Size = new System.Drawing.Size(928, 376);
+            this.listaEmpresa.TabIndex = 1;
+            this.listaEmpresa.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.listaEmpresa.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.listaEmpresa.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.listaEmpresa.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.listaEmpresa.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.listaEmpresa.ThemeStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listaEmpresa.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.listaEmpresa.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(87)))));
+            this.listaEmpresa.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.listaEmpresa.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listaEmpresa.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.listaEmpresa.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.listaEmpresa.ThemeStyle.HeaderStyle.Height = 25;
+            this.listaEmpresa.ThemeStyle.ReadOnly = true;
+            this.listaEmpresa.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.listaEmpresa.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.listaEmpresa.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listaEmpresa.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.listaEmpresa.ThemeStyle.RowsStyle.Height = 22;
+            this.listaEmpresa.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.listaEmpresa.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.FillWeight = 45.68528F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Número";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.FillWeight = 127.1574F;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Nome";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.FillWeight = 127.1574F;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Empresa";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // guna2Panel5
             // 
@@ -347,7 +431,7 @@
             this.guna2Panel5.CustomizableEdges.BottomLeft = false;
             this.guna2Panel5.CustomizableEdges.BottomRight = false;
             this.guna2Panel5.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(46)))), ((int)(((byte)(53)))));
-            this.guna2Panel5.Location = new System.Drawing.Point(16, 74);
+            this.guna2Panel5.Location = new System.Drawing.Point(16, 58);
             this.guna2Panel5.Name = "guna2Panel5";
             this.guna2Panel5.Size = new System.Drawing.Size(452, 80);
             this.guna2Panel5.TabIndex = 0;
@@ -411,7 +495,7 @@
             this.guna2Panel6.CustomizableEdges.BottomLeft = false;
             this.guna2Panel6.CustomizableEdges.BottomRight = false;
             this.guna2Panel6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
-            this.guna2Panel6.Location = new System.Drawing.Point(976, 74);
+            this.guna2Panel6.Location = new System.Drawing.Point(976, 58);
             this.guna2Panel6.Name = "guna2Panel6";
             this.guna2Panel6.Size = new System.Drawing.Size(929, 40);
             this.guna2Panel6.TabIndex = 1;
@@ -479,7 +563,7 @@
             this.guna2Panel9.CustomizableEdges.BottomLeft = false;
             this.guna2Panel9.CustomizableEdges.BottomRight = false;
             this.guna2Panel9.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(112)))), ((int)(((byte)(59)))));
-            this.guna2Panel9.Location = new System.Drawing.Point(492, 74);
+            this.guna2Panel9.Location = new System.Drawing.Point(492, 58);
             this.guna2Panel9.Name = "guna2Panel9";
             this.guna2Panel9.Size = new System.Drawing.Size(452, 80);
             this.guna2Panel9.TabIndex = 1;
@@ -543,9 +627,9 @@
             this.guna2Panel10.CustomizableEdges.TopLeft = false;
             this.guna2Panel10.CustomizableEdges.TopRight = false;
             this.guna2Panel10.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.guna2Panel10.Location = new System.Drawing.Point(492, 120);
+            this.guna2Panel10.Location = new System.Drawing.Point(492, 104);
             this.guna2Panel10.Name = "guna2Panel10";
-            this.guna2Panel10.Size = new System.Drawing.Size(452, 360);
+            this.guna2Panel10.Size = new System.Drawing.Size(452, 368);
             this.guna2Panel10.TabIndex = 2;
             this.guna2Panel10.UseTransparentBackground = true;
             // 
@@ -587,20 +671,20 @@
             this.labelTotalDique.ForeColor = System.Drawing.Color.Black;
             this.labelTotalDique.Location = new System.Drawing.Point(0, 0);
             this.labelTotalDique.Name = "labelTotalDique";
-            this.labelTotalDique.Size = new System.Drawing.Size(452, 360);
+            this.labelTotalDique.Size = new System.Drawing.Size(452, 368);
             this.labelTotalDique.TabIndex = 8;
             this.labelTotalDique.Text = "0";
             this.labelTotalDique.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label7
             // 
-            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(87)))));
             this.label7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label7.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Font = new System.Drawing.Font("Calibri", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(0, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(1904, 49);
+            this.label7.Size = new System.Drawing.Size(1904, 41);
             this.label7.TabIndex = 9;
             this.label7.Text = "Docagem - SKANDI SALVADOR";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -608,30 +692,25 @@
             // buttonBaixar
             // 
             this.buttonBaixar.BackColor = System.Drawing.Color.Transparent;
-            this.buttonBaixar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
-            this.buttonBaixar.BorderRadius = 6;
-            this.buttonBaixar.BorderThickness = 5;
-            this.buttonBaixar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.buttonBaixar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(89)))), ((int)(((byte)(58)))));
+            this.buttonBaixar.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(89)))), ((int)(((byte)(58)))));
             this.buttonBaixar.CustomBorderThickness = new System.Windows.Forms.Padding(5);
             this.buttonBaixar.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.buttonBaixar.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.buttonBaixar.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.buttonBaixar.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.buttonBaixar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(27)))), ((int)(((byte)(41)))));
+            this.buttonBaixar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(89)))), ((int)(((byte)(58)))));
             this.buttonBaixar.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBaixar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.buttonBaixar.ForeColor = System.Drawing.Color.White;
             this.buttonBaixar.Image = ((System.Drawing.Image)(resources.GetObject("buttonBaixar.Image")));
             this.buttonBaixar.ImageOffset = new System.Drawing.Point(0, 1);
             this.buttonBaixar.ImageSize = new System.Drawing.Size(30, 30);
-            this.buttonBaixar.Location = new System.Drawing.Point(1637, 13);
+            this.buttonBaixar.Location = new System.Drawing.Point(1637, 0);
             this.buttonBaixar.Name = "buttonBaixar";
-            this.buttonBaixar.Size = new System.Drawing.Size(264, 48);
+            this.buttonBaixar.Size = new System.Drawing.Size(295, 41);
             this.buttonBaixar.TabIndex = 10;
             this.buttonBaixar.Text = "Atualizar";
-            // 
-            // gunaBarDataset1
-            // 
-            this.gunaBarDataset1.Label = "Bar1";
+            this.buttonBaixar.Click += new System.EventHandler(this.buttonSincronizar_Click);
             // 
             // guna2Panel8
             // 
@@ -666,87 +745,6 @@
             this.label4.Text = "Pessoas à bordo";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // listaEmpresa
-            // 
-            this.listaEmpresa.AllowUserToAddRows = false;
-            this.listaEmpresa.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.listaEmpresa.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.listaEmpresa.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.listaEmpresa.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(89)))), ((int)(((byte)(58)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.listaEmpresa.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.listaEmpresa.ColumnHeadersHeight = 25;
-            this.listaEmpresa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.listaEmpresa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.listaEmpresa.DefaultCellStyle = dataGridViewCellStyle6;
-            this.listaEmpresa.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listaEmpresa.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.listaEmpresa.Location = new System.Drawing.Point(0, 0);
-            this.listaEmpresa.Name = "listaEmpresa";
-            this.listaEmpresa.ReadOnly = true;
-            this.listaEmpresa.RowHeadersVisible = false;
-            this.listaEmpresa.Size = new System.Drawing.Size(928, 368);
-            this.listaEmpresa.TabIndex = 1;
-            this.listaEmpresa.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
-            this.listaEmpresa.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.listaEmpresa.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.listaEmpresa.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.listaEmpresa.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.listaEmpresa.ThemeStyle.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listaEmpresa.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.listaEmpresa.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(87)))));
-            this.listaEmpresa.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.listaEmpresa.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listaEmpresa.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.listaEmpresa.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.listaEmpresa.ThemeStyle.HeaderStyle.Height = 25;
-            this.listaEmpresa.ThemeStyle.ReadOnly = true;
-            this.listaEmpresa.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
-            this.listaEmpresa.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.listaEmpresa.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listaEmpresa.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.listaEmpresa.ThemeStyle.RowsStyle.Height = 22;
-            this.listaEmpresa.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.listaEmpresa.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.FillWeight = 45.68528F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Número";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.FillWeight = 127.1574F;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Nome";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.FillWeight = 127.1574F;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Empresa";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
             // UC_Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
@@ -773,13 +771,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.listaPessoas)).EndInit();
             this.guna2Panel3.ResumeLayout(false);
             this.guna2Panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listaEmpresa)).EndInit();
             this.guna2Panel5.ResumeLayout(false);
             this.guna2Panel6.ResumeLayout(false);
             this.guna2Panel7.ResumeLayout(false);
             this.guna2Panel9.ResumeLayout(false);
             this.guna2Panel10.ResumeLayout(false);
             this.guna2Panel8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.listaEmpresa)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -812,7 +810,6 @@
         private System.Windows.Forms.Label label7;
         private Guna.UI2.WinForms.Guna2Button buttonBaixar;
         private Guna.Charts.WinForms.GunaChart chartMovimentacao;
-        private Guna.Charts.WinForms.GunaBarDataset gunaBarDataset1;
         private Guna.UI2.WinForms.Guna2DataGridView listaPessoas;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel8;
         private System.Windows.Forms.Label label4;
