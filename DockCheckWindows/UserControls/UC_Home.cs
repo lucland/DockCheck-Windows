@@ -15,26 +15,18 @@ namespace DockCheckWindows.UserControls
     public partial class UC_Home : UserControl
     {
         private readonly ApiService apiService;
-        private readonly VesselRepository vesselRepository;
-        private readonly UserRepository userRepository;
         private readonly EmployeeRepository employeeRepository;
-        private readonly SensorRepository sensorRepository;
 
         private List<string> onboardedCompanies;
-        private List<string> onboardedEmployees;
         private List<int> companiesCount;
 
-        private GunaChart gunaChart;
         private GunaBarDataset gunaBarDataset;
 
         public UC_Home()
         {
             InitializeComponent();
             apiService = new ApiService();
-            vesselRepository = new VesselRepository(apiService);
-            userRepository = new UserRepository(apiService);
             employeeRepository = new EmployeeRepository(apiService);
-            sensorRepository = new SensorRepository(apiService);
 
             InitializeCompanyLists();
             CarregarDados();
@@ -46,9 +38,26 @@ namespace DockCheckWindows.UserControls
             companiesCount = new List<int>();
         }
 
-
         private async void CarregarDados()
         {
+            listaPessoas.Rows.Clear();
+            listaEmpresa.Rows.Clear();
+
+            chartMovimentacao.Datasets.Clear();
+            chartMovimentacao.DataBindings.Clear();
+
+            if (gunaBarDataset != null)
+            {
+                gunaBarDataset.DataPoints.Clear();
+                chartMovimentacao.Datasets.Clear();
+                gunaBarDataset = null;
+                
+            }
+
+            await Task.Delay(200);
+            chartMovimentacao.Refresh();
+            chartMovimentacao.Update();
+
             listaPessoas.Columns.Clear();
             listaPessoas.Columns.Add("Number", "Número");
             listaPessoas.Columns.Add("Name", "Nome");
@@ -69,7 +78,7 @@ namespace DockCheckWindows.UserControls
                 List<Employee> employees = await employeeRepository.GetAllEmployeeOnboardedAsync(limit: 1000, offset: 0);
                 if (employees == null || !employees.Any())
                 {
-                    MessageBox.Show("No employees fetched or list is null.");
+                //    MessageBox.Show("No employees fetched or list is null.");
                     return;
                 }
 
@@ -84,7 +93,7 @@ namespace DockCheckWindows.UserControls
                 this.Invoke((MethodInvoker)delegate
                 {
                     labelTotalEmbarcacao.Text = employees.Count.ToString();
-                    MessageBox.Show("Label updated to: " + employees.Count.ToString());  // Debugging message
+                   // MessageBox.Show("Label updated to: " + employees.Count.ToString());  // Debugging message
                 });
 
                 var employeesByCompany = employees.GroupBy(e => e.ThirdCompanyId).ToList();
@@ -102,7 +111,7 @@ namespace DockCheckWindows.UserControls
 
                 if (recentEmployees == null || !recentEmployees.Any())
                 {
-                    MessageBox.Show("No recent employees found or list is null.");
+                  //  MessageBox.Show("No recent employees found or list is null.");
                     return;
                 }
 
@@ -111,6 +120,20 @@ namespace DockCheckWindows.UserControls
                 List<Daily> dailies = await employeeRepository.GetAllEmployeeDailiesAsync();
                 List<Daily> dailiesToday = dailies.Where(d => d.First.Date == DateTime.Now.Date).ToList();
 
+                //use dailiesToday list to retrieve the first time a company was found by the earlier time a employee of a company was found and populate the listaEmpresa DataGridView last column with the hour of the first employee found
+                foreach (var company in onboardedCompanies)
+                {
+                    var firstEmployee = recentEmployees.FirstOrDefault(e => e.ThirdCompanyId == company);
+                    if (firstEmployee != null)
+                    {
+                        var firstEmployeeDaily = dailiesToday.FirstOrDefault(d => d.EmployeeId == firstEmployee.Id);
+                        if (firstEmployeeDaily != null)
+                        {
+                            listaEmpresa.Rows[onboardedCompanies.IndexOf(company)].Cells[2].Value = firstEmployeeDaily.First.AddHours(-3).ToString("HH:mm");
+                        }
+                    }
+                }
+
 
 
                 this.Invoke((MethodInvoker)delegate
@@ -118,11 +141,11 @@ namespace DockCheckWindows.UserControls
                    UpdateChartData(dailiesToday);
                 });
 
-
+                
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message); // Show exception message
+              //  MessageBox.Show("Error: " + ex.Message); // Show exception message
             }
 
         }
@@ -172,6 +195,11 @@ namespace DockCheckWindows.UserControls
         private void buttonSincronizar_Click(object sender, EventArgs e)
         {
             CarregarDados();
+        }
+
+        private void chartMovimentacao_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
