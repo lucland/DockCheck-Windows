@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
@@ -93,10 +94,8 @@ namespace DockCheckWindows.UserControls
 
         private async void leriTagButton_Click(object sender, EventArgs e)
         {
-
             try
             {
-
                 //open serial port COM3 with 115200 band
                 SerialPort serialPort = new SerialPort("COM5", 115200);
 
@@ -105,12 +104,20 @@ namespace DockCheckWindows.UserControls
                 {
                     serialPort.Open();
                 }
-                serialPort.WriteLine("L1");
-                string rfid = serialPort.ReadLine();
-                textBoxRFID.Text = rfid;
+                CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+                Task<string> readLineTask = Task.Run(() => serialPort.ReadLine(), cancellationTokenSource.Token);
+                if (await Task.WhenAny(readLineTask, Task.Delay(4000)) == readLineTask)
+                {
+                    string rfid = readLineTask.Result;
+                    textBoxRFID.Text = rfid;
+                }
+                else
+                {
+                    cancellationTokenSource.Cancel();
+                    MessageBox.Show("No data received within 4 seconds.");
+                }
                 if (serialPort.IsOpen)
                 {
-
                     serialPort.WriteLine("L2");
                     serialPort.Close();
                 }
@@ -119,8 +126,6 @@ namespace DockCheckWindows.UserControls
             {
                 MessageBox.Show($"Error: {ex.Message}");
             }
-           
-            
         }
 
         private void guna2ButtonCancelar_Click(object sender, EventArgs e)
