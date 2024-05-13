@@ -91,36 +91,36 @@ namespace DockCheckWindows.UserControls
            
         }
 
-        // ...
-
         private async void leriTagButton_Click(object sender, EventArgs e)
         {
-            await Task.Run(() =>
-            {
-                try
-                {
-                    //open serial port COM3 with 115200 band
-                    SerialPort serialPort = new SerialPort("COM5", 115200);
 
-                    //send command "L1" to the serial port and read the response
-                    if (!serialPort.IsOpen)
-                    {
-                        serialPort.Open();
-                    }
-                    serialPort.WriteLine("L1");
-                    string rfid = serialPort.ReadLine();
-                    textBoxRFID.Text = rfid;
-                    if (serialPort.IsOpen)
-                    {
-                        serialPort.WriteLine("L2");
-                        serialPort.Close();
-                    }
-                }
-                catch (Exception ex)
+            try
+            {
+
+                //open serial port COM3 with 115200 band
+                SerialPort serialPort = new SerialPort("COM5", 115200);
+
+                //send command "L1" to the serial port and read the response
+                if (!serialPort.IsOpen)
                 {
-                    MessageBox.Show($"Error: {ex.Message}");
+                    serialPort.Open();
                 }
-            });
+                serialPort.WriteLine("L1");
+                string rfid = serialPort.ReadLine();
+                textBoxRFID.Text = rfid;
+                if (serialPort.IsOpen)
+                {
+
+                    serialPort.WriteLine("L2");
+                    serialPort.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+           
+            
         }
 
         private void guna2ButtonCancelar_Click(object sender, EventArgs e)
