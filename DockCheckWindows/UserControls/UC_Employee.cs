@@ -7,7 +7,6 @@ using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
@@ -92,40 +91,36 @@ namespace DockCheckWindows.UserControls
            
         }
 
+        // ...
+
         private async void leriTagButton_Click(object sender, EventArgs e)
         {
-            try
+            await Task.Run(() =>
             {
-                //open serial port COM3 with 115200 band
-                SerialPort serialPort = new SerialPort("COM5", 115200);
+                try
+                {
+                    //open serial port COM3 with 115200 band
+                    SerialPort serialPort = new SerialPort("COM5", 115200);
 
-                //send command "L1" to the serial port and read the response
-                if (!serialPort.IsOpen)
-                {
-                    serialPort.Open();
-                }
-                CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-                Task<string> readLineTask = Task.Run(() => serialPort.ReadLine(), cancellationTokenSource.Token);
-                if (await Task.WhenAny(readLineTask, Task.Delay(4000)) == readLineTask)
-                {
-                    string rfid = readLineTask.Result;
+                    //send command "L1" to the serial port and read the response
+                    if (!serialPort.IsOpen)
+                    {
+                        serialPort.Open();
+                    }
+                    serialPort.WriteLine("L1");
+                    string rfid = serialPort.ReadLine();
                     textBoxRFID.Text = rfid;
+                    if (serialPort.IsOpen)
+                    {
+                        serialPort.WriteLine("L2");
+                        serialPort.Close();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    cancellationTokenSource.Cancel();
-                    MessageBox.Show("No data received within 4 seconds.");
+                    MessageBox.Show($"Error: {ex.Message}");
                 }
-                if (serialPort.IsOpen)
-                {
-                    serialPort.WriteLine("L2");
-                    serialPort.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}");
-            }
+            });
         }
 
         private void guna2ButtonCancelar_Click(object sender, EventArgs e)
