@@ -227,8 +227,7 @@ namespace DockCheckWindows.UserControls
                 );
                     // SwitchToCadastro?.Invoke();
 
-                    ucEmployee.Location = new Point(400, 200);
-                    ucEmployee.Size = new Size(835, 406);
+                    ucEmployee.Location = new Point(660, 285);
                     Controls.Add(ucEmployee);
                     ucEmployee.BringToFront();
                     ucEmployee.Show();

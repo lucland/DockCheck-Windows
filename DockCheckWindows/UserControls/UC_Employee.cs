@@ -82,6 +82,15 @@ namespace DockCheckWindows.UserControls
             
         }
 
+        //function to only update the area of the employee using the lerTagButton and when successfull, close the form
+        private async void lerTagButton_Click(object sender, EventArgs e)
+        {
+                await _employeeRepository.UpdateAreaAsync(id, textBoxRFID.Text.Trim());
+                this.Hide();
+           
+           
+        }
+
         private async void leriTagButton_Click(object sender, EventArgs e)
         {
 
@@ -99,9 +108,10 @@ namespace DockCheckWindows.UserControls
                 serialPort.WriteLine("L1");
                 string rfid = serialPort.ReadLine();
                 textBoxRFID.Text = rfid;
-                serialPort.WriteLine("L2");
                 if (serialPort.IsOpen)
                 {
+
+                    serialPort.WriteLine("L2");
                     serialPort.Close();
                 }
             }
@@ -116,6 +126,11 @@ namespace DockCheckWindows.UserControls
         private void guna2ButtonCancelar_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void UC_Employee_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
