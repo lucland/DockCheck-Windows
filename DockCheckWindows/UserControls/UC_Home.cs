@@ -141,7 +141,6 @@ namespace DockCheckWindows.UserControls
                    UpdateChartData(dailiesToday);
                 });
 
-                
             }
             catch (Exception ex)
             {
@@ -176,10 +175,13 @@ namespace DockCheckWindows.UserControls
 
             foreach (var data in groupedData)
             {
-                //add 1 to every hour between first and final hour of the day in the y-axis
-                for (int i = data.First.Hour; i <= data.Final.Hour; i++)
+                // Ensure we only access valid indices
+                int startHour = Math.Max(data.First.Hour - 3, 0); // Ensure the start hour is not negative
+                int endHour = Math.Min(data.Final.Hour - 3, gunaBarDataset.DataPoints.Count - 1); // Ensure the end hour does not exceed the list count
+
+                for (int i = startHour; i <= endHour; i++)
                 {
-                    gunaBarDataset.DataPoints[i - 3].Y += 1;
+                    gunaBarDataset.DataPoints[i].Y += 1;
                 }
             }
 
