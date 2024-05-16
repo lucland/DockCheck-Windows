@@ -100,12 +100,14 @@ namespace DockCheckWindows.UserControls
             try
             {
                 //open serial port COM3 with 115200 band
-                SerialPort serialPort = new SerialPort("COM5", 115200);
+                SerialPort serialPort = new SerialPort("COM6", 115200);
                 //send command "L1" to the serial port and read the response
                 if (!serialPort.IsOpen)
                 {
                     serialPort.Open();
                 }
+                serialPort.WriteLine("L2");
+                serialPort.WriteLine("L1");
                 serialPort.WriteLine("L1");
                 string rfid = serialPort.ReadLine();
                 textBoxRFID.Text = rfid;
