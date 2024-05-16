@@ -50,43 +50,50 @@ namespace DockCheckWindows.UserControls
 
         private async void printButton_Click(object sender, EventArgs e)
         {
-            //check if textBoxRFID is empty
+            // Check if textBoxRFID is empty
             if (string.IsNullOrEmpty(textBoxRFID.Text))
             {
                 MessageBox.Show("Por favor, insira um Beacon válido.");
             }
             else
             {
-
-                //remove any space or additional line \n \r if there is any from the textBoxRFID
+                // Remove any space or additional line \n \r if there is any from the textBoxRFID
                 textBoxRFID.Text = textBoxRFID.Text.Trim();
-               
-               await  _employeeRepository.UpdateAreaAsync(id,textBoxRFID.Text);
-                //TODO: get vessel name from user authorization
-                string vesselName = "Skandi Salvador";
-                var ucEtiqueta = new UC_Etiqueta(
-                    role: role,
-                    name: name,
-                    identificacao: identificacao,
-                    embarcacao: vesselName,
-                    empresa: empresa,
-                    checkin: DateTime.Now.ToString("dd/MM/yyyy"),
-                    checkout: "-"
+
+                await _employeeRepository.UpdateAreaAsync(id, textBoxRFID.Text);
+
+                // Continue with the rest of your logic only if there is no error
+                if (!textBoxRFID.Text.StartsWith("Error:"))
+                {
+                    // TODO: Get vessel name from user authorization
+                    string vesselName = "Skandi Salvador";
+                    var ucEtiqueta = new UC_Etiqueta(
+                        role: role,
+                        name: name,
+                        identificacao: identificacao,
+                        embarcacao: vesselName,
+                        empresa: empresa,
+                        checkin: DateTime.Now.ToString("dd/MM/yyyy"),
+                        checkout: "-"
                     );
-                ucEtiqueta.Location = new Point(0, 0);
-                ucEtiqueta.Size = new Size(353, 288);
-                Controls.Add(ucEtiqueta);
-                ucEtiqueta.BringToFront();
-                ucEtiqueta.Show();
+                    ucEtiqueta.Location = new Point(0, 0);
+                    ucEtiqueta.Size = new Size(353, 288);
+                    Controls.Add(ucEtiqueta);
+                    ucEtiqueta.BringToFront();
+                    ucEtiqueta.Show();
+                }
             }
-            
         }
 
-        //function to only update the area of the employee using the lerTagButton and when successfull, close the form
         private async void lerTagButton_Click(object sender, EventArgs e)
         {
-                await _employeeRepository.UpdateAreaAsync(id, textBoxRFID.Text.Trim());
+            await _employeeRepository.UpdateAreaAsync(id, textBoxRFID.Text.Trim());
+            if (!textBoxRFID.Text.StartsWith("Error:"))
+            {
+                this.Hide();
+            }
         }
+
 
         private async void leriTagButton_Click(object sender, EventArgs e)
         {
