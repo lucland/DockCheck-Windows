@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using DockCheckWindows.Models;
 using DockCheckWindows.Services;
 using Newtonsoft.Json;
@@ -130,9 +131,28 @@ namespace DockCheckWindows.Repositories
         {
             string url = $"{BaseUrl}/area/{id}";
             string data = JsonConvert.SerializeObject(new { area });
-            await PutAsyncNoDB(url, data);
+            string response = await PutAsyncNoDB(url, data);
 
+            // Check for specific error messages
+            if (response != null && response.StartsWith("Error:"))
+            {
+                // Extract the status code
+                var statusCode = response.Split(' ')[1];
+                if (statusCode == "400")
+                {
+                    MessageBox.Show("Beacon ID já está em uso. Por favor, insira um Beacon válido.");
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao atualizar a área do funcionário. Tente novamente.");
+                }
+            }
+            else if (response == "-")
+            {
+                MessageBox.Show("Erro de comunicação com o servidor. Tente novamente.");
+            }
         }
+
 
     }
 }
