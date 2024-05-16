@@ -64,10 +64,11 @@ namespace DockCheckWindows.Services
             }
             else
             {
-                // Tratar erros aqui
-                return null;
+                // Return the error status code and message
+                return $"Error: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}";
             }
         }
+
 
         public async Task<string> GetWithoutTokenAsync(string url)
         {
